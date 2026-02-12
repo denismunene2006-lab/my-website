@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: #0f172a;
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #38bdf8;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid white;
+    object-fit: cover;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 25px;
+    background: white;
+    color: #2563eb;
+    border-radius: 25px;
+    margin: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #e0e7ff;
+}
+
+.btn-secondary {
+    background: #111827;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #1f2937;
+}
+
+/* Footer */
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+.page {
+    padding: 80px 40px;
+}
+
+.page h1 {
+    margin-bottom: 20px;
+}
+
+.skills {
+    margin-top: 15px;
+}
+
+.skills li {
+    margin-bottom: 8px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.active {
+    color: #38bdf8;
+}
+.contact-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Email */
+.email {
+    background: #2563eb;
+}
+
+.email:hover {
+    background: #1d4ed8;
+}
+
+/* WhatsApp */
+.whatsapp {
+    background: #25D366;
+}
+
+.whatsapp:hover {
+    background: #1da851;
+}
+
+/* Call */
+.call {
+    background: #111827;
+}
+
+.call:hover {
+    background: #374151;
+}
+/* Smooth animation */
+body {
+    transition: background 0.4s, color 0.4s;
+}
+
+/* Contact form */
+.contact-form {
+    margin-top: 40px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.contact-form textarea {
+    height: 100px;
+}
+
+/* Floating WhatsApp */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+/* Dark mode button */
+.dark-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background: #111827;
+    color: white;
+}
+
+.dark-mode header,
+.dark-mode footer {
+    background: #000;
+}
+
+.dark-mode .card {
+    background: #1f2937;
+    color: white;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background: #1f2937;
+    color: white;
+    border: 1px solid #444;
+}
