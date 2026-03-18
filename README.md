@@ -1,52 +1,66 @@
-# 🌐 Denis Munene - Portfolio Website
+﻿# Denis Munene - Portfolio Website
 
-Welcome to my personal portfolio website!
+A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaScript. It highlights my work, services, and ways to get in touch.
 
-This project showcases my skills, projects, and contact information as a web developer.
+## Live Demo
+- https://denismunene2006-lab.github.io/my-website/
 
-## 🚀 Live Website
-👉 https://denismunene2006-lab.github.io/my-website/
+## Features
+- Multi-page layout: Home, About, Projects, Services, Contact
+- Responsive design for mobile and desktop
+- Card-based sections for projects and services
+- Contact options: email, WhatsApp, phone, and a contact form UI
+- Floating WhatsApp quick link
 
----
-
-## 🛠 Built With
-
+## Tech Stack
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript (vanilla)
 
----
+## Project Structure
+```
+.
+|-- README.md
+|-- about.html
+|-- blog.html
+|-- contact.html
+|-- index.html
+|-- projects.html
+|-- services.html
+|-- css/
+|-- images/
+|-- js/
+```
 
-## ✨ Features
+## Getting Started
+You can open `index.html` directly in a browser, or run a local static server.
 
-- Responsive design (works on mobile & desktop)
-- Navigation bar
-- About section
-- Projects section
-- Services section
-- Contact form
-- Social contact buttons (Email, WhatsApp, Call)
+### Option A: Python
+```bash
+python -m http.server 8080
+```
+Then visit `http://localhost:8080`.
 
----
+### Option B: Node.js
+```bash
+npx serve
+```
 
-## 📱 Responsive Design
+## Deployment
+This site is ready for GitHub Pages.
+1. Go to repository Settings.
+2. Open Pages.
+3. Select the `main` branch and `/ (root)` folder.
+4. Save.
 
-The website is fully responsive and adapts to different screen sizes including mobile phones and tablets.
+## Contributing
+Suggestions and improvements are welcome. Please open an issue or submit a pull request.
+See `CONTRIBUTING.md` for details.
 
----
-
----
-
-## 👨‍💻 Author
-
+## Author
 **Denis Munene**
 
-Aspiring Web Developer  
-Passionate about building clean and user-friendly websites.
+Aspiring Web Developer
 
----
-
-## 📬 Contact
-
-Feel free to reach out through the contact section on the website.
-
+## Contact
+Use the contact page on the site for email, WhatsApp, or phone.
