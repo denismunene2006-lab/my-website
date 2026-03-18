@@ -8,6 +8,8 @@ A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaS
 ## Features
 - Multi-page layout: Home, About, Projects, Services, Contact
 - Responsive design for mobile and desktop
+- **Dark Mode** toggle support
+- Modern UI with glassmorphism header and smooth animations
 - Card-based sections for projects and services
 - Contact options: email, WhatsApp, phone, and a contact form UI
 - Floating WhatsApp quick link
