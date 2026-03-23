@@ -66,3 +66,6 @@ Aspiring Web Developer
 
 ## Contact
 Use the contact page on the site for email, WhatsApp, or phone.
+---
+**Support**:
+If you like this project, consider giving it a star.
