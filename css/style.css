@@ -187,6 +187,25 @@ footer {
     border-radius: 2px;
 }
 
+.page h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+    position: relative;
+    display: inline-block;
+}
+
+.page h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
 .skills {
     margin-top: 2rem;
     list-style: none;

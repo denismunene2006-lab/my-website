@@ -1,4 +1,4 @@
-﻿# Denis Munene - Portfolio Website
+﻿﻿# Denis Munene - Portfolio Website
 
 A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaScript. It highlights my work, services, and ways to get in touch.
 
@@ -13,6 +13,8 @@ A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaS
 - Card-based sections for projects and services
 - Contact options: email, WhatsApp, phone, and a contact form UI
 - Floating WhatsApp quick link
+- Categorized Skills section (Frontend & Backend)
+- Direct link to GitHub profile
 
 ## Tech Stack
 - HTML5
