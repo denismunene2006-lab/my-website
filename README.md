@@ -20,6 +20,9 @@ A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaS
 - HTML5
 - CSS3
 - JavaScript (vanilla)
+- React.js
+- Node.js & Express
+- MongoDB
 
 ## Project Structure
 ```
