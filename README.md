@@ -1,4 +1,4 @@
-﻿﻿# Denis Munene - Portfolio Website
+﻿# Denis Munene - Portfolio Website
 
 A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaScript. It highlights my work, services, and ways to get in touch.
 
@@ -20,9 +20,12 @@ A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaS
 - HTML5
 - CSS3
 - JavaScript (vanilla)
+- TypeScript
 - React.js
-- Node.js & Express
+- Node.js & Express.js
 - MongoDB
+- REST API
+- JWT (JSON Web Tokens)
 
 ## Project Structure
 ```
