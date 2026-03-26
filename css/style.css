@@ -125,6 +125,12 @@ nav ul li a:hover,
     box-shadow: var(--shadow-lg);
 }
 
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: 2px solid var(--primary);
+}
+
 .btn-secondary {
     background: rgba(255, 255, 255, 0.1);
     color: white;
@@ -238,6 +244,12 @@ footer {
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
     border: 1px solid rgba(0,0,0,0.05);
+}
+
+a.card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .card:hover {
