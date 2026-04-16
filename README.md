@@ -1,79 +1,105 @@
-﻿# Denis Munene - Portfolio Website
+﻿# D-LABS Website
 
-A clean, responsive multi-page portfolio website built with HTML, CSS, and JavaScript. It highlights my work, services, and ways to get in touch.
+Modern multi-page website for D-LABS, built to showcase services, projects, and contact options in a clean and responsive layout.
 
 ## Live Demo
+
 - https://denismunene2006-lab.github.io/my-website/
 
-## Features
-- Multi-page layout: Home, About, Projects, Services, Contact
-- Responsive design for mobile and desktop
-- **Dark Mode** toggle support
-- Modern UI with glassmorphism header and smooth animations
-- Card-based sections for projects and services
-- Contact options: email, WhatsApp, phone, and a contact form UI
-- Floating WhatsApp quick link
-- Categorized Skills section (Frontend & Backend)
-- Direct link to GitHub profile
+## Overview
+
+This site presents D-LABS as a modern web development brand with a polished homepage, service cards, project previews, and simple ways for visitors to get in touch. It is designed to look good on mobile and desktop and to be easy to maintain.
+
+## Key Features
+
+- Multi-page layout: Home, About, Projects, Services, and Contact
+- Responsive design for mobile, tablet, and desktop
+- Polished hero section with branding image and call-to-action buttons
+- Project cards with image thumbnails
+- Service cards with clear descriptions and contact-driven actions
+- Contact page with email, WhatsApp, and phone options
+- Floating WhatsApp prompt with prewritten message support
+- Beginner web development training service for HTML, CSS, and JavaScript
+- Clean visual design with smooth hover effects and modern spacing
 
 ## Tech Stack
+
 - HTML5
 - CSS3
-- JavaScript (vanilla)
-- TypeScript
-- React.js
-- Node.js & Express.js
-- MongoDB
-- REST API
-- JWT (JSON Web Tokens)
+- Vanilla JavaScript
+- Font Awesome
 
 ## Project Structure
-```
+
+```text
 .
-|-- README.md
 |-- about.html
 |-- blog.html
 |-- contact.html
 |-- index.html
 |-- projects.html
 |-- services.html
+|-- README.md
+|-- CONTRIBUTING.md
 |-- css/
+|   `-- style.css
 |-- images/
+|   |-- name.jpeg
+|   |-- logo1.jpeg
+|   |-- profile.jpg
+|   `-- project folders/
 |-- js/
+|   `-- main.js
 ```
 
 ## Getting Started
-You can open `index.html` directly in a browser, or run a local static server.
 
-### Option A: Python
+You can open `index.html` directly in a browser, or run a local server for a better development experience.
+
+### Option 1: Python
+
 ```bash
 python -m http.server 8080
 ```
-Then visit `http://localhost:8080`.
 
-### Option B: Node.js
+Then open:
+
+```text
+http://localhost:8080
+```
+
+### Option 2: Node.js
+
 ```bash
 npx serve
 ```
 
 ## Deployment
-This site is ready for GitHub Pages.
-1. Go to repository Settings.
-2. Open Pages.
-3. Select the `main` branch and `/ (root)` folder.
-4. Save.
+
+This project is ready for GitHub Pages.
+
+1. Open the repository settings.
+2. Go to the Pages section.
+3. Select the `main` branch.
+4. Choose the root folder `/ (root)`.
+5. Save the configuration.
 
 ## Contributing
+
 Suggestions and improvements are welcome. Please open an issue or submit a pull request.
-See `CONTRIBUTING.md` for details.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Author
+
 **Denis Munene**
 
 Aspiring Web Developer
 
 ## Contact
-Use the contact page on the site for email, WhatsApp, or phone.
+
+Use the contact page on the website for email, WhatsApp, or phone communication.
+
 ---
-**Support**:
-If you like this project, consider giving it a star.
+
+If you like this project, a star would be appreciated.

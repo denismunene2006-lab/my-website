@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denis Munene | Web Developer</title>
+    <title>D-LABS | Web Development Company</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preload" href="images/profile.jpg" as="image">
+    <link rel="preload" href="images/logo1.jpeg" as="image">
 </head>
 <body>
 
 <header>
-    <div class="logo">Denis Munene</div>
+    <a href="index.html" class="logo" aria-label="D-LABS Home">
+        <img src="images/name.jpeg" alt="D-LABS">
+    </a>
     <nav>
         <ul>
             <li><a href="index.html" class="active">Home</a></li>
@@ -21,28 +23,34 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-    <button id="darkModeToggle" class="dark-toggle">
-    <i class="fas fa-moon"></i>
-</button>
-
 </header>
 
 <section class="hero">
     <div class="hero-content">
-        <img src="images/profile.jpg" alt="Denis Munene" fetchpriority="high">
-        <h1>Hello, I'm Denis Munene 👋</h1>
-        <p>Computer Science Student | Web Developer | Future Software Engineer</p>
+        <img src="images/logo1.jpeg" alt="Denis Munene logo" class="hero-logo" fetchpriority="high">
+        <h1>Hello, welcome to D-LABS</h1>
+        <p>D-LABS is a modern web development company that builds secure, SEO-friendly websites and web applications that help businesses grow, stand out, and stay visible online.</p>
         <div class="buttons">
-            <a href="projects.html" class="btn">View My Work</a>
-            <a href="contact.html" class="btn btn-secondary">Hire Me</a>
+            <a href="projects.html" class="btn">Explore Our Work</a>
+            <a href="contact.html" class="btn btn-secondary">Start a Project</a>
+        </div>
+    </div>
+</section>
+
+<section class="home-photo">
+    <div class="home-photo-content">
+        <img src="images/profile.jpg" alt="Portrait of Denis Munene" class="personal-photo" loading="lazy">
+        <div class="home-photo-text">
+            <h2>Built for businesses that want to grow</h2>
+            <p>We design and develop e-commerce websites, personal portfolios, school systems, business platforms, and custom web applications with a focus on speed, security, clean design, and strong search engine visibility.</p>
         </div>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Denis Munene | All Rights Reserved</p>
+    <p>© 2026 D-LABS | All Rights Reserved</p>
 </footer>
 
-<script src="js/script.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
