@@ -50,52 +50,76 @@ document.addEventListener('DOMContentLoaded', () => {
     floatingButton.setAttribute('aria-label', 'Chat on WhatsApp');
     floatingButton.setAttribute('rel', 'noopener noreferrer');
 
-    const promptSeenKey = 'dlabs-whatsapp-prompt-seen';
+    const prompt = document.createElement('div');
+    prompt.className = 'whatsapp-prompt whatsapp-prompt--hidden';
+    prompt.setAttribute('role', 'status');
+    prompt.innerHTML = `
+        <button class="whatsapp-prompt__close" type="button" aria-label="Dismiss WhatsApp prompt">&times;</button>
+        <div class="whatsapp-prompt__icon" aria-hidden="true">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="whatsapp-prompt__content">
+            <p class="whatsapp-prompt__title">Need a quick reply?</p>
+            <p class="whatsapp-prompt__text">Tap below and start your project chat with D-LABS in one click.</p>
+        </div>
+        <a class="whatsapp-prompt__action" href="${whatsappLink}" target="_blank" rel="noopener noreferrer">
+            Chat now
+        </a>
+    `;
 
-    if (isContactPage || !sessionStorage.getItem(promptSeenKey)) {
-        const prompt = document.createElement('div');
-        prompt.className = 'whatsapp-prompt';
-        prompt.setAttribute('role', 'status');
-        const closeButtonMarkup = isContactPage
-            ? ''
-            : '<button class="whatsapp-prompt__close" type="button" aria-label="Dismiss WhatsApp prompt">&times;</button>';
-        prompt.innerHTML = `
-            ${closeButtonMarkup}
-            <div class="whatsapp-prompt__icon" aria-hidden="true">
-                <i class="fab fa-whatsapp"></i>
-            </div>
-            <div class="whatsapp-prompt__content">
-                <p class="whatsapp-prompt__title">Need a quick reply?</p>
-                <p class="whatsapp-prompt__text">Tap below and start your project chat with D-LABS in one click.</p>
-            </div>
-            <a class="whatsapp-prompt__action" href="${whatsappLink}" target="_blank" rel="noopener noreferrer">
-                Chat now
-            </a>
-        `;
+    document.body.appendChild(prompt);
 
-        document.body.appendChild(prompt);
+    let promptDismissed = false;
+    let inBottomZone = false;
 
-        const closePrompt = () => {
-            prompt.classList.add('whatsapp-prompt--hidden');
-            sessionStorage.setItem(promptSeenKey, 'true');
+    const hidePrompt = () => {
+        prompt.classList.remove('whatsapp-prompt--visible');
+        prompt.classList.add('whatsapp-prompt--hidden');
+    };
+
+    const showPrompt = () => {
+        prompt.classList.remove('whatsapp-prompt--hidden');
+        prompt.classList.add('whatsapp-prompt--visible');
+    };
+
+    const updatePromptVisibility = () => {
+        if (inBottomZone && !promptDismissed) {
+            showPrompt();
+            return;
+        }
+
+        hidePrompt();
+    };
+
+    const closeButton = prompt.querySelector('.whatsapp-prompt__close');
+    closeButton.addEventListener('click', () => {
+        promptDismissed = true;
+        hidePrompt();
+    });
+
+    const footer = document.querySelector('footer');
+
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            inBottomZone = entry.isIntersecting;
+            updatePromptVisibility();
+        }, {
+            threshold: 0.15,
+        });
+
+        footerObserver.observe(footer);
+    } else {
+        const checkBottomZone = () => {
+            const scrollBottom = window.scrollY + window.innerHeight;
+            const pageBottom = document.documentElement.scrollHeight;
+            inBottomZone = pageBottom - scrollBottom < 220;
+            updatePromptVisibility();
         };
 
-        if (isContactPage) {
-            prompt.classList.add('whatsapp-prompt--visible');
-        } else {
-            const closeButton = prompt.querySelector('.whatsapp-prompt__close');
-            closeButton.addEventListener('click', closePrompt);
-
-            window.setTimeout(() => {
-                prompt.classList.add('whatsapp-prompt--visible');
-            }, 900);
-
-            window.setTimeout(() => {
-                if (!prompt.classList.contains('whatsapp-prompt--hidden')) {
-                    closePrompt();
-                }
-            }, 5000);
-        }
+        window.addEventListener('scroll', checkBottomZone, { passive: true });
+        window.addEventListener('resize', checkBottomZone);
+        checkBottomZone();
     }
 
     const hero = document.querySelector('.hero');
