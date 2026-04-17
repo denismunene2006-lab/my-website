@@ -4,28 +4,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappPrefill)}`;
     const isContactPage = window.location.pathname.toLowerCase().endsWith('contact.html');
 
-
-
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealTargets = document.querySelectorAll(
-        '.hero-content, .home-photo-content, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li'
+        '.hero-content, .home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
     );
 
-    revealTargets.forEach((element) => {
-        element.classList.add('hidden', 'three-d-card');
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                observer.unobserve(entry.target);
-            }
+    if (prefersReducedMotion) {
+        revealTargets.forEach((element) => element.classList.add('show'));
+    } else {
+        revealTargets.forEach((element, index) => {
+            element.classList.add('hidden');
+            const stagger = Math.min((index % 10) * 85, 680);
+            element.style.setProperty('--reveal-delay', `${stagger}ms`);
         });
-    }, {
-        threshold: 0.15,
-    });
 
-    revealTargets.forEach((element) => observer.observe(element));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.18,
+            rootMargin: '0px 0px -8% 0px',
+        });
+
+        revealTargets.forEach((element) => observer.observe(element));
+    }
 
     const floatingButton = document.querySelector('.floating-whatsapp') || (() => {
         const button = document.createElement('a');
@@ -102,13 +108,4 @@ document.addEventListener('DOMContentLoaded', () => {
             hero.style.setProperty('--hero-shift', `${offset}px`);
         }, { passive: true });
     }
-
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        document.querySelectorAll('.three-d-card').forEach((element, index) => {
-            const depth = 12 + index * 3;
-            const tilt = Math.max(-8, Math.min(8, (window.innerWidth / 2 - (element.getBoundingClientRect().left + element.offsetWidth / 2)) / 40));
-            element.style.transform = `perspective(1200px) translateY(${Math.min(scrollTop * 0.01, 18)}px) rotateX(${depth / 12}deg) rotateY(${tilt}deg)`;
-        });
-    }, { passive: true });
 });

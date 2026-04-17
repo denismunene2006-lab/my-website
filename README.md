@@ -14,6 +14,9 @@ This site presents D-LABS as a modern web development brand with a polished home
 
 - Multi-page layout: Home, About, Projects, Services, and Contact
 - Responsive design for mobile, tablet, and desktop
+- App-style navigation bar with icon-above-label menu items
+- Active page highlight with rounded accent background
+- Header logo is non-clickable and fills a bordered logo container
 - Polished hero section with branding image and call-to-action buttons
 - Project cards with image thumbnails
 - Service cards with clear descriptions and contact-driven actions
@@ -21,6 +24,14 @@ This site presents D-LABS as a modern web development brand with a polished home
 - Floating WhatsApp prompt with prewritten message support
 - Beginner web development training service for HTML, CSS, and JavaScript
 - Clean visual design with smooth hover effects and modern spacing
+
+## Recent UI Updates
+
+- Refactored primary navigation to a modern mobile-app style using flexbox and even item spacing
+- Added Font Awesome icons above Home, About, Projects, Services, and Contact labels
+- Improved navbar hover transitions, spacing, and border treatment for a more professional look
+- Updated responsive navbar behavior for smaller screens
+- Standardized About icon style and aligned navbar behavior across pages
 
 ## Tech Stack
 

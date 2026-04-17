@@ -10,16 +10,41 @@
 <body>
 
 <header>
-    <a href="index.html" class="logo" aria-label="D-LABS Home">
+    <div class="logo">
         <img src="images/name.jpeg" alt="D-LABS">
-    </a>
-    <nav>
+    </div>
+    <nav class="main-nav" aria-label="Primary navigation">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="index.html" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="nav-link active" aria-current="page">
+                    <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="projects.html" class="nav-link">
+                    <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="services.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html" class="nav-link">
+                    <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Contact</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

@@ -11,28 +11,53 @@
 <body>
 
 <header>
-    <a href="index.html" class="logo" aria-label="D-LABS Home">
+    <div class="logo">
         <img src="images/name.jpeg" alt="D-LABS">
-    </a>
-    <nav>
+    </div>
+    <nav class="main-nav" aria-label="Primary navigation">
         <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="#home-page" class="nav-link active" aria-current="page">
+                    <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#about-page" class="nav-link">
+                    <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="#projects-page" class="nav-link">
+                    <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="#services-page" class="nav-link">
+                    <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="#contact-page" class="nav-link">
+                    <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Contact</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
 
-<section class="hero">
+<section class="hero" id="home-page">
     <div class="hero-content">
         <img src="images/logo1.jpeg" alt="Denis Munene logo" class="hero-logo" fetchpriority="high">
         <h1>Hello, welcome to D-LABS</h1>
         <p>D-LABS is a modern web development company that builds secure, SEO-friendly websites and web applications that help businesses grow, stand out, and stay visible online.</p>
         <div class="buttons">
-            <a href="projects.html" class="btn">Explore Our Work</a>
-            <a href="contact.html" class="btn btn-secondary">Start a Project</a>
+            <a href="#projects-page" class="btn">Explore Our Work</a>
+            <a href="#contact-page" class="btn btn-secondary">Start a Project</a>
         </div>
     </div>
 </section>
@@ -44,6 +69,153 @@
             <h2>Built for businesses that want to grow</h2>
             <p>We design and develop e-commerce websites, personal portfolios, school systems, business platforms, and custom web applications with a focus on speed, security, clean design, and strong search engine visibility.</p>
         </div>
+    </div>
+</section>
+
+<section class="page home-section about-section" id="about-page" aria-label="About section">
+    <div class="section-head">
+        <h1>About D-LABS</h1>
+    </div>
+    <p>
+        D-LABS is a modern web development company focused on building secure, fast, and SEO-optimized digital products that help businesses grow online.
+        We create elegant websites and web applications that are designed to attract customers, build trust, and deliver a smooth user experience on every device.
+    </p>
+    <h2>What We Do Best</h2>
+    <h3>Frontend</h3>
+    <ul class="skills">
+        <li>React.js</li>
+        <li>HTML + CSS</li>
+        <li>JavaScript</li>
+        <li>TypeScript</li>
+    </ul>
+
+    <h3>Backend</h3>
+    <ul class="skills">
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>MongoDB</li>
+        <li>REST API</li>
+        <li>JWT</li>
+    </ul>
+</section>
+
+<section class="page home-section projects-section" id="projects-page" aria-label="Projects section">
+    <div class="section-head">
+        <h1>Our Projects</h1>
+    </div>
+
+    <div class="cards">
+
+        <a href="https://denismunene2006-lab.github.io/Smart-study-access/" target="_blank" class="card">
+            <img src="images/smart-study-access/Screenshot 2026-04-16 145406.png" alt="Smart Study Access" class="card-image">
+            <h3>Smart-Study-Access</h3>
+            <p>A clean, mobile-first web platform designed to help students access and manage past papers easily.</p>
+        </a>
+
+        <a href="https://student-hustle-hub.vercel.app" target="_blank" class="card">
+            <img src="images/student-hustle-hub/Screenshot 2026-03-07 131534.png" alt="Student Hustle Hub" class="card-image">
+            <h3>Student-Hustle-Hub</h3>
+            <p>A full-stack platform built to help students promote services and connect with opportunities online.</p>
+        </a>
+
+        <a href="https://denismunene2006-lab.github.io/my-website" target="_blank" class="card">
+            <img src="images/portfolio-website/Screenshot 2026-04-16 145856.png" alt="Portfolio Website" class="card-image">
+            <h3>Portfolio Website</h3>
+            <p>A responsive company-style website built to present a strong digital presence and showcase services.</p>
+        </a>
+
+        <a href="https://denismunene2006-lab.github.io/e-commerce-website" target="_blank" class="card">
+            <img src="images/ecommerce-website/Screenshot 2026-04-16 145534.png" alt="E-Commerce Website" class="card-image">
+            <h3>E-Commerce Website</h3>
+            <p>A modern e-commerce demo with product listings, clean navigation, and conversion-focused UI components.</p>
+        </a>
+
+        <a href="https://denismunene2006-lab.github.io/mary-bookshop" target="_blank" class="card">
+            <img src="images/bookshop-website/Screenshot 2026-04-16 145716.png" alt="Bookshop Website" class="card-image">
+            <h3>Bookshop Website</h3>
+            <p>A clean, responsive bookstore website with structured navigation and a user-friendly shopping experience.</p>
+        </a>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="https://github.com/denismunene2006-lab" target="_blank" class="btn btn-primary">View More Work</a>
+    </div>
+</section>
+
+<section class="page home-section services-section" id="services-page" aria-label="Services section">
+    <div class="section-head">
+        <h1>Our Services</h1>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-box">
+            <i class="fas fa-code"></i>
+            <h3>Website Development</h3>
+            <p>Modern, responsive websites built to look professional, load fast, and convert visitors into clients.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Website Redesign</h3>
+            <p>Transform outdated websites into polished, modern experiences that match your brand and business goals.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fab fa-github"></i>
+            <h3>GitHub Deployment</h3>
+            <p>Launch your site with reliable deployment so your business can be live, accessible, and easy to maintain.</p>
+        </div>
+
+        <div class="service-box">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Beginner Web Development Training</h3>
+            <p>We teach beginners web development starting with HTML, CSS, and JavaScript through simple, practical lessons at an affordable price.</p>
+            <a href="https://wa.me/254710236087?text=Hi%20D-LABS%2C%20I%27m%20interested%20in%20learning%20web%20development.%20Please%20share%20the%20course%20details%20and%20pricing." target="_blank" rel="noopener noreferrer" class="service-cta">Enroll Now</a>
+        </div>
+    </div>
+</section>
+
+<section class="page home-section contact-section" id="contact-page" aria-label="Contact section">
+    <div class="section-head">
+        <h1>Contact D-LABS</h1>
+    </div>
+    <p>Ready to grow your business online? Reach out and let us build a secure, modern website that helps you stand out and attract more customers.</p>
+
+    <div class="contact-buttons">
+
+        <a href="mailto:denismunene2006@gmail.com" class="contact-btn email">
+            <i class="fas fa-envelope"></i> Email Me
+        </a>
+
+        <a href="https://wa.me/254710236087" target="_blank" class="contact-btn whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp Me
+        </a>
+
+        <a href="tel:+254710236087" class="contact-btn call">
+            <i class="fas fa-phone"></i> Call Me
+        </a>
+
+    </div>
+
+    <div class="contact-form">
+        <h2>Tell Us About Your Project</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<section class="page home-section blog-section" id="blog-page" aria-label="Blog section">
+    <div class="section-head">
+        <h1>Blog</h1>
+    </div>
+    <div class="blog-placeholder">
+        <h3>Fresh insights are on the way</h3>
+        <p>We are preparing practical articles about web development, business websites, SEO, and online growth. Check back soon for updates.</p>
     </div>
 </section>
 
