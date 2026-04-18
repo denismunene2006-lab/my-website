@@ -1,6 +1,6 @@
 ﻿# D-LABS Website
 
-Modern multi-page website for D-LABS, built to showcase services, projects, and contact options in a clean and responsive layout.
+Modern multi-page website for D-LABS, built to showcase services, projects, blog articles, and contact options in a clean and responsive layout.
 
 ## Live Demo
 
@@ -8,7 +8,7 @@ Modern multi-page website for D-LABS, built to showcase services, projects, and 
 
 ## Overview
 
-This site presents D-LABS as a modern web development brand with a polished homepage, service cards, project previews, and simple ways for visitors to get in touch. It is designed to look good on mobile and desktop and to be easy to maintain.
+This site presents D-LABS as a modern web development brand with a polished homepage, service cards, project previews, blog articles, and simple ways for visitors to get in touch. It is designed to look good on mobile and desktop and to be easy to maintain.
 
 ## Key Features
 
@@ -20,9 +20,11 @@ This site presents D-LABS as a modern web development brand with a polished home
 - Polished hero section with branding image and call-to-action buttons
 - Project cards with image thumbnails
 - Service cards with clear descriptions and contact-driven actions
+- Blog section with article previews and dedicated post pages
 - Contact page with email, WhatsApp, and phone options
 - Floating WhatsApp prompt with prewritten message support
 - Beginner web development training service for HTML, CSS, and JavaScript
+- Structured blog content ready for future web development training guides
 - Clean visual design with smooth hover effects and modern spacing
 
 ## Recent UI Updates
@@ -32,6 +34,7 @@ This site presents D-LABS as a modern web development brand with a polished home
 - Improved navbar hover transitions, spacing, and border treatment for a more professional look
 - Updated responsive navbar behavior for smaller screens
 - Standardized About icon style and aligned navbar behavior across pages
+- Added blog navigation, article pages, SEO metadata, and structured data
 
 ## Tech Stack
 
@@ -109,7 +112,7 @@ Aspiring Web Developer
 
 ## Contact
 
-Use the contact page on the website for email, WhatsApp, or phone communication.
+Use the contact page on the website for email, WhatsApp, or phone communication, or link into the training guide system when it is ready.
 
 ---
 

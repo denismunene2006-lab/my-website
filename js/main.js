@@ -4,6 +4,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappPrefill)}`;
     const isContactPage = window.location.pathname.toLowerCase().endsWith('contact.html');
 
+    const trackConversion = (eventName, payload = {}) => {
+        const eventPayload = {
+            event: eventName,
+            page_path: window.location.pathname,
+            page_title: document.title,
+            ...payload,
+        };
+
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, payload);
+        }
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(eventPayload);
+    };
+
+    const getActionLabel = (element) => {
+        const text = element.textContent.replace(/\s+/g, ' ').trim();
+        const ariaLabel = element.getAttribute('aria-label');
+        return ariaLabel || text || element.getAttribute('href') || element.tagName.toLowerCase();
+    };
+
+    const isTrackableAction = (element) => element.closest(
+        '.contact-btn, .service-cta, .btn, .btn-primary, .btn-secondary, .section-jump-link, .floating-whatsapp, .whatsapp-prompt__action'
+    );
+
+    document.addEventListener('click', (event) => {
+        const interactive = event.target.closest('a, button');
+
+        if (!interactive || !isTrackableAction(interactive) || interactive.classList.contains('whatsapp-prompt__close')) {
+            return;
+        }
+
+        const href = interactive.getAttribute('href') || '';
+        const label = getActionLabel(interactive);
+
+        let actionType = 'cta_click';
+
+        if (interactive.matches('.contact-btn, .floating-whatsapp, .whatsapp-prompt__action') || href.includes('wa.me')) {
+            actionType = 'whatsapp_click';
+        } else if (href.startsWith('mailto:')) {
+            actionType = 'email_click';
+        } else if (href.startsWith('tel:')) {
+            actionType = 'call_click';
+        } else if (interactive.matches('.service-cta')) {
+            actionType = 'service_cta_click';
+        } else if (interactive.matches('.section-jump-link')) {
+            actionType = 'section_link_click';
+        } else if (interactive.tagName.toLowerCase() === 'button') {
+            actionType = 'form_button_click';
+        }
+
+        trackConversion(actionType, {
+            action_label: label,
+            destination: href,
+        });
+    }, true);
+
+    const contactForm = document.querySelector('.contact-form form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', () => {
+            trackConversion('contact_form_submit', {
+                action_label: 'Contact form submit',
+                destination: window.location.pathname,
+            });
+        });
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealTargets = document.querySelectorAll(
         '.hero-content, .home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
@@ -126,10 +195,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (hero) {
         hero.classList.add('hero-3d');
+        let heroTicking = false;
 
-        window.addEventListener('scroll', () => {
+        const updateHeroParallax = () => {
             const offset = window.scrollY * 0.12;
             hero.style.setProperty('--hero-shift', `${offset}px`);
+            heroTicking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!heroTicking) {
+                window.requestAnimationFrame(updateHeroParallax);
+                heroTicking = true;
+            }
         }, { passive: true });
+
+        updateHeroParallax();
     }
 });

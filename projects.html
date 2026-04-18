@@ -3,7 +3,42 @@
 <head>
     <title>Projects | D-LABS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Explore D-LABS web projects including business websites, e-commerce demos, and student-focused platforms.">
+        <link rel="canonical" href="https://denismunene2006-lab.github.io/my-website/projects.html">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Projects | D-LABS">
+        <meta property="og:description" content="See practical web development projects built by D-LABS.">
+        <meta property="og:url" content="https://denismunene2006-lab.github.io/my-website/projects.html">
+        <meta property="og:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Projects | D-LABS">
+        <meta name="twitter:description" content="Portfolio of modern, responsive websites and web apps by D-LABS.">
+        <meta name="twitter:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/#organization",
+                    "name": "D-LABS",
+                    "url": "https://denismunene2006-lab.github.io/my-website/",
+                    "logo": "https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/projects.html#webpage",
+                    "url": "https://denismunene2006-lab.github.io/my-website/projects.html",
+                    "name": "Projects | D-LABS",
+                    "description": "Explore D-LABS web projects including business websites, e-commerce demos, and student-focused platforms.",
+                    "isPartOf": {"@id": "https://denismunene2006-lab.github.io/my-website/#website"},
+                    "about": {"@id": "https://denismunene2006-lab.github.io/my-website/#organization"}
+                }
+            ]
+        }
+        </script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -12,13 +47,44 @@
     <div class="logo">
         <img src="images/name.jpeg" alt="D-LABS">
     </div>
-    <nav>
+    <nav class="main-nav" aria-label="Primary navigation">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="index.html" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="nav-link">
+                    <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="projects.html" class="nav-link active" aria-current="page">
+                    <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="services.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html" class="nav-link">
+                    <i class="fa-solid fa-blog nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html" class="nav-link">
+                    <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Contact</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -29,31 +95,31 @@
     <div class="cards">
 
         <a href="https://denismunene2006-lab.github.io/Smart-study-access/" target="_blank" class="card">
-            <img src="images/smart-study-access/Screenshot 2026-04-16 145406.png" alt="Smart Study Access" class="card-image">
+            <img src="images/smart-study-access/Screenshot 2026-04-16 145406.png" alt="Smart Study Access" class="card-image" loading="lazy" decoding="async">
             <h3>Smart-Study-Access</h3>
             <p>A clean, mobile-first web platform designed to help students access and manage past papers easily.</p>
         </a>
 
         <a href="https://student-hustle-hub.vercel.app" target="_blank" class="card">
-            <img src="images/student-hustle-hub/Screenshot 2026-03-07 131534.png" alt="Student Hustle Hub" class="card-image">
+            <img src="images/student-hustle-hub/Screenshot 2026-03-07 131534.png" alt="Student Hustle Hub" class="card-image" loading="lazy" decoding="async">
             <h3>Student-Hustle-Hub</h3>
             <p>A full-stack platform built to help students promote services and connect with opportunities online.</p>
         </a>
 
         <a href="https://denismunene2006-lab.github.io/my-website" target="_blank" class="card">
-            <img src="images/portfolio-website/Screenshot 2026-04-16 145856.png" alt="Portfolio Website" class="card-image">
+            <img src="images/portfolio-website/Screenshot 2026-04-16 145856.png" alt="Portfolio Website" class="card-image" loading="lazy" decoding="async">
             <h3>Portfolio Website</h3>
             <p>A responsive company-style website built to present a strong digital presence and showcase services.</p>
         </a>
 
         <a href="https://denismunene2006-lab.github.io/e-commerce-website" target="_blank" class="card">
-            <img src="images/ecommerce-website/Screenshot 2026-04-16 145534.png" alt="E-Commerce Website" class="card-image">
+            <img src="images/ecommerce-website/Screenshot 2026-04-16 145534.png" alt="E-Commerce Website" class="card-image" loading="lazy" decoding="async">
             <h3>E-Commerce Website</h3>
             <p>A modern e-commerce demo with product listings, clean navigation, and conversion-focused UI components.</p>
         </a>
 
         <a href="https://denismunene2006-lab.github.io/mary-bookshop" target="_blank" class="card">
-            <img src="images/bookshop-website/Screenshot 2026-04-16 145716.png" alt="Bookshop Website" class="card-image">
+            <img src="images/bookshop-website/Screenshot 2026-04-16 145716.png" alt="Bookshop Website" class="card-image" loading="lazy" decoding="async">
             <h3>Bookshop Website</h3>
             <p>A clean, responsive bookstore website with structured navigation and a user-friendly shopping experience.</p>
         </a>
@@ -69,6 +135,6 @@
     <p>© 2026 D-LABS</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

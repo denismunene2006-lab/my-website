@@ -3,7 +3,42 @@
 <head>
     <title>Services | D-LABS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="D-LABS services include website development, redesign, GitHub deployment, and beginner web development training.">
+        <link rel="canonical" href="https://denismunene2006-lab.github.io/my-website/services.html">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Services | D-LABS">
+        <meta property="og:description" content="Discover D-LABS web development and website growth services.">
+        <meta property="og:url" content="https://denismunene2006-lab.github.io/my-website/services.html">
+        <meta property="og:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Services | D-LABS">
+        <meta name="twitter:description" content="Professional web services from design to deployment by D-LABS.">
+        <meta name="twitter:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/#organization",
+                    "name": "D-LABS",
+                    "url": "https://denismunene2006-lab.github.io/my-website/",
+                    "logo": "https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/services.html#webpage",
+                    "url": "https://denismunene2006-lab.github.io/my-website/services.html",
+                    "name": "Services | D-LABS",
+                    "description": "D-LABS services include website development, redesign, GitHub deployment, and beginner web development training.",
+                    "isPartOf": {"@id": "https://denismunene2006-lab.github.io/my-website/#website"},
+                    "about": {"@id": "https://denismunene2006-lab.github.io/my-website/#organization"}
+                }
+            ]
+        }
+        </script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
@@ -12,13 +47,44 @@
     <div class="logo">
         <img src="images/name.jpeg" alt="D-LABS">
     </div>
-    <nav>
+    <nav class="main-nav" aria-label="Primary navigation">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="services.html" class="active">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="index.html" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="nav-link">
+                    <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="projects.html" class="nav-link">
+                    <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="services.html" class="nav-link active" aria-current="page">
+                    <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html" class="nav-link">
+                    <i class="fa-solid fa-blog nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html" class="nav-link">
+                    <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Contact</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -58,6 +124,6 @@
     <p>© 2026 D-LABS</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

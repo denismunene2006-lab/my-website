@@ -3,6 +3,41 @@
 <head>
     <title>Contact | D-LABS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Contact D-LABS by email, WhatsApp, or phone to start your website project and grow your business online.">
+        <link rel="canonical" href="https://denismunene2006-lab.github.io/my-website/contact.html">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Contact | D-LABS">
+        <meta property="og:description" content="Get in touch with D-LABS for modern, secure, and SEO-focused web development.">
+        <meta property="og:url" content="https://denismunene2006-lab.github.io/my-website/contact.html">
+        <meta property="og:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Contact | D-LABS">
+        <meta name="twitter:description" content="Talk to D-LABS and start your next web project today.">
+        <meta name="twitter:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/#organization",
+                    "name": "D-LABS",
+                    "url": "https://denismunene2006-lab.github.io/my-website/",
+                    "logo": "https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://denismunene2006-lab.github.io/my-website/contact.html#webpage",
+                    "url": "https://denismunene2006-lab.github.io/my-website/contact.html",
+                    "name": "Contact | D-LABS",
+                    "description": "Contact D-LABS by email, WhatsApp, or phone to start your website project and grow your business online.",
+                    "isPartOf": {"@id": "https://denismunene2006-lab.github.io/my-website/#website"},
+                    "about": {"@id": "https://denismunene2006-lab.github.io/my-website/#organization"}
+                }
+            ]
+        }
+        </script>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,13 +47,44 @@
     <div class="logo">
         <img src="images/name.jpeg" alt="D-LABS">
     </div>
-    <nav>
+    <nav class="main-nav" aria-label="Primary navigation">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
+            <li>
+                <a href="index.html" class="nav-link">
+                    <i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="nav-link">
+                    <i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">About</span>
+                </a>
+            </li>
+            <li>
+                <a href="projects.html" class="nav-link">
+                    <i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="services.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="blog.html" class="nav-link">
+                    <i class="fa-solid fa-blog nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html" class="nav-link active" aria-current="page">
+                    <i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>
+                    <span class="nav-label">Contact</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -30,15 +96,15 @@
     <div class="contact-buttons">
 
     <a href="mailto:denismunene2006@gmail.com" class="contact-btn email">
-        <i class="fas fa-envelope"></i> Email Me
+        <i class="fas fa-envelope"></i> Email Us
     </a>
 
     <a href="https://wa.me/254710236087" target="_blank" class="contact-btn whatsapp">
-        <i class="fab fa-whatsapp"></i> WhatsApp Me
+        <i class="fab fa-whatsapp"></i> WhatsApp Us
     </a>
 
     <a href="tel:+254710236087" class="contact-btn call">
-        <i class="fas fa-phone"></i> Call Me
+        <i class="fas fa-phone"></i> Call Us
     </a>
 
 </div>
@@ -59,6 +125,6 @@
     <p>© 2026 D-LABS</p>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
