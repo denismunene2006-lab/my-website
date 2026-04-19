@@ -565,6 +565,21 @@ nav ul li:nth-child(6) {
     font-weight: 600;
 }
 
+.article-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    display: block;
+    background: #f1f5f9;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    transition: transform 0.35s ease;
+}
+
+.article-image:hover {
+    transform: scale(1.02);
+}
+
 /* Footer */
 footer {
     background: var(--secondary);
