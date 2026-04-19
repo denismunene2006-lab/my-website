@@ -83,6 +83,8 @@ nav ul {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 20px;
+    min-height: 68px;
+    height: 68px;
     padding: 0.45rem;
 }
 
@@ -136,6 +138,8 @@ nav ul li:nth-child(6) {
     align-items: center;
     justify-content: center;
     min-width: 92px;
+    width: 92px;
+    height: 96px;
     gap: 0.3rem;
     padding: 0.62rem 0.95rem;
     border-radius: 14px;
@@ -911,6 +915,41 @@ a.card:hover .card-image {
     box-shadow: var(--shadow-md);
 }
 
+.services-detail-cta {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.services-detail-cta-top {
+    margin-top: 0.2rem;
+    margin-bottom: 0.9rem;
+}
+
+.pricing-amount {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.65rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 0.5rem 2rem 0.2rem;
+}
+
+.pricing-note {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: -0.35rem;
+}
+
+.pricing-list {
+    margin: 0.3rem 2rem 1.5rem;
+    padding-left: 1.1rem;
+    color: var(--text-main);
+}
+
+.pricing-list li {
+    margin-bottom: 0.45rem;
+}
+
 .contact-buttons {
     margin-top: 30px;
     display: flex;
@@ -1160,5 +1199,7 @@ body {
         display: none;
     }
 }
+
+
 
 
