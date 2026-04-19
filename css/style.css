@@ -83,8 +83,6 @@ nav ul {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: 20px;
-    min-height: 68px;
-    height: 68px;
     padding: 0.45rem;
 }
 
@@ -138,13 +136,12 @@ nav ul li:nth-child(6) {
     align-items: center;
     justify-content: center;
     min-width: 92px;
-    width: 92px;
-    height: 96px;
     gap: 0.3rem;
     padding: 0.62rem 0.95rem;
     border-radius: 14px;
     border: 1px solid transparent;
     transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    contain: layout;
 }
 
 .nav-icon {
@@ -172,6 +169,10 @@ nav ul li:nth-child(6) {
     min-height: 1.14rem;
     line-height: 1.14;
     display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 60px;
 }
 
 .nav-link:hover {
@@ -1199,6 +1200,11 @@ body {
         display: none;
     }
 }
+
+
+
+
+
 
 
 
