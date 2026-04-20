@@ -1,40 +1,45 @@
 ﻿# D-LABS Website
 
-Modern multi-page website for D-LABS, built to showcase services, projects, blog articles, and contact options in a clean and responsive layout.
+Modern multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-## Live Demo
+## Live Site
 
 - https://denismunene2006-lab.github.io/my-website/
 
-## Overview
+## What This Project Includes
 
-This site presents D-LABS as a modern web development brand with a polished homepage, service cards, project previews, blog articles, and simple ways for visitors to get in touch. It is designed to look good on mobile and desktop and to be easy to maintain.
+- Responsive multi-page site for Home, About, Projects, Services, Pricing, Blog, and Contact
+- Conversion-focused sections: service cards, pricing CTA flow, FAQ blocks, and direct contact paths
+- Blog hub plus individual SEO-focused article pages
+- Project and article image support with organized image folders
+- Stable app-style navbar with icon labels and reduced layout shift behavior
 
-## Key Features
+## Main Pages
 
-- Multi-page layout: Home, About, Projects, Services, and Contact
-- Responsive design for mobile, tablet, and desktop
-- App-style navigation bar with icon-above-label menu items
-- Active page highlight with rounded accent background
-- Header logo is non-clickable and fills a bordered logo container
-- Polished hero section with branding image and call-to-action buttons
-- Project cards with image thumbnails
-- Service cards with clear descriptions and contact-driven actions
-- Blog section with article previews and dedicated post pages
-- Contact page with email, WhatsApp, and phone options
-- Floating WhatsApp prompt with prewritten message support
-- Beginner web development training service for HTML, CSS, and JavaScript
-- Structured blog content ready for future web development training guides
-- Clean visual design with smooth hover effects and modern spacing
+- `index.html` - Homepage and featured services
+- `about.html` - Brand/company overview
+- `projects.html` - Recent project showcase
+- `services.html` - Service breakdown and full FAQ
+- `service-pricing.html` - Detailed pricing packages
+- `blog.html` - Blog listing page
+- `article-modern-web-development.html`
+- `article-business-website-mistakes.html`
+- `article-seo-basics-for-small-business.html`
+- `article-online-growth-strategy.html`
+- `contact.html` - Contact options and quick FAQ
 
-## Recent UI Updates
+## SEO Setup
 
-- Refactored primary navigation to a modern mobile-app style using flexbox and even item spacing
-- Added Font Awesome icons above Home, About, Projects, Services, and Contact labels
-- Improved navbar hover transitions, spacing, and border treatment for a more professional look
-- Updated responsive navbar behavior for smaller screens
-- Standardized About icon style and aligned navbar behavior across pages
-- Added blog navigation, article pages, SEO metadata, and structured data
+The site is optimized for search engines without changing visual appearance:
+
+- Unique page titles and meta descriptions
+- Canonical URLs on core pages
+- Open Graph and Twitter Card metadata for social sharing
+- Structured data (JSON-LD) for Organization, WebSite, WebPage, Blog, and BlogPosting entities
+- `lang="en"` and UTF-8 charset declarations on all HTML pages
+- Robots directives (`index,follow,max-image-preview:large`) on all HTML pages
+- `robots.txt` at project root
+- `sitemap.xml` with all public pages
 
 ## Tech Stack
 
@@ -47,28 +52,40 @@ This site presents D-LABS as a modern web development brand with a polished home
 
 ```text
 .
-|-- about.html
-|-- blog.html
-|-- contact.html
 |-- index.html
+|-- about.html
 |-- projects.html
 |-- services.html
+|-- service-pricing.html
+|-- blog.html
+|-- article-modern-web-development.html
+|-- article-business-website-mistakes.html
+|-- article-seo-basics-for-small-business.html
+|-- article-online-growth-strategy.html
+|-- contact.html
+|-- robots.txt
+|-- sitemap.xml
 |-- README.md
 |-- CONTRIBUTING.md
 |-- css/
 |   `-- style.css
-|-- images/
-|   |-- name.jpeg
-|   |-- logo1.jpeg
-|   |-- profile.jpg
-|   `-- project folders/
 |-- js/
 |   `-- main.js
+`-- images/
+	|-- bookshop-website/
+	|-- ecommerce-website/
+	|-- portfolio-website/
+	|-- smart-study-access/
+	|-- student-hustle-hub/
+	|-- article-modern-web-development/
+	|-- article-business-website-mistakes/
+	|-- article-seo-basics-for-small-business/
+	`-- article-online-growth-strategy/
 ```
 
-## Getting Started
+## Run Locally
 
-You can open `index.html` directly in a browser, or run a local server for a better development experience.
+Open `index.html` directly in your browser, or serve the folder locally.
 
 ### Option 1: Python
 
@@ -76,11 +93,7 @@ You can open `index.html` directly in a browser, or run a local server for a bet
 python -m http.server 8080
 ```
 
-Then open:
-
-```text
-http://localhost:8080
-```
+Then visit `http://localhost:8080`.
 
 ### Option 2: Node.js
 
@@ -88,32 +101,20 @@ http://localhost:8080
 npx serve
 ```
 
-## Deployment
+## Deployment (GitHub Pages)
 
-This project is ready for GitHub Pages.
-
-1. Open the repository settings.
-2. Go to the Pages section.
-3. Select the `main` branch.
-4. Choose the root folder `/ (root)`.
-5. Save the configuration.
+1. Open repository settings.
+2. Open Pages.
+3. Select branch `main`.
+4. Select folder `/ (root)`.
+5. Save.
 
 ## Contributing
 
-Suggestions and improvements are welcome. Please open an issue or submit a pull request.
+Contributions are welcome.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Author
 
-**Denis Munene**
-
-Aspiring Web Developer
-
-## Contact
-
-Use the contact page on the website for email, WhatsApp, or phone communication, or link into the training guide system when it is ready.
-
----
-
-If you like this project, a star would be appreciated.
+Denis Munene
