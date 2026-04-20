@@ -214,8 +214,22 @@ nav ul li:nth-child(6) {
     background: var(--gradient);
     color: white;
     text-align: center;
-    padding: 8rem 2rem;
+    padding: 6rem 2rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.hero-content {
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
 }
 
 .hero img {
@@ -238,20 +252,32 @@ nav ul li:nth-child(6) {
 
 .hero h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 5vw, 3.4rem);
+    margin: 0;
     font-weight: 700;
+    line-height: 1.16;
+    max-width: 700px;
 }
 
-.hero p {
-    margin-bottom: 2rem;
-    font-size: 1.25rem;
-    opacity: 0.9;
-    font-weight: 300;
+.hero-label {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.8;
+    letter-spacing: 0.02em;
+}
+
+.hero-subheading {
+    margin: 0;
+    font-size: 1.15rem;
+    opacity: 0.88;
+    font-weight: 400;
+    line-height: 1.65;
+    max-width: 680px;
 }
 
 .buttons {
-    margin-top: 20px;
+    margin-top: 0.4rem;
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -302,7 +328,7 @@ nav ul li:nth-child(6) {
     display: flex;
     align-items: center;
     gap: 2rem;
-    background: var(--surface);
+    background: linear-gradient(135deg, #eef7ff 0%, #f0fff7 100%);
     border-radius: 16px;
     padding: 2rem;
     box-shadow: var(--shadow-md);
@@ -641,8 +667,22 @@ footer {
         font-size: 0.68rem;
     }
 
+    .hero {
+        min-height: 72vh;
+        padding: 5rem 1.4rem;
+    }
+
     .hero h1 {
-        font-size: 2rem;
+        font-size: clamp(2rem, 8vw, 2.45rem);
+    }
+
+    .hero-subheading {
+        font-size: 1.02rem;
+        max-width: 96%;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
     }
 
     .home-photo-content {
@@ -801,6 +841,26 @@ footer {
     flex-direction: column;
 }
 
+.cards > .card:nth-child(4n + 1) {
+    background: linear-gradient(145deg, #eff6ff 0%, #ffffff 72%);
+    border-color: #dbeafe;
+}
+
+.cards > .card:nth-child(4n + 2) {
+    background: linear-gradient(145deg, #ecfeff 0%, #ffffff 72%);
+    border-color: #ccfbf1;
+}
+
+.cards > .card:nth-child(4n + 3) {
+    background: linear-gradient(145deg, #fef3c7 0%, #ffffff 72%);
+    border-color: #fde68a;
+}
+
+.cards > .card:nth-child(4n + 4) {
+    background: linear-gradient(145deg, #f3e8ff 0%, #ffffff 72%);
+    border-color: #e9d5ff;
+}
+
 a.card {
     text-decoration: none;
     color: inherit;
@@ -886,6 +946,26 @@ a.card:hover .card-image {
     border: 1px solid #f1f5f9;
     position: relative;
     overflow: hidden;
+}
+
+.services-grid > .service-box:nth-child(4n + 1) {
+    background: linear-gradient(150deg, #eef6ff 0%, #ffffff 74%);
+    border-color: #dbeafe;
+}
+
+.services-grid > .service-box:nth-child(4n + 2) {
+    background: linear-gradient(150deg, #f0fdfa 0%, #ffffff 74%);
+    border-color: #ccfbf1;
+}
+
+.services-grid > .service-box:nth-child(4n + 3) {
+    background: linear-gradient(150deg, #fff7ed 0%, #ffffff 74%);
+    border-color: #fed7aa;
+}
+
+.services-grid > .service-box:nth-child(4n + 4) {
+    background: linear-gradient(150deg, #f5f3ff 0%, #ffffff 74%);
+    border-color: #ddd6fe;
 }
 
 .service-box i {
