@@ -930,6 +930,69 @@ a.card:hover .card-image {
     margin-bottom: 0.9rem;
 }
 
+.faq-section {
+    margin-top: 2.2rem;
+    padding: 1.4rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-section h2 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+}
+
+.faq-intro {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.faq-placeholder-list {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.faq-list {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.faq-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+}
+
+.faq-question {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--secondary);
+    font-family: 'Poppins', sans-serif;
+}
+
+.faq-answer {
+    margin: 0.5rem 0 0;
+    color: var(--text-main);
+}
+
+.faq-placeholder-item {
+    height: 46px;
+    border-radius: 10px;
+    border: 1px dashed #cbd5e1;
+    background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 45%, #f8fafc 100%);
+}
+
+.faq-section-mini {
+    margin-bottom: 1.4rem;
+}
+
+.faq-section-teaser {
+    margin-top: 1.5rem;
+}
+
 .pricing-amount {
     font-family: 'Poppins', sans-serif;
     font-size: 1.65rem;
