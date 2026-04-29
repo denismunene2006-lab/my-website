@@ -60,10 +60,22 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/contact.html</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+    <url>
+      <loc>https://denismunene2006-lab.github.io/my-website/article-content-marketing-tech-companies.html</loc>
+      <lastmod>2026-04-29</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    <url>
+      <loc>https://denismunene2006-lab.github.io/my-website/article-website-performance-page-speed.html</loc>
+      <lastmod>2026-04-29</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+    </url>
+    <url>
+      <loc>https://denismunene2006-lab.github.io/my-website/contact.html</loc>
+      <lastmod>2026-04-20</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+    </url>
 </urlset>
