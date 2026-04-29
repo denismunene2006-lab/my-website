@@ -26,6 +26,8 @@ Modern multi-page business website for D-LABS, focused on web development servic
 - `article-business-website-mistakes.html`
 - `article-seo-basics-for-small-business.html`
 - `article-online-growth-strategy.html`
+- `article-content-marketing-tech-companies.html`
+- `article-website-performance-page-speed.html`
 - `contact.html` - Contact options and quick FAQ
 
 ## SEO Setup
@@ -62,6 +64,8 @@ The site is optimized for search engines without changing visual appearance:
 |-- article-business-website-mistakes.html
 |-- article-seo-basics-for-small-business.html
 |-- article-online-growth-strategy.html
+|-- article-content-marketing-tech-companies.html
+|-- article-website-performance-page-speed.html
 |-- contact.html
 |-- robots.txt
 |-- sitemap.xml
@@ -80,7 +84,9 @@ The site is optimized for search engines without changing visual appearance:
 	|-- article-modern-web-development/
 	|-- article-business-website-mistakes/
 	|-- article-seo-basics-for-small-business/
-	`-- article-online-growth-strategy/
+	|-- article-online-growth-strategy/
+	|-- article-content-marketing-tech-companies/
+	`-- article-website-performance-page-speed/
 ```
 
 ## Run Locally
