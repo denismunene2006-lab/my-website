@@ -470,6 +470,44 @@ nav ul li:nth-child(6) {
     text-align: center;
 }
 
+.results-cards {
+    margin-top: 1.5rem;
+}
+
+.result-card {
+    padding: 1.6rem 1.45rem;
+}
+
+.result-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.7rem;
+}
+
+.result-card p {
+    margin: 0;
+}
+
+.testimonials-cards {
+    margin-top: 1.5rem;
+}
+
+.testimonial-card {
+    padding: 1.6rem 1.45rem;
+}
+
+.testimonial-quote {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.testimonial-meta {
+    margin-top: 0.85rem;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
 .blog-list {
     margin-top: 1.5rem;
 }
@@ -615,12 +653,46 @@ nav ul li:nth-child(6) {
 }
 
 /* Footer */
-footer {
+.site-footer {
     background: var(--secondary);
     color: white;
+    padding: 2.2rem 5% 1.4rem;
+    font-size: 0.95rem;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-inner h2,
+.footer-inner h3 {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.75rem;
+}
+
+.footer-inner p {
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
+}
+
+.footer-inner a {
+    color: #e0f2fe;
+    text-decoration: none;
+}
+
+.footer-inner a:hover {
+    text-decoration: underline;
+}
+
+.footer-note {
     text-align: center;
-    padding: 2rem;
-    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
     opacity: 0.9;
 }
 
@@ -707,6 +779,10 @@ footer {
         border-radius: 18px;
         padding-top: 2rem;
         padding-bottom: 2rem;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1095,6 +1171,65 @@ a.card:hover .card-image {
 
 .pricing-list li {
     margin-bottom: 0.45rem;
+}
+
+.projects-intro {
+    margin-top: 0.5rem;
+    color: var(--text-light);
+    max-width: 760px;
+}
+
+.contact-page-wrap {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.contact-highlights {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+}
+
+.contact-highlights p {
+    margin: 0.25rem 0;
+}
+
+.contact-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.contact-detail-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-detail-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.contact-detail-card h2::after {
+    width: 45px;
+    margin-top: 8px;
+}
+
+.contact-detail-card p {
+    margin: 0.45rem 0;
+}
+
+.contact-detail-card a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.contact-detail-card a:hover {
+    text-decoration: underline;
 }
 
 .contact-buttons {
