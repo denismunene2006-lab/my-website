@@ -10,6 +10,9 @@ Modern multi-page business website for D-LABS, focused on web development servic
 
 - Responsive multi-page site for Home, About, Projects, Services, Pricing, Blog, and Contact
 - Conversion-focused sections: service cards, pricing CTA flow, FAQ blocks, and direct contact paths
+- Pricing comparison table with 3-column feature matrix (Starter, Growth, Premium)
+- Updated pricing: Starter (KES 10,000), Growth (KES 20,000), Premium (KES 35,000)
+- Back to Home navigation links on all secondary pages for improved user flow
 - Blog hub plus individual SEO-focused article pages
 - Project and article image support with organized image folders
 - Stable app-style navbar with icon labels and reduced layout shift behavior
