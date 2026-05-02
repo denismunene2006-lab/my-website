@@ -82,7 +82,7 @@ The site is optimized for search engines without changing visual appearance:
 	|-- bookshop-website/
 	|-- ecommerce-website/
 	|-- portfolio-website/
-	|-- smart-study-access/
+	|-- d-labs-education/
 	|-- student-hustle-hub/
 	|-- article-modern-web-development/
 	|-- article-business-website-mistakes/

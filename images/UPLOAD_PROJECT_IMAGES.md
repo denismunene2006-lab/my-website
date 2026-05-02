@@ -4,10 +4,10 @@ Upload your project images to the dedicated folders below. Each project has its 
 
 ## Project Folders & Images:
 
-### 1. Smart Study Access
-**Folder:** `images/smart-study-access/`
-- Upload your images here (e.g., `1.jpg`, `2.jpg`, `screenshot.png`, etc.)
-- Recommended: At least 1 image (the first one will be used as thumbnail)
+### 1. D-LABS Education
+**Folder:** `images/d-labs-education/`
+- Add your screenshot as **`d-labs-education.png`** (used on the homepage and portfolio card).
+- See also `images/d-labs-education/README.md` for a short checklist.
 
 ### 2. Student Hustle Hub
 **Folder:** `images/student-hustle-hub/`
