@@ -63,16 +63,15 @@
             ]
         }
         </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: "Font Awesome 6 Free";
-            font-display: swap;
-            src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2") format("woff2");
-        }
-    </style>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preload" href="images/logo1.jpeg" as="image">
 </head>
@@ -80,7 +79,7 @@
 
 <header>
     <div class="logo">
-        <img src="images/name.jpeg" alt="D-LABS">
+        <img src="images/name.jpeg" alt="D-LABS" width="1024" height="559" decoding="async">
     </div>
     <nav class="main-nav" aria-label="Primary navigation">
         <ul>
@@ -126,7 +125,7 @@
 
 <section class="hero" id="home-page">
     <div class="hero-content">
-        <img src="images/logo1.jpeg" alt="Denis Munene logo" class="hero-logo" fetchpriority="high">
+        <img src="images/logo1.jpeg" alt="Denis Munene logo" class="hero-logo" fetchpriority="high" decoding="async" width="1024" height="1024">
         <p class="hero-label">D-LABS Web Development</p>
         <h1>Fast, professional websites for businesses that want real results.</h1>
         <p class="hero-subheading">We design and build websites that are clear, responsive, and easy to trust. From business sites and portfolios to custom web apps, every project is shaped to look polished, load quickly, and support growth.</p>
@@ -139,7 +138,7 @@
 
 <section class="home-photo">
     <div class="home-photo-content">
-        <img src="images/profile.jpg" alt="Denis Munene, founder of D-LABS" class="personal-photo" loading="eager" decoding="async" width="200" height="200">
+        <img src="images/profile.jpg" alt="Denis Munene, founder of D-LABS" class="personal-photo" loading="lazy" decoding="async" width="200" height="200">
         <div class="home-photo-text">
             <h2>Why I Built D-LABS</h2>
             <p>I started D-LABS after seeing many great businesses lose opportunities because their websites looked outdated, loaded slowly, or did not build trust. My goal is simple: help people and brands present their work professionally online with websites that are clear, fast, and built to support real business growth.</p>
@@ -228,7 +227,7 @@
     <div class="cards">
 
         <div class="card">
-            <img src="images/d-labs-education/d-labs-education.png" alt="D-LABS Education learning platform" class="card-image" loading="lazy" decoding="async">
+            <img src="images/d-labs-education/d-labs-education.png" alt="D-LABS Education learning platform" class="card-image" loading="lazy" decoding="async" fetchpriority="low" width="1885" height="815">
             <h3>D-LABS Education</h3>
             <p><strong>Goal:</strong> give beginners a structured place to learn web development with hands-on lessons, roadmaps, and real projects.</p>
             <p><strong>Outcome:</strong> a full learning hub with curated paths—from HTML/CSS to deployment—and a clear roadmap users can follow at their own pace.</p>
@@ -236,7 +235,7 @@
         </div>
 
         <div class="card">
-            <img src="images/student-hustle-hub/Screenshot 2026-03-07 131534.png" alt="Student Hustle Hub" class="card-image" loading="lazy" decoding="async">
+            <img src="images/student-hustle-hub/student-hustle-hub-preview.jpg" alt="Student Hustle Hub" class="card-image" loading="lazy" decoding="async" fetchpriority="low" width="960" height="502">
             <h3>Student-Hustle-Hub</h3>
             <p><strong>Goal:</strong> help students promote services and connect with opportunities.</p>
             <p><strong>Outcome:</strong> a full-stack platform with structured pages, clear workflows, and a practical user experience.</p>
@@ -244,7 +243,7 @@
         </div>
 
         <div class="card">
-            <img src="images/portfolio-website/Screenshot 2026-04-16 145856.png" alt="Portfolio Website" class="card-image" loading="lazy" decoding="async">
+            <img src="images/portfolio-website/portfolio-website-preview.jpg" alt="Portfolio Website" class="card-image" loading="lazy" decoding="async" fetchpriority="low" width="960" height="417">
             <h3>Portfolio Website</h3>
             <p><strong>Goal:</strong> present a stronger digital presence for a service business.</p>
             <p><strong>Outcome:</strong> a responsive, polished website built to showcase services and improve trust.</p>
@@ -252,7 +251,7 @@
         </div>
 
         <div class="card">
-            <img src="images/ecommerce-website/Screenshot 2026-04-16 145534.png" alt="E-Commerce Website" class="card-image" loading="lazy" decoding="async">
+            <img src="images/ecommerce-website/ecommerce-website-preview.jpg" alt="E-Commerce Website" class="card-image" loading="lazy" decoding="async" fetchpriority="low" width="960" height="428">
             <h3>E-Commerce Website</h3>
             <p><strong>Goal:</strong> create a simple shopping flow with clear product browsing.</p>
             <p><strong>Outcome:</strong> a modern e-commerce demo with clean navigation and conversion-focused UI components.</p>
@@ -260,7 +259,7 @@
         </div>
 
         <div class="card">
-            <img src="images/bookshop-website/Screenshot 2026-04-16 145716.png" alt="Bookshop Website" class="card-image" loading="lazy" decoding="async">
+            <img src="images/bookshop-website/bookshop-website-preview.jpg" alt="Bookshop Website" class="card-image" loading="lazy" decoding="async" fetchpriority="low" width="960" height="382">
             <h3>Bookshop Website</h3>
             <p><strong>Goal:</strong> make the bookstore feel easy to browse and professional.</p>
             <p><strong>Outcome:</strong> a responsive bookstore website with structured navigation and a user-friendly shopping experience.</p>
