@@ -1,6 +1,8 @@
 ﻿# D-LABS Website
 
-Modern multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
+Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
+
+**Latest Update (May 2026):** Complete UI/UX modernization with premium color palette, enhanced typography, smooth micro-interactions, and professional glass-morphism effects.
 
 ## Live Site
 
@@ -15,7 +17,11 @@ Modern multi-page business website for D-LABS, focused on web development servic
 - Back to Home navigation links on all secondary pages for improved user flow
 - Blog hub plus individual SEO-focused article pages
 - Project and article image support with organized image folders
-- Stable app-style navbar with icon labels and reduced layout shift behavior
+- Stable app-style navbar with icon labels and modern hover effects
+- Premium gradient hero section with animated background elements
+- Modern card designs with hover animations and visual depth
+- Professional contact forms with focus states and smooth transitions
+- Floating WhatsApp button with gradient styling
 
 ## Main Pages
 
@@ -46,12 +52,24 @@ The site is optimized for search engines without changing visual appearance:
 - `robots.txt` at project root
 - `sitemap.xml` with all public pages
 
+## Design & Features
+
+### Modern UI (May 2026 Update)
+- **Premium Color Palette:** Purple (#5B21B6) primary, Cyan (#06B6D4) accent with sophisticated gradients
+- **Enhanced Typography:** Larger, bold headings with proper letter-spacing and hierarchy
+- **Glass-Morphism Effects:** Modern frosted glass buttons and navigation elements
+- **Micro-interactions:** Smooth cubic-bezier animations, hover effects with depth
+- **Professional Shadows:** Sophisticated shadow system (sm, md, lg, xl) for visual hierarchy
+- **Gradient Accents:** Subtle gradient backgrounds on cards and sections
+- **Modern Buttons:** Gradient buttons with shine effects and smooth transitions
+- **Service Icons:** Gradient text effects on icons with scale animations
+
 ## Tech Stack
 
 - HTML5
-- CSS3
+- CSS3 (Advanced: CSS Variables, Gradients, Animations, Backdrop Filters)
 - Vanilla JavaScript
-- Font Awesome
+- Font Awesome (Icons)
 
 ## Project Structure
 
