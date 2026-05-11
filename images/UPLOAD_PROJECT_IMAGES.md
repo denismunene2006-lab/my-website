@@ -14,17 +14,12 @@ Upload your project images to the dedicated folders below. Each project has its 
 - Upload your images here (e.g., `1.jpg`, `2.jpg`, `dashboard.png`, etc.)
 - Recommended: At least 1 image
 
-### 3. Portfolio Website
-**Folder:** `images/portfolio-website/`
-- Upload your images here (e.g., `1.jpg`, `2.jpg`, `homepage.png`, etc.)
-- Recommended: At least 1 image
-
-### 4. E-Commerce Website
+### 3. E-Commerce Website
 **Folder:** `images/ecommerce-website/`
 - Upload your images here (e.g., `1.jpg`, `2.jpg`, `store.png`, etc.)
 - Recommended: At least 1 image
 
-### 5. Bookshop Website
+### 4. Bookshop Website
 **Folder:** `images/bookshop-website/`
 - Upload your images here (e.g., `1.jpg`, `2.jpg`, `bookstore.png`, etc.)
 - Recommended: At least 1 image

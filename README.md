@@ -99,7 +99,7 @@ The site is optimized for search engines without changing visual appearance:
 `-- images/
 	|-- bookshop-website/
 	|-- ecommerce-website/
-	|-- portfolio-website/
+
 	|-- d-labs-education/
 	|-- student-hustle-hub/
 	|-- article-modern-web-development/
