@@ -82,9 +82,29 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+    <!-- Splash screen styles -->
+    <link rel="stylesheet" href="css/splash.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      html.splash-lock, body.splash-lock { overflow: hidden; height: 100%; }
+    </style>
 </head>
 <body>
+
+<!-- Splash overlay: appears on page load. Replace splash-assets/logo.png with your real logo. -->
+<div id="splash-overlay" role="dialog" aria-hidden="false">
+    <div class="splash-frame" aria-hidden="false">
+        <img id="splash-logo" src="splash-assets/logo.png" alt="D-LABS Logo">
+        <h1 class="splash-heading">Welcome to D-LABS</h1>
+        <p class="splash-subtitle">Building Digital Excellence</p>
+        <p class="splash-description">Modern Web Solutions for Growing Businesses</p>
+        <div class="splash-dots">
+            <div class="splash-dot"></div>
+            <div class="splash-dot"></div>
+            <div class="splash-dot"></div>
+        </div>
+    </div>
+</div>
 
 <header>
     <div class="logo">
@@ -133,8 +153,10 @@
 </header>
 
 <section class="page contact-page-wrap">
-    <h1>Let’s Build a Website That Grows Your Business</h1>
     <a href="index.html#contact-page" class="section-jump-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <div class="section-head">
+        <h1>Let’s Build a Website That Grows Your Business</h1>
+    </div>
     <p>Ready to improve your online presence? D-LABS helps brands in Embu and across Kenya launch websites that look professional, load quickly, and guide visitors toward action.</p>
 
     <div class="contact-highlights" aria-label="Contact highlights">
@@ -234,6 +256,8 @@
     <p class="footer-note">© 2026 D-LABS | All Rights Reserved</p>
 </footer>
 
+<script src="js/splash.js"></script>
+<script src="js/scroll-animations.js"></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

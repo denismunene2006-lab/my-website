@@ -1,0 +1,420 @@
+/* Splash screen styles - shown only after the page finishes loading */
+
+:root{
+  --splash-bg-1: #081024; /* deep navy */
+  --splash-bg-2: #071018; /* darker */
+  --splash-accent: rgba(255,255,255,0.06);
+  --splash-duration-in: 900ms;
+  --splash-duration-out: 700ms;
+}
+
+/* SMOOTH SCROLLING */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Smooth page transitions */
+* {
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+a {
+  transition: color 200ms ease, opacity 200ms ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Prevent page scroll while splash is visible */
+html.splash-lock, body.splash-lock{ overflow: hidden; height:100%; }
+
+/* HIDE PAGE CONTENT UNTIL SPLASH FINISHES */
+body > header,
+body > nav,
+body > section,
+body > footer,
+body > main {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.splash-done > header,
+body.splash-done > nav,
+body.splash-done > section,
+body.splash-done > footer,
+body.splash-done > main {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Overlay fills viewport and sits above page content */
+#splash-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--splash-bg-1) 0%, var(--splash-bg-2) 100%);
+  z-index: 999999;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#splash-overlay.visible{
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+
+#splash-overlay::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(2000px 800px at 10% 20%, rgba(255,255,255,0.02), transparent 15%), linear-gradient(135deg, rgba(255,255,255,0.01), transparent 40%);
+  mix-blend-mode: overlay;
+  pointer-events:none;
+}
+
+#splash-overlay.hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--splash-duration-out) cubic-bezier(.2,.9,.3,1), visibility var(--splash-duration-out);
+}
+
+.splash-frame{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  transform: translateZ(0);
+  width: min(540px, 95vw);
+  height: auto;
+  min-height: 0;
+  justify-content: center;
+  overflow: visible;
+  border-radius: 20px;
+  padding: 50px 30px 60px 30px;
+}
+
+#splash-logo{
+  /* Circular logo with futuristic glow effect */
+  width: 280px;
+  height: 280px;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0;
+  transform: scale(1.18);
+  animation: splashIn var(--splash-duration-in) cubic-bezier(.22,.9,.3,1) forwards;
+  /* Futuristic glow effect with multiple layers */
+  box-shadow: 
+    0 0 40px rgba(100, 200, 255, 0.4),
+    0 0 80px rgba(100, 150, 255, 0.2),
+    0 0 120px rgba(50, 100, 200, 0.1),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3));
+}
+
+@keyframes splashIn{
+  0%{ opacity:0; transform:scale(1.12); }
+  60%{ opacity:1; transform:scale(1.26); }
+  100%{ opacity:1; transform:scale(1.2); }
+}
+
+/* Fade and slight zoom out when hiding */
+.splash-out #splash-logo{ animation: splashOut var(--splash-duration-out) ease forwards; }
+@keyframes splashOut{
+  0%{ opacity:1; transform:scale(1.2); }
+  100%{ opacity:0; transform:scale(1.28); }
+}
+
+/* Text animations - fade in and slide up */
+@keyframes fadeInUp {
+  0%{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0%{
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main heading - Welcome to D-LABS */
+.splash-heading {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0 20px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: slideInDown 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 1000ms forwards;
+  word-spacing: 2px;
+}
+
+/* Subtitle/tagline text */
+.splash-subtitle {
+  font-size: clamp(14px, 3vw, 16px);
+  font-weight: 400;
+  letter-spacing: 1.2px;
+  color: rgba(100, 200, 255, 0.9);
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0 20px;
+  text-shadow: 0 1px 5px rgba(100, 200, 255, 0.2);
+  opacity: 0;
+  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1400ms forwards;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1.8px;
+}
+
+/* Description text */
+.splash-description {
+  font-size: clamp(12px, 2.5vw, 14px);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  color: rgba(200, 220, 255, 0.7);
+  margin: 0;
+  padding: 0 20px;
+  max-width: 420px;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1700ms forwards;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Loading indicator dots (optional, can be removed) */
+.splash-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 20px;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInUp 700ms ease 2000ms forwards;
+}
+
+.splash-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(100, 200, 255, 0.6);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.splash-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.splash-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Accessibility: make sure overlay is visible to AT when active */
+#splash-overlay[aria-hidden="false"]{ visibility: visible; }
+
+/* Mobile adjustments */
+@media (max-width:420px){
+  .splash-frame{
+    width: min(95vw, 360px);
+    padding: 40px 20px 50px 20px;
+    gap: 20px;
+  }
+  
+  #splash-logo{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 5px;
+  }
+  
+  .splash-heading {
+    font-size: 24px;
+  }
+  
+  .splash-subtitle {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  
+  .splash-description {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+  #splash-logo{ animation:none; transform:none; opacity:1; }
+  .splash-heading,
+  .splash-subtitle,
+  .splash-description,
+  .splash-dots { animation: none; opacity: 1; transform: none; }
+  #splash-overlay, #splash-overlay.hidden{ transition:none; }
+}
+
+/* Keep page content usable during loading; the splash only appears after load */
+body.splash-active > *:not(#splash-overlay),
+body.splash-transition > *:not(#splash-overlay){
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* SCROLL REVEAL ANIMATIONS */
+@keyframes revealFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealFadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealFadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scroll animations for page sections */
+section {
+  animation: revealFadeUp 800ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+section:nth-child(1) { animation-delay: 100ms; }
+section:nth-child(2) { animation-delay: 200ms; }
+section:nth-child(3) { animation-delay: 300ms; }
+section:nth-child(4) { animation-delay: 400ms; }
+section:nth-child(5) { animation-delay: 500ms; }
+section:nth-child(n+6) { animation-delay: 600ms; }
+
+/* Smooth animations for headings */
+h1, h2, h3, h4, h5, h6 {
+  animation: revealFadeUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Smooth animations for paragraphs */
+p {
+  animation: revealFadeUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Smooth animations for images */
+img {
+  animation: revealScale 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Smooth animations for buttons */
+button, a.btn, .button {
+  animation: revealFadeUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Staggered animations for list items */
+li {
+  animation: revealFadeLeft 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+li:nth-child(1) { animation-delay: 100ms; }
+li:nth-child(2) { animation-delay: 200ms; }
+li:nth-child(3) { animation-delay: 300ms; }
+li:nth-child(n+4) { animation-delay: 400ms; }
+
+/* Smooth header animations */
+header {
+  animation: revealFadeDown 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes revealFadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer smooth animation */
+footer {
+  animation: revealFadeUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Smooth hover effects on interactive elements */
+button:hover,
+a:hover,
+.btn:hover,
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* Smooth focus states for accessibility */
+button:focus,
+a:focus,
+.btn:focus,
+.button:focus {
+  outline-offset: 2px;
+  transition: outline-offset 200ms ease;
+}

@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 2026):** Complete UI/UX modernization with premium color palette, enhanced typography, smooth micro-interactions, and professional glass-morphism effects.
+**Latest Update (May 2026):** Premium splash screen with animated logo intro, smooth scroll reveal effects, and refined page transitions for a more polished launch experience.
 
 ## Live Site
 
@@ -15,6 +15,8 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 - Pricing comparison table with 3-column feature matrix (Starter, Growth, Premium)
 - Updated pricing: Starter (KES 10,000), Growth (KES 20,000), Premium (KES 35,000)
 - Back to Home navigation links on all secondary pages for improved user flow
+- Premium splash screen shown on first visit with logo, welcome message, and smooth transition into content
+- Smooth scroll reveal animations for sections, headings, images, and interactive elements
 - Blog hub plus individual SEO-focused article pages
 - Project and article image support with organized image folders
 - Stable app-style navbar with icon labels and modern hover effects
@@ -59,6 +61,8 @@ The site is optimized for search engines without changing visual appearance:
 - **Enhanced Typography:** Larger, bold headings with proper letter-spacing and hierarchy
 - **Glass-Morphism Effects:** Modern frosted glass buttons and navigation elements
 - **Micro-interactions:** Smooth cubic-bezier animations, hover effects with depth
+- **Splash Screen:** Premium first-visit splash with circular logo, glow effect, and welcome text
+- **Scroll Reveal Animations:** Clean fade-and-slide motion as content enters the viewport
 - **Professional Shadows:** Sophisticated shadow system (sm, md, lg, xl) for visual hierarchy
 - **Gradient Accents:** Subtle gradient backgrounds on cards and sections
 - **Modern Buttons:** Gradient buttons with shine effects and smooth transitions
@@ -93,12 +97,16 @@ The site is optimized for search engines without changing visual appearance:
 |-- README.md
 |-- CONTRIBUTING.md
 |-- css/
-|   `-- style.css
+|   |-- style.css
+|   `-- splash.css
 |-- js/
-|   `-- main.js
+|   |-- main.js
+|   |-- splash.js
+|   `-- scroll-animations.js
 `-- images/
 	|-- bookshop-website/
 	|-- ecommerce-website/
+	|-- splash-assets/
 
 	|-- d-labs-education/
 	|-- student-hustle-hub/
