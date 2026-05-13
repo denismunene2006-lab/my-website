@@ -226,7 +226,7 @@ body.splash-done > *:not(#splash-overlay) {
   line-height: 1.1;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  animation: slideInDown 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 1000ms forwards;
+  animation: slideInDown 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 900ms forwards;
   word-spacing: 2px;
 }
 
@@ -241,7 +241,7 @@ body.splash-done > *:not(#splash-overlay) {
   padding: 0 clamp(8px, 3vw, 20px);
   text-shadow: 0 1px 5px rgba(100, 200, 255, 0.2);
   opacity: 0;
-  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1400ms forwards;
+  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1200ms forwards;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 1.8px;
 }
@@ -257,7 +257,7 @@ body.splash-done > *:not(#splash-overlay) {
   max-width: min(420px, 100%);
   line-height: 1.5;
   opacity: 0;
-  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1700ms forwards;
+  animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1500ms forwards;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -268,7 +268,7 @@ body.splash-done > *:not(#splash-overlay) {
   margin-top: clamp(8px, 2vh, 20px);
   justify-content: center;
   opacity: 0;
-  animation: fadeInUp 700ms ease 2000ms forwards;
+  animation: fadeInUp 700ms ease 1750ms forwards;
 }
 
 .splash-dot {

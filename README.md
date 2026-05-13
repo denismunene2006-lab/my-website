@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 2026):** Premium splash screen with animated logo intro, smooth scroll reveal effects, and refined page transitions for a more polished launch experience.
+**Latest Update (May 2026):** Refined splash screen timing, shared header/footer layout rendering, footer-triggered WhatsApp prompt behavior, and SEO cleanup with a single real H1 per page.
 
 ## Live Site
 
@@ -16,14 +16,16 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 - Updated pricing: Starter (KES 10,000), Growth (KES 20,000), Premium (KES 35,000)
 - Back to Home navigation links on all secondary pages for improved user flow
 - Premium splash screen shown on first visit with logo, welcome message, and smooth transition into content
+- Shortened splash timing so the intro still feels readable without slowing down entry into the site
 - Smooth scroll reveal animations for sections, headings, images, and interactive elements
 - Blog hub plus individual SEO-focused article pages
 - Project and article image support with organized image folders
 - Stable app-style navbar with icon labels and modern hover effects
+- Shared header/footer renderer to reduce repeated page shell markup across the site
 - Premium gradient hero section with animated background elements
 - Modern card designs with hover animations and visual depth
 - Professional contact forms with focus states and smooth transitions
-- Floating WhatsApp button with gradient styling
+- Footer-triggered WhatsApp prompt and floating CTA
 
 ## Main Pages
 
@@ -49,6 +51,8 @@ The site is optimized for search engines without changing visual appearance:
 - Canonical URLs on core pages
 - Open Graph and Twitter Card metadata for social sharing
 - Structured data (JSON-LD) for Organization, WebSite, WebPage, Blog, and BlogPosting entities
+- Single real H1 per page for a cleaner content outline
+- Corrected text encoding in page content to avoid broken search snippets
 - `lang="en"` and UTF-8 charset declarations on all HTML pages
 - Robots directives (`index,follow,max-image-preview:large`) on all HTML pages
 - `robots.txt` at project root
@@ -100,14 +104,16 @@ The site is optimized for search engines without changing visual appearance:
 |   |-- style.css
 |   `-- splash.css
 |-- js/
+|   |-- shared-layout.js
 |   |-- main.js
 |   |-- splash.js
 |   `-- scroll-animations.js
+|-- splash-assets/
+|   |-- logo.png
+|   `-- logo-tight.png
 `-- images/
 	|-- bookshop-website/
 	|-- ecommerce-website/
-	|-- splash-assets/
-
 	|-- d-labs-education/
 	|-- student-hustle-hub/
 	|-- article-modern-web-development/

@@ -6,7 +6,7 @@
   if(!overlay) return;
 
   var SPLASH_SESSION_KEY = 'dlabs_splash_shown';
-  var SPLASH_DURATION = 5000;
+  var SPLASH_DURATION = 4000;
 
   function unlockPage(){
     document.documentElement.classList.remove('splash-lock');
