@@ -1733,6 +1733,38 @@ body {
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     border: none;
     cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(18px) scale(0.92);
+}
+
+.floating-whatsapp[hidden],
+.whatsapp-prompt[hidden] {
+    display: none !important;
+}
+
+body:not(.footer-whatsapp-active) .floating-whatsapp,
+body:not(.footer-whatsapp-active) .whatsapp-prompt {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+body.footer-whatsapp-active .floating-whatsapp,
+body.footer-whatsapp-active .whatsapp-prompt {
+    visibility: visible;
+}
+
+.floating-whatsapp--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(18px) scale(0.92);
+}
+
+.floating-whatsapp--visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
 }
 
 .floating-whatsapp:hover {

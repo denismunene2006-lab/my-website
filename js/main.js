@@ -148,10 +148,25 @@ document.addEventListener('DOMContentLoaded', () => {
         floatingButton.target = '_blank';
         floatingButton.setAttribute('aria-label', 'Chat on WhatsApp');
         floatingButton.setAttribute('rel', 'noopener noreferrer');
+        floatingButton.hidden = true;
+        floatingButton.classList.add('floating-whatsapp--hidden');
+
+        const hideFloatingButton = () => {
+            floatingButton.hidden = true;
+            floatingButton.classList.remove('floating-whatsapp--visible');
+            floatingButton.classList.add('floating-whatsapp--hidden');
+        };
+
+        const showFloatingButton = () => {
+            floatingButton.hidden = false;
+            floatingButton.classList.remove('floating-whatsapp--hidden');
+            floatingButton.classList.add('floating-whatsapp--visible');
+        };
 
         const prompt = document.createElement('div');
         prompt.className = 'whatsapp-prompt whatsapp-prompt--hidden';
         prompt.setAttribute('role', 'status');
+        prompt.hidden = true;
         prompt.innerHTML = `
             <button class="whatsapp-prompt__close" type="button" aria-label="Dismiss WhatsApp prompt">&times;</button>
             <div class="whatsapp-prompt__icon" aria-hidden="true">
@@ -169,57 +184,71 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(prompt);
 
         let promptDismissed = false;
-        let inBottomZone = false;
+        let footerInView = false;
+        let hasUserScrolled = false;
 
         const hidePrompt = () => {
+            prompt.hidden = true;
             prompt.classList.remove('whatsapp-prompt--visible');
             prompt.classList.add('whatsapp-prompt--hidden');
         };
 
         const showPrompt = () => {
+            prompt.hidden = false;
             prompt.classList.remove('whatsapp-prompt--hidden');
             prompt.classList.add('whatsapp-prompt--visible');
         };
 
         const updatePromptVisibility = () => {
-            if (inBottomZone && !promptDismissed) {
+            if (hasUserScrolled && footerInView && !promptDismissed) {
+                document.body.classList.add('footer-whatsapp-active');
+                showFloatingButton();
                 showPrompt();
                 return;
             }
 
+            document.body.classList.remove('footer-whatsapp-active');
+            hideFloatingButton();
             hidePrompt();
         };
 
         const closeButton = prompt.querySelector('.whatsapp-prompt__close');
         closeButton.addEventListener('click', () => {
             promptDismissed = true;
+            hideFloatingButton();
             hidePrompt();
         });
 
-        const footer = document.querySelector('footer');
+        hideFloatingButton();
+        hidePrompt();
 
-        if (footer) {
-            const footerObserver = new IntersectionObserver((entries) => {
-                const entry = entries[0];
-                inBottomZone = entry.isIntersecting;
+        const footer = document.querySelector('.site-footer') || document.querySelector('footer');
+        const updateFooterZoneState = () => {
+            if (!footer) {
+                footerInView = false;
                 updatePromptVisibility();
-            }, {
-                threshold: 0.15,
-            });
+                return;
+            }
 
-            footerObserver.observe(footer);
-        } else {
-            const checkBottomZone = () => {
-                const scrollBottom = window.scrollY + window.innerHeight;
-                const pageBottom = document.documentElement.scrollHeight;
-                inBottomZone = pageBottom - scrollBottom < 220;
-                updatePromptVisibility();
-            };
+            const footerRect = footer.getBoundingClientRect();
+            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const activationLine = viewportHeight - Math.min(120, viewportHeight * 0.18);
 
-            window.addEventListener('scroll', checkBottomZone, { passive: true });
-            window.addEventListener('resize', checkBottomZone);
-            checkBottomZone();
-        }
+            footerInView = footerRect.top <= activationLine && footerRect.bottom >= 80;
+            updatePromptVisibility();
+        };
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 120) {
+                hasUserScrolled = true;
+            }
+            updateFooterZoneState();
+        }, { passive: true });
+        window.addEventListener('resize', updateFooterZoneState);
+
+        // Keep the prompt hidden on load; only actual scrolling can trigger it.
+        document.body.classList.remove('footer-whatsapp-active');
+        updateFooterZoneState();
 
         const hero = document.querySelector('.hero');
         const canRunHeroParallax = hero
