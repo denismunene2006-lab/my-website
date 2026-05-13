@@ -31,23 +31,18 @@ a:hover {
 html.splash-lock, body.splash-lock{ overflow: hidden; height:100%; }
 
 /* HIDE PAGE CONTENT UNTIL SPLASH FINISHES */
-body > header,
-body > nav,
-body > section,
-body > footer,
-body > main {
+body > *:not(#splash-overlay) {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0s linear 700ms;
 }
 
-body.splash-done > header,
-body.splash-done > nav,
-body.splash-done > section,
-body.splash-done > footer,
-body.splash-done > main {
+body.splash-done > *:not(#splash-overlay) {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transition: opacity 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0s linear 0s;
 }
 
 /* Overlay fills viewport and sits above page content */
