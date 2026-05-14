@@ -1,0 +1,20 @@
+{
+  "name": "denis-web",
+  "version": "1.0.0",
+  "description": "D-LABS Web Development Company website",
+  "private": true,
+  "scripts": {
+    "build": "echo 'No build step required for static site'",
+    "lint": "echo 'No linter configured'",
+    "test": "echo 'No tests configured'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  },
+  "keywords": [
+    "website",
+    "static"
+  ],
+  "author": "D-LABS",
+  "license": "UNLICENSED"
+}
