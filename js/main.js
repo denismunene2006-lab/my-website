@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappNumber = '254710236087';
     const whatsappPrefill = 'Hey D-LABS, I am interested in your web services. Could we discuss my project?';
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappPrefill)}`;
+    const isArticlePage = Boolean(document.querySelector('.article-page'));
 
     const trackConversion = (eventName, payload = {}) => {
         const eventPayload = {
@@ -89,9 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealTargets = document.querySelectorAll(
-        '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
-    );
+    const revealTargets = isArticlePage
+        ? document.querySelectorAll('.article-header, .article-content')
+        : document.querySelectorAll(
+            '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
+        );
 
     if (prefersReducedMotion) {
         revealTargets.forEach((element) => element.classList.add('show'));

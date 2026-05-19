@@ -1,5 +1,10 @@
 /* Smooth scroll reveal animations - fade in elements as they come into view */
 (function(){
+  // Long-form article pages use a lighter reveal path in main.js to avoid mobile blank states.
+  if(document.querySelector('.article-page')){
+    return;
+  }
+
   // Check if browser supports IntersectionObserver
   if(!('IntersectionObserver' in window)){
     console.log('IntersectionObserver not supported, skipping scroll animations');
