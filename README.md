@@ -35,6 +35,7 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 - `services.html` - Service breakdown and full FAQ
 - `service-pricing.html` - Detailed pricing packages
 - `blog.html` - Blog listing page
+- `article-20-unshakable-rules-modern-web-development.html` - Web development best practices and core principles
 - `article-modern-web-development.html`
 - `article-business-website-mistakes.html`
 - `article-seo-basics-for-small-business.html`
