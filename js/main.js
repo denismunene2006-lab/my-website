@@ -89,49 +89,49 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', runAfterLoad, { once: true });
     };
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const revealTargets = isArticlePage
-        ? document.querySelectorAll('.article-header, .article-content')
-        : document.querySelectorAll(
+    if (!isArticlePage) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const revealTargets = document.querySelectorAll(
             '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
         );
 
-    if (prefersReducedMotion) {
-        revealTargets.forEach((element) => element.classList.add('show'));
-    } else {
-        const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        if (prefersReducedMotion) {
+            revealTargets.forEach((element) => element.classList.add('show'));
+        } else {
+            const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
 
-        revealTargets.forEach((element, index) => {
-            const elementTop = element.getBoundingClientRect().top;
-            const isInitiallyVisible = elementTop < initialViewportHeight * 0.92;
+            revealTargets.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const isInitiallyVisible = elementTop < initialViewportHeight * 0.92;
 
-            if (isInitiallyVisible) {
-                element.classList.add('show');
-                return;
-            }
+                if (isInitiallyVisible) {
+                    element.classList.add('show');
+                    return;
+                }
 
-            element.classList.add('hidden');
-            const stagger = Math.min((index % 10) * 85, 680);
-            element.style.setProperty('--reveal-delay', `${stagger}ms`);
-        });
+                element.classList.add('hidden');
+                const stagger = Math.min((index % 10) * 85, 680);
+                element.style.setProperty('--reveal-delay', `${stagger}ms`);
+            });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                    observer.unobserve(entry.target);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.18,
+                rootMargin: '0px 0px -8% 0px',
+            });
+
+            revealTargets.forEach((element) => {
+                if (element.classList.contains('hidden')) {
+                    observer.observe(element);
                 }
             });
-        }, {
-            threshold: 0.18,
-            rootMargin: '0px 0px -8% 0px',
-        });
-
-        revealTargets.forEach((element) => {
-            if (element.classList.contains('hidden')) {
-                observer.observe(element);
-            }
-        });
+        }
     }
 
     scheduleNonCriticalTask(() => {

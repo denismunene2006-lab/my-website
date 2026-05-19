@@ -481,6 +481,23 @@ footer {
   animation: revealFadeUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
+/* Long-form articles render more reliably on mobile without blanket text animations. */
+.article-page,
+.article-page .article-header,
+.article-page .article-content,
+.article-page h1,
+.article-page h2,
+.article-page h3,
+.article-page p,
+.article-page li,
+.article-page img,
+.article-page article,
+.article-page blockquote,
+.article-page .btn {
+  animation: none;
+  transform: none;
+}
+
 /* Smooth hover effects on interactive elements */
 button:hover,
 a:hover,
