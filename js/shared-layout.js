@@ -49,7 +49,7 @@
         return [
             '<header>',
             '    <div class="logo">',
-            '        <img src="images/name.jpeg" alt="D-LABS" width="1024" height="559" decoding="async">',
+            '        <img src="images/name-200.jpeg" srcset="images/name-200.jpeg 200w, images/name-400.jpeg 400w" sizes="(max-width: 520px) 136px, (max-width: 768px) 162px, 196px" alt="D-LABS" width="400" height="218" decoding="async">',
             '    </div>',
             '    <nav class="main-nav" aria-label="Primary navigation">',
             '        <ul>',
