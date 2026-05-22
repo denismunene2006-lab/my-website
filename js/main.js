@@ -98,27 +98,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isArticlePage) {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const revealTargets = document.querySelectorAll(
+        const revealTargets = Array.from(document.querySelectorAll(
             '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
-        );
+        ));
 
         if (prefersReducedMotion) {
             revealTargets.forEach((element) => element.classList.add('show'));
         } else {
             const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            const revealStates = revealTargets.map((element, index) => ({
+                element,
+                stagger: Math.min((index % 10) * 85, 680),
+                isInitiallyVisible: element.getBoundingClientRect().top < initialViewportHeight * 0.92,
+            }));
+            const deferredRevealTargets = [];
 
-            revealTargets.forEach((element, index) => {
-                const elementTop = element.getBoundingClientRect().top;
-                const isInitiallyVisible = elementTop < initialViewportHeight * 0.92;
-
+            revealStates.forEach(({ element, stagger, isInitiallyVisible }) => {
                 if (isInitiallyVisible) {
                     element.classList.add('show');
                     return;
                 }
 
                 element.classList.add('hidden');
-                const stagger = Math.min((index % 10) * 85, 680);
                 element.style.setProperty('--reveal-delay', `${stagger}ms`);
+                deferredRevealTargets.push(element);
             });
 
             const observer = new IntersectionObserver((entries) => {
@@ -133,10 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 rootMargin: '0px 0px -8% 0px',
             });
 
-            revealTargets.forEach((element) => {
-                if (element.classList.contains('hidden')) {
-                    observer.observe(element);
-                }
+            deferredRevealTargets.forEach((element) => {
+                observer.observe(element);
             });
         }
     }
