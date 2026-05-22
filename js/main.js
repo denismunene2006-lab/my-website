@@ -96,15 +96,29 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', runAfterLoad, { once: true });
     };
 
-    if (!isArticlePage) {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const revealTargets = Array.from(document.querySelectorAll(
-            '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
-        ));
+    const runAfterNextPaint = (callback) => {
+        if ('requestAnimationFrame' in window) {
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(callback);
+            });
+            return;
+        }
 
-        if (prefersReducedMotion) {
-            revealTargets.forEach((element) => element.classList.add('show'));
-        } else {
+        window.setTimeout(callback, 16);
+    };
+
+    if (!isArticlePage) {
+        runAfterNextPaint(() => {
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealTargets = Array.from(document.querySelectorAll(
+                '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
+            ));
+
+            if (prefersReducedMotion) {
+                revealTargets.forEach((element) => element.classList.add('show'));
+                return;
+            }
+
             const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const revealStates = revealTargets.map((element, index) => ({
                 element,
@@ -139,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             deferredRevealTargets.forEach((element) => {
                 observer.observe(element);
             });
-        }
+        });
     }
 
     scheduleNonCriticalTask(() => {
