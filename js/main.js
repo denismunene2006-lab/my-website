@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappPrefill = 'Hey D-LABS, I am interested in your web services. Could we discuss my project?';
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappPrefill)}`;
     const isArticlePage = Boolean(document.querySelector('.article-page'));
+    const iconMarkup = (name, className = '') => {
+        if (window.DLabsIcons && typeof window.DLabsIcons.renderMarkup === 'function') {
+            return window.DLabsIcons.renderMarkup(name, className);
+        }
+
+        return `<span class="icon ${className}" aria-hidden="true"></span>`;
+    };
 
     const trackConversion = (eventName, payload = {}) => {
         const eventPayload = {
@@ -142,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.target = '_blank';
             button.rel = 'noopener noreferrer';
             button.setAttribute('aria-label', 'Chat on WhatsApp');
-            button.innerHTML = '<i class="fab fa-whatsapp"></i>';
+            button.innerHTML = iconMarkup('whatsapp');
             document.body.appendChild(button);
             return button;
         })();
@@ -173,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         prompt.innerHTML = `
             <button class="whatsapp-prompt__close" type="button" aria-label="Dismiss WhatsApp prompt">&times;</button>
             <div class="whatsapp-prompt__icon" aria-hidden="true">
-                <i class="fab fa-whatsapp"></i>
+                ${iconMarkup('whatsapp')}
             </div>
             <div class="whatsapp-prompt__content">
                 <p class="whatsapp-prompt__title">Need a quick reply?</p>

@@ -9,13 +9,21 @@
     var isHomePage = page === 'home';
 
     var navItems = [
-        { key: 'home', label: 'Home', icon: 'fa-house', homeHref: '#home-page', innerHref: 'index.html' },
-        { key: 'about', label: 'About', icon: 'fa-user', homeHref: '#about-page', innerHref: 'about.html' },
-        { key: 'projects', label: 'Projects', icon: 'fa-briefcase', homeHref: '#projects-page', innerHref: 'projects.html' },
-        { key: 'services', label: 'Services', icon: 'fa-layer-group', homeHref: '#services-page', innerHref: 'services.html' },
-        { key: 'blog', label: 'Blog', icon: 'fa-blog', homeHref: '#blog-page', innerHref: 'blog.html' },
-        { key: 'contact', label: 'Contact', icon: 'fa-envelope', homeHref: '#contact-page', innerHref: 'contact.html' }
+        { key: 'home', label: 'Home', icon: 'home', homeHref: '#home-page', innerHref: 'index.html' },
+        { key: 'about', label: 'About', icon: 'user', homeHref: '#about-page', innerHref: 'about.html' },
+        { key: 'projects', label: 'Projects', icon: 'briefcase', homeHref: '#projects-page', innerHref: 'projects.html' },
+        { key: 'services', label: 'Services', icon: 'layers', homeHref: '#services-page', innerHref: 'services.html' },
+        { key: 'blog', label: 'Blog', icon: 'blog', homeHref: '#blog-page', innerHref: 'blog.html' },
+        { key: 'contact', label: 'Contact', icon: 'mail', homeHref: '#contact-page', innerHref: 'contact.html' }
     ];
+
+    function iconMarkup(name, className) {
+        if (window.DLabsIcons && typeof window.DLabsIcons.renderMarkup === 'function') {
+            return window.DLabsIcons.renderMarkup(name, className);
+        }
+
+        return '<span class="icon ' + className + '" aria-hidden="true"></span>';
+    }
 
     var footerLinks = isHomePage
         ? [
@@ -39,7 +47,7 @@
             return [
                 '            <li>',
                 '                <a href="' + href + '" class="nav-link' + activeClass + '"' + ariaCurrent + '>',
-                '                    <i class="fa-solid ' + item.icon + ' nav-icon" aria-hidden="true"></i>',
+                '                    ' + iconMarkup(item.icon, 'nav-icon'),
                 '                    <span class="nav-label">' + item.label + '</span>',
                 '                </a>',
                 '            </li>'
@@ -99,6 +107,10 @@
 
         slot.insertAdjacentHTML('afterend', html);
         slot.remove();
+
+        if (window.DLabsIcons && typeof window.DLabsIcons.hydrate === 'function') {
+            window.DLabsIcons.hydrate(document);
+        }
     }
 
     replaceSlot('[data-site-header]', renderHeader());

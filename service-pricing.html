@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -77,10 +77,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <!-- Splash screen styles -->
     <link rel="stylesheet" href="css/splash.css">
     <link rel="stylesheet" href="css/style.css">
@@ -185,9 +181,9 @@
                     </tr>
                     <tr>
                         <th scope="row">Mobile Responsive</th>
-                        <td><i class="fa-solid fa-check" aria-hidden="true"></i> Yes</td>
-                        <td class="popular-col"><i class="fa-solid fa-check" aria-hidden="true"></i> Yes</td>
-                        <td><i class="fa-solid fa-check" aria-hidden="true"></i> Yes</td>
+                        <td><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Yes</td>
+                        <td class="popular-col"><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Yes</td>
+                        <td><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Yes</td>
                     </tr>
                     <tr>
                         <th scope="row">SEO Setup</th>
@@ -197,15 +193,15 @@
                     </tr>
                     <tr>
                         <th scope="row">Payment Integration</th>
-                        <td><i class="fa-solid fa-xmark" aria-hidden="true"></i> No</td>
-                        <td class="popular-col"><i class="fa-solid fa-check" aria-hidden="true"></i> M-Pesa/Card</td>
-                        <td><i class="fa-solid fa-check" aria-hidden="true"></i> Full setup</td>
+                        <td><span class="icon comparison-icon comparison-icon--no" data-icon="xmark" aria-hidden="true"></span> No</td>
+                        <td class="popular-col"><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> M-Pesa/Card</td>
+                        <td><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Full setup</td>
                     </tr>
                     <tr>
                         <th scope="row">Lead Capture & Automation</th>
-                        <td><i class="fa-solid fa-xmark" aria-hidden="true"></i> No</td>
-                        <td class="popular-col"><i class="fa-solid fa-check" aria-hidden="true"></i> Included</td>
-                        <td><i class="fa-solid fa-check" aria-hidden="true"></i> Included</td>
+                        <td><span class="icon comparison-icon comparison-icon--no" data-icon="xmark" aria-hidden="true"></span> No</td>
+                        <td class="popular-col"><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Included</td>
+                        <td><span class="icon comparison-icon comparison-icon--yes" data-icon="check" aria-hidden="true"></span> Included</td>
                     </tr>
                     <tr>
                         <th scope="row">Maintenance Support</th>
@@ -226,6 +222,7 @@
 
 <div data-site-footer></div>
 
+<script src="js/icons.js"></script>
 <script src="js/shared-layout.js"></script>
 <script src="js/splash.js"></script>
 <script src="js/scroll-animations.js"></script>

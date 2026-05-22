@@ -59,10 +59,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <link rel="stylesheet" href="css/splash.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -90,13 +86,13 @@
 
 <section class="page article-page">
     <div class="article-header">
-        <a class="article-breadcrumb" href="blog.html"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
+        <a class="article-breadcrumb" href="blog.html"><span class="icon" data-icon="arrow-left" aria-hidden="true"></span> Back to Blog</a>
         <h1>20 Unshakable Rules of Modern Web Development</h1>
         <p class="article-subtitle">The Mindset Shift That Separates Serious Developers From the Rest</p>
         <div class="article-meta">
-            <span><i class="fa-regular fa-calendar"></i> May 19, 2026</span>
-            <span><i class="fa-regular fa-clock"></i> 12 min read</span>
-            <span><i class="fa-solid fa-tag"></i> Web Development</span>
+            <span><span class="icon" data-icon="calendar" aria-hidden="true"></span> May 19, 2026</span>
+            <span><span class="icon" data-icon="clock" aria-hidden="true"></span> 12 min read</span>
+            <span><span class="icon" data-icon="tag" aria-hidden="true"></span> Web Development</span>
         </div>
     </div>
 
@@ -106,68 +102,68 @@
 
         <p>If you want to build websites that survive the real world, these are the 20 essentials you must remember every single time you write a line of code.</p>
 
-        <h2>1. Mobile-First is the Only Way 📱</h2>
-        <p>Most users today are on phones. If your layout breaks on mobile, your website is already failing. Always test on small screens, different browsers, touch interactions, and slow internet connections. Ask yourself: “Can someone comfortably use this with just one thumb?”</p>
+        <h2>1. Mobile-First is the Only Way ðŸ“±</h2>
+        <p>Most users today are on phones. If your layout breaks on mobile, your website is already failing. Always test on small screens, different browsers, touch interactions, and slow internet connections. Ask yourself: â€œCan someone comfortably use this with just one thumb?â€</p>
 
-        <h2>2. Speed Over Fancy Design ⚡</h2>
+        <h2>2. Speed Over Fancy Design âš¡</h2>
         <p>A beautiful but slow website loses users. Optimize your images, fonts, API calls, and JavaScript bundles. Compress your assets and lazy-load content. The rule is simple: Users leave slow websites silently.</p>
 
-        <h2>3. Never Trust User Input 🔒</h2>
+        <h2>3. Never Trust User Input ðŸ”’</h2>
         <p>This is where many beginners get destroyed. Malicious users can send harmful code, break forms, spam APIs, or upload dangerous files. Always validate and sanitize input on both the frontend and backend, hash passwords, and protect your APIs. Security is never optional.</p>
 
-        <h2>4. Good UI Does Not Equal Good UX 🎯</h2>
-        <p>A site can look amazing and still be incredibly frustrating to use. Good User Experience (UX) means clear navigation, obvious buttons, simple forms, and fast feedback. Users should never have to stop and think, “Where do I click?”</p>
+        <h2>4. Good UI Does Not Equal Good UX ðŸŽ¯</h2>
+        <p>A site can look amazing and still be incredibly frustrating to use. Good User Experience (UX) means clear navigation, obvious buttons, simple forms, and fast feedback. Users should never have to stop and think, â€œWhere do I click?â€</p>
 
-        <h2>5. Accessibility Matters ♿</h2>
+        <h2>5. Accessibility Matters â™¿</h2>
         <p>Your website should work for everyone, including keyboard users, screen readers, and the visually impaired. Use semantic HTML, add descriptive alt text to images, and ensure high color contrast. Bonus: Accessible sites rank much higher on Google.</p>
 
-        <h2>6. Write Clean, Maintainable Code 🧹</h2>
+        <h2>6. Write Clean, Maintainable Code ðŸ§¹</h2>
         <p>Messy code becomes your future enemy. Write code with the mindset that the next developer maintaining it has a short temper and anger issues! Use clear variable names, reusable components, proper folder structures, and write comments only when absolutely necessary.</p>
 
-        <h2>7. Guard Your Secrets 🔑</h2>
-        <p>Never, under any circumstances, hardcode API keys, database URLs, or secret tokens into your main files. Use environment variables (.env) and keep your sensitive credentials on the backend. A leaked key can ruin your reputation—and your bank account—very fast.</p>
+        <h2>7. Guard Your Secrets ðŸ”‘</h2>
+        <p>Never, under any circumstances, hardcode API keys, database URLs, or secret tokens into your main files. Use environment variables (.env) and keep your sensitive credentials on the backend. A leaked key can ruin your reputationâ€”and your bank accountâ€”very fast.</p>
 
-        <h2>8. Structure Your Site for SEO 🌍</h2>
+        <h2>8. Structure Your Site for SEO ðŸŒ</h2>
         <p>Even the best websites become invisible without Search Engine Optimization. Use proper titles, meta descriptions, clean URLs, and structured semantic headings (&lt;h1&gt;, &lt;h2&gt;). Search engines need structure to understand what you built.</p>
 
-        <h2>9. Code for Failure, Not Just Success 🚨</h2>
+        <h2>9. Code for Failure, Not Just Success ðŸš¨</h2>
         <p>Beginners only code for the perfect path. Professionals code for the messy reality: network failures, empty data arrays, wrong passwords, API downtime, and invalid file uploads. Handle errors gracefully so users never see a raw error code or a frozen screen.</p>
 
-        <h2>10. Think About Scalability Early 📈</h2>
+        <h2>10. Think About Scalability Early ðŸ“ˆ</h2>
         <p>Even small projects need a solid foundation. Avoid building giant, messy files and repeating your logic everywhere. Before you write a feature, think: Can this scale? Can another developer understand this? Will I be able to maintain this after six months?</p>
 
-        <h2>11. Version Control is Mandatory 🧠</h2>
+        <h2>11. Version Control is Mandatory ðŸ§ </h2>
         <p>Using Git properly is a non-negotiable habit. Make meaningful commit messages, utilize branches for new features, and push your code frequently to platforms like GitHub. Git is your ultimate safety net.</p>
 
-        <h2>12. Test Everything (Assume Nothing) 🧪</h2>
+        <h2>12. Test Everything (Assume Nothing) ðŸ§ª</h2>
         <p>Never launch a feature with the phrase, "Well, it should work." Test on different devices, test with real users, test edge cases, and test how your application behaves when the internet drops or data returns completely empty.</p>
 
-        <h2>13. Set Up Logging and Monitoring 📊</h2>
+        <h2>13. Set Up Logging and Monitoring ðŸ“Š</h2>
         <p>If something breaks in production, you need to know about it before your client calls you angry. Use console logging during development, and implement error-tracking platforms like Sentry and tools like Google Analytics once you go live.</p>
 
-        <h2>14. Stop Overengineering 🛠️</h2>
+        <h2>14. Stop Overengineering ðŸ› ï¸</h2>
         <p>You don't need a complex architecture or 20 unnecessary libraries for a simple project. Features nobody asked for just create bugs nobody wants. Simple systems win. Start simple, and improve only when the data demands it.</p>
 
-        <h2>15. User Data is a Serious Responsibility 🧾</h2>
-        <p>If users trust you with their data, respect their privacy and protect it fiercely. Store only what is absolutely necessary for your application to run. One data breach can permanently destroy a brand’s trust.</p>
+        <h2>15. User Data is a Serious Responsibility ðŸ§¾</h2>
+        <p>If users trust you with their data, respect their privacy and protect it fiercely. Store only what is absolutely necessary for your application to run. One data breach can permanently destroy a brandâ€™s trust.</p>
 
-        <h2>16. Master the Art of Deployment 🚀</h2>
+        <h2>16. Master the Art of Deployment ðŸš€</h2>
         <p>A developer who cannot deploy is incomplete. You must understand environment variables, hosting platforms, custom domains, and HTTPS. Master modern deployment platforms like Vercel, Netlify, and Render to bring your code to the world.</p>
 
-        <h2>17. Documentation Saves Lives 📚</h2>
-        <p>Always write clear setup instructions, API documentation, and brief overviews of your project structure. Your future self will completely forget how this code works in three months—write it down today.</p>
+        <h2>17. Documentation Saves Lives ðŸ“š</h2>
+        <p>Always write clear setup instructions, API documentation, and brief overviews of your project structure. Your future self will completely forget how this code works in three monthsâ€”write it down today.</p>
 
-        <h2>18. Consistency Beats Motivation 🧠</h2>
+        <h2>18. Consistency Beats Motivation ðŸ§ </h2>
         <p>Many developers fail because they jump from framework to framework, chase trends, or quit the moment debugging gets tough. Elite developers build consistently, focus on finishing projects, and learn the core fundamentals deeply.</p>
 
-        <h2>19. Learn Fundamentals Before Tools 🏗️</h2>
+        <h2>19. Learn Fundamentals Before Tools ðŸ—ï¸</h2>
         <p>Frameworks and libraries change constantly, but core fundamentals stay the same. Master HTML, CSS, vanilla JavaScript, Databases, HTTP requests, APIs, and Authentication. If your fundamentals are strong, you can learn any framework in a weekend.</p>
 
-        <h2>20. Build Real Projects 💻</h2>
+        <h2>20. Build Real Projects ðŸ’»</h2>
         <p>Watching tutorials creates an illusion of competence. Building real things creates actual skill. Force yourself to build authentication systems, interactive dashboards, payment integrations, and custom APIs. That is where real learning starts.</p>
 <br>
         <blockquote>
-            <p>The Golden Rule of D-LABS: Every time you sit down to code, ask yourself one final question: “Will this still work perfectly when real users start hitting the server?” <br>That single shift in perspective changes how you build everything😀.</p>
+            <p>The Golden Rule of D-LABS: Every time you sit down to code, ask yourself one final question: â€œWill this still work perfectly when real users start hitting the server?â€ <br>That single shift in perspective changes how you build everythingðŸ˜€.</p>
         </blockquote>
 
         <div class="article-cta">
@@ -179,6 +175,7 @@
 
 <div data-site-footer></div>
 
+<script src="js/icons.js"></script>
 <script src="js/shared-layout.js"></script>
 <script src="js/splash.js"></script>
 <script src="js/scroll-animations.js"></script>

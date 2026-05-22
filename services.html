@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -94,10 +94,6 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
     <!-- Splash screen styles -->
     <link rel="stylesheet" href="css/splash.css">
     <link rel="stylesheet" href="css/style.css">
@@ -124,33 +120,33 @@
 <div data-site-header></div>
 
 <section class="page">
-    <a href="index.html#services-page" class="section-jump-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <a href="index.html#services-page" class="section-jump-link"><span class="icon" data-icon="arrow-left" aria-hidden="true"></span> Back to Home</a>
     <div class="section-head">
         <h1>Web Development Services Built for Growth</h1>
     </div>
 
     <div class="services-grid">
         <div class="service-box">
-            <i class="fas fa-code"></i>
+            <span class="icon service-icon" data-icon="code" aria-hidden="true"></span>
             <h3>Website Development</h3>
             <p>Modern, responsive websites built to look professional, load fast, and convert visitors into clients.</p>
             <a href="service-pricing.html" class="service-cta">View Details</a>
         </div>
 
         <div class="service-box">
-            <i class="fas fa-paint-brush"></i>
+            <span class="icon service-icon" data-icon="brush" aria-hidden="true"></span>
             <h3>Website Redesign</h3>
             <p>Transform outdated websites into polished, modern experiences that match your brand and business goals.</p>
         </div>
 
         <div class="service-box">
-            <i class="fab fa-github"></i>
+            <span class="icon service-icon" data-icon="git-branch" aria-hidden="true"></span>
             <h3>GitHub Deployment</h3>
             <p>Launch your site with reliable deployment so your business can be live, accessible, and easy to maintain.</p>
         </div>
 
         <div class="service-box">
-            <i class="fas fa-laptop-code"></i>
+            <span class="icon service-icon" data-icon="laptop-code" aria-hidden="true"></span>
             <h3>Beginner Web Development Training</h3>
             <p>We teach beginners web development starting with HTML, CSS, and JavaScript through simple, practical lessons at an affordable price.</p>
             <a href="https://d-labs-education.vercel.app/" target="_blank" rel="noopener noreferrer" class="service-cta">Enroll Now</a>
@@ -197,6 +193,7 @@
 
 <div data-site-footer></div>
 
+<script src="js/icons.js"></script>
 <script src="js/shared-layout.js"></script>
 <script src="js/splash.js"></script>
 <script src="js/scroll-animations.js"></script>
