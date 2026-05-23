@@ -143,6 +143,26 @@ Then visit `http://localhost:8080`.
 npx serve
 ```
 
+## Build & Optimization (added)
+
+This project includes a small build pipeline to generate optimized images (WebP/AVIF), minified CSS and JS, and HTML updates that reference the optimized assets.
+
+Install dev dependencies and run the optimizer:
+
+```bash
+npm install
+npm run build
+```
+
+What the build does:
+- Converts `images/` and `splash-assets/` to WebP and AVIF variants.
+- Produces `css/*.min.css` and `js/*.min.js` and rewrites HTML to reference them.
+- Adds preload hints for the splash logo and sets image dimensions where possible.
+
+Notes:
+- The build uses `sharp`, `postcss`/`cssnano`, and `terser`. These are dev dependencies and only required for generating assets locally.
+- After running, review generated assets before deploying. The repo already contains the generated optimized files committed to `main`.
+
 ## Deployment (GitHub Pages)
 
 1. Open repository settings.
