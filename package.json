@@ -1,0 +1,35 @@
+{
+  "name": "my-website",
+  "version": "1.0.0",
+  "description": "Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/optimize.js",
+    "optimize": "node scripts/optimize.js",
+    "test": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denismunene2006-lab/my-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/denismunene2006-lab/my-website/issues"
+  },
+  "homepage": "https://github.com/denismunene2006-lab/my-website#readme",
+  "devDependencies": {
+    "cheerio": "^1.2.0",
+    "cssnano": "^8.0.1",
+    "fs-extra": "^11.3.5",
+    "glob": "^13.0.6",
+    "imagemin": "^9.0.1",
+    "imagemin-webp": "^8.0.0",
+    "postcss": "^8.5.15",
+    "postcss-cli": "^11.0.1",
+    "sharp": "^0.34.5",
+    "terser": "^5.48.0"
+  }
+}
