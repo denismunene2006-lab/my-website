@@ -5,6 +5,11 @@
         return;
     }
 
+    // Insert a skip-to-content link for keyboard users
+    if (!document.querySelector('.skip-to-content')) {
+        body.insertAdjacentHTML('afterbegin', '<a class="skip-to-content" href="#main-content">Skip to content</a>');
+    }
+
     var page = body.dataset.page || 'home';
     var isHomePage = page === 'home';
 
@@ -115,4 +120,12 @@
 
     replaceSlot('[data-site-header]', renderHeader());
     replaceSlot('[data-site-footer]', renderFooter());
+
+        // Mark key images to use the subtle grow-in reveal on scroll
+        try {
+            var growImages = document.querySelectorAll('.hero img, .article-image, .card img, .logo img');
+            growImages.forEach(function(img){ img.setAttribute('data-grow', 'true'); img.classList.add('grow-in'); });
+        } catch (e) {
+            // noop
+        }
 })();

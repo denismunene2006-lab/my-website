@@ -28,7 +28,9 @@
       if(!el.classList.contains(ANIMATION_CLASS)){
         el.classList.add(ANIMATION_CLASS);
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
+        // If element requests grow-in, include a slight scale from 0.98 -> 1
+        const wantsGrow = el.classList.contains('grow-in') || el.dataset.grow === 'true';
+        el.style.transform = wantsGrow ? 'translateY(18px) scale(0.98)' : 'translateY(30px)';
         el.style.transition = 'opacity 600ms cubic-bezier(0.34, 1.56, 0.64, 1), transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1)';
       }
     });
@@ -43,7 +45,9 @@
         
         setTimeout(() => {
           entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          // If element had grow-in, scale to 1 as it reveals
+          const wantsGrow = entry.target.classList.contains('grow-in') || entry.target.dataset.grow === 'true';
+          entry.target.style.transform = wantsGrow ? 'translateY(0) scale(1)' : 'translateY(0)';
           entry.target.classList.add(REVEALED_CLASS);
           observer.unobserve(entry.target);
         }, Math.min(delay, 300));

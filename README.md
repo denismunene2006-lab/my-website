@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 2026):** Refined splash screen timing, shared header/footer layout rendering, footer-triggered WhatsApp prompt behavior, and SEO cleanup with a single real H1 per page.
+**Latest Update (May 24, 2026):** Added lightweight micro-interactions, improved card/button hover polish, subtle hero gradient motion, and accessibility focus states. Also refined splash timing and SEO cleanup with a single real H1 per page.
 
 ## Live Site
 
