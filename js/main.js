@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const whatsappNumber = '254710236087';
-    const whatsappPrefill = 'Hey D-LABS, I am interested in your web services. Could we discuss my project?';
-    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappPrefill)}`;
+    const tawkEmbedUrl = window.DLabsTawkEmbedUrl
+        || document.body?.dataset?.tawkEmbedUrl
+        || 'https://embed.tawk.to/6a145cc50a1a801c31cd5819/1jpfokp7b';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isArticlePage = Boolean(document.querySelector('.article-page'));
     const iconMarkup = (name, className = '') => {
         if (window.DLabsIcons && typeof window.DLabsIcons.renderMarkup === 'function') {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const isTrackableAction = (element) => element.closest(
-        '.contact-btn, .service-cta, .btn, .btn-primary, .btn-secondary, .section-jump-link, .floating-whatsapp, .whatsapp-prompt__action'
+        '.contact-btn, .service-cta, .btn, .btn-primary, .btn-secondary, .section-jump-link'
     );
 
     document.addEventListener('click', (event) => {
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let actionType = 'cta_click';
 
-        if (interactive.matches('.contact-btn, .floating-whatsapp, .whatsapp-prompt__action') || href.includes('wa.me')) {
+        if (interactive.matches('.contact-btn') || href.includes('wa.me')) {
             actionType = 'whatsapp_click';
         } else if (href.startsWith('mailto:')) {
             actionType = 'email_click';
@@ -96,6 +97,35 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', runAfterLoad, { once: true });
     };
 
+    const loadTawkWidget = () => {
+        if (!tawkEmbedUrl) {
+            console.warn('Tawk.to is not configured. Set window.DLabsTawkEmbedUrl or body[data-tawk-embed-url].');
+            return;
+        }
+
+        if (window.Tawk_API && window.Tawk_API.__dlabsLoaded) {
+            return;
+        }
+
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_LoadStart = new Date();
+        window.Tawk_API.__dlabsLoaded = true;
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.charset = 'UTF-8';
+        script.crossOrigin = '*';
+        script.src = tawkEmbedUrl;
+
+        const firstScript = document.getElementsByTagName('script')[0];
+        if (firstScript && firstScript.parentNode) {
+            firstScript.parentNode.insertBefore(script, firstScript);
+            return;
+        }
+
+        document.head.appendChild(script);
+    };
+
     const runAfterNextPaint = (callback) => {
         if ('requestAnimationFrame' in window) {
             window.requestAnimationFrame(() => {
@@ -109,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isArticlePage) {
         runAfterNextPaint(() => {
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const revealTargets = Array.from(document.querySelectorAll(
                 '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
             ));
@@ -157,123 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     scheduleNonCriticalTask(() => {
-        const floatingButton = document.querySelector('.floating-whatsapp') || (() => {
-            const button = document.createElement('a');
-            button.className = 'floating-whatsapp';
-            button.href = whatsappLink;
-            button.target = '_blank';
-            button.rel = 'noopener noreferrer';
-            button.setAttribute('aria-label', 'Chat on WhatsApp');
-            button.innerHTML = iconMarkup('whatsapp');
-            document.body.appendChild(button);
-            return button;
-        })();
-
-        floatingButton.href = whatsappLink;
-        floatingButton.target = '_blank';
-        floatingButton.setAttribute('aria-label', 'Chat on WhatsApp');
-        floatingButton.setAttribute('rel', 'noopener noreferrer');
-        floatingButton.hidden = true;
-        floatingButton.classList.add('floating-whatsapp--hidden');
-
-        const hideFloatingButton = () => {
-            floatingButton.hidden = true;
-            floatingButton.classList.remove('floating-whatsapp--visible');
-            floatingButton.classList.add('floating-whatsapp--hidden');
-        };
-
-        const showFloatingButton = () => {
-            floatingButton.hidden = false;
-            floatingButton.classList.remove('floating-whatsapp--hidden');
-            floatingButton.classList.add('floating-whatsapp--visible');
-        };
-
-        const prompt = document.createElement('div');
-        prompt.className = 'whatsapp-prompt whatsapp-prompt--hidden';
-        prompt.setAttribute('role', 'status');
-        prompt.hidden = true;
-        prompt.innerHTML = `
-            <button class="whatsapp-prompt__close" type="button" aria-label="Dismiss WhatsApp prompt">&times;</button>
-            <div class="whatsapp-prompt__icon" aria-hidden="true">
-                ${iconMarkup('whatsapp')}
-            </div>
-            <div class="whatsapp-prompt__content">
-                <p class="whatsapp-prompt__title">Need a quick reply?</p>
-                <p class="whatsapp-prompt__text">Tap below and start your project chat with D-LABS in one click.</p>
-            </div>
-            <a class="whatsapp-prompt__action" href="${whatsappLink}" target="_blank" rel="noopener noreferrer">
-                Chat now
-            </a>
-        `;
-
-        document.body.appendChild(prompt);
-
-        let promptDismissed = false;
-        let footerInView = false;
-        let hasUserScrolled = false;
-
-        const hidePrompt = () => {
-            prompt.hidden = true;
-            prompt.classList.remove('whatsapp-prompt--visible');
-            prompt.classList.add('whatsapp-prompt--hidden');
-        };
-
-        const showPrompt = () => {
-            prompt.hidden = false;
-            prompt.classList.remove('whatsapp-prompt--hidden');
-            prompt.classList.add('whatsapp-prompt--visible');
-        };
-
-        const updatePromptVisibility = () => {
-            if (hasUserScrolled && footerInView && !promptDismissed) {
-                document.body.classList.add('footer-whatsapp-active');
-                showFloatingButton();
-                showPrompt();
-                return;
-            }
-
-            document.body.classList.remove('footer-whatsapp-active');
-            hideFloatingButton();
-            hidePrompt();
-        };
-
-        const closeButton = prompt.querySelector('.whatsapp-prompt__close');
-        closeButton.addEventListener('click', () => {
-            promptDismissed = true;
-            hideFloatingButton();
-            hidePrompt();
-        });
-
-        hideFloatingButton();
-        hidePrompt();
-
-        const footer = document.querySelector('.site-footer') || document.querySelector('footer');
-        const updateFooterZoneState = () => {
-            if (!footer) {
-                footerInView = false;
-                updatePromptVisibility();
-                return;
-            }
-
-            const footerRect = footer.getBoundingClientRect();
-            const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-            const activationLine = viewportHeight - Math.min(120, viewportHeight * 0.18);
-
-            footerInView = footerRect.top <= activationLine && footerRect.bottom >= 80;
-            updatePromptVisibility();
-        };
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 120) {
-                hasUserScrolled = true;
-            }
-            updateFooterZoneState();
-        }, { passive: true });
-        window.addEventListener('resize', updateFooterZoneState);
-
-        // Keep the prompt hidden on load; only actual scrolling can trigger it.
-        document.body.classList.remove('footer-whatsapp-active');
-        updateFooterZoneState();
+        loadTawkWidget();
 
         const hero = document.querySelector('.hero');
         const canRunHeroParallax = hero
