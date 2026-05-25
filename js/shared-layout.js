@@ -90,7 +90,7 @@
             '            <h3>Contact</h3>',
             '            <p><a href="mailto:dlabs.ke@gmail.com">dlabs.ke@gmail.com</a></p>',
             '            <p><a href="tel:+254710236087">+254 710 236 087</a></p>',
-            '            <p><a href="https://wa.me/254710236087" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></p>',
+            '            <p><a href="#" class="tawk-chat-link">Live Chat</a></p>',
             '        </div>',
             '',
             '        <div class="footer-links">',

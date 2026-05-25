@@ -19,7 +19,7 @@
 
   // Get all elements that should be animated
   function getAnimatedElements(){
-    return document.querySelectorAll('section, h1, h2, h3, h4, h5, h6, p, img, button, a.btn, .button, li, article, .card, .feature, .testimonial, [data-animate]');
+    return document.querySelectorAll('section, h1, h2, h3, h4, h5, h6, p, img, button:not(.floating-tawk):not(.tawk-launcher):not(.open-tawk):not(.tawk-chat-link), a.btn, .button, li, article, .card, .feature, .testimonial, [data-animate]');
   }
 
   // Mark elements for animation

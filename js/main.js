@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const isTrackableAction = (element) => element.closest(
-        '.contact-btn, .service-cta, .btn, .btn-primary, .btn-secondary, .section-jump-link'
+        '.contact-btn, .service-cta, .btn, .btn-primary, .btn-secondary, .section-jump-link, .floating-tawk, .tawk-launcher'
     );
 
     document.addEventListener('click', (event) => {
@@ -50,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let actionType = 'cta_click';
 
-        if (interactive.matches('.contact-btn') || href.includes('wa.me')) {
+        if (interactive.matches('.contact-btn, .floating-tawk, .tawk-launcher, .open-tawk, .tawk-chat-link')) {
+            actionType = 'tawk_click';
+        } else if (href.includes('wa.me')) {
             actionType = 'whatsapp_click';
         } else if (href.startsWith('mailto:')) {
             actionType = 'email_click';
@@ -126,6 +128,26 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(script);
     };
 
+    const openTawkChat = () => {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+            window.Tawk_API.maximize();
+            return true;
+        }
+
+        return false;
+    };
+
+    document.addEventListener('click', (event) => {
+        const trigger = event.target.closest('.open-tawk, .floating-tawk, .tawk-launcher, .tawk-chat-link');
+
+        if (!trigger) {
+            return;
+        }
+
+        event.preventDefault();
+        openTawkChat();
+    }, true);
+
     const runAfterNextPaint = (callback) => {
         if ('requestAnimationFrame' in window) {
             window.requestAnimationFrame(() => {
@@ -187,6 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scheduleNonCriticalTask(() => {
         loadTawkWidget();
+
+        if (!document.querySelector('.floating-tawk')) {
+            const launcher = document.createElement('button');
+            launcher.type = 'button';
+            launcher.className = 'floating-tawk no-scroll-reveal';
+            launcher.setAttribute('aria-label', 'Open live chat');
+            launcher.innerHTML = iconMarkup('chat', 'floating-tawk__icon');
+            document.body.appendChild(launcher);
+        }
 
         const hero = document.querySelector('.hero');
         const canRunHeroParallax = hero

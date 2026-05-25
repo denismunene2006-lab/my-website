@@ -1900,6 +1900,35 @@ body {
     height: 100px;
 }
 
+.floating-tawk {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 62px;
+    height: 62px;
+    z-index: 1200;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.32);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.floating-tawk:hover {
+    transform: translateY(-2px) scale(1.06);
+    box-shadow: 0 16px 36px rgba(37, 99, 235, 0.4);
+}
+
+.floating-tawk__icon {
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
 @media (max-width: 520px) {
     .pricing-comparison {
         margin-top: 2rem;
@@ -1932,7 +1961,19 @@ body {
     }
 }
 
-.whatsapp-prompt__close:hover {
+    .floating-tawk {
+        right: 14px;
+        bottom: 14px;
+        width: 58px;
+        height: 58px;
+    }
+
+    .floating-tawk__icon {
+        width: 1.45rem;
+        height: 1.45rem;
+    }
+
+    .whatsapp-prompt__close:hover {
     color: white;
 }
 
