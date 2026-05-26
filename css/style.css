@@ -96,7 +96,7 @@
 
 body {
     font-family: var(--font-body);
-    background: var(--background);
+    background: linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
     color: var(--text-main);
     line-height: 1.6;
 }
@@ -426,6 +426,63 @@ nav ul li:nth-child(6) {
     line-height: 1.7;
     max-width: 700px;
     letter-spacing: 0.005em;
+}
+
+.hero-marquee {
+    width: min(100%, 760px);
+    overflow: hidden;
+    margin-top: 0.35rem;
+    padding: 0.45rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(15, 23, 42, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.hero-marquee__track {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: max-content;
+    white-space: nowrap;
+    animation: marqueeLoop 18s linear infinite;
+    will-change: transform;
+}
+
+.hero-marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-marquee__item::after {
+    content: '•';
+    margin-left: 0.65rem;
+    opacity: 0.55;
+}
+
+.hero-marquee__item:last-child::after {
+    content: '';
+    margin-left: 0;
+}
+
+@keyframes marqueeLoop {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .buttons {
@@ -1395,6 +1452,15 @@ a.card {
     box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
 }
 
+.card.show,
+.service-box.show,
+.faq-item.show,
+.testimonial-card.show,
+.contact-detail-card.show,
+.blog-placeholder.show {
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+}
+
 /* Service Box Styles (Distinct from Projects) */
 .services-grid {
     display: grid;
@@ -1847,6 +1913,16 @@ a.card {
     box-shadow: 0 16px 40px -8px rgba(37, 211, 102, 0.4);
 }
 
+/* Live Chat */
+.tawk {
+    background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+    box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.3);
+}
+
+.tawk:hover {
+    box-shadow: 0 16px 40px -8px rgba(37, 99, 235, 0.4);
+}
+
 /* Call */
 .call {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -1959,7 +2035,6 @@ body {
         padding: 0.15rem 0.42rem;
         font-size: 0.66rem;
     }
-}
 
     .floating-tawk {
         right: 14px;
@@ -1973,7 +2048,19 @@ body {
         height: 1.45rem;
     }
 
-    .whatsapp-prompt__close:hover {
+    .hero-marquee {
+        width: 100%;
+        border-radius: 18px;
+    }
+
+    .hero-marquee__item {
+        font-size: 0.7rem;
+        padding: 0.38rem 0.8rem;
+        letter-spacing: 0.06em;
+    }
+}
+
+.whatsapp-prompt__close:hover {
     color: white;
 }
 

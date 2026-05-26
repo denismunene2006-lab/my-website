@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let actionType = 'cta_click';
 
-        if (interactive.matches('.contact-btn, .floating-tawk, .tawk-launcher, .open-tawk, .tawk-chat-link')) {
-            actionType = 'tawk_click';
-        } else if (href.includes('wa.me')) {
+        if (href.includes('wa.me')) {
             actionType = 'whatsapp_click';
+        } else if (interactive.matches('.contact-btn, .floating-tawk, .tawk-launcher, .open-tawk, .tawk-chat-link')) {
+            actionType = 'tawk_click';
         } else if (href.startsWith('mailto:')) {
             actionType = 'email_click';
         } else if (href.startsWith('tel:')) {
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isArticlePage) {
         runAfterNextPaint(() => {
             const revealTargets = Array.from(document.querySelectorAll(
-                '.home-photo-content, .home-section, .page h1, .page h2, .card, .service-box, .contact-form, .contact-buttons, .skills li, .blog-placeholder'
+                '.home-photo-content, .home-section, .page h1, .page h2, .contact-form, .contact-buttons, .skills li'
             ));
 
             if (prefersReducedMotion) {
