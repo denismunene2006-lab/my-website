@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 24, 2026):** Added lightweight micro-interactions, improved card/button hover polish, subtle hero gradient motion, and accessibility focus states. Also refined splash timing and SEO cleanup with a single real H1 per page.
+**Latest Update (May 26, 2026):** Added a refreshed visual system with softer color balance, a moving hero word strip, and side-enter scroll reveals for cards. Also kept the Tawk live chat launcher and contact options aligned with the current support flow.
 
 ## Live Site
 
@@ -18,14 +18,15 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 - Premium splash screen shown on first visit with logo, welcome message, and smooth transition into content
 - Shortened splash timing so the intro still feels readable without slowing down entry into the site
 - Smooth scroll reveal animations for sections, headings, images, and interactive elements
+- Alternating side-enter reveals for cards, testimonials, and support blocks
 - Blog hub plus individual SEO-focused article pages
 - Project and article image support with organized image folders
 - Stable app-style navbar with icon labels and modern hover effects
 - Shared header/footer renderer to reduce repeated page shell markup across the site
-- Premium gradient hero section with animated background elements
-- Modern card designs with hover animations and visual depth
+- Premium gradient hero section with animated background elements and a moving word strip
+- Modern card designs with hover animations, visual depth, and stronger contrast accents
 - Professional contact forms with focus states and smooth transitions
-- Footer-triggered WhatsApp prompt and floating CTA
+- Floating Tawk live chat launcher plus contact-page WhatsApp, email, and phone actions
 
 ## Main Pages
 
