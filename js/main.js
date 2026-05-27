@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', runAfterLoad, { once: true });
     };
 
-    const initScrollProgress = () => {
+    const initScrollProgress = (heroElement = null, scrollSource = null) => {
         if (document.getElementById('scroll-progress')) {
             return;
         }
@@ -267,17 +267,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const updateProgress = () => {
             const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-            const ratio = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+            const currentScrollY = window.scrollY;
+            const ratio = Math.min(Math.max(currentScrollY / maxScroll, 0), 1);
             const timestamp = performance.now();
-            const distance = Math.abs(window.scrollY - lastScrollY);
+            const distance = Math.abs(currentScrollY - lastScrollY);
             const elapsed = Math.max(timestamp - lastTimestamp, 16);
             const velocity = Math.min(distance / elapsed, 2.4);
 
             document.documentElement.style.setProperty('--scroll-progress', ratio.toFixed(4));
-            document.documentElement.style.setProperty('--scroll-y', `${window.scrollY.toFixed(1)}px`);
+            document.documentElement.style.setProperty('--scroll-y', `${currentScrollY.toFixed(1)}px`);
             document.documentElement.style.setProperty('--scroll-velocity', velocity.toFixed(3));
 
-            lastScrollY = window.scrollY;
+            if (heroElement && !prefersReducedMotion) {
+                heroElement.style.setProperty('--hero-shift', `${(currentScrollY * 0.08).toFixed(2)}px`);
+            }
+
+            lastScrollY = currentScrollY;
             lastTimestamp = timestamp;
             ticking = false;
         };
@@ -296,7 +301,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        window.addEventListener('scroll', onScroll, { passive: true });
+        if (scrollSource && typeof scrollSource.on === 'function') {
+            scrollSource.on('scroll', onScroll);
+        } else {
+            window.addEventListener('scroll', onScroll, { passive: true });
+        }
+
         window.addEventListener('resize', onScroll, { passive: true });
         onScroll();
     };
@@ -390,8 +400,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     scheduleNonCriticalTask(() => {
-        initScrollProgress();
+        const hero = document.querySelector('.hero');
+
         initMagicalSmoothScroll();
+        initScrollProgress(hero);
 
         if (!document.querySelector('.floating-tawk')) {
             const launcher = document.createElement('button');
@@ -401,33 +413,5 @@ document.addEventListener('DOMContentLoaded', () => {
             launcher.innerHTML = iconMarkup('chat', 'floating-tawk__icon');
             document.body.appendChild(launcher);
         }
-
-        const hero = document.querySelector('.hero');
-        const canRunHeroParallax = hero
-            && !prefersReducedMotion
-            && window.matchMedia('(min-width: 768px)').matches
-            && window.matchMedia('(pointer: fine)').matches;
-
-        if (!canRunHeroParallax) {
-            return;
-        }
-
-        hero.classList.add('hero-3d');
-        let heroTicking = false;
-
-        const updateHeroParallax = () => {
-            const offset = window.scrollY * 0.12;
-            hero.style.setProperty('--hero-shift', `${offset}px`);
-            heroTicking = false;
-        };
-
-        window.addEventListener('scroll', () => {
-            if (!heroTicking) {
-                window.requestAnimationFrame(updateHeroParallax);
-                heroTicking = true;
-            }
-        }, { passive: true });
-
-        updateHeroParallax();
     });
 });

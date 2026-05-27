@@ -21,6 +21,15 @@ html {
   scroll-padding-top: 80px;
 }
 
+html.lenis {
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 a {
   transition: color 200ms ease, opacity 200ms ease;
 }
@@ -54,6 +63,8 @@ body.splash-done > *:not(#splash-overlay) {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   padding: 16px;
   box-sizing: border-box;
   display: none;
@@ -116,6 +127,8 @@ body.splash-done > *:not(#splash-overlay) {
   width: min(540px, 100%);
   max-width: 540px;
   max-height: calc(100vh - 32px);
+  max-height: calc(100svh - 32px);
+  max-height: calc(100dvh - 32px);
   height: auto;
   min-height: 0;
   justify-content: center;

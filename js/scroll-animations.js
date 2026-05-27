@@ -5,6 +5,10 @@
     return;
   }
 
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    return;
+  }
+
   // Check if browser supports IntersectionObserver
   if(!('IntersectionObserver' in window)){
     console.log('IntersectionObserver not supported, skipping scroll animations');
@@ -18,18 +22,9 @@
   const ANIMATION_ROOT_MARGIN = '0px 0px -4% 0px';
   const ANIMATED_SELECTOR = '.home-photo-content, .home-section, .contact-form, .contact-buttons, .card, .service-box, .faq-item, .testimonial-card, .contact-detail-card, .blog-placeholder, [data-animate]';
   const OFFSCREEN_TRANSFORM = 'translate3d(0, 24px, 0)';
-  let lastScrollY = window.scrollY;
-  let lastScrollTime = performance.now();
-  let isFastScrolling = false;
 
-  function updateScrollSpeedState(){
-    const now = performance.now();
-    const distance = Math.abs(window.scrollY - lastScrollY);
-    const elapsed = Math.max(now - lastScrollTime, 16);
-    const velocity = distance / elapsed;
-    isFastScrolling = velocity > 1.1;
-    lastScrollY = window.scrollY;
-    lastScrollTime = now;
+  function getAnimatedElements(){
+    return Array.from(document.querySelectorAll(ANIMATED_SELECTOR)).filter(el => !el.classList.contains('no-scroll-reveal'));
   }
 
   // Get all elements that should be animated
@@ -60,7 +55,7 @@
     entries.forEach(entry => {
       if(entry.isIntersecting && !entry.target.classList.contains(REVEALED_CLASS)){
         const siblingIndex = Array.from(entry.target.parentElement?.children || []).indexOf(entry.target);
-        const delay = isFastScrolling ? 0 : Math.min(Math.max(siblingIndex, 0) * 28, 120);
+        const delay = Math.min(Math.max(siblingIndex, 0) * 24, 96);
         
         setTimeout(() => {
           entry.target.style.opacity = '1';
@@ -77,8 +72,6 @@
     threshold: ANIMATION_THRESHOLD,
     rootMargin: ANIMATION_ROOT_MARGIN
   });
-
-  window.addEventListener('scroll', updateScrollSpeedState, { passive: true });
 
   // Initialize on page load
   if(document.readyState === 'loading'){

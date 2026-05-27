@@ -64,6 +64,20 @@ async function processHtml(file) {
   const html = await fs.readFile(full, 'utf8');
   const $ = cheerio.load(html, { decodeEntities: false });
 
+  function normalizeAssetPath(assetPath, extension) {
+    const pathOnly = assetPath.split('?')[0].replace(/\.min\.min\./i, '.min.');
+
+    if (pathOnly.endsWith(`.min.${extension}`)) {
+      return pathOnly;
+    }
+
+    if (pathOnly.endsWith(`.${extension}`)) {
+      return pathOnly.replace(new RegExp(`\.${extension}$`, 'i'), `.min.${extension}`);
+    }
+
+    return pathOnly;
+  }
+
   // Ensure preload for splash logo exists
   const splashPreloadHref = 'splash-assets/logo-tight-256.jpg';
   const hasPreload = $(`head link[rel="preload"][as="image"][href="${splashPreloadHref}"]`).length > 0;
@@ -75,8 +89,8 @@ async function processHtml(file) {
   // Update CSS links to .min.css
   $('link[rel="stylesheet"]').each((i, el) => {
     const href = $(el).attr('href');
-    if (href && href.startsWith('css/') && !href.endsWith('.min.css')) {
-      const newHref = href.replace(/\.css$/i, '.min.css');
+    if (href && href.startsWith('css/')) {
+      const newHref = normalizeAssetPath(href, 'css');
       $(el).attr('href', newHref);
       console.log('Rewrote CSS link in', file, href, '->', newHref);
     }
@@ -85,8 +99,8 @@ async function processHtml(file) {
   // Update script src to min and add defer for non-critical
   $('script[src]').each((i, el) => {
     const src = $(el).attr('src');
-    if (src && src.startsWith('js/') && !src.endsWith('.min.js')) {
-      const newSrc = src.replace(/\.js$/i, '.min.js');
+    if (src && src.startsWith('js/')) {
+      const newSrc = normalizeAssetPath(src, 'js');
       $(el).attr('src', newSrc);
       console.log('Rewrote script src in', file, src, '->', newSrc);
     }

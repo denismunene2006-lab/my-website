@@ -111,6 +111,15 @@ html {
     scrollbar-gutter: stable;
 }
 
+html.lenis {
+    scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
 #scroll-progress {
     position: fixed;
     inset: 0 0 auto 0;
