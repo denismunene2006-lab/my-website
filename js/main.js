@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
         || 'https://embed.tawk.to/6a145cc50a1a801c31cd5819/1jpfokp7b';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isArticlePage = Boolean(document.querySelector('.article-page'));
+    const tawkActionQueue = [];
+    let tawkLoadHookInstalled = false;
     const iconMarkup = (name, className = '') => {
         if (window.DLabsIcons && typeof window.DLabsIcons.renderMarkup === 'function') {
             return window.DLabsIcons.renderMarkup(name, className);
@@ -26,6 +28,140 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(eventPayload);
+    };
+
+    const splitMessageForTawk = (message, chunkSize = 220) => {
+        const normalizedMessage = message.trim();
+
+        if (!normalizedMessage) {
+            return [];
+        }
+
+        const chunks = [];
+
+        for (let index = 0; index < normalizedMessage.length; index += chunkSize) {
+            chunks.push(normalizedMessage.slice(index, index + chunkSize));
+        }
+
+        return chunks;
+    };
+
+    const loadTawkWidget = () => {
+        if (!tawkEmbedUrl) {
+            console.warn('Tawk.to is not configured. Set window.DLabsTawkEmbedUrl or body[data-tawk-embed-url].');
+            return;
+        }
+
+        if (window.Tawk_API && window.Tawk_API.__dlabsLoaded) {
+            return;
+        }
+
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_LoadStart = new Date();
+        window.Tawk_API.__dlabsLoaded = true;
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.charset = 'UTF-8';
+        script.crossOrigin = '*';
+        script.src = tawkEmbedUrl;
+
+        const firstScript = document.getElementsByTagName('script')[0];
+        if (firstScript && firstScript.parentNode) {
+            firstScript.parentNode.insertBefore(script, firstScript);
+            return;
+        }
+
+        document.head.appendChild(script);
+    };
+
+    const flushQueuedTawkActions = () => {
+        while (tawkActionQueue.length > 0) {
+            const action = tawkActionQueue.shift();
+            action();
+        }
+    };
+
+    const ensureTawkLoadHook = () => {
+        if (tawkLoadHookInstalled) {
+            return;
+        }
+
+        tawkLoadHookInstalled = true;
+        window.Tawk_API = window.Tawk_API || {};
+        const previousOnLoad = window.Tawk_API.onLoad;
+
+        window.Tawk_API.onLoad = function onLoad() {
+            if (typeof previousOnLoad === 'function') {
+                previousOnLoad();
+            }
+
+            flushQueuedTawkActions();
+        };
+    };
+
+    const runWhenTawkReady = (action) => {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+            action();
+            return;
+        }
+
+        tawkActionQueue.push(action);
+        ensureTawkLoadHook();
+        loadTawkWidget();
+    };
+
+    const sendProjectDetailsToTawk = ({ name, email, message }) => {
+        const chunks = splitMessageForTawk(message);
+
+        runWhenTawkReady(() => {
+            const tawkAttributes = {
+                name,
+                email,
+                source_page: window.location.pathname,
+                enquiry_type: 'project-contact-form',
+            };
+
+            if (chunks.length > 0) {
+                chunks.forEach((chunk, index) => {
+                    tawkAttributes[`project_message_${index + 1}`] = chunk;
+                });
+            }
+
+            if (window.Tawk_API && typeof window.Tawk_API.setAttributes === 'function') {
+                window.Tawk_API.setAttributes(tawkAttributes, () => {});
+            } else if (window.Tawk_API) {
+                window.Tawk_API.visitor = {
+                    name,
+                    email,
+                };
+            }
+
+            if (window.Tawk_API && typeof window.Tawk_API.addEvent === 'function') {
+                window.Tawk_API.addEvent('project-contact-form', {
+                    name,
+                    email,
+                    message: chunks[0] || '',
+                    message_parts: String(chunks.length),
+                }, () => {});
+            }
+
+            if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+                window.Tawk_API.maximize();
+            }
+        });
+    };
+
+    const sendProjectDetailsToWhatsApp = ({ name, message }) => {
+        const whatsappNumber = '254710236087';
+        const prewrittenMessage = [
+            `Hello D-LABS. I am ${name}.`,
+            'I have a project inquiry.',
+            `Message: ${message}`,
+        ].join('\n');
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prewrittenMessage)}`;
+
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     };
 
     const getActionLabel = (element) => {
@@ -75,11 +211,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('.contact-form form');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', () => {
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const nameField = contactForm.querySelector('input[type="text"]');
+            const messageField = contactForm.querySelector('textarea');
+
+            const name = nameField ? nameField.value.trim() : '';
+            const message = messageField ? messageField.value.trim() : '';
+
+            if (!name || !message) {
+                return;
+            }
+
             trackConversion('contact_form_submit', {
                 action_label: 'Contact form submit',
                 destination: window.location.pathname,
+                visitor_name: name,
             });
+
+            sendProjectDetailsToWhatsApp({ name, message });
         });
     }
 
@@ -99,33 +250,63 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('load', runAfterLoad, { once: true });
     };
 
-    const loadTawkWidget = () => {
-        if (!tawkEmbedUrl) {
-            console.warn('Tawk.to is not configured. Set window.DLabsTawkEmbedUrl or body[data-tawk-embed-url].');
+    const initScrollProgress = () => {
+        if (document.getElementById('scroll-progress')) {
             return;
         }
 
-        if (window.Tawk_API && window.Tawk_API.__dlabsLoaded) {
+        const progress = document.createElement('div');
+        progress.id = 'scroll-progress';
+        progress.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(progress);
+
+        let ticking = false;
+        let scrollingClassTimer;
+        let lastScrollY = window.scrollY;
+        let lastTimestamp = performance.now();
+
+        const updateProgress = () => {
+            const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+            const ratio = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+            const timestamp = performance.now();
+            const distance = Math.abs(window.scrollY - lastScrollY);
+            const elapsed = Math.max(timestamp - lastTimestamp, 16);
+            const velocity = Math.min(distance / elapsed, 2.4);
+
+            document.documentElement.style.setProperty('--scroll-progress', ratio.toFixed(4));
+            document.documentElement.style.setProperty('--scroll-y', `${window.scrollY.toFixed(1)}px`);
+            document.documentElement.style.setProperty('--scroll-velocity', velocity.toFixed(3));
+
+            lastScrollY = window.scrollY;
+            lastTimestamp = timestamp;
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            document.body.classList.add('is-scrolling');
+            window.clearTimeout(scrollingClassTimer);
+            scrollingClassTimer = window.setTimeout(() => {
+                document.body.classList.remove('is-scrolling');
+                document.documentElement.style.setProperty('--scroll-velocity', '0');
+            }, 140);
+
+            if (!ticking) {
+                window.requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        onScroll();
+    };
+
+    const initMagicalSmoothScroll = () => {
+        if (prefersReducedMotion) {
             return;
         }
 
-        window.Tawk_API = window.Tawk_API || {};
-        window.Tawk_LoadStart = new Date();
-        window.Tawk_API.__dlabsLoaded = true;
-
-        const script = document.createElement('script');
-        script.async = true;
-        script.charset = 'UTF-8';
-        script.crossOrigin = '*';
-        script.src = tawkEmbedUrl;
-
-        const firstScript = document.getElementsByTagName('script')[0];
-        if (firstScript && firstScript.parentNode) {
-            firstScript.parentNode.insertBefore(script, firstScript);
-            return;
-        }
-
-        document.head.appendChild(script);
+        document.documentElement.classList.add('enhanced-scroll');
     };
 
     const openTawkChat = () => {
@@ -162,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isArticlePage) {
         runAfterNextPaint(() => {
             const revealTargets = Array.from(document.querySelectorAll(
-                '.home-photo-content, .home-section, .page h1, .page h2, .contact-form, .contact-buttons, .skills li'
+                '.home-photo-content, .home-section, .contact-form, .contact-buttons, .skills li'
             ));
 
             if (prefersReducedMotion) {
@@ -208,6 +389,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     scheduleNonCriticalTask(() => {
+        initScrollProgress();
+        initMagicalSmoothScroll();
         loadTawkWidget();
 
         if (!document.querySelector('.floating-tawk')) {

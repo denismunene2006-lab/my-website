@@ -148,14 +148,14 @@ async function run() {
   }
 
   // Minify CSS files
-  const cssFiles = glob.sync('css/*.css');
+  const cssFiles = glob.sync('css/*.css', { nodir: true });
   for (const f of cssFiles) {
     if (f.endsWith('.min.css')) continue;
     await minifyCssFile(f);
   }
 
   // Minify JS files
-  const jsFiles = glob.sync('js/*.js');
+  const jsFiles = glob.sync('js/*.js', { nodir: true });
   for (const f of jsFiles) {
     if (f.endsWith('.min.js')) continue;
     await minifyJsFile(f);

@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 26, 2026):** Added a refreshed visual system with softer color balance, a moving hero word strip, and side-enter scroll reveals for cards. Also kept the Tawk live chat launcher and contact options aligned with the current support flow.
+**Latest Update (May 27, 2026):** Performance and scrolling polish release. Added safer non-blocking scroll effects, faster text reveal behavior during rapid scrolling, deferred shared scripts across pages, and fixed the optimizer build error (`EISDIR`) so `npm run build` completes successfully.
 
 ## Live Site
 
@@ -159,6 +159,9 @@ What the build does:
 - Converts `images/` and `splash-assets/` to WebP and AVIF variants.
 - Produces `css/*.min.css` and `js/*.min.js` and rewrites HTML to reference them.
 - Adds preload hints for the splash logo and sets image dimensions where possible.
+
+Recent build reliability fix:
+- Optimizer glob patterns now ignore directories for CSS/JS scans, preventing `EISDIR` errors in projects containing folder names like `*.js`.
 
 Notes:
 - The build uses `sharp`, `postcss`/`cssnano`, and `terser`. These are dev dependencies and only required for generating assets locally.

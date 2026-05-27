@@ -1,6 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+    <link rel="preload" as="image" href="splash-assets/logo-tight-256.jpg">
+</head><body data-page="contact">﻿
+
+
     <meta charset="UTF-8">
     <title>Contact D-LABS | Web Developer in Embu, Kenya</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,23 +81,27 @@
         }
         </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
     <!-- Splash screen styles -->
-    <link rel="stylesheet" href="css/splash.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/splash.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
     <style>
       html.splash-lock, body.splash-lock { overflow: hidden; height: 100%; }
     </style>
-</head>
-<body data-page="contact">
+
+
 
 <!-- Splash overlay shown on page load -->
 <div id="splash-overlay" role="dialog" aria-hidden="false">
     <div class="splash-frame" aria-hidden="false">
-        <img id="splash-logo" src="splash-assets/logo-tight-180.jpg" srcset="splash-assets/logo-tight-180.jpg 180w, splash-assets/logo-tight-256.jpg 256w, splash-assets/logo-tight-320.jpg 320w" sizes="(max-width: 583px) 140px, (max-width: 750px) 24vw, 180px" alt="D-LABS Logo" width="180" height="180">
+        <picture>
+    <source type="image/avif" srcset="splash-assets/logo-tight-180.avif">
+    <source type="image/webp" srcset="splash-assets/logo-tight-180.webp">
+    <img id="splash-logo" src="splash-assets/logo-tight-180.jpg" srcset="splash-assets/logo-tight-180.jpg 180w, splash-assets/logo-tight-256.jpg 256w, splash-assets/logo-tight-320.jpg 320w" sizes="(max-width: 583px) 140px, (max-width: 750px) 24vw, 180px" alt="D-LABS Logo" width="180" height="180" loading="lazy">
+  </picture>
         <p class="splash-heading">Welcome to D-LABS</p>
         <p class="splash-subtitle">Building Digital Excellence</p>
         <p class="splash-description">Modern Web Solutions for Growing Businesses</p>
@@ -107,7 +113,7 @@
     </div>
 </div>
 
-<div data-site-header></div>
+<div data-site-header=""></div>
 
 <section id="main-content" class="page contact-page-wrap">
     <a href="index.html#contact-page" class="section-jump-link"><span class="icon" data-icon="arrow-left" aria-hidden="true"></span> Back to Home</a>
@@ -185,25 +191,26 @@
 <div class="contact-form">
     <h2>Tell Us About Your Project</h2>
     <form>
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
+        <input type="text" name="name" autocomplete="name" placeholder="Your Name" required="">
+        <textarea name="message" placeholder="Your Message" required=""></textarea>
         <button type="submit" class="btn">Send Message</button>
     </form>
 </div>
 
 </section>
 
-<div data-site-footer></div>
+<div data-site-footer=""></div>
 
-<script src="js/icons.js"></script>
-<script src="js/shared-layout.js"></script>
-<script src="js/splash.js"></script>
-<script src="js/scroll-animations.js"></script>
-<script src="js/main.js" defer></script>
-</body>
-</html>
+<script src="js/icons.min.js" defer=""></script>
+<script src="js/shared-layout.min.js" defer="true"></script>
+<script src="js/splash.min.js" defer=""></script>
+<script src="js/scroll-animations.min.js" defer="true"></script>
+<script src="js/main.min.js" defer=""></script>
 
 
 
 
+
+
+
+</body></html>

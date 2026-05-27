@@ -1,23 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+    <link rel="preload" as="image" href="splash-assets/logo-tight-256.jpg">
+</head><body data-page="blog">﻿
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="author" content="D-LABS">
-    <title>Website Performance & Page Speed: Why It Matters for Conversions | D-LABS Blog</title>
+    <title>Website Performance &amp; Page Speed: Why It Matters for Conversions | D-LABS Blog</title>
     <meta name="description" content="Website performance and page speed directly impact user experience and conversions. Learn why speed matters and how to optimize your site for better results.">
     <link rel="canonical" href="https://denismunene2006-lab.github.io/my-website/article-website-performance-page-speed.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="D-LABS">
     <meta property="og:locale" content="en_KE">
-    <meta property="og:title" content="Website Performance & Page Speed: Why It Matters for Conversions | D-LABS Blog">
+    <meta property="og:title" content="Website Performance &amp; Page Speed: Why It Matters for Conversions | D-LABS Blog">
     <meta property="og:description" content="Discover how page speed affects user experience, SEO, and conversions.">
     <meta property="og:url" content="https://denismunene2006-lab.github.io/my-website/article-website-performance-page-speed.html">
     <meta property="og:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://denismunene2006-lab.github.io/my-website/article-website-performance-page-speed.html">
-    <meta name="twitter:title" content="Website Performance & Page Speed: Why It Matters for Conversions | D-LABS Blog">
+    <meta name="twitter:title" content="Website Performance &amp; Page Speed: Why It Matters for Conversions | D-LABS Blog">
     <meta name="twitter:description" content="Learn why website speed is crucial for conversions and user satisfaction.">
     <meta name="twitter:image" content="https://denismunene2006-lab.github.io/my-website/images/logo1.jpeg">
         <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico?v=2">
@@ -55,23 +57,27 @@
         }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Poppins:wght@600;700&amp;display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"></noscript>
     <!-- Splash screen styles -->
-    <link rel="stylesheet" href="css/splash.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/splash.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
     <style>
       html.splash-lock, body.splash-lock { overflow: hidden; height: 100%; }
     </style>
-</head>
-<body data-page="blog">
+
+
 
 <!-- Splash overlay shown on page load -->
 <div id="splash-overlay" role="dialog" aria-hidden="false">
     <div class="splash-frame" aria-hidden="false">
-        <img id="splash-logo" src="splash-assets/logo-tight-180.jpg" srcset="splash-assets/logo-tight-180.jpg 180w, splash-assets/logo-tight-256.jpg 256w, splash-assets/logo-tight-320.jpg 320w" sizes="(max-width: 583px) 140px, (max-width: 750px) 24vw, 180px" alt="D-LABS Logo" width="180" height="180">
+        <picture>
+    <source type="image/avif" srcset="splash-assets/logo-tight-180.avif">
+    <source type="image/webp" srcset="splash-assets/logo-tight-180.webp">
+    <img id="splash-logo" src="splash-assets/logo-tight-180.jpg" srcset="splash-assets/logo-tight-180.jpg 180w, splash-assets/logo-tight-256.jpg 256w, splash-assets/logo-tight-320.jpg 320w" sizes="(max-width: 583px) 140px, (max-width: 750px) 24vw, 180px" alt="D-LABS Logo" width="180" height="180" loading="lazy">
+  </picture>
         <p class="splash-heading">Welcome to D-LABS</p>
         <p class="splash-subtitle">Building Digital Excellence</p>
         <p class="splash-description">Modern Web Solutions for Growing Businesses</p>
@@ -83,12 +89,12 @@
     </div>
 </div>
 
-<div data-site-header></div>
+<div data-site-header=""></div>
 
 <section id="main-content" class="page article-page">
     <div class="article-header">
         <a class="article-breadcrumb" href="blog.html"><span class="icon" data-icon="arrow-left" aria-hidden="true"></span> Back to Blog</a>
-        <h1>Website Performance & Page Speed: Why It Matters for Conversions</h1>
+        <h1>Website Performance &amp; Page Speed: Why It Matters for Conversions</h1>
         <p class="article-subtitle">Why Every Second Counts for Your Bottom Line</p>
         <div class="article-meta">
             <span><span class="icon" data-icon="calendar" aria-hidden="true"></span> April 29, 2026</span>
@@ -98,7 +104,11 @@
     </div>
 
     <article class="article-content">
-        <img src="images/article-website-performance-page-speed/d2.jpeg" alt="Website Performance & Page Speed" class="article-image" loading="lazy" decoding="async">
+        <picture>
+    <source type="image/avif" srcset="images/article-website-performance-page-speed/d2.avif">
+    <source type="image/webp" srcset="images/article-website-performance-page-speed/d2.webp">
+    <img src="images/article-website-performance-page-speed/d2.jpeg" alt="Website Performance &amp; Page Speed" class="article-image" loading="lazy" decoding="async" width="1536" height="1024">
+  </picture>
         
         <p>In the digital world, speed isn't just a technical feature - it's a psychological trigger. When a website loads instantly, it feels professional, reliable, and trustworthy. When it lags, users feel frustrated and quickly click away.</p>
         
@@ -135,16 +145,18 @@
     </article>
 </section>
 
-<div data-site-footer></div>
+<div data-site-footer=""></div>
 
-<script src="js/icons.js"></script>
-<script src="js/shared-layout.js"></script>
-<script src="js/splash.js"></script>
-<script src="js/scroll-animations.js"></script>
-<script src="js/main.js" defer></script>
-</body>
-</html>
+<script src="js/icons.min.js" defer=""></script>
+<script src="js/shared-layout.min.js" defer="true"></script>
+<script src="js/splash.min.js" defer=""></script>
+<script src="js/scroll-animations.min.js" defer="true"></script>
+<script src="js/main.min.js" defer=""></script>
 
 
 
 
+
+
+
+</body></html>
