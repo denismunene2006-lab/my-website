@@ -311,43 +311,13 @@ document.addEventListener('DOMContentLoaded', () => {
         onScroll();
     };
 
-    const initMagicalSmoothScroll = async (heroElement = null) => {
+    const initMagicalSmoothScroll = (heroElement = null) => {
         if (prefersReducedMotion) {
             initScrollProgress(heroElement);
             return;
         }
 
-        // Load Lenis from CDN if not present
-        if (!window.Lenis) {
-            await new Promise((resolve) => {
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js';
-                script.async = true;
-                script.onload = resolve;
-                script.onerror = resolve;
-                document.head.appendChild(script);
-            });
-        }
-
-        if (window.Lenis) {
-            document.documentElement.classList.add('lenis', 'enhanced-scroll');
-            const lenis = new window.Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                smoothTouch: false,
-            });
-
-            window.DLabsLenis = lenis;
-            const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
-            requestAnimationFrame(raf);
-            initScrollProgress(heroElement, lenis);
-        } else {
-            initScrollProgress(heroElement);
-        }
+        initScrollProgress(heroElement);
     };
 
     const openTawkChat = () => {
@@ -441,14 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const hero = document.querySelector('.hero');
 
         initMagicalSmoothScroll(hero);
-
-        if (!document.querySelector('.floating-tawk')) {
-            const launcher = document.createElement('button');
-            launcher.type = 'button';
-            launcher.className = 'floating-tawk no-scroll-reveal';
-            launcher.setAttribute('aria-label', 'Open live chat');
-            launcher.innerHTML = iconMarkup('chat', 'floating-tawk__icon');
-            document.body.appendChild(launcher);
-        }
+        ensureTawkLoadHook();
+        loadTawkWidget();
     });
 });
