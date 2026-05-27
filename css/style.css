@@ -1972,6 +1972,11 @@ a.card {
     gap: 1.2rem;
 }
 
+.contact-page-wrap > .section-jump-link {
+    justify-self: start;
+    width: fit-content;
+}
+
 .contact-highlights {
     background: linear-gradient(135deg, #f8fafc 0%, #f0e7ff 100%);
     border: 1.5px solid #ddd6fe;
