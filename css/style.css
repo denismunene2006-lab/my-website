@@ -108,6 +108,7 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     overscroll-behavior-y: auto;
+    scrollbar-gutter: stable;
 }
 
 #scroll-progress {
@@ -1604,9 +1605,9 @@ a.card {
 /* Scroll Reveal Animation */
 .hidden {
     opacity: 0;
-    filter: blur(8px);
-    transform: translate3d(0, 34px, 0) scale(0.97);
-    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1), filter 0.95s ease, box-shadow 0.9s ease;
+    filter: blur(4px);
+    transform: translate3d(0, 24px, 0) scale(0.98);
+    transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), filter 0.42s ease, box-shadow 0.42s ease;
     transition-delay: var(--reveal-delay, 0ms);
     will-change: transform, opacity, filter;
 }
@@ -1622,6 +1623,17 @@ a.card {
 .home-section.show,
 .blog-placeholder.show {
     box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+}
+
+.home-photo-content,
+.home-section,
+.contact-form,
+.contact-buttons,
+.services-grid,
+.cards,
+.blog-list {
+    content-visibility: auto;
+    contain-intrinsic-size: 600px;
 }
 
 .card.show,

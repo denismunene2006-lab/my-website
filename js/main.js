@@ -310,12 +310,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const openTawkChat = () => {
-        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
-            window.Tawk_API.maximize();
-            return true;
-        }
+        runWhenTawkReady(() => {
+            if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+                window.Tawk_API.maximize();
+            }
+        });
 
-        return false;
+        return true;
     };
 
     document.addEventListener('click', (event) => {
@@ -391,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleNonCriticalTask(() => {
         initScrollProgress();
         initMagicalSmoothScroll();
-        loadTawkWidget();
 
         if (!document.querySelector('.floating-tawk')) {
             const launcher = document.createElement('button');
