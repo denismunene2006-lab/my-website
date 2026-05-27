@@ -311,12 +311,43 @@ document.addEventListener('DOMContentLoaded', () => {
         onScroll();
     };
 
-    const initMagicalSmoothScroll = () => {
+    const initMagicalSmoothScroll = async (heroElement = null) => {
         if (prefersReducedMotion) {
+            initScrollProgress(heroElement);
             return;
         }
 
-        document.documentElement.classList.add('enhanced-scroll');
+        // Load Lenis from CDN if not present
+        if (!window.Lenis) {
+            await new Promise((resolve) => {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js';
+                script.async = true;
+                script.onload = resolve;
+                script.onerror = resolve;
+                document.head.appendChild(script);
+            });
+        }
+
+        if (window.Lenis) {
+            document.documentElement.classList.add('lenis', 'enhanced-scroll');
+            const lenis = new window.Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                smoothTouch: false,
+            });
+
+            window.DLabsLenis = lenis;
+            const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
+            requestAnimationFrame(raf);
+            initScrollProgress(heroElement, lenis);
+        } else {
+            initScrollProgress(heroElement);
+        }
     };
 
     const openTawkChat = () => {
@@ -365,12 +396,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const revealStates = revealTargets.map((element, index) => ({
                 element,
-                stagger: Math.min((index % 10) * 85, 680),
+                stagger: Math.min((index % 10) * 100, 700),
                 isInitiallyVisible: element.getBoundingClientRect().top < initialViewportHeight * 0.92,
             }));
             const deferredRevealTargets = [];
 
             revealStates.forEach(({ element, stagger, isInitiallyVisible }) => {
+                // Add directional variety to auto-revealed sections
+                if (!element.dataset.animate && element.tagName.toLowerCase() !== 'li') {
+                    const rect = element.getBoundingClientRect();
+                    const isLeft = rect.left < window.innerWidth / 2;
+                    element.dataset.animate = isLeft ? 'left' : 'right';
+                }
+
                 if (isInitiallyVisible) {
                     element.classList.add('show');
                     return;
@@ -402,8 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleNonCriticalTask(() => {
         const hero = document.querySelector('.hero');
 
-        initMagicalSmoothScroll();
-        initScrollProgress(hero);
+        initMagicalSmoothScroll(hero);
 
         if (!document.querySelector('.floating-tawk')) {
             const launcher = document.createElement('button');

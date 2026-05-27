@@ -1614,11 +1614,12 @@ a.card {
 /* Scroll Reveal Animation */
 .hidden {
     opacity: 0;
-    filter: blur(4px);
-    transform: translate3d(0, 24px, 0) scale(0.98);
-    transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1), transform 0.52s cubic-bezier(0.16, 1, 0.3, 1), filter 0.42s ease, box-shadow 0.42s ease;
+    filter: blur(10px);
+    transform: translate3d(0, 48px, 0) scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
     transition-delay: var(--reveal-delay, 0ms);
     will-change: transform, opacity, filter;
+    backface-visibility: hidden;
 }
 
 .show {
@@ -2367,12 +2368,3 @@ body {
         display: none;
     }
 }
-
-
-
-
-
-
-
-
-

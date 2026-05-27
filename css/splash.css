@@ -15,10 +15,33 @@
   --splash-logo-grow-out: 1.34;
 }
 
-/* SMOOTH SCROLLING */
+/* ENHANCED SMOOTH SCROLLING */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #5B21B6, #06B6D4);
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left;
+  z-index: 1000000;
+  pointer-events: none;
+  transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Add a subtle stretch effect when scrolling fast */
+body.is-scrolling #scroll-progress {
+  height: calc(3px + (var(--scroll-velocity) * 1px));
+}
+
+/* Disable native smooth scroll when Lenis is active for better performance */
+html.lenis {
+  scroll-behavior: initial !important;
 }
 
 html.lenis {
