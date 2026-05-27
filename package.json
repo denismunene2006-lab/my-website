@@ -22,7 +22,7 @@
   "homepage": "https://github.com/denismunene2006-lab/my-website#readme",
   "devDependencies": {
     "cheerio": "^1.2.0",
-    "critical": "^7.3.0",
+    "critical": "^8.0.0",
     "cssnano": "^8.0.1",
     "fontmin": "^0.9.9",
     "fs-extra": "^11.3.5",
