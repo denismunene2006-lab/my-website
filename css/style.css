@@ -17,8 +17,8 @@
     --shadow-md: 0 8px 16px -2px rgb(0 0 0 / 0.12);
     --shadow-lg: 0 16px 24px -4px rgb(0 0 0 / 0.15);
     --shadow-xl: 0 24px 48px -8px rgb(0 0 0 / 0.18);
-    --font-body: 'Inter', sans-serif;
-    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', 'Poppins', sans-serif;
     --scroll-progress: 0;
     --scroll-y: 0px;
     --scroll-velocity: 0;
@@ -1525,21 +1525,25 @@ nav ul li:nth-child(6) {
     background: linear-gradient(135deg, #f0e7ff 0%, #ffffff 85%);
     border-color: #ddd6fe;
 }
+.cards > .card:nth-child(4n + 1) h3 { color: var(--primary); }
 
 .cards > .card:nth-child(4n + 2) {
     background: linear-gradient(135deg, #ecfdff 0%, #ffffff 85%);
     border-color: #cffafe;
 }
+.cards > .card:nth-child(4n + 2) h3 { color: #0891b2; }
 
 .cards > .card:nth-child(4n + 3) {
     background: linear-gradient(135deg, #fff5e6 0%, #ffffff 85%);
     border-color: #fed7aa;
 }
+.cards > .card:nth-child(4n + 3) h3 { color: #ea580c; }
 
 .cards > .card:nth-child(4n + 4) {
     background: linear-gradient(135deg, #f5e6ff 0%, #ffffff 85%);
     border-color: #e9d5ff;
 }
+.cards > .card:nth-child(4n + 4) h3 { color: #7c3aed; }
 
 a.card {
     text-decoration: none;

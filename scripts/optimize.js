@@ -110,10 +110,34 @@ async function processHtml(file) {
     }
   });
 
+  // Collapse previously generated nested <picture> chains back to a single wrapper.
+  $('picture').each((i, pictureEl) => {
+    const $picture = $(pictureEl);
+    if ($picture.parent('picture').length) {
+      return;
+    }
+
+    const nestedPictures = $picture.find('picture');
+    if (!nestedPictures.length) {
+      return;
+    }
+
+    let $deepestPicture = $picture;
+    while ($deepestPicture.children('picture').length) {
+      $deepestPicture = $deepestPicture.children('picture').first();
+    }
+
+    $picture.replaceWith($.html($deepestPicture));
+    console.log('Normalized nested picture chain in', file);
+  });
+
   // Process img tags
   const imgs = $('img').toArray();
   for (const imgEl of imgs) {
     const $img = $(imgEl);
+    if ($img.parent('picture').length) {
+      continue;
+    }
     let src = $img.attr('src');
     if (!src) continue;
     if (/^https?:\/\//i.test(src)) continue; // skip remote

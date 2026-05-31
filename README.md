@@ -2,7 +2,7 @@
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 27, 2026):** Performance and scrolling polish release. Added safer non-blocking scroll effects, faster text reveal behavior during rapid scrolling, deferred shared scripts across pages, and fixed the optimizer build error (`EISDIR`) so `npm run build` completes successfully.
+**Latest Update (May 31, 2026):** Font and content cleanup release. Added the missing Google Font for the updated heading stack, fixed the corrupted emoji text in the 20 Unshakable Rules article, and made the optimizer idempotent so repeated builds do not keep nesting `<picture>` elements.
 
 ## Live Site
 
@@ -162,6 +162,8 @@ What the build does:
 
 Recent build reliability fix:
 - Optimizer glob patterns now ignore directories for CSS/JS scans, preventing `EISDIR` errors in projects containing folder names like `*.js`.
+- Image optimization now skips images already inside `<picture>` wrappers and normalizes previously nested picture chains before rebuilding HTML.
+- The 20 Unshakable Rules article text was corrected to remove mojibake caused by bad encoding so the copy renders cleanly in all browsers.
 
 Notes:
 - The build uses `sharp`, `postcss`/`cssnano`, and `terser`. These are dev dependencies and only required for generating assets locally.

@@ -273,7 +273,7 @@ body.splash-done > *:not(#splash-overlay) {
   text-shadow: 0 1px 5px rgba(100, 200, 255, 0.2);
   opacity: 0;
   animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1200ms forwards;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
   letter-spacing: 1.8px;
 }
 
@@ -289,7 +289,7 @@ body.splash-done > *:not(#splash-overlay) {
   line-height: 1.5;
   opacity: 0;
   animation: fadeInUp 700ms cubic-bezier(0.34, 1.56, 0.64, 1) 1500ms forwards;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
 }
 
 /* Loading indicator dots (optional, can be removed) */
