@@ -675,8 +675,8 @@ nav ul li:nth-child(6) {
     display: inline-block;
     text-decoration: none;
     padding: 12px 28px;
-    background: white;
-    color: var(--primary);
+    background: rgba(124, 58, 237, 0.2);
+    color: #A78BFA;
     border-radius: 10px;
     font-weight: 600;
     font-size: 0.95rem;
@@ -1468,7 +1468,7 @@ nav ul li:nth-child(6) {
 }
 
 .skills li {
-    background: white;
+    background: rgba(124, 58, 237, 0.15);
     padding: 10px 18px;
     border-radius: 10px;
     box-shadow: var(--shadow-sm);
@@ -1569,18 +1569,6 @@ nav ul li:nth-child(6) {
     border-color: rgba(124, 58, 237, 0.3);
 }
 .cards > .card:nth-child(4n + 2) h3 { color: #0891b2; }
-
-.cards > .card:nth-child(4n + 3) {
-    background: linear-gradient(135deg, #fff5e6 0%, rgba(30, 41, 59, 0.8) 85%);
-    border-color: #fed7aa;
-}
-.cards > .card:nth-child(4n + 3) h3 { color: #ea580c; }
-
-.cards > .card:nth-child(4n + 4) {
-    background: linear-gradient(135deg, #f5e6ff 0%, rgba(30, 41, 59, 0.8) 85%);
-    border-color: #e9d5ff;
-}
-.cards > .card:nth-child(4n + 4) h3 { color: #7c3aed; }
 
 a.card {
     text-decoration: none;
