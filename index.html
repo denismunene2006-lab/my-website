@@ -47,9 +47,11 @@
         <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico?v=2">
         <link rel="shortcut icon" href="images/logo/favicon.ico?v=2">
     <style>
-        html, body { background: #081024; }
+        html, body { background: #0F172A; margin: 0; padding: 0; }
         body > *:not(#splash-overlay) { visibility: hidden; opacity: 0; pointer-events: none; }
         #splash-overlay { visibility: visible; opacity: 1; }
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     </style>
         <script type="application/ld+json">
         {
@@ -424,6 +426,8 @@
 
 <div data-site-footer=""></div>
 
+<script src="js/performance-optimizations.min.js" defer=""></script>
+<script src="js/smooth-scroll-enhanced.min.js" defer=""></script>
 <script src="js/icons.min.js" defer=""></script>
 <script src="js/shared-layout.min.js" defer="true"></script>
 <script src="js/splash.min.js" defer=""></script>
