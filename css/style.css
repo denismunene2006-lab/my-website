@@ -47,6 +47,62 @@
     --scroll-velocity: 0;
 }
 
+/* Performance Optimizations - GPU Acceleration & Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    will-change: scroll-position;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Reduce repaints for frequently animated elements */
+.card,
+.service-box,
+.home-section {
+    contain: layout style paint;
+    will-change: transform;
+}
+@supports (will-change: transform) {
+    .card,
+    .service-box,
+    .home-section,
+    .card-image,
+    .hero-content,
+    .nav-link {
+        will-change: auto;
+    }
+    
+    .card:hover,
+    .service-box:hover,
+    .home-section:hover,
+    .hero-content:hover,
+    .nav-link:hover {
+        will-change: transform, box-shadow;
+    }
+}
+
+/* Respect user motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Accessibility helpers */
 .skip-to-content {
     position: absolute;
@@ -548,6 +604,22 @@ nav ul li:nth-child(6) {
     0% {
         background: linear-gradient(125deg, rgba(56, 189, 248, 0.24) 0%, rgba(255, 255, 255, 0.14) 44%, rgba(139, 92, 246, 0.2) 100%);
     }
+    100% {
+        background: linear-gradient(125deg, rgba(139, 92, 246, 0.24) 0%, rgba(255, 255, 255, 0.14) 56%, rgba(56, 189, 248, 0.2) 100%);
+    }
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
 
     50% {
         background: linear-gradient(135deg, rgba(59, 130, 246, 0.22) 0%, rgba(255, 255, 255, 0.14) 46%, rgba(168, 85, 247, 0.24) 100%);

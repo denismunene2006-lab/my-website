@@ -1,0 +1,89 @@
+# Enable compression for text-based files
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Implement browser caching with ETags
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images - 30 days
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/gif "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+    
+    # CSS, JS, Fonts - 30 days
+    ExpiresByType text/css "access plus 30 days"
+    ExpiresByType application/javascript "access plus 30 days"
+    ExpiresByType text/javascript "access plus 30 days"
+    ExpiresByType font/ttf "access plus 30 days"
+    ExpiresByType font/otf "access plus 30 days"
+    ExpiresByType font/woff "access plus 30 days"
+    ExpiresByType font/woff2 "access plus 30 days"
+    ExpiresByType application/font-woff "access plus 30 days"
+    
+    # HTML - 1 hour (for frequent updates)
+    ExpiresByType text/html "access plus 1 hour"
+    
+    # Default
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Set proper headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Cache control headers
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+    
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+    
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=3600, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# Remove ETags for better cache performance
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# Gzip compression for SVG
+<IfModule mod_mime.c>
+    add encoding gzip svgz
+    add type image/svg+xml svg svgz
+    AddEncoding gzip svgz
+</IfModule>
+
+# Redirects
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Remove trailing slashes (except for directories)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.+)/$ /$1 [L,R=301]
+    
+    # Add www (optional, remove if not needed)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
