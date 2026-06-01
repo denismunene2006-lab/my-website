@@ -1,150 +1,159 @@
-/* Performance Optimizations for Smooth Scrolling and Faster Rendering */
+/* Ultra-Optimized Performance for 60fps Scrolling and Fast Rendering */
 (function() {
   'use strict';
 
-  // Throttle function to limit function calls
-  function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-      if (!inThrottle) {
-        func.apply(this, args);
-        inThrottle = true;
-        setTimeout(() => inThrottle = false, limit);
-      }
-    };
-  }
-
-  // Debounce function for resize/load events
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  }
-
-  // Optimize scroll performance with requestAnimationFrame
+  // Use RequestAnimationFrame for 60fps scrolling
   let ticking = false;
   let scrollY = 0;
+  let lastScrollY = 0;
+  let scrollVelocity = 0;
 
   function updateScrollValues() {
     scrollY = window.scrollY || window.pageYOffset;
+    scrollVelocity = Math.abs(scrollY - lastScrollY);
+    lastScrollY = scrollY;
+    
+    // Use CSS custom properties for efficient updates
     document.documentElement.style.setProperty('--scroll-y', `${scrollY}px`);
+    document.documentElement.style.setProperty('--scroll-velocity', scrollVelocity);
+    
     ticking = false;
   }
 
+  // Passive scroll listener for 60fps performance
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(updateScrollValues);
       ticking = true;
     }
-  }, { passive: true });
+  }, { passive: true, capture: false });
 
-  // Lazy load images with IntersectionObserver
-  function initLazyLoading() {
+  // Optimized Intersection Observer for lazy loading
+  function initIntersectionObserver() {
     if (!('IntersectionObserver' in window)) return;
 
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.01
+    };
+
+    const imageObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target;
           if (img.dataset.src) {
             img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-            img.classList.add('loaded');
-            observer.unobserve(img);
+            img.srcset = img.dataset.srcset || '';
+            img.classList.add('image-loaded');
+            imageObserver.unobserve(img);
           }
         }
       });
-    }, {
-      rootMargin: '100px'
-    });
+    }, observerOptions);
 
     document.querySelectorAll('img[data-src]').forEach(img => imageObserver.observe(img));
   }
 
-  // Optimize font loading - fonts should be cached after first load
-  function optimizeFonts() {
+  // Optimized font loading strategy
+  function optimizeFontLoading() {
     if ('fonts' in document) {
       document.fonts.ready.then(() => {
         document.documentElement.classList.add('fonts-loaded');
+      }).catch(() => {
+        // Fallback if fonts fail to load
+        document.documentElement.classList.add('fonts-error');
       });
     }
   }
 
-  // Reduce layout thrashing by batching DOM reads/writes
-  function optimizeFormInteraction() {
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-      form.addEventListener('input', debounce((e) => {
-        // Validate on input with debounce to avoid constant reflows
-        if (typeof validateForm === 'function') {
-          validateForm(form);
-        }
-      }, 300), { passive: true });
-    });
+  // Efficient event delegation with passive listeners
+  function setupEventOptimization() {
+    // Use event delegation for better performance
+    document.addEventListener('click', (e) => {
+      const target = e.target.closest('[data-action]');
+      if (!target) return;
+      // Minimal processing for clicks
+    }, { passive: false, capture: false });
+
+    // Passive touch events for scroll-jank prevention
+    document.addEventListener('touchmove', () => {}, { passive: true });
+    document.addEventListener('touchstart', () => {}, { passive: true });
   }
 
-  // Use passive event listeners for scroll/touch events
-  function addPassiveEventListeners() {
-    const elements = document.querySelectorAll('[data-scroll-target], .card, .service-box');
-    
-    elements.forEach(el => {
-      if (el.addEventListener && typeof el.addEventListener === 'function') {
-        el.addEventListener('touchmove', () => {}, { passive: true });
-        el.addEventListener('mousewheel', () => {}, { passive: true });
-      }
-    });
+  // Debounce resize with minimal overhead
+  function setupResizeOptimization() {
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        document.documentElement.style.setProperty('--viewport-width', `${window.innerWidth}px`);
+        document.documentElement.style.setProperty('--viewport-height', `${window.innerHeight}px`);
+      }, 150);
+    }, { passive: true });
   }
 
-  // Preload critical resources
-  function preloadCriticalResources() {
-    const criticalSelectors = [
-      'link[rel="preload"][as="font"]',
-      'link[rel="preload"][as="image"]',
-      'link[rel="preconnect"]'
-    ];
-
-    // These are already in HTML, but ensure they're loaded
-    criticalSelectors.forEach(selector => {
-      const links = document.querySelectorAll(selector);
-      links.forEach(link => {
-        if (link.href && !link.href.includes('data:')) {
-          // Link is queued for preload
-        }
-      });
-    });
-  }
-
-  // Initialize all performance optimizations
+  // Initialize optimizations on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      initLazyLoading();
-      optimizeFonts();
-      optimizeFormInteraction();
-      addPassiveEventListeners();
-      preloadCriticalResources();
+      initIntersectionObserver();
+      optimizeFontLoading();
+      setupEventOptimization();
+      setupResizeOptimization();
     });
   } else {
-    initLazyLoading();
-    optimizeFonts();
-    optimizeFormInteraction();
-    addPassiveEventListeners();
-    preloadCriticalResources();
+    initIntersectionObserver();
+    optimizeFontLoading();
+    setupEventOptimization();
+    setupResizeOptimization();
   }
 
-  // Handle window resize efficiently
-  window.addEventListener('resize', debounce(() => {
-    // Update layout-dependent variables
-    document.documentElement.style.setProperty('--viewport-width', `${window.innerWidth}px`);
-    document.documentElement.style.setProperty('--viewport-height', `${window.innerHeight}px`);
-  }, 250), { passive: true });
+  // Preload critical resources for next navigation
+  function prefetchNextPage() {
+    const links = document.querySelectorAll('a[data-prefetch]');
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        links.forEach(link => {
+          const prefetch = document.createElement('link');
+          prefetch.rel = 'prefetch';
+          prefetch.href = link.href;
+          document.head.appendChild(prefetch);
+        });
+      });
+    }
+  }
 
-  // Trigger initial resize calculation
-  window.dispatchEvent(new Event('resize'));
+  // Monitor Core Web Vitals
+  function monitorPerformance() {
+    if ('PerformanceObserver' in window) {
+      try {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            console.log(`[D-Labs Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`);
+          }
+        });
+        observer.observe({ entryTypes: ['navigation', 'resource', 'paint'] });
+      } catch (e) {
+        // PerformanceObserver not supported
+      }
+    }
+  }
+
+  // Initialize performance monitoring
+  monitorPerformance();
+  prefetchNextPage();
+
+  // Respect user's motion preferences
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    document.documentElement.classList.add('reduce-motion');
+    document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+  }
+
+  // Expose utilities for debugging
+  window.D_LABS_PERF = {
+    scrollY: () => scrollY,
+    scrollVelocity: () => scrollVelocity,
+    isReducedMotion: prefersReducedMotion
+  };
 })();

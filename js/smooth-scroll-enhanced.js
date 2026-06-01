@@ -1,56 +1,63 @@
-/* Smooth Scrolling and Performance Enhancements */
+/**
+ * Ultra-Optimized Smooth Scrolling for 60fps Performance
+ * Uses GPU acceleration, requestAnimationFrame, and paint batching
+ */
 (function() {
   'use strict';
 
-  // Enhanced smooth scroll with momentum and performance
-  function smoothScroll(target) {
+  // High-performance easing function
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  // Smooth scroll with hardware acceleration
+  function smoothScroll(target, duration = 600) {
     if (!target) return;
 
     const element = typeof target === 'string' ? document.querySelector(target) : target;
     if (!element) return;
 
     const startPosition = window.scrollY || window.pageYOffset;
-    const targetPosition = element.getBoundingClientRect().top + startPosition;
+    const targetPosition = element.getBoundingClientRect().top + startPosition - 80;
     const distance = targetPosition - startPosition;
-    const duration = 1000;
-    let start = null;
+    
+    if (distance === 0) return;
 
-    function easeInOutCubic(t) {
-      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    }
+    const startTime = performance.now();
 
-    function animation(currentTime) {
-      if (start === null) start = currentTime;
-      const elapsed = currentTime - start;
+    function frame(currentTime) {
+      const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
+      const easeProgress = easeInOutCubic(progress);
+      const position = startPosition + distance * easeProgress;
 
-      window.scrollTo(0, startPosition + distance * ease);
+      // Use scrollTo with GPU acceleration via requestAnimationFrame
+      window.scrollTo(0, position);
 
-      if (elapsed < duration) {
-        requestAnimationFrame(animation);
+      if (progress < 1) {
+        requestAnimationFrame(frame);
       }
     }
 
-    requestAnimationFrame(animation);
+    requestAnimationFrame(frame);
   }
 
-  // Scroll link handling for internal navigation
+  // Smooth scroll anchor links
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
-    if (!link || link.hostname !== window.location.hostname) return;
+    if (!link) return;
 
     const href = link.getAttribute('href');
-    if (href === '#') return;
-
-    e.preventDefault();
     const target = document.querySelector(href);
+    
     if (target) {
-      smoothScroll(target);
+      e.preventDefault();
+      smoothScroll(target, 600);
+      window.history.pushState(null, null, href);
     }
-  });
+  }, { passive: false });
 
-  // Optimize paint during scroll by batching updates
+  // Optimize paint performance during scroll
   let paintScheduled = false;
   const scrollTargets = document.querySelectorAll('.card, .service-box, .home-section');
 
@@ -58,15 +65,17 @@
     if (!paintScheduled) {
       paintScheduled = true;
       requestAnimationFrame(() => {
-        // Update visible elements efficiently
         scrollTargets.forEach(el => {
           const rect = el.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
           
-          if (isVisible) {
+          // GPU acceleration for visible elements
+          if (isInViewport) {
             el.style.willChange = 'transform';
+            el.style.transform = 'translateZ(0)';
           } else {
             el.style.willChange = 'auto';
+            el.style.transform = 'none';
           }
         });
         paintScheduled = false;
@@ -74,37 +83,38 @@
     }
   }, { passive: true });
 
-  // Optimize navigation scroll performance
-  const navLinks = document.querySelectorAll('nav a, [data-scroll-link]');
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        smoothScroll(href);
-      }
-    });
-  });
-
-  // Reduce motion for users who prefer it
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) {
-    document.documentElement.style.scrollBehavior = 'auto';
-  }
-
-  // Monitor and optimize scrollbar position
+  // Scroll position tracking for CSS
   let lastScrollY = 0;
-  let ticking = false;
+  let scrollTicking = false;
 
   window.addEventListener('scroll', () => {
     lastScrollY = window.scrollY || window.pageYOffset;
 
-    if (!ticking) {
+    if (!scrollTicking) {
       requestAnimationFrame(() => {
         document.documentElement.style.setProperty('--scroll-position', `${lastScrollY}px`);
-        ticking = false;
+        scrollTicking = false;
       });
-      ticking = true;
+      scrollTicking = true;
     }
-  }, { passive: true });
+  }, { passive: true, capture: false });
+
+  // Reduce motion for accessibility
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.documentElement.classList.add('reduce-motion');
+  } else {
+    // Use CSS scroll-behavior for better performance
+    if (CSS.supports('scroll-behavior', 'smooth')) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
+  }
+
+  // Expose scroll API
+  window.D_LABS_SCROLL = {
+    smoothScroll,
+    easeInOutCubic,
+    getScrollPosition: () => lastScrollY
+  };
 })();

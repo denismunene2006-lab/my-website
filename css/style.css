@@ -2504,6 +2504,46 @@ body {
     box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2), 0 0 40px rgba(6, 182, 212, 0.1);
 }
 
+/* Ultra-optimized for 60fps scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* GPU acceleration for smooth animations */
+.card,
+.service-box,
+.home-section,
+.home-photo-content,
+.card-image,
+.contact-form,
+.contact-detail-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Contain layout shifts */
+.card,
+.service-box {
+    contain: layout style paint;
+}
+
+/* Optimize scroll animations */
+body.is-scrolling .card,
+body.is-scrolling .service-box,
+body.is-scrolling .home-section {
+    will-change: transform;
+}
+
+/* Remove will-change when not scrolling to save memory */
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .service-box,
+    .home-section {
+        will-change: auto;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hidden,
     .show {
