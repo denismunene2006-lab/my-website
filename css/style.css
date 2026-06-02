@@ -17,6 +17,13 @@
     --shadow-md: 0 8px 16px -2px rgb(0 0 0 / 0.12);
     --shadow-lg: 0 16px 24px -4px rgb(0 0 0 / 0.15);
     --shadow-xl: 0 24px 48px -8px rgb(0 0 0 / 0.18);
+    /* Modern UI Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --radius-premium: 1.25rem;
+    --transition-premium: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    --shadow-glow: 0 0 25px rgba(91, 33, 182, 0.15);
+    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --font-heading: 'Plus Jakarta Sans', 'Poppins', sans-serif;
     --scroll-progress: 0;
