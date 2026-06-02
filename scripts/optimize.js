@@ -79,7 +79,7 @@ async function processHtml(file) {
   }
 
   // Ensure preload for splash logo exists
-  const splashPreloadHref = 'splash-assets/logo-tight-256.jpg';
+  const splashPreloadHref = 'splash-assets/logo-tight.png';
   const hasPreload = $(`head link[rel="preload"][as="image"][href="${splashPreloadHref}"]`).length > 0;
   if (!hasPreload) {
     $('head').append(`\n    <link rel="preload" as="image" href="${splashPreloadHref}">\n`);
