@@ -366,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const initialViewportHeight = window.innerHeight || document.documentElement.clientHeight;
             const revealStates = revealTargets.map((element, index) => ({
                 element,
-                stagger: Math.min((index % 10) * 100, 700),
+                stagger: Math.min((index % 10) * 60, 400), // Reduced from 100ms to 60ms per item
                 isInitiallyVisible: element.getBoundingClientRect().top < initialViewportHeight * 0.92,
             }));
             const deferredRevealTargets = [];
