@@ -1,14 +1,14 @@
 /* Splash screen styles - shown only after the page finishes loading */
 
 :root{
-  --splash-bg-1: #081024; /* deep navy */
-  --splash-bg-2: #071018; /* darker */
-  --splash-accent: rgba(255,255,255,0.06);
+  --splash-bg-1: #ffffff; /* bright white */
+  --splash-bg-2: #f8f6ff; /* light purple */
+  --splash-accent: rgba(91, 33, 182, 0.08);
   --splash-duration-in: 900ms;
   --splash-duration-out: 700ms;
-  --splash-panel-bg: rgba(8, 18, 34, 0.58);
-  --splash-panel-bg-strong: rgba(11, 28, 52, 0.72);
-  --splash-panel-border: rgba(122, 196, 255, 0.18);
+  --splash-panel-bg: rgba(255, 255, 255, 0.85);
+  --splash-panel-bg-strong: rgba(245, 243, 255, 0.95);
+  --splash-panel-border: rgba(168, 85, 247, 0.25);
   --splash-logo-grow-start: 0.68;
   --splash-logo-grow-peak: 1.18;
   --splash-logo-grow-end: 1;

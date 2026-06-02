@@ -37,7 +37,7 @@
   }
 
   function getVisibleTransform(){
-    return 'translate3d(0, 0, 0) scale(1)';
+    return 'translate3d(0, 0, 0) scale(1) rotateX(0deg)';
   }
 
   // Mark elements for animation
@@ -60,7 +60,7 @@
         el.style.opacity = '0';
         el.style.backfaceVisibility = 'hidden';
         el.style.transform = getHiddenTransform(el);
-        el.style.transition = 'opacity 1200ms cubic-bezier(0.22, 1, 0.36, 1), transform 1400ms cubic-bezier(0.22, 1, 0.36, 1), filter 1000ms ease';
+        el.style.transition = 'opacity 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1100ms cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 800ms ease';
       }
     });
   }
