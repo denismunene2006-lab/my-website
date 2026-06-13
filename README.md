@@ -1,8 +1,8 @@
-﻿# D-LABS Website
+# D-LABS Website
 
 Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
 
-**Latest Update (May 31, 2026):** Font and content cleanup release. Added the missing Google Font for the updated heading stack, fixed the corrupted emoji text in the 20 Unshakable Rules article, and made the optimizer idempotent so repeated builds do not keep nesting `<picture>` elements.
+**Latest Update (June 5, 2026):** Sitemap and metadata synchronization. Updated all lastmod dates to reflect the recent site-wide optimization and content audit.
 
 ## Live Site
 
@@ -37,12 +37,12 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 - `service-pricing.html` - Detailed pricing packages
 - `blog.html` - Blog listing page
 - `article-20-unshakable-rules-modern-web-development.html` - Web development best practices and core principles
-- `article-modern-web-development.html`
-- `article-business-website-mistakes.html`
-- `article-seo-basics-for-small-business.html`
-- `article-online-growth-strategy.html`
-- `article-content-marketing-tech-companies.html`
-- `article-website-performance-page-speed.html`
+- `article-modern-web-development.html` - Trends and technologies shaping the modern web
+- `article-business-website-mistakes.html` - Common pitfalls that hurt conversions and how to avoid them
+- `article-seo-basics-for-small-business.html` - Essential SEO strategies for local and small businesses
+- `article-online-growth-strategy.html` - A roadmap for building a sustainable digital presence
+- `article-content-marketing-tech-companies.html` - Effective content marketing for technical audiences
+- `article-website-performance-page-speed.html` - Optimizing performance for better user experience and rankings
 - `contact.html` - Contact options and quick FAQ
 
 ## SEO Setup
@@ -62,7 +62,7 @@ The site is optimized for search engines without changing visual appearance:
 
 ## Design & Features
 
-### Modern UI (May 2026 Update)
+### Modern UI (June 2026 Update)
 - **Premium Color Palette:** Purple (#5B21B6) primary, Cyan (#06B6D4) accent with sophisticated gradients
 - **Enhanced Typography:** Larger, bold headings with proper letter-spacing and hierarchy
 - **Glass-Morphism Effects:** Modern frosted glass buttons and navigation elements
@@ -91,6 +91,7 @@ The site is optimized for search engines without changing visual appearance:
 |-- services.html
 |-- service-pricing.html
 |-- blog.html
+|-- article-20-unshakable-rules-modern-web-development.html
 |-- article-modern-web-development.html
 |-- article-business-website-mistakes.html
 |-- article-seo-basics-for-small-business.html
@@ -102,6 +103,8 @@ The site is optimized for search engines without changing visual appearance:
 |-- sitemap.xml
 |-- README.md
 |-- CONTRIBUTING.md
+|-- scripts/
+|   `-- optimize.js
 |-- css/
 |   |-- style.css
 |   `-- splash.css
@@ -114,6 +117,8 @@ The site is optimized for search engines without changing visual appearance:
 |   |-- logo.png
 |   `-- logo-tight.png
 `-- images/
+	|-- article-20-unshakable-rules-modern-web-development/
+	|-- hero-project/
 	|-- bookshop-website/
 	|-- ecommerce-website/
 	|-- d-labs-education/
