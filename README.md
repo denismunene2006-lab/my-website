@@ -4,7 +4,7 @@ Modern, professionally designed multi-page business website for D-LABS, focused 
 
 **Latest Update (June 5, 2026):** Sitemap and metadata synchronization. Updated all lastmod dates to reflect the recent site-wide optimization and content audit.
 
-## Live Site
+## Live Site🔗
 
 - https://denismunene2006-lab.github.io/my-website/
 
@@ -190,4 +190,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Author
 
-Denis Munene
+Denis Munene🤴
