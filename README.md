@@ -1,6 +1,6 @@
 # D-LABS — Web Development & Digital Solutions
 
-[![Live Site](https://img.shields.io/badge/Live-Site-5B21B6?style=for-the-badge&logo=githubpages&logoColor=white)](https://denismunene2006-lab.github.io/my-website/)
+[![Live Site](https://img.shields.io/badge/Live-Site-5B21B6?style=for-the-badge&logo=vercel&logoColor=white)](https://d-labs.vercel.app/)
 [![Last Updated](https://img.shields.io/badge/Last%20Updated-June%202026-06B6D4?style=for-the-badge)](#)
 
 > A modern, conversion-optimised multi-page business website built with vanilla HTML, CSS, and JavaScript. Designed to showcase web development services, technical expertise, and thought leadership through SEO-rich content.
@@ -40,7 +40,7 @@ D-LABS is a professional business website that serves as both a portfolio and a 
 
 | URL | Description |
 |-----|-------------|
-| [https://denismunene2006-lab.github.io/my-website/](https://denismunene2006-lab.github.io/my-website/) | Production site hosted on GitHub Pages |
+| [https://d-labs.vercel.app/](https://d-labs.vercel.app/) | Production site hosted on Vercel |
 
 ---
 
@@ -238,6 +238,10 @@ npm run build
 
 ## 📦 Deployment
 
+### Vercel (Recommended)
+
+The site is live at [https://d-labs.vercel.app/](https://d-labs.vercel.app/). A [`vercel.json`](vercel.json) configuration file is included. Connect your repository to Vercel and it will deploy automatically.
+
 ### GitHub Pages
 
 1. Go to repository **Settings** → **Pages**
@@ -246,10 +250,6 @@ npm run build
 4. Click **Save**
 
 The site will be available at `https://<username>.github.io/<repository>/`.
-
-### Vercel
-
-A [`vercel.json`](vercel.json) configuration file is included for Vercel deployment. Connect your repository to Vercel and it will deploy automatically.
 
 ---
 
@@ -272,7 +272,7 @@ This project is open source. See the [LICENSE](LICENSE) file for details.
 **Denis Munene**
 
 - GitHub: [@denismunene2006-lab](https://github.com/denismunene2006-lab)
-- Website: [D-LABS](https://denismunene2006-lab.github.io/my-website/)
+- Website: [D-LABS](https://d-labs.vercel.app/)
 
 ---
 
