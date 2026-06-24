@@ -261,11 +261,6 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution guidelin
 
 ---
 
-## 📄 License
-
-This project is open source. See the [LICENSE](LICENSE) file for details.
-
----
 
 ## 👤 Author
 
