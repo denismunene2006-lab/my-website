@@ -1,193 +1,281 @@
-# D-LABS Website🎊
+# D-LABS — Web Development & Digital Solutions
 
-Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.
+[![Live Site](https://img.shields.io/badge/Live-Site-5B21B6?style=for-the-badge&logo=githubpages&logoColor=white)](https://denismunene2006-lab.github.io/my-website/)
+[![Last Updated](https://img.shields.io/badge/Last%20Updated-June%202026-06B6D4?style=for-the-badge)](#)
 
-**Latest Update (June 5, 2026):** Sitemap and metadata synchronization. Updated all lastmod dates to reflect the recent site-wide optimization and content audit.
+> A modern, conversion-optimised multi-page business website built with vanilla HTML, CSS, and JavaScript. Designed to showcase web development services, technical expertise, and thought leadership through SEO-rich content.
 
-## Live Site🔗
+---
 
-- https://denismunene2006-lab.github.io/my-website/
+## 📋 Table of Contents
 
-## What This Project Includes
+- [Overview](#overview)
+- [Live Site](#-live-site)
+- [Pages](#-pages)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Build & Optimization](#-build--optimization)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [Author](#-author)
 
-- Responsive multi-page site for Home, About, Projects, Services, Pricing, Blog, and Contact
-- Conversion-focused sections: service cards, pricing CTA flow, FAQ blocks, and direct contact paths
-- Pricing comparison table with 3-column feature matrix (Starter, Growth, Premium)
-- Updated pricing: Starter (KES 10,000), Growth (KES 20,000), Premium (KES 35,000)
-- Back to Home navigation links on all secondary pages for improved user flow
-- Premium splash screen shown on first visit with logo, welcome message, and smooth transition into content
-- Shortened splash timing so the intro still feels readable without slowing down entry into the site
-- Smooth scroll reveal animations for sections, headings, images, and interactive elements
-- Alternating side-enter reveals for cards, testimonials, and support blocks
-- Blog hub plus individual SEO-focused article pages
-- Project and article image support with organized image folders
-- Stable app-style navbar with icon labels and modern hover effects
-- Shared header/footer renderer to reduce repeated page shell markup across the site
-- Premium gradient hero section with animated background elements and a moving word strip
-- Modern card designs with hover animations, visual depth, and stronger contrast accents
-- Professional contact forms with focus states and smooth transitions
-- Floating Tawk live chat launcher plus contact-page WhatsApp, email, and phone actions
+---
 
-## Main Pages
+## Overview
 
-- `index.html` - Homepage and featured services
-- `about.html` - Brand/company overview
-- `projects.html` - Recent project showcase
-- `services.html` - Service breakdown and full FAQ
-- `service-pricing.html` - Detailed pricing packages
-- `blog.html` - Blog listing page
-- `article-20-unshakable-rules-modern-web-development.html` - Web development best practices and core principles
-- `article-modern-web-development.html` - Trends and technologies shaping the modern web
-- `article-business-website-mistakes.html` - Common pitfalls that hurt conversions and how to avoid them
-- `article-seo-basics-for-small-business.html` - Essential SEO strategies for local and small businesses
-- `article-online-growth-strategy.html` - A roadmap for building a sustainable digital presence
-- `article-content-marketing-tech-companies.html` - Effective content marketing for technical audiences
-- `article-website-performance-page-speed.html` - Optimizing performance for better user experience and rankings
-- `contact.html` - Contact options and quick FAQ
+D-LABS is a professional business website that serves as both a portfolio and a service platform. It combines modern UI/UX design with technical SEO best practices to deliver a fast, accessible, and conversion-ready experience.
 
-## SEO Setup
+**Key highlights:**
+- 14 fully responsive HTML pages covering services, blog, portfolio, and contact
+- Premium splash screen with smooth first-visit onboarding
+- SEO-optimised with structured data, Open Graph, and sitemap
+- Build pipeline for image optimisation, CSS/JS minification, and asset generation
+- Live chat integration, contact forms, and clear call-to-action flows
 
-The site is optimized for search engines without changing visual appearance:
+---
 
-- Unique page titles and meta descriptions
-- Canonical URLs on core pages
-- Open Graph and Twitter Card metadata for social sharing
-- Structured data (JSON-LD) for Organization, WebSite, WebPage, Blog, and BlogPosting entities
-- Single real H1 per page for a cleaner content outline
-- Corrected text encoding in page content to avoid broken search snippets
-- `lang="en"` and UTF-8 charset declarations on all HTML pages
-- Robots directives (`index,follow,max-image-preview:large`) on all HTML pages
-- `robots.txt` at project root
-- `sitemap.xml` with all public pages
+## 🌐 Live Site
 
-## Design & Features
+| URL | Description |
+|-----|-------------|
+| [https://denismunene2006-lab.github.io/my-website/](https://denismunene2006-lab.github.io/my-website/) | Production site hosted on GitHub Pages |
 
-### Modern UI (June 2026 Update)
-- **Premium Color Palette:** Purple (#5B21B6) primary, Cyan (#06B6D4) accent with sophisticated gradients
-- **Enhanced Typography:** Larger, bold headings with proper letter-spacing and hierarchy
-- **Glass-Morphism Effects:** Modern frosted glass buttons and navigation elements
-- **Micro-interactions:** Smooth cubic-bezier animations, hover effects with depth
-- **Splash Screen:** Premium first-visit splash with circular logo, glow effect, and welcome text
-- **Scroll Reveal Animations:** Clean fade-and-slide motion as content enters the viewport
-- **Professional Shadows:** Sophisticated shadow system (sm, md, lg, xl) for visual hierarchy
+---
+
+## 📄 Pages
+
+### Core Pages
+| Page | Description |
+|------|-------------|
+| [`index.html`](index.html) | Homepage with hero section, featured services, and portfolio highlights |
+| [`about.html`](about.html) | Company overview, mission, and brand story |
+| [`services.html`](services.html) | Detailed service breakdown with FAQ accordion |
+| [`service-pricing.html`](service-pricing.html) | Three-tier pricing matrix (Starter, Growth, Premium) |
+| [`projects.html`](projects.html) | Project showcase with case studies |
+| [`blog.html`](blog.html) | Blog hub listing all articles |
+| [`contact.html`](contact.html) | Contact form, WhatsApp/email/phone actions, and quick FAQ |
+
+### Blog Articles
+| Article | Topic |
+|---------|-------|
+| [`20 Unshakable Rules of Modern Web Development`](article-20-unshakable-rules-modern-web-development.html) | Core principles and best practices |
+| [`Modern Web Development Trends`](article-modern-web-development.html) | Technologies shaping the modern web |
+| [`Business Website Mistakes`](article-business-website-mistakes.html) | Common pitfalls hurting conversions |
+| [`SEO Basics for Small Business`](article-seo-basics-for-small-business.html) | Essential local SEO strategies |
+| [`Online Growth Strategy`](article-online-growth-strategy.html) | Building a sustainable digital presence |
+| [`Content Marketing for Tech Companies`](article-content-marketing-tech-companies.html) | Effective marketing for technical audiences |
+| [`Website Performance & Page Speed`](article-website-performance-page-speed.html) | Optimising for UX and rankings |
+
+---
+
+## ✨ Features
+
+### UI/UX Design
+- **Premium Color Palette:** Purple (`#5B21B6`) primary, Cyan (`#06B6D4`) accent with sophisticated gradients
+- **Glass-Morphism Effects:** Frosted glass buttons and navigation elements
+- **Splash Screen:** First-visit onboarding with circular logo, glow effect, and smooth transition
+- **Scroll Reveal Animations:** Fade-and-slide motion as content enters the viewport
+- **Micro-interactions:** Cubic-bezier animations, hover effects with visual depth
+- **Professional Shadow System:** Multi-tier shadows (sm, md, lg, xl) for hierarchy
 - **Gradient Accents:** Subtle gradient backgrounds on cards and sections
 - **Modern Buttons:** Gradient buttons with shine effects and smooth transitions
-- **Service Icons:** Gradient text effects on icons with scale animations
+- **Service Icons:** Gradient text effects with scale animations
 
-## Tech Stack
+### Technical SEO
+- Unique page titles and meta descriptions across all pages
+- Canonical URLs on core pages
+- Open Graph and Twitter Card metadata for social sharing
+- Structured data (JSON-LD) for Organization, WebSite, WebPage, Blog, and BlogPosting
+- Single real `H1` per page for clean content outline
+- `lang="en"` and UTF-8 charset declarations
+- Robots directives (`index,follow,max-image-preview:large`)
+- [`robots.txt`](robots.txt) and [`sitemap.xml`](sitemap.xml) at project root
 
-- HTML5
-- CSS3 (Advanced: CSS Variables, Gradients, Animations, Backdrop Filters)
-- Vanilla JavaScript
-- Font Awesome (Icons)
+### Performance & Accessibility
+- Responsive design across all screen sizes
+- Optimised images in WebP and AVIF formats
+- Minified CSS and JavaScript for production
+- Semantic HTML structure
+- Keyboard-navigable interactive elements
 
-## Project Structure
+### Conversion Optimisation
+- Pricing comparison table with feature matrix
+- Back-to-home navigation on all secondary pages
+- Floating Tawk.to live chat launcher
+- Contact page with WhatsApp, email, and phone CTAs
+- FAQ blocks addressing common objections
+- Clear call-to-action flow from services → pricing → contact
 
-```text
+---
+
+## 🛠 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **HTML5** | Semantic page structure |
+| **CSS3** | Styling, animations, gradients, backdrop filters, CSS variables |
+| **Vanilla JavaScript** | Interactivity, shared layout rendering, scroll animations, splash screen |
+| **Font Awesome** | Icon library |
+| **Sharp** | Image conversion (WebP/AVIF) |
+| **PostCSS + cssnano** | CSS minification |
+| **Terser** | JavaScript minification |
+
+---
+
+## 📁 Project Structure
+
+```
 .
-|-- index.html
-|-- about.html
-|-- projects.html
-|-- services.html
-|-- service-pricing.html
-|-- blog.html
-|-- article-20-unshakable-rules-modern-web-development.html
-|-- article-modern-web-development.html
-|-- article-business-website-mistakes.html
-|-- article-seo-basics-for-small-business.html
-|-- article-online-growth-strategy.html
-|-- article-content-marketing-tech-companies.html
-|-- article-website-performance-page-speed.html
-|-- contact.html
-|-- robots.txt
-|-- sitemap.xml
-|-- README.md
-|-- CONTRIBUTING.md
-|-- scripts/
-|   `-- optimize.js
-|-- css/
-|   |-- style.css
-|   `-- splash.css
-|-- js/
-|   |-- shared-layout.js
-|   |-- main.js
-|   |-- splash.js
-|   `-- scroll-animations.js
-|-- splash-assets/
-|   |-- logo.png
-|   `-- logo-tight.png
-`-- images/
-	|-- article-20-unshakable-rules-modern-web-development/
-	|-- hero-project/
-	|-- bookshop-website/
-	|-- ecommerce-website/
-	|-- d-labs-education/
-	|-- student-hustle-hub/
-	|-- article-modern-web-development/
-	|-- article-business-website-mistakes/
-	|-- article-seo-basics-for-small-business/
-	|-- article-online-growth-strategy/
-	|-- article-content-marketing-tech-companies/
-	`-- article-website-performance-page-speed/
+├── index.html                          # Homepage
+├── about.html                          # About page
+├── projects.html                       # Project showcase
+├── services.html                       # Services & FAQ
+├── service-pricing.html                # Pricing packages
+├── blog.html                           # Blog listing
+├── contact.html                        # Contact page
+├── article-*.html                      # 7 blog articles
+│
+├── robots.txt                          # Crawler directives
+├── sitemap.xml                         # XML sitemap
+├── README.md                           # This file
+├── CONTRIBUTING.md                     # Contribution guidelines
+├── package.json                        # Dependencies & scripts
+├── vercel.json                         # Vercel deployment config
+│
+├── css/
+│   ├── style.css                       # Main stylesheet
+│   ├── style.min.css                   # Minified production version
+│   ├── splash.css                      # Splash screen styles
+│   └── splash.min.css                  # Minified splash styles
+│
+├── js/
+│   ├── main.js                         # Core interactivity
+│   ├── main.min.js                     # Minified production version
+│   ├── shared-layout.js                # Header/footer renderer
+│   ├── shared-layout.min.js            # Minified layout renderer
+│   ├── splash.js                       # Splash screen logic
+│   ├── splash.min.js                   # Minified splash logic
+│   ├── scroll-animations.js            # Scroll reveal animations
+│   ├── scroll-animations.min.js        # Minified scroll animations
+│   └── icons.js                        # Icon definitions
+│
+├── scripts/
+│   └── optimize.js                     # Build pipeline script
+│
+├── images/                             # Optimised images by category
+│   ├── hero-project/
+│   ├── bookshop-website/
+│   ├── ecommerce-website/
+│   ├── d-labs-education/
+│   ├── student-hustle-hub/
+│   └── article-*/
+│
+└── splash-assets/                      # Splash screen assets
+    ├── logo.png
+    ├── logo.webp
+    ├── logo.avif
+    ├── logo-tight.png
+    └── logo-tight.webp
 ```
 
-## Run Locally
+---
 
-Open `index.html` directly in your browser, or serve the folder locally.
+## 🚀 Getting Started
 
-### Option 1: Python
+### Option 1: Open Directly
+
+Simply open `index.html` in your browser.
+
+### Option 2: Python HTTP Server
 
 ```bash
 python -m http.server 8080
 ```
 
-Then visit `http://localhost:8080`.
+Then visit [http://localhost:8080](http://localhost:8080).
 
-### Option 2: Node.js
+### Option 3: Node.js
 
 ```bash
 npx serve
 ```
 
-## Build & Optimization (added)
+---
 
-This project includes a small build pipeline to generate optimized images (WebP/AVIF), minified CSS and JS, and HTML updates that reference the optimized assets.
+## 🔧 Build & Optimization
 
-Install dev dependencies and run the optimizer:
+The project includes a build pipeline that generates optimised assets for production.
+
+### Setup
 
 ```bash
 npm install
+```
+
+### Run the Build
+
+```bash
 npm run build
 ```
 
-What the build does:
-- Converts `images/` and `splash-assets/` to WebP and AVIF variants.
-- Produces `css/*.min.css` and `js/*.min.js` and rewrites HTML to reference them.
-- Adds preload hints for the splash logo and sets image dimensions where possible.
+### What the Build Does
 
-Recent build reliability fix:
-- Optimizer glob patterns now ignore directories for CSS/JS scans, preventing `EISDIR` errors in projects containing folder names like `*.js`.
-- Image optimization now skips images already inside `<picture>` wrappers and normalizes previously nested picture chains before rebuilding HTML.
-- The 20 Unshakable Rules article text was corrected to remove mojibake caused by bad encoding so the copy renders cleanly in all browsers.
+1. **Image Optimisation** — Converts PNG/JPEG images in `images/` and `splash-assets/` to WebP and AVIF formats using Sharp
+2. **CSS Minification** — Produces `*.min.css` files via PostCSS + cssnano
+3. **JS Minification** — Produces `*.min.js` files via Terser
+4. **HTML Rewriting** — Updates HTML references to use minified assets and adds preload hints
 
-Notes:
-- The build uses `sharp`, `postcss`/`cssnano`, and `terser`. These are dev dependencies and only required for generating assets locally.
-- After running, review generated assets before deploying. The repo already contains the generated optimized files committed to `main`.
+### Build Notes
 
-## Deployment (GitHub Pages)
+- The optimizer skips images already inside `<picture>` wrappers
+- Directory-named files (e.g., folders ending in `.js`) are ignored to prevent `EISDIR` errors
+- Generated assets are committed to the repository — no separate build step required for deployment
+- Dev dependencies (`sharp`, `postcss`, `cssnano`, `terser`) are only needed for local asset generation
 
-1. Open repository settings.
-2. Open Pages.
-3. Select branch `main`.
-4. Select folder `/ (root)`.
-5. Save.
+---
 
-## Contributing
+## 📦 Deployment
 
-Contributions are welcome.
+### GitHub Pages
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+1. Go to repository **Settings** → **Pages**
+2. Under **Branch**, select `main`
+3. Set folder to `/ (root)`
+4. Click **Save**
 
-## Author
+The site will be available at `https://<username>.github.io/<repository>/`.
 
-Denis Munene🤴
+### Vercel
+
+A [`vercel.json`](vercel.json) configuration file is included for Vercel deployment. Connect your repository to Vercel and it will deploy automatically.
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution guidelines.
+
+---
+
+## 📄 License
+
+This project is open source. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👤 Author
+
+**Denis Munene**
+
+- GitHub: [@denismunene2006-lab](https://github.com/denismunene2006-lab)
+- Website: [D-LABS](https://denismunene2006-lab.github.io/my-website/)
+
+---
+
+<p align="center">
+  Built with ❤️ using vanilla HTML, CSS & JavaScript
+</p>
