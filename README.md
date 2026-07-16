@@ -1,4 +1,4 @@
-# D-LABS — Web Development & Digital Solutions
+# D-LABS — Web Development & Digital Solutions.
 
 [![Live Site](https://img.shields.io/badge/Live-Site-5B21B6?style=for-the-badge&logo=vercel&logoColor=white)](https://d-labs.vercel.app/)
 [![Last Updated](https://img.shields.io/badge/Last%20Updated-June%202026-06B6D4?style=for-the-badge)](#)
