@@ -272,5 +272,5 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution guidelin
 ---
 
 <p align="center">
-  Built with ❤️ using vanilla HTML, CSS & JavaScript
+  Built with ❤️ using vanilla HTML, CSS & JavaScript.
 </p>
