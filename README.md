@@ -7,7 +7,7 @@
 
 ---
 
-## 📋 Table of Contents
+## 📋 Table of Contents⚡
 
 - [Overview](#overview)
 - [Live Site](#-live-site)
