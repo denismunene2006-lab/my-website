@@ -25,7 +25,7 @@
 
 ## Overview
 
-D-LABS is a professional business website that serves as both a portfolio and a service platform. It combines modern UI/UX design with technical SEO best practices to deliver a fast, accessible, and conversion-ready experience.
+D-LABS is a professional business website that serves as both a portfolio and a service platform. It combines modern UI/UX design with technical SEO best practices to deliver a fast, accessible, and conversion-ready experience
 
 **Key highlights:**
 - 14 fully responsive HTML pages covering services, blog, portfolio, and contact
