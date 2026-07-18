@@ -1,23 +1,21 @@
-import { ChevronLeft, ExternalLink, Github } from 'lucide-react'
+import { ChevronLeft, ExternalLink, Code2 } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 
 export async function generateMetadata({
-  params,
+  params: { id },
 }: {
   params: { id: string }
 }): Promise<Metadata> {
+  const projectName = id.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+  
   return {
-    title: 'Project | D-LABS',
+    title: `${projectName} | D-LABS`,
     description: 'Explore one of our featured projects.',
   }
 }
 
-export default function ProjectDetailPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default function ProjectDetailPage() {
   const project = {
     title: 'E-Commerce Platform',
     description: 'A full-featured online store with payment integration, inventory management, and admin dashboard.',
@@ -165,7 +163,7 @@ export default function ProjectDetailPage({
                   View Live Site
                 </button>
                 <button className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-primary text-primary font-semibold hover:bg-primary/10 smooth-transition">
-                  <Github size={18} />
+                  <Code2 size={18} />
                   View Code
                 </button>
               </div>
