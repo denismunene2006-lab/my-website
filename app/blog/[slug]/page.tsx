@@ -3,21 +3,19 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export async function generateMetadata({
-  params,
+  params: { slug },
 }: {
   params: { slug: string }
 }): Promise<Metadata> {
+  const article = slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase())
+  
   return {
-    title: `Article | D-LABS`,
+    title: `${article} | D-LABS`,
     description: 'Read our latest article on web development, design, and digital marketing.',
   }
 }
 
-export default function BlogArticlePage({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default function BlogArticlePage() {
   const article = {
     title: 'Modern Web Development in 2024',
     date: 'Jul 18, 2024',
