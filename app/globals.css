@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #ff4500;
+  --color-primary-dark: #ff6b35;
+  --color-secondary: #00d4ff;
+  --color-accent: #ff4500;
+  --color-muted: #333333;
+  --color-muted-foreground: #999999;
+  --color-border: #1a1a1a;
+  --color-input: #1a1a1a;
+  --font-sans: 'Geist', 'Geist Fallback', system-ui, -apple-system;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-bold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply font-sans leading-relaxed;
+  }
+
+  a {
+    @apply text-primary transition-colors hover:text-primary-dark;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection styles */
+::selection {
+  @apply bg-primary text-background;
+}
+
+::-moz-selection {
+  @apply bg-primary text-background;
+}
