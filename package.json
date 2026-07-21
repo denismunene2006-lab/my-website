@@ -1,12 +1,13 @@
 {
-  "name": "my-website",
-  "version": "1.0.0",
-  "description": "Modern, professionally designed multi-page business website for D-LABS, focused on web development services, conversion-ready content, and technical SEO.",
-  "main": "index.js",
+  "name": "d-labs-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Production-ready Next.js website for D-LABS with modern UI, strong SEO, and maintainable React components.",
   "scripts": {
-    "build": "node scripts/optimize.js",
-    "optimize": "node scripts/optimize.js",
-    "test": "npm run build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -20,18 +21,26 @@
     "url": "https://github.com/denismunene2006-lab/my-website/issues"
   },
   "homepage": "https://github.com/denismunene2006-lab/my-website#readme",
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.539.0",
+    "next": "^15.4.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
   "devDependencies": {
-    "cheerio": "^1.2.0",
-    "critical": "^8.0.0",
-    "cssnano": "^8.0.1",
-    "fontmin": "^0.9.9",
-    "fs-extra": "^11.3.5",
-    "glob": "^13.0.6",
-    "imagemin": "^9.0.1",
-    "imagemin-webp": "^8.0.0",
-    "postcss": "^8.5.15",
-    "postcss-cli": "^11.0.1",
-    "sharp": "^0.34.5",
-    "terser": "^5.48.0"
+    "@types/node": "^22.15.29",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
   }
 }
