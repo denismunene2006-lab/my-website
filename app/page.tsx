@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, CheckCircle2, ChevronRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Github, Linkedin, Mail } from 'lucide-react';
 
-import { BlogCard } from '@/components/blog-card';
-import { ProjectCard } from '@/components/project-card';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { ServiceCard } from '@/components/service-card';
@@ -14,17 +12,13 @@ import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
 import {
   brandAssets,
-  founderStory,
   heroHighlights,
   heroStats,
-  homeProjectPreview,
-  processSteps,
   results,
   services,
   site,
   testimonials,
 } from '@/data/site';
-import { blogPreview } from '@/data/articles';
 
 export const metadata = createPageMetadata({
   title: 'D-LABS | Web Development Company in Embu, Kenya',
@@ -48,15 +42,6 @@ const technologies = [
   'Git',
   'GitHub',
   'Tailwind CSS',
-];
-
-const aboutTimeline = [
-  { year: 'Step 01', title: 'Mission', text: 'Build practical digital products that are clean, scalable, and useful.' },
-  { year: 'Step 02', title: 'Vision', text: 'Help businesses and individuals grow through technology that feels effortless.' },
-  { year: 'Step 03', title: 'Innovation', text: 'Use modern tooling, automation, and thoughtful architecture for better outcomes.' },
-  { year: 'Step 04', title: 'Quality', text: 'Ship polished interfaces with strong performance, maintainability, and clarity.' },
-  { year: 'Step 05', title: 'Technology', text: 'Combine frontend craftsmanship with dependable backend systems.' },
-  { year: 'Step 06', title: 'Customer Focus', text: 'Design around real goals, real users, and measurable business impact.' },
 ];
 
 function Hero() {
@@ -146,7 +131,7 @@ export default function HomePage() {
         <div className="container-shell">
           <Reveal>
             <SectionHeading
-              eyebrow="Impact"
+              eyebrow="Why Choose D-LABS"
               title="Digital experiences built to perform and convert."
               description="Every project balances speed, visual elegance, and conversion clarity so your visitors know what to do next."
             />
@@ -190,37 +175,6 @@ export default function HomePage() {
       </section>
 
       <section className="page-section">
-        <div className="container-shell grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
-          <Reveal>
-            <SectionHeading
-              eyebrow="About D-LABS"
-              title="Mission-led technology with premium execution."
-              description="D-LABS combines innovation, quality, and customer focus to deliver products that are reliable and impactful."
-            />
-            <p className="mt-6 max-w-xl text-sm leading-8 text-muted-foreground">{founderStory}</p>
-          </Reveal>
-
-          <div className="space-y-4">
-            {aboutTimeline.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70}>
-                <Card className="border-border/70 bg-card/90">
-                  <CardContent className="grid gap-4 p-5 sm:grid-cols-[94px_1fr] sm:items-start">
-                    <p className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                      {item.year}
-                    </p>
-                    <div>
-                      <h3 className="text-lg font-semibold tracking-tight text-foreground">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section bg-muted/35">
         <div className="container-shell">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
             <Reveal>
@@ -273,21 +227,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="container-shell">
-          <Reveal>
-            <Card className="overflow-hidden border-transparent premium-hero text-white">
-              <CardContent className="p-8 sm:p-10">
-                <p className="text-center font-heading text-2xl leading-tight sm:text-3xl">
-                  "Innovation is not about building more software. It&apos;s about building solutions that improve people&apos;s
-                  lives."
-                </p>
-              </CardContent>
-            </Card>
-          </Reveal>
-        </div>
-      </section>
-
       <section className="page-section bg-muted/35">
         <div className="container-shell">
           <Reveal>
@@ -322,88 +261,6 @@ export default function HomePage() {
                 </Badge>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section bg-muted/35">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="How we work"
-              title="A clear delivery process from idea to launch."
-              description="Simple milestones keep projects transparent, collaborative, and predictable."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {processSteps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <Reveal key={step.title} delay={index * 70}>
-                  <Card className="h-full border-border/70 bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{step.description}</p>
-                  </Card>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Projects"
-              title="Selected builds with measurable business intent."
-              description="From strategy to launch, these projects demonstrate practical execution and premium presentation."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {homeProjectPreview.map((project, index) => (
-              <Reveal key={project.slug} delay={index * 80}>
-                <ProjectCard project={project} />
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="outline">
-              <Link href="/projects">
-                Explore the portfolio
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section bg-muted/35">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Insights"
-              title="Practical writing on development, performance, and growth."
-              description="Educational content that supports better digital decisions for businesses and teams."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {blogPreview.map((post, index) => (
-              <Reveal key={post.slug} delay={index * 70}>
-                <BlogCard post={post} />
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <Button asChild variant="outline">
-              <Link href="/blog">
-                Read all articles
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>

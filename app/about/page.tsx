@@ -44,6 +44,15 @@ const principles = [
   },
 ];
 
+const aboutTimeline = [
+  { year: 'Step 01', title: 'Mission', text: 'Build practical digital products that are clean, scalable, and useful.' },
+  { year: 'Step 02', title: 'Vision', text: 'Help businesses and individuals grow through technology that feels effortless.' },
+  { year: 'Step 03', title: 'Innovation', text: 'Use modern tooling, automation, and thoughtful architecture for better outcomes.' },
+  { year: 'Step 04', title: 'Quality', text: 'Ship polished interfaces with strong performance, maintainability, and clarity.' },
+  { year: 'Step 05', title: 'Technology', text: 'Combine frontend craftsmanship with dependable backend systems.' },
+  { year: 'Step 06', title: 'Customer Focus', text: 'Design around real goals, real users, and measurable business impact.' },
+];
+
 export default function AboutPage() {
   return (
     <div>
@@ -153,6 +162,35 @@ export default function AboutPage() {
                 </CardContent>
               </Card>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="page-section bg-muted/30">
+        <div className="container-shell">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Development Steps"
+              title="Our structured approach to digital growth."
+              description="D-LABS is guided by standards that align engineering quality with real business goals."
+            />
+          </Reveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {aboutTimeline.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70}>
+                <Card className="border-border/70 bg-card shadow-sm">
+                  <CardContent className="p-6 space-y-4">
+                    <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                      {item.year}
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-tight text-foreground">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

@@ -25,7 +25,7 @@ import bookshopPreview from '../images/bookshop-website/bookshop-website-preview
 import ecommercePreview from '../images/ecommerce-website/ecommerce-website-preview.jpg';
 import educationPreview from '../images/d-labs-education/d-labs-education.webp';
 import founderPhoto from '../images/profile-400.jpeg';
-import logoMark from '../images/logo1.webp';
+import logoMark from '../images/logo1.jpg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 import wordmark from '../images/name-400.webp';
 

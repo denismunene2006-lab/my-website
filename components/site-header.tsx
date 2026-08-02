@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, ArrowUpRight } from 'lucide-react';
@@ -22,6 +22,15 @@ import Image from 'next/image';
 export function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const items = useMemo(
     () =>
@@ -33,8 +42,15 @@ export function SiteHeader() {
   );
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0f14]/88 backdrop-blur-xl">
-      <div className="container-shell flex h-20 items-center justify-between gap-4">
+    <header
+      className={cn(
+        'sticky top-0 z-50 border-b transition-all duration-300',
+        isScrolled
+          ? 'border-white/15 bg-[#0b0f14]/96 shadow-lg shadow-black/20'
+          : 'border-white/10 bg-[#0b0f14]/85 backdrop-blur-xl'
+      )}
+    >
+      <div className="container-shell flex h-16 lg:h-18 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-sm backdrop-blur">
             <Image
