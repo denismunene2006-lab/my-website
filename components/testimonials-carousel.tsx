@@ -62,10 +62,10 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
                   : 'opacity-0 scale-95 pointer-events-none ' + (index < activeIndex ? '-translate-x-full' : 'translate-x-full')
               }`}
             >
-              <Card className="glass-surface border-white/20 bg-white/5 p-8 md:p-10 shadow-glow relative h-full flex flex-col justify-between overflow-hidden">
-                <Quote className="absolute right-6 top-6 h-20 w-20 text-white/5 pointer-events-none" />
+              <Card className="relative flex h-full flex-col justify-between overflow-hidden border border-[#6BEA32]/30 bg-[#162231] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:p-10">
+                <Quote className="pointer-events-none absolute right-6 top-6 h-20 w-20 text-[#6BEA32]/15" />
                 <div className="relative z-10">
-                  <p className="text-lg md:text-xl font-medium leading-relaxed text-white/95 italic">
+                  <p className="text-lg font-medium leading-relaxed text-white md:text-xl">
                     "{item.quote}"
                   </p>
                 </div>
@@ -86,7 +86,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
         {/* Previous Button */}
         <button
           onClick={handlePrev}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:bg-white/15 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6BEA32]/35 bg-[#162231] text-white transition hover:border-[#6BEA32]/60 hover:bg-[#1e2d3d] focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-5 w-5" />
@@ -111,7 +111,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition hover:bg-white/15 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6BEA32]/35 bg-[#162231] text-white transition hover:border-[#6BEA32]/60 hover:bg-[#1e2d3d] focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
           aria-label="Next testimonial"
         >
           <ChevronRight className="h-5 w-5" />

@@ -44,15 +44,13 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 border-b transition-all duration-300',
-        isScrolled
-          ? 'border-white/15 bg-[#0b0f14]/96 shadow-lg shadow-black/20'
-          : 'border-white/10 bg-[#0b0f14]/85 backdrop-blur-xl'
+        'sticky top-0 z-50 border-b-2 border-[#6BEA32]/35 bg-[#0d1520] shadow-[0_4px_24px_rgba(0,0,0,0.45)] transition-shadow duration-300',
+        isScrolled && 'shadow-[0_6px_32px_rgba(0,0,0,0.55)]'
       )}
     >
       <div className="container-shell flex h-16 lg:h-18 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-white/10 shadow-sm backdrop-blur">
+          <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-[#6BEA32]/30 bg-[#162231] shadow-sm">
             <Image
               src={brandAssets.logoMark}
               alt="D-LABS logo"
@@ -77,8 +75,8 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                'rounded-full px-4 py-2 text-sm font-medium text-white/72 transition hover:bg-white/10 hover:text-white',
-                item.active && 'bg-white/14 text-white'
+                'rounded-full px-4 py-2 text-sm font-medium text-white/90 transition hover:bg-[#6BEA32]/15 hover:text-white',
+                item.active && 'bg-[#6BEA32]/20 text-white'
               )}
               aria-current={item.active ? 'page' : undefined}
             >
@@ -88,10 +86,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Badge variant="outline" className="border-white/20 bg-white/10 text-white/80 backdrop-blur">
+          <Badge variant="outline" className="border-[#6BEA32]/35 bg-[#162231] text-white/90">
             Premium Studio
           </Badge>
-          <Button asChild variant="outline" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
+          <Button asChild variant="outline" className="rounded-full border-white/25 bg-[#162231] text-white hover:bg-[#1e2d3d]">
             <Link href="/blog">
               Insights
               <ArrowUpRight className="h-4 w-4" />
@@ -104,11 +102,11 @@ export function SiteHeader() {
 
         <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" size="icon" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12 lg:hidden" aria-label="Open menu">
+            <Button variant="outline" size="icon" className="rounded-full border-[#6BEA32]/35 bg-[#162231] text-white hover:bg-[#1e2d3d] lg:hidden" aria-label="Open menu">
               <Menu className="h-5 w-5" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-sm rounded-l-[2rem] border-l border-white/15 bg-[#0b0f14]/95 text-white backdrop-blur-xl sm:max-w-md">
+          <DialogContent className="max-w-sm rounded-l-[2rem] border-l-2 border-[#6BEA32]/35 bg-[#0d1520] text-white sm:max-w-md">
             <DialogHeader className="space-y-3 pr-10">
               <DialogTitle>{site.name}</DialogTitle>
               <DialogDescription className="text-white/70">{site.tagline}</DialogDescription>
