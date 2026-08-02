@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, CheckCircle2, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
+import { HeroStatsGrid } from '@/components/hero-stats-grid';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { ServiceCard } from '@/components/service-card';
@@ -27,23 +28,6 @@ export const metadata = createPageMetadata({
   path: '/',
 });
 
-const technologies = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
-  'React',
-  'Next.js',
-  'Node.js',
-  'Express',
-  'Supabase',
-  'PostgreSQL',
-  'MongoDB',
-  'Git',
-  'GitHub',
-  'Tailwind CSS',
-];
-
 function Hero() {
   return (
     <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white">
@@ -56,7 +40,7 @@ function Hero() {
           <div className="space-y-7">
             <Reveal>
               <Badge variant="glass" className="inline-flex border-white/20 bg-white/10 text-white">
-                Premium Digital Studio
+                Digital Solutions & Innovation
               </Badge>
             </Reveal>
 
@@ -101,16 +85,7 @@ function Hero() {
 
           <Reveal delay={120}>
             <div className="glass-surface rounded-[2rem] p-6 shadow-soft">
-              <div className="grid gap-4 sm:grid-cols-2">
-                {heroStats.map((stat, index) => (
-                  <div key={stat.label} className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
-                    <p className="text-4xl font-bold text-[#6BEA32] [animation:fadeUp_600ms_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: `${index * 120}ms` }}>
-                      {stat.value}
-                    </p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/70">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
+              <HeroStatsGrid stats={heroStats} />
               <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4">
                 <p className="text-sm leading-7 text-white/80">{site.aboutMission}</p>
               </div>
@@ -202,22 +177,12 @@ export default function HomePage() {
                   impactful for businesses, students and communities.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Button asChild variant="outline">
-                    <Link href="https://github.com/denismunene2006-lab" target="_blank" rel="noreferrer">
-                      <Github className="h-4 w-4" />
-                      GitHub
-                    </Link>
+                  <Button asChild className="min-w-[9.5rem] flex-1 sm:flex-none">
+                    <Link href={`mailto:${site.email}`}>📧 Email</Link>
                   </Button>
-                  <Button asChild variant="outline">
-                    <Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-                      <Linkedin className="h-4 w-4" />
-                      LinkedIn
-                    </Link>
-                  </Button>
-                  <Button asChild>
-                    <Link href={`mailto:${site.email}`}>
-                      <Mail className="h-4 w-4" />
-                      Email
+                  <Button asChild variant="outline" className="min-w-[9.5rem] flex-1 sm:flex-none">
+                    <Link href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
+                      💬 WhatsApp
                     </Link>
                   </Button>
                 </div>
@@ -240,27 +205,6 @@ export default function HomePage() {
             <Reveal>
               <TestimonialsCarousel testimonials={testimonials} />
             </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Technology"
-              title="Modern stack, thoughtfully applied."
-              description="These technologies support performance, maintainability, scalability, and long-term product quality."
-            />
-          </Reveal>
-          <div className="mt-10 flex flex-wrap gap-3">
-            {technologies.map((tech, index) => (
-              <Reveal key={tech} delay={index * 35}>
-                <Badge variant="outline" className="rounded-full border-primary/20 bg-primary/10 px-4 py-2 text-sm text-foreground">
-                  {tech}
-                </Badge>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>

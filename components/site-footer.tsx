@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight, Mail, MapPin, PhoneCall } from 'lucide-react';
 
-import { brandAssets, navigation, site, siteUrl } from '@/data/site';
+import { brandAssets, navigation, site } from '@/data/site';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -75,27 +75,11 @@ export function SiteFooter() {
                 {site.location}
               </span>
             </div>
-            <Link
-              href="https://github.com/denismunene2006-lab"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-white/75 transition hover:text-white"
-            >
-              GitHub profile
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-white/55">
           <p>© 2026 D-LABS. All rights reserved.</p>
-          <p>
-            Built with <span className="text-white/80">Next.js</span>, deployed for{' '}
-            <a href={siteUrl} className="text-white transition hover:text-cyan-300">
-              modern performance
-            </a>
-            .
-          </p>
         </div>
       </div>
     </footer>
