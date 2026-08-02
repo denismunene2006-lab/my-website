@@ -29,7 +29,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <p className="text-sm leading-7 text-muted-foreground">{service.description}</p>
           <p className="text-sm leading-7 text-foreground/90">{service.details}</p>
         </div>
-        <Button asChild variant={service.title === 'Website Development' ? 'default' : 'outline'} className="rounded-full">
+        <Button asChild className="rounded-full">
           <Link href={service.href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
             {service.cta}
           </Link>
