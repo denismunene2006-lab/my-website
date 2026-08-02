@@ -20,30 +20,30 @@ export const metadata = createPageMetadata({
 export default function PricingPage() {
   return (
     <div>
-      <section className="page-section">
+      <section className="page-section premium-hero text-white">
         <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Reveal>
             <div className="max-w-2xl space-y-6">
-              <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
+              <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
                 Pricing
               </Badge>
               <div className="space-y-4">
-                <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                   Transparent website pricing for business growth.
                 </h1>
-                <p className="text-base leading-8 text-muted-foreground sm:text-lg">
+                <p className="text-base leading-8 text-white/82 sm:text-lg">
                   Choose a package that matches your goals and growth stage. We support businesses in Embu and beyond with
                   scalable website solutions.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="rounded-full">
+                <Button asChild size="lg">
                   <Link href="/contact">
                     Get a quote
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
+                <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
                   <Link href="/projects">See examples</Link>
                 </Button>
               </div>
@@ -51,28 +51,28 @@ export default function PricingPage() {
           </Reveal>
 
           <Reveal delay={90}>
-            <Card className="border-border/70 bg-card shadow-soft">
+            <Card className="glass-surface border-white/20 bg-white/10 text-white shadow-soft">
               <CardContent className="space-y-5 p-6">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
                     <Star className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">What is included</p>
-                    <p className="text-lg font-semibold tracking-tight">Clear pricing, no guesswork</p>
+                    <p className="text-xs uppercase tracking-[0.22em] text-white/70">What is included</p>
+                    <p className="text-lg font-semibold tracking-tight text-white">Clear pricing, no guesswork</p>
                   </div>
                 </div>
-                <ul className="space-y-3 text-sm leading-7 text-muted-foreground">
+                <ul className="space-y-3 text-sm leading-7 text-white/80">
                   <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
                     Detailed package scopes aligned to your business goals.
                   </li>
                   <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
                     Mobile-first builds with SEO foundations built in.
                   </li>
                   <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
                     Optional maintenance and support after launch.
                   </li>
                 </ul>

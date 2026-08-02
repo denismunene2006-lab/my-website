@@ -14,10 +14,10 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const isExternal = service.href.startsWith('http');
 
   return (
-    <Card className="group border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
+    <Card className="group border-border/70 bg-card/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
       <CardContent className="space-y-5 pt-6">
         <div className="flex items-center justify-between gap-3">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
             <Icon className="h-5 w-5" />
           </div>
           <Badge variant="outline" className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">

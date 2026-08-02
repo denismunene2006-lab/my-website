@@ -15,7 +15,7 @@ export function PricingCard({ plan, highlighted = false }: PricingCardProps) {
     <Card
       className={[
         'flex h-full flex-col border-border/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-soft',
-        highlighted ? 'border-primary/30 bg-primary/[0.03]' : 'bg-card',
+        highlighted ? 'border-primary/35 bg-gradient-to-b from-primary/[0.12] to-accent/[0.06] hover:shadow-glow' : 'bg-card',
       ].join(' ')}
     >
       <CardHeader className="space-y-4">

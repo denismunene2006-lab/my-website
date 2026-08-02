@@ -24,7 +24,7 @@ type BlogCardProps = {
 
 export function BlogCard({ post }: BlogCardProps) {
   return (
-    <Card className={cn('group overflow-hidden border-border/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-soft')}>
+    <Card className={cn('group overflow-hidden border-border/70 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-glow')}>
       {post.image ? (
         <div className="relative overflow-hidden border-b border-border/60">
           <Image

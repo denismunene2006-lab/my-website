@@ -21,7 +21,7 @@ export default function OpenGraphImage() {
           justifyContent: 'space-between',
           padding: 64,
           background:
-            'radial-gradient(circle at 20% 20%, rgba(6,182,212,0.25), transparent 30%), radial-gradient(circle at 85% 15%, rgba(124,58,237,0.22), transparent 25%), linear-gradient(135deg, #020617 0%, #0f172a 45%, #111827 100%)',
+            'radial-gradient(circle at 20% 20%, rgba(107,234,50,0.26), transparent 30%), radial-gradient(circle at 85% 15%, rgba(24,169,75,0.24), transparent 25%), linear-gradient(135deg, #0b0f14 0%, #101923 45%, #111827 100%)',
           color: '#fff',
         }}
       >
@@ -38,9 +38,10 @@ export default function OpenGraphImage() {
               justifyContent: 'center',
               fontSize: 42,
               fontWeight: 800,
+              color: '#6BEA32',
             }}
           >
-            D
+            DL
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.04em' }}>{site.name}</div>
@@ -50,10 +51,10 @@ export default function OpenGraphImage() {
 
         <div style={{ maxWidth: 820, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div style={{ fontSize: 70, fontWeight: 800, letterSpacing: '-0.06em', lineHeight: 0.98 }}>
-            Modern websites that feel premium, trustworthy, and ready to grow.
+            Build the Future with D-LABS
           </div>
           <div style={{ fontSize: 28, color: 'rgba(255,255,255,0.8)', lineHeight: 1.35 }}>
-            Fast, SEO-ready, mobile-first web experiences for businesses in Embu, Nairobi, and across Kenya.
+            Modern software, websites, and digital solutions for businesses and communities.
           </div>
         </div>
 

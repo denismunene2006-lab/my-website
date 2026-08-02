@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, BriefcaseBusiness, Sparkles } from 'lucide-react';
+import { ArrowUpRight, BriefcaseBusiness } from 'lucide-react';
 
 import { ProjectCard } from '@/components/project-card';
 import { Reveal } from '@/components/reveal';
@@ -22,59 +22,64 @@ export default function ProjectsPage() {
 
   return (
     <div>
-      <section className="page-section">
-        <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-          <Reveal>
-            <div className="max-w-2xl space-y-6">
-              <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
-                Portfolio
-              </Badge>
-              <div className="space-y-4">
-                <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                  Web development projects designed for clarity and confidence.
-                </h1>
-                <p className="text-base leading-8 text-muted-foreground sm:text-lg">
-                  The portfolio focuses on usability, performance, and clear business outcomes so each build feels purposeful.
-                </p>
+      <section className="premium-hero relative overflow-hidden border-b border-white/10 py-20 text-white lg:py-32">
+        <div className="absolute inset-0 section-grid opacity-20" />
+        <div className="container-shell relative">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+            <Reveal>
+              <div className="max-w-2xl space-y-6">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+                  Portfolio
+                </Badge>
+                <div className="space-y-4">
+                  <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl">
+                    Web development projects designed for clarity and confidence.
+                  </h1>
+                  <p className="text-lg leading-8 text-white/80">
+                    The portfolio focuses on usability, performance, and clear business outcomes so each build feels
+                    purposeful.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link href="/contact">
+                      Start a similar project
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
+                    <Link href="/pricing">See pricing</Link>
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="rounded-full">
-                  <Link href="/contact">
-                    Start a similar project
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="/pricing">See pricing</Link>
-                </Button>
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <Reveal delay={90}>
-            <Card className="border-border/70 bg-card shadow-soft">
-              <CardContent className="space-y-5 p-6">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <BriefcaseBusiness className="h-5 w-5" />
+            <Reveal delay={90}>
+              <Card className="glass-surface border-white/20 bg-white/10 text-white shadow-soft">
+                <CardContent className="space-y-5 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
+                      <BriefcaseBusiness className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.22em] text-white/60">Portfolio approach</p>
+                      <p className="text-lg font-semibold tracking-tight text-white">Real builds, not filler visuals</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Portfolio approach</p>
-                    <p className="text-lg font-semibold tracking-tight">Real builds, not filler visuals</p>
+                  <p className="text-sm leading-7 text-white/75">
+                    Each project card includes the goal, the outcome, and the route to the live site so the business value
+                    is clear.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="glass" className="border-white/20 bg-white/10 text-white">Performance</Badge>
+                    <Badge variant="glass" className="border-white/20 bg-white/10 text-white">UX</Badge>
+                    <Badge variant="glass" className="border-white/20 bg-white/10 text-white">Responsive</Badge>
+                    <Badge variant="glass" className="border-white/20 bg-white/10 text-white">Trust</Badge>
                   </div>
-                </div>
-                <p className="text-sm leading-7 text-muted-foreground">
-                  Each project card includes the goal, the outcome, and the primary route to the live site so the story is easy to follow.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">Performance</Badge>
-                  <Badge variant="outline">UX</Badge>
-                  <Badge variant="outline">Responsive</Badge>
-                  <Badge variant="outline">Trust</Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </Reveal>
+                </CardContent>
+              </Card>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -101,7 +106,7 @@ export default function ProjectsPage() {
             <SectionHeading
               eyebrow="More work"
               title="Additional projects that show range."
-              description="From marketplaces to shopping experiences, the builds stay focused on the user journey and the final action."
+              description="From marketplaces to shopping experiences, the builds stay focused on the user journey and final action."
             />
           </Reveal>
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -116,24 +121,22 @@ export default function ProjectsPage() {
 
       <section className="page-section bg-muted/30">
         <div className="container-shell">
-          <Card className="overflow-hidden border-border/70 bg-slate-950 text-white shadow-2xl">
+          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
             <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:p-12">
               <div className="space-y-4">
-                <Badge variant="glass" className="border-white/15 bg-white/10 text-white">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
                   Next build
                 </Badge>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Want a project that looks this intentional?
-                </h2>
-                <p className="max-w-2xl text-base leading-8 text-white/72">
+                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Want a project that looks this intentional?</h2>
+                <p className="max-w-2xl text-base leading-8 text-white/78">
                   We can take your idea, sharpen the structure, and turn it into a polished digital experience.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg" className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+                <Button asChild size="lg">
                   <Link href="/contact">Start now</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
                   <Link href="/blog">Read the blog</Link>
                 </Button>
               </div>

@@ -8,12 +8,12 @@ import { Badge } from '@/components/ui/badge';
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/60 bg-slate-950 text-white">
+    <footer className="border-t border-white/10 bg-[#070a0f] text-white">
       <div className="container-shell py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr_0.7fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+              <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/10">
                 <Image src={brandAssets.logoMark} alt={site.name} className="h-full w-full object-cover" />
               </span>
               <div>
@@ -25,12 +25,12 @@ export function SiteFooter() {
               {site.description} Built for businesses in Embu, Nairobi, and across Kenya.
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="glass">Next.js</Badge>
-              <Badge variant="glass">React</Badge>
-              <Badge variant="glass">Tailwind CSS</Badge>
-              <Badge variant="glass">shadcn/ui</Badge>
+              <Badge variant="glass">Fast delivery</Badge>
+              <Badge variant="glass">Responsive design</Badge>
+              <Badge variant="glass">SEO foundations</Badge>
+              <Badge variant="glass">Ongoing support</Badge>
             </div>
-            <Button asChild className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+            <Button asChild className="rounded-full">
               <Link href="/contact">
                 Let’s talk
                 <ArrowUpRight className="h-4 w-4" />
@@ -47,6 +47,16 @@ export function SiteFooter() {
                 </Link>
               ))}
             </nav>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.24em] text-white/55">Services</h2>
+            <div className="flex flex-col gap-3 text-sm text-white/75">
+              <Link href="/services" className="transition hover:text-white">Website Development</Link>
+              <Link href="/services" className="transition hover:text-white">Website Redesign</Link>
+              <Link href="/services" className="transition hover:text-white">Deployment Support</Link>
+              <Link href="/services" className="transition hover:text-white">Developer Training</Link>
+            </div>
           </div>
 
           <div className="space-y-4">

@@ -17,7 +17,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
     <Card
       className={cn(
-        'group overflow-hidden border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-soft',
+        'group overflow-hidden border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-glow',
         featured && 'lg:col-span-2'
       )}
     >
@@ -28,7 +28,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           className="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
           placeholder="blur"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           {project.tags.slice(0, 2).map((tag) => (
             <Badge key={tag} variant="glass" className="border-white/15 bg-white/10 text-white">

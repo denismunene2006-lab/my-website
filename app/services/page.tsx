@@ -28,59 +28,62 @@ const serviceNotes = [
 export default function ServicesPage() {
   return (
     <div>
-      <section className="page-section">
-        <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-          <Reveal>
-            <div className="max-w-2xl space-y-6">
-              <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
-                Services
-              </Badge>
-              <div className="space-y-4">
-                <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                  Web development services built for growth.
-                </h1>
-                <p className="text-base leading-8 text-muted-foreground sm:text-lg">
-                  D-LABS helps businesses launch cleaner websites, refresh outdated experiences, and build stronger digital
-                  foundations without adding unnecessary weight.
-                </p>
+      <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
+        <div className="absolute inset-0 section-grid opacity-20" />
+        <div className="container-shell relative">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+            <Reveal>
+              <div className="max-w-2xl space-y-6">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+                  Services
+                </Badge>
+                <div className="space-y-4">
+                  <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl">
+                    Web development services built for growth.
+                  </h1>
+                  <p className="text-lg leading-8 text-white/80">
+                    D-LABS helps businesses launch cleaner websites, refresh outdated experiences, and build stronger digital
+                    foundations without adding unnecessary weight.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link href="/pricing">
+                      View pricing
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
+                    <Link href="/contact">Request a quote</Link>
+                  </Button>
+                </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="rounded-full">
-                  <Link href="/pricing">
-                    View pricing
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="/contact">Request a quote</Link>
-                </Button>
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <Reveal delay={90}>
-            <Card className="border-border/70 bg-card shadow-soft">
-              <CardContent className="space-y-5 p-6">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <Sparkles className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">What is included</p>
-                    <p className="text-lg font-semibold tracking-tight">A cleaner experience from top to bottom</p>
-                  </div>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {serviceNotes.map((note) => (
-                    <div key={note} className="flex items-center gap-3 rounded-2xl border border-border/70 bg-muted/35 px-4 py-3">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
-                      <span className="text-sm font-medium text-foreground">{note}</span>
+            <Reveal delay={90}>
+              <Card className="glass-surface border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur-xl">
+                <CardContent className="space-y-5 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
+                      <Sparkles className="h-5 w-5" />
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </Reveal>
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.22em] text-white/70">What is included</p>
+                      <p className="text-lg font-semibold tracking-tight text-white">A cleaner experience from top to bottom</p>
+                    </div>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {serviceNotes.map((note) => (
+                      <div key={note} className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 backdrop-blur">
+                        <CheckCircle2 className="h-4 w-4 shrink-0 text-[#6BEA32]" />
+                        <span className="text-sm font-medium text-white/80">{note}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -184,10 +187,10 @@ export default function ServicesPage() {
 
       <section className="page-section">
         <div className="container-shell">
-          <Card className="overflow-hidden border-border/70 bg-slate-950 text-white shadow-2xl">
+          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
             <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:p-12">
               <div className="space-y-4">
-                <Badge variant="glass" className="border-white/15 bg-white/10 text-white">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
                   Next step
                 </Badge>
                 <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -198,10 +201,10 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg" className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+                <Button asChild size="lg">
                   <Link href="/pricing">See packages</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
                   <Link href="/contact">Contact D-LABS</Link>
                 </Button>
               </div>

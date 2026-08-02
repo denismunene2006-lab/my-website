@@ -11,8 +11,8 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 const badgeStyles: Record<BadgeVariant, string> = {
   default: 'border-transparent bg-primary text-primary-foreground shadow-sm',
   secondary: 'border-transparent bg-secondary text-secondary-foreground',
-  outline: 'border-border bg-background text-foreground',
-  glass: 'border-white/15 bg-white/10 text-white backdrop-blur',
+  outline: 'border-border/70 bg-background/80 text-foreground backdrop-blur',
+  glass: 'border-white/15 bg-white/10 text-white backdrop-blur-xl',
 };
 
 export function Badge({ className, variant = 'default', ...props }: BadgeProps) {

@@ -17,7 +17,6 @@ import {
   Rocket,
   Search,
   ShieldCheck,
-  Sparkles,
   TimerReset,
   Workflow,
 } from 'lucide-react';
@@ -75,15 +74,15 @@ export const heroHighlights = [
 ] as const;
 
 export const heroStats = [
-  { label: 'Core services', value: '4' },
+  { label: 'Years of experience', value: '3+' },
   { label: 'Featured projects', value: '4' },
   { label: 'Blog articles', value: '7' },
-  { label: 'Contact channels', value: '4' },
+  { label: 'Happy clients', value: '20+' },
 ] as const;
 
 export const trustPills = [
-  { label: 'Startup-quality UI', icon: Sparkles },
-  { label: 'AI-powered feel', icon: Bot },
+  { label: 'Professional finish', icon: ShieldCheck },
+  { label: 'Business-first strategy', icon: BriefcaseBusiness },
   { label: 'Speed-focused builds', icon: TimerReset },
   { label: 'Structured for SEO', icon: Search },
 ] as const;

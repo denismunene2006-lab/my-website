@@ -47,51 +47,54 @@ const principles = [
 export default function AboutPage() {
   return (
     <div>
-      <section className="page-section">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <Reveal>
-            <Card className="overflow-hidden border-border/70 shadow-soft">
-              <Image
-                src={brandAssets.founderPhoto}
-                alt={`${site.founderName}, founder of D-LABS`}
-                className="h-[420px] w-full object-cover object-top"
-                priority
-              />
-            </Card>
-          </Reveal>
+      <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
+        <div className="absolute inset-0 section-grid opacity-20" />
+        <div className="container-shell relative">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <Reveal>
+              <Card className="overflow-hidden border-white/10 shadow-2xl backdrop-blur-xl">
+                <Image
+                  src={brandAssets.founderPhoto}
+                  alt={`${site.founderName}, founder of D-LABS`}
+                  className="h-[420px] w-full object-cover object-top"
+                  priority
+                />
+              </Card>
+            </Reveal>
 
-          <Reveal delay={90}>
-            <div className="max-w-2xl space-y-6">
-              <Badge variant="outline" className="border-primary/20 bg-primary/5 text-primary">
-                About D-LABS
-              </Badge>
-              <div className="space-y-4">
-                <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                  Designing digital experiences that feel premium and practical.
-                </h1>
-                <p className="text-base leading-8 text-muted-foreground sm:text-lg">{site.aboutIntro}</p>
-                <p className="text-base leading-8 text-muted-foreground sm:text-lg">{founderStory}</p>
+            <Reveal delay={90}>
+              <div className="max-w-2xl space-y-6">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+                  About D-LABS
+                </Badge>
+                <div className="space-y-4">
+                  <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl">
+                    Designing digital experiences that feel premium and practical.
+                  </h1>
+                  <p className="text-lg leading-8 text-white/80">{site.aboutIntro}</p>
+                  <p className="text-lg leading-8 text-white/80">{founderStory}</p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link href="/contact">
+                      Start a project
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
+                    <Link href="/projects">View the portfolio</Link>
+                  </Button>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {['Founder-led studio', 'Kenya-focused', 'Startup-quality UI'].map((item) => (
+                    <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70 backdrop-blur">
+                      {item}
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg" className="rounded-full">
-                  <Link href="/contact">
-                    Start a project
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="/projects">View the portfolio</Link>
-                </Button>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-3">
-                {['Founder-led studio', 'Kenya-focused', 'Startup-quality UI'].map((item) => (
-                  <div key={item} className="rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm text-muted-foreground shadow-sm">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -186,10 +189,10 @@ export default function AboutPage() {
 
       <section className="page-section bg-muted/30">
         <div className="container-shell">
-          <Card className="overflow-hidden border-border/70 bg-slate-950 text-white shadow-2xl">
+          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
             <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:p-12">
               <div className="space-y-4">
-                <Badge variant="glass" className="border-white/15 bg-white/10 text-white">
+                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
                   Let’s collaborate
                 </Badge>
                 <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -200,10 +203,10 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg" className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+                <Button asChild size="lg">
                   <Link href="/contact">Start a conversation</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
                   <Link href="/services">View services</Link>
                 </Button>
               </div>

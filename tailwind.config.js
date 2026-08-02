@@ -47,18 +47,19 @@ module.exports = {
           foreground: 'hsl(var(--popover-foreground))',
         },
         brand: {
-          DEFAULT: '#2563eb',
-          cyan: '#06b6d4',
-          violet: '#7c3aed',
-          ink: '#0f172a',
+          DEFAULT: '#18A94B',
+          bright: '#6BEA32',
+          deep: '#0B0F14',
+          soft: '#EAF9EF',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['Sora', 'Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        soft: '0 20px 60px -20px rgba(15, 23, 42, 0.22)',
-        glow: '0 0 0 1px rgba(56, 189, 248, 0.18), 0 24px 80px -20px rgba(37, 99, 235, 0.18)',
+        soft: '0 24px 64px -28px rgba(11, 15, 20, 0.35)',
+        glow: '0 0 0 1px rgba(107, 234, 50, 0.22), 0 28px 80px -28px rgba(24, 169, 75, 0.34)',
       },
       backgroundImage: {
         'hero-grid':
