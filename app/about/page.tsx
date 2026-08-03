@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Code2, Layers3, Rocket, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Layers3, Lock, Rocket, ShieldCheck, Sparkles } from 'lucide-react';
 
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
@@ -8,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
-import { brandAssets, founderStory, skills, site } from '@/data/site';
+import { founderStory, site } from '@/data/site';
 
 export const metadata = createPageMetadata({
   title: 'About D-LABS | Web Development Company in Embu, Kenya',
@@ -42,6 +41,12 @@ const principles = [
       'The system is built with reusable components and a consistent structure, which keeps future updates easier.',
     icon: Layers3,
   },
+  {
+    title: 'Secure',
+    description:
+      'We build secure digital solutions by following modern security best practices, protecting user data, and designing systems that businesses can trust.',
+    icon: Lock,
+  },
 ];
 
 const aboutTimeline = [
@@ -59,18 +64,7 @@ export default function AboutPage() {
       <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
         <div className="absolute inset-0 section-grid opacity-20" />
         <div className="container-shell relative">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <Reveal>
-              <Card className="overflow-hidden border-white/10 shadow-2xl backdrop-blur-xl">
-                <Image
-                  src={brandAssets.founderPhoto}
-                  alt={`${site.founderName}, founder of D-LABS`}
-                  className="h-[420px] w-full object-cover object-top"
-                  priority
-                />
-              </Card>
-            </Reveal>
-
+          <div className="grid gap-10 lg:items-center">
             <Reveal delay={90}>
               <div className="max-w-2xl space-y-6">
                 <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
@@ -102,65 +96,6 @@ export default function AboutPage() {
                   ))}
                 </div>
               </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      <section className="page-section bg-muted/30">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="What we do best"
-              title="A focused stack that keeps the work practical."
-              description="The studio leans on familiar, dependable technologies that make it easier to build, maintain, and improve."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <Reveal>
-              <Card className="border-border/70 bg-card shadow-sm">
-                <CardContent className="space-y-5 p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                      <Code2 className="h-5 w-5" />
-                    </div>
-                    <h2 className="text-2xl font-semibold tracking-tight">Frontend</h2>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.frontend.map((skill) => (
-                      <Badge key={skill} variant="outline">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    We keep the interface crisp, responsive, and easy to navigate with modern component-driven builds.
-                  </p>
-                </CardContent>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={90}>
-              <Card className="border-border/70 bg-card shadow-sm">
-                <CardContent className="space-y-5 p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                      <Layers3 className="h-5 w-5" />
-                    </div>
-                    <h2 className="text-2xl font-semibold tracking-tight">Backend</h2>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.backend.map((skill) => (
-                      <Badge key={skill} variant="outline">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    We use practical backend building blocks for forms, APIs, authentication, and future scaling.
-                  </p>
-                </CardContent>
-              </Card>
             </Reveal>
           </div>
         </div>
