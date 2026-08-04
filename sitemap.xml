@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/about.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/projects.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/about</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/services.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/services</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/service-pricing.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/pricing</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/blog.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/projects</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-20-unshakable-rules-modern-web-development.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-modern-web-development.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-business-website-mistakes.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-seo-basics-for-small-business.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-online-growth-strategy.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-content-marketing-tech-companies.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/article-website-performance-page-speed.html</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://denismunene2006-lab.github.io/my-website/contact.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://d-labs.vercel.app/contact</loc>
+    <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/20-unshakable-rules-modern-web-development</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/modern-web-development</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/website-performance-page-speed</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/business-website-mistakes</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/seo-basics-for-small-business</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/online-growth-strategy</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://d-labs.vercel.app/blog/content-marketing-tech-companies</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

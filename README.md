@@ -4,16 +4,17 @@ Production-ready website for D-LABS built with Next.js App Router, React, TypeSc
 
 ## Overview
 
-This repository contains the redesigned D-LABS marketing site. It keeps the original brand, services, and content, but presents them with a faster, more modern startup-style experience.
+This repository contains the D-LABS marketing site. It keeps the original brand, services, and content, but presents them with a faster, more modern startup-style experience.
 
 ### Highlights
 - Responsive navigation with a mobile drawer menu
-- No splash screen, so the homepage loads immediately
+- Branded splash screen shown on first visit per session
 - Modern hero, services, projects, blog, pricing, and contact pages
 - SEO-friendly metadata, Open Graph tags, robots, and sitemap routes
 - `next/image`-based image optimization
 - Reusable UI components and shared content data
 - Static generation for core pages and blog articles
+- Legacy static HTML pages retained alongside the Next.js app for GitHub Pages hosting
 
 ## Tech Stack
 
@@ -70,6 +71,10 @@ components/  Reusable UI and section components
 data/        Site content, project data, pricing, FAQ, and articles
 lib/         Shared helpers
 images/      Project and article images
+css/         Stylesheets (including minified production builds)
+js/          Client-side scripts (including minified production builds)
+scripts/     Build and optimization helpers
+*.html       Legacy static pages (index, about, services, blog, articles, etc.)
 ```
 
 ## SEO and Performance
@@ -80,6 +85,7 @@ images/      Project and article images
 - Static article generation
 - Image optimization through `next/image`
 - Lightweight reusable components
+- Dynamic sitemap generated at `/sitemap.xml`
 
 ## Deployment
 
@@ -98,8 +104,10 @@ If you use a custom domain, set:
 
 That keeps canonical links and social metadata pointing to the right domain.
 
+The legacy static HTML files can also be published to GitHub Pages for a static mirror of the site.
+
 ## Notes
 
-- Legacy static HTML files were replaced by the Next.js app.
+- The Next.js app is the primary, production deployment.
+- Legacy static HTML files are retained in the repository for GitHub Pages hosting and are kept in sync with the app content.
 - The site is designed to be easy to extend with more pages, projects, or articles.
-
