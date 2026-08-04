@@ -53,7 +53,7 @@ export function BlogCard({ post }: BlogCardProps) {
             {post.readTime}
           </span>
         </div>
-        <Button asChild variant="outline" className="rounded-full">
+        <Button asChild className="rounded-full">
           <Link href={`/blog/${post.slug}`}>
             Read article
             <ArrowUpRight className="h-4 w-4" />
