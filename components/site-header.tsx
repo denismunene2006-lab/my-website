@@ -58,14 +58,6 @@ export function SiteHeader() {
               priority
             />
           </span>
-          <span className="hidden min-[420px]:block">
-            <Image
-              src={brandAssets.wordmark}
-              alt={site.name}
-              className="h-8 w-auto transition duration-300 group-hover:scale-[1.01]"
-              priority
-            />
-          </span>
           <span className="min-[420px]:hidden text-lg font-semibold tracking-tight text-white">{site.name}</span>
         </Link>
 

@@ -27,7 +27,6 @@ import educationPreview from '../images/d-labs-education/d-labs-education.webp';
 import founderPhoto from '../images/profile-400.jpeg';
 import logoMark from '../images/logo1.jpg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
-import wordmark from '../images/name-400.webp';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://d-labs.vercel.app';
 
@@ -50,7 +49,6 @@ export const site = {
 } as const;
 
 export const brandAssets = {
-  wordmark,
   logoMark,
   founderPhoto,
   heroProject: educationPreview,
@@ -372,13 +370,6 @@ export const contactMethods = [
     icon: MapPin,
   },
 ] as const;
-
-export const heroData = {
-  wordmark,
-  logoMark,
-  founderPhoto,
-  heroImage: educationPreview,
-} as const;
 
 export type SiteProject = (typeof projects)[number];
 export type SiteService = (typeof services)[number];
