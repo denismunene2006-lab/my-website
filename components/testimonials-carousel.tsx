@@ -12,8 +12,11 @@ type TestimonialsCarouselProps = {
 export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState<number | null>(null);
   const totalSlides = testimonials.length;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % totalSlides);
@@ -39,6 +42,33 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
     };
   }, [isPaused, handleNext]);
 
+  // Dynamically measure the tallest card and set the viewport height to match
+  useEffect(() => {
+    const measureHeights = () => {
+      let tallest = 0;
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          const height = card.offsetHeight;
+          if (height > tallest) tallest = height;
+        }
+      });
+      if (tallest > 0) {
+        setViewportHeight(tallest);
+      }
+    };
+
+    // Measure after initial render
+    const rafId = requestAnimationFrame(measureHeights);
+
+    // Re-measure on window resize
+    window.addEventListener('resize', measureHeights);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', measureHeights);
+    };
+  }, [testimonials]);
+
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
@@ -49,14 +79,21 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
     >
-      {/* Sliding viewport with stable height */}
-      <div className="relative overflow-hidden min-h-[220px] sm:min-h-[180px] w-full">
+      {/* Sliding viewport with dynamic height matching the tallest card */}
+      <div
+        ref={viewportRef}
+        className="relative overflow-hidden w-full transition-[height] duration-300 ease-in-out"
+        style={viewportHeight ? { height: `${viewportHeight}px` } : undefined}
+      >
         {testimonials.map((item, index) => {
           const isActive = index === activeIndex;
           return (
             <div
               key={`${item.meta}-${index}`}
-              className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ease-in-out ${
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              className={`absolute top-0 left-0 w-full transition-all duration-500 ease-in-out ${
                 isActive
                   ? 'opacity-100 translate-x-0 scale-100 pointer-events-auto'
                   : 'opacity-0 scale-95 pointer-events-none ' + (index < activeIndex ? '-translate-x-full' : 'translate-x-full')
