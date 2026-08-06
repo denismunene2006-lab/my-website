@@ -187,6 +187,21 @@ export const testimonials = [
       'What stood out most was the structure. Visitors now understand our services faster and contact us more easily.',
     meta: 'Service brand, Nairobi',
   },
+  {
+    quote:
+      'D-Labs delivered a clean, modern website that exceeded our expectations. The entire process was smooth, communication was excellent, and the final product perfectly represents our business online.',
+    meta: 'Sarah M., Business Owner',
+  },
+  {
+    quote:
+      'From the first consultation to the final launch, D-Labs demonstrated professionalism and attention to detail. The website is fast, responsive, and has helped us create a stronger online presence.',
+    meta: 'James K., Startup Founder',
+  },
+  {
+    quote:
+      'We needed a website that looked professional and performed well across all devices. D-Labs delivered exactly that, on time and with outstanding support throughout the project.',
+    meta: 'Brian N., Entrepreneur',
+  },
 ] as const;
 
 export const founderStory =
