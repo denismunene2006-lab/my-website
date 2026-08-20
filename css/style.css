@@ -1773,6 +1773,62 @@ a.card {
     box-shadow: 0 12px 24px -4px rgba(91, 33, 182, 0.35);
 }
 
+/* Overrides for service card CTAs to style them as simple text links */
+.services-grid .service-cta {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1.25rem;
+    text-decoration: none;
+    background: none;
+    font-weight: 600;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.services-grid .service-cta:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.services-grid .service-cta .arrow {
+    display: inline-block;
+    margin-left: 0.25rem;
+    transition: transform 0.3s ease;
+}
+
+.services-grid .service-box:hover .service-cta .arrow {
+    transform: translateX(4px);
+}
+
+.services-grid .service-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.services-grid > .service-box:nth-child(4n + 1) .service-cta {
+    color: #7c3aed;
+}
+
+.services-grid > .service-box:nth-child(4n + 2) .service-cta {
+    color: #0891b2;
+}
+
+.services-grid > .service-box:nth-child(4n + 3) .service-cta {
+    color: #ea580c;
+}
+
+.services-grid > .service-box:nth-child(4n + 4) .service-cta {
+    color: #9333ea;
+}
+
 .services-detail-cta {
     margin-top: 1.5rem;
     display: flex;
