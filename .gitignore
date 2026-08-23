@@ -3,3 +3,7 @@ node_modules/
 *.log
 .DS_Store
 images/psi-screenshots/
+.env
+.env.local
+.env.*.local
+next-env.d.ts

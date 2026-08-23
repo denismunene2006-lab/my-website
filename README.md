@@ -71,6 +71,16 @@ Then open:
 
 - http://localhost:3000
 
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in your Web3Forms access key to enable the contact form:
+
+```bash
+WEB3FORMS_ACCESS_KEY=your_access_key_here
+```
+
+Get a free access key at https://web3forms.com
+
 ## Production Build
 
 ```bash
