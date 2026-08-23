@@ -317,7 +317,50 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        initScrollProgress(heroElement);
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js';
+        script.onload = () => {
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smooth: true,
+                    mouseMultiplier: 1,
+                    smoothTouch: false,
+                    touchMultiplier: 2,
+                    infinite: false,
+                    autoRaf: true,
+                });
+
+                document.documentElement.classList.add('lenis');
+                initScrollProgress(heroElement, lenis);
+
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        const targetAttr = this.getAttribute('href');
+                        if (targetAttr === '#') return;
+                        
+                        const targetElement = document.querySelector(targetAttr);
+                        if (targetElement) {
+                            e.preventDefault();
+                            lenis.scrollTo(targetElement, {
+                                offset: -80,
+                            });
+                        }
+                    });
+                });
+
+                window.lenis = lenis;
+            } else {
+                initScrollProgress(heroElement);
+            }
+        };
+        script.onerror = () => {
+            initScrollProgress(heroElement);
+        };
+        document.head.appendChild(script);
     };
 
     const openTawkChat = () => {

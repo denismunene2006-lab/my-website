@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 import { JsonLd } from '@/components/json-ld';
+import { SmoothScrollProvider } from '@/components/smooth-scroll-provider';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { site, siteUrl } from '@/data/site';
@@ -112,17 +113,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
-        <a href="#main-content" className="skip-link">
-          Skip to content
-        </a>
-        <JsonLd data={organizationJsonLd} />
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
+        <SmoothScrollProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to content
+          </a>
+          <JsonLd data={organizationJsonLd} />
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+        </SmoothScrollProvider>
       </body>
     </html>
   );
