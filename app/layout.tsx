@@ -4,6 +4,7 @@ import './globals.css';
 
 import { JsonLd } from '@/components/json-ld';
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider';
+import { ScrollProgress } from '@/components/scroll-progress';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { site, siteUrl } from '@/data/site';
@@ -114,6 +115,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground">
         <SmoothScrollProvider>
+          <ScrollProgress />
           <a href="#main-content" className="skip-link">
             Skip to content
           </a>
