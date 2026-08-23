@@ -7,6 +7,7 @@ import { SmoothScrollProvider } from '@/components/smooth-scroll-provider';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
+import { WhatsAppButton } from '@/components/whatsapp-button';
 import { site, siteUrl } from '@/data/site';
 
 export const metadata: Metadata = {
@@ -126,6 +127,7 @@ export default function RootLayout({
               {children}
             </main>
             <SiteFooter />
+            <WhatsAppButton />
           </div>
         </SmoothScrollProvider>
       </body>
