@@ -15,6 +15,8 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - Reusable UI components and shared content data
 - Static generation for core pages and blog articles
 - Legacy static HTML pages retained alongside the Next.js app for GitHub Pages hosting
+- WhatsApp integration and contact forms
+- Localized pricing in Kenyan Shillings (KES)
 
 ## Tech Stack
 
@@ -28,6 +30,7 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 ## Routes
 
 ### Core pages
+
 - `/` - Home
 - `/about` - About D-LABS
 - `/services` - Services overview and FAQ
@@ -37,6 +40,7 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - `/contact` - Contact page
 
 ### Blog articles
+
 - `/blog/modern-web-development`
 - `/blog/website-performance-page-speed`
 - `/blog/business-website-mistakes`
@@ -44,6 +48,17 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - `/blog/online-growth-strategy`
 - `/blog/content-marketing-tech-companies`
 - `/blog/20-unshakable-rules-modern-web-development`
+
+### Legacy static pages (GitHub Pages mirror)
+
+- `index.html`
+- `about.html`
+- `services.html`
+- `service-pricing.html`
+- `projects.html`
+- `blog.html`
+- `contact.html`
+- `article-*.html` (all 7 blog articles)
 
 ## Getting Started
 
@@ -82,12 +97,15 @@ scripts/     Build and optimization helpers
 - Proper page titles and descriptions
 - Canonical URLs
 - Open Graph and Twitter metadata
-- Static article generation
+- Static generation for all pages and blog articles
 - Image optimization through `next/image`
 - Lightweight reusable components
 - Dynamic sitemap generated at `/sitemap.xml`
+- Static `sitemap.xml` and `robots.txt` for the legacy GitHub Pages mirror
 
 ## Deployment
+
+### Vercel (primary deployment)
 
 The app is ready for Vercel deployment.
 
@@ -104,7 +122,9 @@ If you use a custom domain, set:
 
 That keeps canonical links and social metadata pointing to the right domain.
 
-The legacy static HTML files can also be published to GitHub Pages for a static mirror of the site.
+### GitHub Pages (static mirror)
+
+The legacy static HTML files can be published to GitHub Pages as a static mirror of the site.
 
 ## Notes
 
