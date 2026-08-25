@@ -152,16 +152,37 @@ export default function HomePage() {
 
       <section className="page-section overflow-hidden">
         <div className="container-shell">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-            <Reveal>
-              <div className="space-y-6">
-                <Badge
-                  variant="outline"
-                  className="border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
-                >
-                  Meet the Developer
-                </Badge>
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-x-20 lg:gap-y-6">
+            <Reveal className="order-1 lg:col-start-1 lg:row-start-1">
+              <Badge
+                variant="outline"
+                className="border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+              >
+                Meet the Developer
+              </Badge>
+            </Reveal>
 
+            <Reveal delay={90} className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2">
+              <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/25 blur-2xl"
+                />
+                <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card p-2.5 shadow-soft">
+                  <Image
+                    src={brandAssets.founderPortrait}
+                    alt={`${site.founderName}, founder of D-Labs`}
+                    width={1196}
+                    height={1600}
+                    priority
+                    className="aspect-[3/4] w-full rounded-[1.6rem] object-cover object-top"
+                  />
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={90} className="order-3 lg:col-start-1 lg:row-start-2">
+              <div className="space-y-6">
                 <div className="space-y-3">
                   <h2 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                     Hi, I&apos;m Denis Munene
@@ -201,25 +222,6 @@ export default function HomePage() {
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </Link>
                   </Button>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={90}>
-              <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-                <div
-                  aria-hidden="true"
-                  className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/25 blur-2xl"
-                />
-                <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card p-2.5 shadow-soft">
-                  <Image
-                    src={brandAssets.founderPortrait}
-                    alt={`${site.founderName}, founder of D-Labs`}
-                    width={1196}
-                    height={1600}
-                    priority
-                    className="aspect-[3/4] w-full rounded-[1.6rem] object-cover object-top"
-                  />
                 </div>
               </div>
             </Reveal>
