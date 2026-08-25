@@ -25,7 +25,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   }
 
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.2, smoothWheel: true }}>
+    <ReactLenis root options={{ duration: 1.5, smoothWheel: true, touchMultiplier: 1.6 }}>
       {children}
     </ReactLenis>
   );

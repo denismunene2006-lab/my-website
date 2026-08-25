@@ -322,14 +322,18 @@ document.addEventListener('DOMContentLoaded', () => {
         script.onload = () => {
             if (typeof Lenis !== 'undefined') {
                 const lenis = new Lenis({
-                    duration: 1.2,
+                    // "Magical" feel: a slightly longer glide plus velocity-based
+                    // momentum from smooth wheel input.
+                    duration: 1.5,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
                     direction: 'vertical',
                     gestureDirection: 'vertical',
                     smooth: true,
+                    smoothWheel: true,
+                    wheelMultiplier: 1,
                     mouseMultiplier: 1,
                     smoothTouch: false,
-                    touchMultiplier: 2,
+                    touchMultiplier: 1.6,
                     infinite: false,
                     autoRaf: true,
                 });
