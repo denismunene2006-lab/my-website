@@ -50,12 +50,19 @@ export function SiteHeader() {
     >
       <div className="container-shell flex h-16 lg:h-18 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-[#6BEA32]/30 bg-[#162231] shadow-sm">
-            <Image
-              src={brandAssets.logoMark}
-              alt="D-LABS logo"
-              className="h-full w-full object-cover"
-              priority
+          <span className="relative block shrink-0">
+            <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-[#6BEA32]/30 bg-[#162231] shadow-sm">
+              <Image
+                src={brandAssets.logoMark}
+                alt="D-LABS logo"
+                className="h-full w-full object-cover"
+                priority
+              />
+            </span>
+            {/* Always-on green ring around the logo */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-0.5 rounded-2xl border-2 border-[#6BEA32]/70 shadow-[0_0_10px_rgba(107,234,50,0.35)]"
             />
           </span>
           <span className="min-[420px]:hidden text-lg font-semibold tracking-tight text-white">{site.name}</span>
