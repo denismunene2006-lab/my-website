@@ -13,6 +13,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
 import {
   brandAssets,
+  developerHighlights,
   heroHighlights,
   heroStats,
   results,
@@ -149,42 +150,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section">
+      <section className="page-section overflow-hidden">
         <div className="container-shell">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <Reveal>
-              <div className="mx-auto w-full max-w-sm">
-                <div className="relative overflow-hidden rounded-full border border-border/70 bg-card p-2 shadow-soft">
-                  <Image
-                    src={brandAssets.founderPhoto}
-                    alt={site.founderName}
-                    className="aspect-square w-full rounded-full object-cover object-top"
-                    priority
-                  />
+              <div className="space-y-6">
+                <Badge
+                  variant="outline"
+                  className="border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
+                >
+                  Meet the Developer
+                </Badge>
+
+                <div className="space-y-3">
+                  <h2 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                    Hi, I&apos;m Denis Munene
+                  </h2>
+                  <p className="text-lg font-medium text-primary">Founder &amp; Developer of D-Labs</p>
+                </div>
+
+                <p className="max-w-xl text-base leading-8 text-muted-foreground">
+                  I design and build modern digital products from the first line of code to the final
+                  launch. I care about the small details that make software feel fast, reliable, and
+                  genuinely useful — and I treat every project like it&apos;s my own.
+                </p>
+
+                <ul className="grid gap-3 sm:grid-cols-3">
+                  {developerHighlights.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2.5 rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm font-medium text-foreground shadow-soft"
+                    >
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <blockquote className="border-l-2 border-primary/40 pl-5">
+                  <p className="text-base italic leading-7 text-muted-foreground">
+                    &ldquo;Code is how I bring ideas to life and create impact.&rdquo;
+                  </p>
+                  <footer className="mt-2 text-sm font-medium text-foreground">— Denis Munene</footer>
+                </blockquote>
+
+                <div className="pt-1">
+                  <Button asChild size="lg" className="group gap-2">
+                    <Link href="/contact">
+                      Let&apos;s Connect
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={90}>
-              <div className="space-y-5">
-                <Badge variant="outline" className="border-primary/20 bg-primary/10 text-primary">
-                  Meet the Developer
-                </Badge>
-                <h2 className="font-heading text-4xl font-semibold tracking-tight text-foreground">Hi, I&apos;m Denis Munene</h2>
-                <p className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-                  I&apos;m a Computer Science student and Full Stack Developer passionate about building modern digital
-                  products that solve real-world problems. My goal is to create technology that is simple, reliable and
-                  impactful for businesses, students and communities.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild className="min-w-[9.5rem] flex-1 sm:flex-none">
-                    <Link href={`mailto:${site.email}`}>📧 Email</Link>
-                  </Button>
-                  <Button asChild variant="outline" className="min-w-[9.5rem] flex-1 sm:flex-none">
-                    <Link href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noreferrer">
-                      💬 WhatsApp
-                    </Link>
-                  </Button>
+              <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/25 blur-2xl"
+                />
+                <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card p-2.5 shadow-soft">
+                  <Image
+                    src={brandAssets.founderPortrait}
+                    alt={`${site.founderName}, founder of D-Labs`}
+                    width={1196}
+                    height={1600}
+                    priority
+                    className="aspect-[3/4] w-full rounded-[1.6rem] object-cover object-top"
+                  />
                 </div>
               </div>
             </Reveal>

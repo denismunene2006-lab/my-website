@@ -24,7 +24,7 @@ import {
 import bookshopPreview from '../images/bookshop-website/bookshop-website-preview.jpg';
 import ecommercePreview from '../images/ecommerce-website/ecommerce-website-preview.jpg';
 import educationPreview from '../images/d-labs-education/d-labs-education.webp';
-import founderPhoto from '../images/profile-400.jpeg';
+import founderPortrait from '../images/profile-new.jpeg';
 import logoMark from '../images/logo1.jpg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 
@@ -50,9 +50,15 @@ export const site = {
 
 export const brandAssets = {
   logoMark,
-  founderPhoto,
+  founderPortrait,
   heroProject: educationPreview,
 } as const;
+
+export const developerHighlights = [
+  'Full-Stack Developer',
+  'Product Builder',
+  'Lifelong Learner',
+] as const;
 
 export const navigation = [
   { label: 'Home', href: '/' },
