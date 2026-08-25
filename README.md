@@ -73,7 +73,7 @@ Then open:
 
 ## Environment Variables
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL` to your production URL for canonical links and social metadata.
+Copy `.env.example` to `.env.local`. Set `NEXT_PUBLIC_SITE_URL` to your production URL for canonical links and social metadata (default: `https://dlabskenya.com`).
 
 ## Production Build
 
@@ -104,8 +104,8 @@ scripts/     Build and optimization helpers
 - Static generation for all pages and blog articles
 - Image optimization through `next/image`
 - Lightweight reusable components
-- Dynamic sitemap generated at `/sitemap.xml`
-- Static `sitemap.xml` and `robots.txt` for the legacy GitHub Pages mirror
+- Dynamic sitemap generated at `https://dlabskenya.com/sitemap.xml`
+- Static `sitemap.xml` and `robots.txt` for the legacy static mirror (GitHub Pages)
 
 ## Deployment
 
@@ -120,11 +120,11 @@ Recommended Vercel settings:
 - Output directory: leave blank
 - Node.js version: use the current LTS line supported by Vercel
 
-If you use a custom domain, set:
+The production domain is `https://dlabskenya.com`. Set:
 
-- `NEXT_PUBLIC_SITE_URL` to your production URL
+- `NEXT_PUBLIC_SITE_URL=https://dlabskenya.com`
 
-That keeps canonical links and social metadata pointing to the right domain.
+That keeps canonical links, Open Graph/Twitter metadata, `robots.txt`, and the sitemap pointing to the right domain.
 
 ### GitHub Pages (static mirror)
 
