@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
 import { contactMethods, faqItems, site } from '@/data/site';
 
 export const metadata = createPageMetadata({
@@ -25,8 +26,19 @@ const responseNotes = [
 ];
 
 export default function ContactPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+
   return (
     <div>
+      <JsonLd data={faqJsonLd} />
       <section className="premium-hero relative overflow-hidden border-b border-white/10 py-20 text-white lg:py-32">
         <div className="absolute inset-0 section-grid opacity-20" />
         <div className="container-shell relative">

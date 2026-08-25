@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
 import {
   brandAssets,
   developerHighlights,
@@ -19,6 +20,7 @@ import {
   results,
   services,
   site,
+  siteUrl,
   testimonials,
 } from '@/data/site';
 
@@ -99,8 +101,43 @@ function Hero() {
 }
 
 export default function HomePage() {
+  const servicesJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${siteUrl}/#professional-service`,
+    name: site.name,
+    url: siteUrl,
+    description: site.description,
+    image: `${siteUrl}/opengraph-image`,
+    priceRange: 'KES',
+    founder: { '@type': 'Person', name: site.founderName },
+    email: site.email,
+    telephone: site.phone,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Embu',
+      addressCountry: 'KE',
+    },
+    areaServed: site.serviceArea.map((name) => ({ '@type': 'Place', name })),
+    knowsAbout: services.map((service) => service.title),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'D-LABS services',
+      itemListElement: services.map((service, index) => ({
+        '@type': 'Offer',
+        position: index + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    },
+  };
+
   return (
     <div>
+      <JsonLd data={servicesJsonLd} />
       <Hero />
 
       <section className="page-section">

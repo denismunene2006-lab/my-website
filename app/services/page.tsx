@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
 import { faqItems, processSteps, services } from '@/data/site';
 import { ServiceCard } from '@/components/service-card';
 
@@ -26,8 +27,19 @@ const serviceNotes = [
 ];
 
 export default function ServicesPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
+
   return (
     <div>
+      <JsonLd data={faqJsonLd} />
       <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
         <div className="absolute inset-0 section-grid opacity-20" />
         <div className="container-shell relative">

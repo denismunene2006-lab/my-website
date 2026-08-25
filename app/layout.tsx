@@ -19,6 +19,15 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  applicationName: site.name,
+  formatDetection: {
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    title: site.name,
+    statusBarStyle: 'default',
+  },
   alternates: {
     canonical: '/',
   },
