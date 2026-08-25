@@ -94,8 +94,19 @@ export function SiteHeader() {
 
         <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" size="icon" className="rounded-full border-[#6BEA32]/35 bg-[#162231] text-white hover:bg-[#1e2d3d] lg:hidden" aria-label="Open menu">
-              <Menu className="h-5 w-5" />
+            <Button
+              variant="outline"
+              size="icon"
+              className="relative rounded-full border-[#6BEA32]/35 bg-[#162231] text-white hover:bg-[#1e2d3d] lg:hidden"
+              aria-label="Open menu"
+            >
+              {/* Always-on, continuous subtle green growing/glowing ring */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 animate-ping rounded-full bg-[#6BEA32]/35 shadow-[0_0_12px_rgba(107,234,50,0.35)]"
+                style={{ animationDuration: '3s' }}
+              />
+              <Menu className="relative h-5 w-5" />
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-sm rounded-l-[2rem] border-l-2 border-[#6BEA32]/35 bg-[#0d1520] text-white sm:max-w-md">
