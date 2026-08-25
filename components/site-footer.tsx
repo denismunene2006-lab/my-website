@@ -13,8 +13,15 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/10">
-                <Image src={brandAssets.logoMark} alt={site.name} className="h-full w-full object-cover" />
+              <span className="relative block shrink-0">
+                <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/10">
+                  <Image src={brandAssets.logoMark} alt={site.name} className="h-full w-full object-cover" />
+                </span>
+                {/* Always-on green ring around the logo */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -inset-0.5 rounded-2xl border-2 border-[#6BEA32]/70 shadow-[0_0_10px_rgba(107,234,50,0.35)]"
+                />
               </span>
               <div>
                 <p className="text-xl font-semibold tracking-tight">{site.name}</p>
