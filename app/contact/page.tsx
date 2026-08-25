@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { Mail, MapPin, MessageSquareMore, PhoneCall } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, MessageSquareMore, PhoneCall } from 'lucide-react';
 
-import { ContactForm } from '@/components/contact-form';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -133,17 +132,26 @@ export default function ContactPage() {
       <section className="page-section">
         <div className="container-shell grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
-            <Card className="border-border/70 bg-card shadow-sm">
-              <CardContent className="space-y-5 p-6">
+            <Card className="relative overflow-hidden border-border/70 bg-card shadow-sm">
+              <div className="pointer-events-none absolute -inset-x-20 -top-24 h-64 bg-gradient-to-br from-primary/10 via-transparent to-cyan-500/10 blur-2xl" aria-hidden="true" />
+              <CardContent className="relative space-y-5 p-6 text-center sm:p-8">
                 <Badge variant="outline" className="w-fit border-primary/20 bg-primary/10 text-primary">
-                  Send a message
+                  Start a project
                 </Badge>
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground">Tell us about your project.</h2>
-                <p className="text-sm leading-7 text-muted-foreground">
-                  Share your goals, the pages you need, and what a successful launch would look like. The more context we
-                  have, the more useful the first reply will be.
+                <p className="mx-auto max-w-md text-sm leading-7 text-muted-foreground">
+                  Have an idea, a business, or a digital product you want to bring to life? Tell us what you have in mind
+                  and we'll take it from there.
                 </p>
-                <ContactForm />
+                <Button asChild size="lg" className="mt-2 w-full rounded-full sm:w-auto">
+                  <Link href="https://tally.so/r/ODZx98" target="_blank" rel="noopener noreferrer">
+                    Start Your Project
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <p className="text-xs leading-6 text-muted-foreground">
+                  Share your idea, goals, and what you need. It only takes a minute.
+                </p>
               </CardContent>
             </Card>
           </Reveal>
