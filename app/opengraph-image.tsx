@@ -61,7 +61,7 @@ export default function OpenGraphImage() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 22 }}>
           <span style={{ color: 'rgba(255,255,255,0.7)' }}>{site.description}</span>
           <span style={{ padding: '14px 22px', borderRadius: 999, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
-            d-labs.vercel.app
+            dlabskenya.com
           </span>
         </div>
       </div>

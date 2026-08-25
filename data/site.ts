@@ -28,7 +28,7 @@ import founderPortrait from '../images/profile-new.jpeg';
 import logoMark from '../images/logo1.jpg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://d-labs.vercel.app';
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dlabskenya.com';
 
 export const site = {
   name: 'D-LABS',

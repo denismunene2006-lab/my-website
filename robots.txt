@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://denismunene2006-lab.github.io/my-website/sitemap.xml
+Sitemap: https://dlabskenya.com/sitemap.xml
