@@ -3,10 +3,18 @@
 import { useEffect, useState } from 'react';
 import { useLenis } from 'lenis/react';
 
+// Clearance below the sticky header so the card isn't hidden behind it.
+const HEADER_OFFSET = 96;
+
 /**
  * When the blog page loads with a `#slug` hash in the URL (e.g. after a reader
  * clicks "Back to blog" from an article), smoothly scrolls the matching article
  * card into view so they can continue reading where they left off.
+ *
+ * We scroll to an explicitly computed absolute position (element top + window
+ * scroll) rather than handing Lenis the node directly. Lenis's node-based
+ * math reads its internal lerped scroll and can conflict with Next.js's own
+ * native hash jump, which made the landing land on the wrong card.
  */
 export function BlogScrollTo() {
   const lenis = useLenis();
@@ -22,27 +30,29 @@ export function BlogScrollTo() {
     const id = decodeURIComponent(hash.slice(1));
     if (!id) return;
 
-    let attempts = 0;
-    const timer = window.setInterval(() => {
+    const scrollToArticle = () => {
       const target = document.getElementById(id);
+      if (!target) return false;
 
-      if (!target) {
-        // Element may not be mounted yet; give up after ~5s.
-        if (++attempts >= 50) window.clearInterval(timer);
-        return;
-      }
+      const top = target.getBoundingClientRect().top + window.scrollY;
 
-      window.clearInterval(timer);
       if (lenis) {
-        // Offset accounts for the sticky header (~64–72px).
-        lenis.scrollTo(target, { offset: -96, duration: 1.1 });
+        lenis.scrollTo(top, { offset: -HEADER_OFFSET, duration: 1.1 });
       } else {
-        // Reduced-motion / no-Lenis fallback (respects scroll-mt-24).
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Reduced-motion / no-Lenis fallback.
+        window.scrollTo({ top: top - HEADER_OFFSET, behavior: 'smooth' });
       }
-    }, 100);
+      return true;
+    };
 
-    return () => window.clearInterval(timer);
+    // Try right away, and keep retrying briefly in case the card mounts late.
+    if (!scrollToArticle()) {
+      let attempts = 0;
+      const timer = window.setInterval(() => {
+        if (scrollToArticle() || ++attempts >= 50) window.clearInterval(timer);
+      }, 100);
+      return () => window.clearInterval(timer);
+    }
   }, [hash, lenis]);
 
   return null;
