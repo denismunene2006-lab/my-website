@@ -71,7 +71,7 @@ export function WhatsAppButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3">
+    <div className="pointer-events-none fixed bottom-6 right-6 z-[60] flex flex-col items-end gap-3">
       {/* Popup bubble */}
       <div
         className={cn(
@@ -119,7 +119,7 @@ export function WhatsAppButton() {
         onClick={handleClick}
         className={cn(
           'group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_32px_-8px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-105 hover:bg-[#1fb959] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-          showButton ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none translate-y-4 scale-90 opacity-0'
+          showButton ? 'pointer-events-auto translate-y-0 scale-100 opacity-100' : 'pointer-events-none translate-y-4 scale-90 opacity-0'
         )}
         aria-label="Chat with D-LABS on WhatsApp"
       >
