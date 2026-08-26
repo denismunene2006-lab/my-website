@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, BookOpen, Layers3 } from 'lucide-react';
 
 import { BlogCard } from '@/components/blog-card';
+import { BlogScrollTo } from '@/components/blog-scroll-to';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { Badge } from '@/components/ui/badge';
@@ -25,6 +26,7 @@ export default function BlogPage() {
 
   return (
     <div>
+      <BlogScrollTo />
       <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
         <div className="absolute inset-0 section-grid opacity-20" />
         <div className="container-shell relative">
@@ -58,7 +60,7 @@ export default function BlogPage() {
             </Reveal>
 
             <Reveal delay={90}>
-              <Card className="glass-surface border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur-xl">
+              <Card id={featuredArticle.slug} className="glass-surface scroll-mt-24 border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur-xl">
                 <CardContent className="space-y-5 p-6">
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
@@ -134,7 +136,9 @@ export default function BlogPage() {
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {otherArticles.map((post, index) => (
               <Reveal key={post.slug} delay={index * 70}>
-                <BlogCard post={post} />
+                <div id={post.slug} className="scroll-mt-24">
+                  <BlogCard post={post} />
+                </div>
               </Reveal>
             ))}
           </div>

@@ -74,7 +74,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       <div className="container-shell">
         <Reveal>
           <Link
-            href="/blog"
+            href={`/blog#${article.slug}`}
             className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-muted hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -160,7 +160,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                       </Link>
                     </Button>
                     <Button asChild variant="outline" className="rounded-full">
-                      <Link href="/blog">More articles</Link>
+                      <Link href={`/blog#${article.slug}`}>More articles</Link>
                     </Button>
                   </div>
                 </CardContent>
