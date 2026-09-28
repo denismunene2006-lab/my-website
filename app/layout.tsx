@@ -90,6 +90,7 @@ export const viewport: Viewport = {
 };
 
 import { ThemeProvider } from '@/components/theme-provider';
+import { NeuralBackground } from '@/components/neural-background';
 
 export default function RootLayout({
   children,
@@ -149,13 +150,14 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
         <ThemeProvider defaultTheme="dark">
+          <NeuralBackground />
           <SmoothScrollProvider>
             <ScrollProgress />
             <a href="#main-content" className="skip-link">
               Skip to content
             </a>
             <JsonLd data={organizationJsonLd} />
-            <div className="flex min-h-screen flex-col">
+            <div className="flex min-h-screen flex-col relative z-10">
               <SiteHeader />
               <main id="main-content" className="flex-1">
                 {children}
