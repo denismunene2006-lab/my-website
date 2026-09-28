@@ -114,17 +114,19 @@ h1, h2, h3, h4, h5, h6 {
   @apply py-16 sm:py-20 lg:py-24;
 }
 
-/* Technical grid background overlay */
+/* Technical dot matrix & glowing cybernetic background */
 .tech-grid-pattern {
-  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16, 185, 129, 0.12), transparent 70%),
+    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.22) 1.2px, transparent 0);
+  background-size: 100% 100%, 24px 24px;
 }
 
 .dark .tech-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(16, 185, 129, 0.18), transparent 75%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1.2px, transparent 0);
+  background-size: 100% 100%, 24px 24px;
 }
 
 /* Glass panel */
