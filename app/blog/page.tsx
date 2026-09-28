@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, BookOpen, Layers3 } from 'lucide-react';
+import { ArrowUpRight, BookOpen } from 'lucide-react';
 
 import { BlogCard } from '@/components/blog-card';
 import { BlogScrollTo } from '@/components/blog-scroll-to';
@@ -27,68 +27,64 @@ export default function BlogPage() {
   return (
     <div>
       <BlogScrollTo />
-      <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
-        <div className="absolute inset-0 section-grid opacity-20" />
-        <div className="container-shell relative">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-            <Reveal>
-              <div className="max-w-2xl space-y-6">
-                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
-                  Insights
-                </Badge>
-                <div className="space-y-4">
-                  <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl">
-                    Practical thinking for modern web teams and ambitious businesses.
-                  </h1>
-                  <p className="text-lg leading-8 text-white/80">
-                    The blog shares the ideas behind fast, accessible, conversion-focused websites and the growth thinking
-                    that supports them.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild size="lg">
-                    <Link href={`/blog/${featuredArticle.slug}`}>
-                      Read featured article
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
-                    <Link href="/contact">Talk to D-LABS</Link>
-                  </Button>
-                </div>
+      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
+        <div className="container-shell relative z-10 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+          <Reveal>
+            <div className="max-w-2xl space-y-6">
+              <Badge variant="accent" className="px-3 py-1 text-xs uppercase font-semibold">
+                Insights &amp; Engineering
+              </Badge>
+              <div className="space-y-3">
+                <h1 className="font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
+                  Practical thinking for <span className="text-primary font-black">modern web teams</span>.
+                </h1>
+                <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  Explore articles on web development rules, site performance, conversion optimization, and digital strategy.
+                </p>
               </div>
-            </Reveal>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild size="lg" className="rounded-xl">
+                  <Link href={`/blog/${featuredArticle.slug}`}>
+                    Read featured
+                    <ArrowUpRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
+                  <Link href="/contact">Talk to D-LABS</Link>
+                </Button>
+              </div>
+            </div>
+          </Reveal>
 
-            <Reveal delay={90}>
-              <Card id={featuredArticle.slug} className="glass-surface scroll-mt-24 border-white/20 bg-white/10 text-white shadow-2xl backdrop-blur-xl">
-                <CardContent className="space-y-5 p-6">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
-                      <BookOpen className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.22em] text-white/70">Reading list</p>
-                      <p className="text-lg font-semibold tracking-tight text-white">Articles that stay useful</p>
-                    </div>
+          <Reveal delay={90}>
+            <Card id={featuredArticle.slug} className="scroll-mt-24 border-border/60 bg-card/80 backdrop-blur-xl shadow-md p-6">
+              <CardContent className="space-y-4 p-0">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                    <BookOpen className="h-5 w-5" />
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {categories.map((category) => (
-                      <Badge key={category} variant="glass" className="border-white/20 bg-white/10 text-white">
-                        {category}
-                      </Badge>
-                    ))}
+                  <div>
+                    <p className="text-[10px] uppercase font-semibold tracking-wider text-muted-foreground">Reading list</p>
+                    <p className="text-base font-bold font-heading text-foreground">Curated tech articles</p>
                   </div>
-                  <p className="text-sm leading-7 text-white/70">
-                    The content stays practical on purpose, because helpful writing builds credibility faster than generic marketing.
-                  </p>
-                </CardContent>
-              </Card>
-            </Reveal>
-          </div>
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {categories.map((category) => (
+                    <Badge key={category} variant="outline" className="text-[11px]">
+                      {category}
+                    </Badge>
+                  ))}
+                </div>
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  Practical engineering, performance tips, and actionable digital guidance for growing businesses.
+                </p>
+              </CardContent>
+            </Card>
+          </Reveal>
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-b border-border/40">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
@@ -99,23 +95,33 @@ export default function BlogPage() {
           </Reveal>
           <div className="mt-10">
             <Reveal>
-              <Card className="overflow-hidden border-border/70 bg-card shadow-soft">
+              <Card className="overflow-hidden border-border/60 bg-card shadow-sm hover:border-primary/30 transition-colors">
                 <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
                   <ImageHero image={featuredArticle.image} title={featuredArticle.title} />
-                  <CardContent className="space-y-5 p-6 sm:p-8">
-                    <Badge variant="outline">{featuredArticle.category}</Badge>
-                    <h2 className="text-3xl font-semibold tracking-tight text-foreground">{featuredArticle.title}</h2>
-                    <p className="text-sm leading-7 text-muted-foreground">{featuredArticle.subtitle}</p>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <CardContent className="space-y-4 p-6 sm:p-8 flex flex-col justify-center">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="accent" className="text-[10px] uppercase font-semibold">
+                        {featuredArticle.category}
+                      </Badge>
+                      <Badge variant="default" className="text-[10px] uppercase font-semibold">
+                        Featured
+                      </Badge>
+                    </div>
+                    <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground">{featuredArticle.title}</h2>
+                    <p className="text-xs leading-relaxed text-muted-foreground">{featuredArticle.subtitle}</p>
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground pt-1">
                       <span>{featuredArticle.date}</span>
+                      <span>•</span>
                       <span>{featuredArticle.readTime}</span>
                     </div>
-                    <Button asChild className="rounded-full">
-                      <Link href={`/blog/${featuredArticle.slug}`}>
-                        Read article
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <div className="pt-2">
+                      <Button asChild size="sm">
+                        <Link href={`/blog/${featuredArticle.slug}`}>
+                          Read full article
+                          <ArrowUpRight className="h-3.5 w-3.5 ml-1" />
+                        </Link>
+                      </Button>
+                    </div>
                   </CardContent>
                 </div>
               </Card>
@@ -128,15 +134,15 @@ export default function BlogPage() {
         <div className="container-shell">
           <Reveal>
             <SectionHeading
-              eyebrow="More reading"
-              title="Every article is written to be practical, not fluffy."
-              description="These pieces support the broader site strategy by helping visitors understand how D-LABS thinks and builds."
+              eyebrow="More articles"
+              title="All published insights."
+              description="Browse practical guides on performance, SEO, web strategy, and design systems."
             />
           </Reveal>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {otherArticles.map((post, index) => (
-              <Reveal key={post.slug} delay={index * 70}>
-                <div id={post.slug} className="scroll-mt-24">
+              <Reveal key={post.slug} delay={index * 60}>
+                <div id={post.slug} className="scroll-mt-24 h-full">
                   <BlogCard post={post} />
                 </div>
               </Reveal>
@@ -145,27 +151,27 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-t border-border/40">
         <div className="container-shell">
-          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
-            <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:p-12">
-              <div className="space-y-4">
-                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+          <Card className="overflow-hidden border-border/60 bg-card shadow-md p-8 sm:p-10">
+            <CardContent className="grid gap-6 p-0 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div className="space-y-3">
+                <Badge variant="accent" className="text-xs uppercase font-semibold">
                   Keep learning
                 </Badge>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  If you need a site that looks as good as the ideas behind it, let’s talk.
+                <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
+                  Ready to turn these insights into a high-performing website?
                 </h2>
-                <p className="max-w-2xl text-base leading-8 text-white/72">
-                  We can help turn the lessons from the blog into a better website that is easier to trust and easier to use.
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  Let D-LABS design and build a modern web application for your brand.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg">
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Button asChild size="lg" className="rounded-xl">
                   <Link href="/contact">Contact D-LABS</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
-                  <Link href="/projects">See the portfolio</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
+                  <Link href="/projects">See portfolio</Link>
                 </Button>
               </div>
             </CardContent>
@@ -178,16 +184,18 @@ export default function BlogPage() {
 
 function ImageHero({ image, title }: { image: (typeof articles)[number]['image']; title: string }) {
   return (
-    <div className="relative min-h-[320px] overflow-hidden border-b border-border/60 bg-slate-950 lg:min-h-full lg:border-b-0 lg:border-r">
+    <div className="relative min-h-[260px] overflow-hidden border-b border-border/50 bg-muted/30 lg:min-h-full lg:border-b-0 lg:border-r">
       <Image
         src={image}
         alt={title}
         className="h-full w-full object-cover object-center"
         priority
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent" />
-      <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.22em] text-white/80 backdrop-blur">
-        D-LABS Writing
+      <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+      <div className="absolute left-4 top-4">
+        <Badge variant="accent" className="text-[10px] uppercase font-semibold">
+          D-LABS Article
+        </Badge>
       </div>
     </div>
   );

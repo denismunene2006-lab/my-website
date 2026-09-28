@@ -61,47 +61,56 @@ const aboutTimeline = [
 export default function AboutPage() {
   return (
     <div>
-      <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white py-20 lg:py-32">
-        <div className="absolute inset-0 section-grid opacity-20" />
-        <div className="container-shell relative">
-          <div className="grid gap-10 lg:items-center">
-            <Reveal delay={90}>
-              <div className="max-w-2xl space-y-6">
-                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
-                  About D-LABS
-                </Badge>
-                <div className="space-y-4">
-                  <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl">
-                    Designing digital experiences that feel premium and practical.
-                  </h1>
-                  <p className="text-lg leading-8 text-white/80">{site.aboutIntro}</p>
-                  <p className="text-lg leading-8 text-white/80">{founderStory}</p>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild size="lg">
-                    <Link href="/contact">
-                      Start a project
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
-                    <Link href="/projects">View the portfolio</Link>
-                  </Button>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {['Founder-led studio', 'Kenya-focused', 'Startup-quality UI'].map((item) => (
-                    <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/70 backdrop-blur">
-                      {item}
-                    </div>
-                  ))}
-                </div>
+      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
+        <div className="container-shell relative z-10">
+          <div className="max-w-3xl space-y-6">
+            <Reveal>
+              <Badge variant="accent" className="px-3 py-1 text-xs uppercase font-semibold">
+                About D-LABS
+              </Badge>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <h1 className="font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
+                Designing digital experiences that feel <span className="text-primary font-black">premium &amp; practical</span>.
+              </h1>
+            </Reveal>
+
+            <Reveal delay={140}>
+              <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                <p>{site.aboutIntro}</p>
+                <p>{founderStory}</p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Button asChild size="lg" className="rounded-xl">
+                  <Link href="/contact">
+                    Start a project
+                    <ArrowUpRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
+                  <Link href="/projects">View portfolio</Link>
+                </Button>
+              </div>
+            </Reveal>
+
+            <Reveal delay={260}>
+              <div className="grid gap-3 sm:grid-cols-3 pt-4">
+                {['Founder-led studio', 'Kenya-focused', '2026 tech design'].map((item) => (
+                  <div key={item} className="rounded-xl border border-border/60 bg-card/80 px-3.5 py-2.5 text-xs font-semibold text-foreground/90 backdrop-blur shadow-sm text-center">
+                    {item}
+                  </div>
+                ))}
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-b border-border/40">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
@@ -110,17 +119,17 @@ export default function AboutPage() {
               description="D-LABS is guided by standards that align engineering quality with real business goals."
             />
           </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {aboutTimeline.map((item, index) => (
-              <Reveal key={item.title} delay={index * 70}>
-                <Card className="border-border/70 bg-card shadow-sm">
-                  <CardContent className="p-6 space-y-4">
-                    <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+              <Reveal key={item.title} delay={index * 60}>
+                <Card className="border-border/60 bg-card shadow-sm hover:border-primary/40 hover-lift">
+                  <CardContent className="p-6 space-y-3">
+                    <Badge variant="accent" className="text-[10px] font-semibold uppercase tracking-wider">
                       {item.year}
-                    </span>
+                    </Badge>
                     <div>
-                      <h3 className="text-lg font-semibold tracking-tight text-foreground">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                      <h3 className="text-lg font-bold font-heading tracking-tight text-foreground">{item.title}</h3>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{item.text}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -139,18 +148,18 @@ export default function AboutPage() {
               description="The site should be fast to scan, pleasant to use, and easy to extend long after launch."
             />
           </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
             {principles.map((principle, index) => {
               const Icon = principle.icon;
               return (
-                <Reveal key={principle.title} delay={index * 70}>
-                  <Card className="h-full border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
-                    <CardContent className="space-y-4 p-6">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
+                <Reveal key={principle.title} delay={index * 60}>
+                  <Card className="h-full border-border/60 bg-card shadow-sm hover:border-primary/40 hover-lift">
+                    <CardContent className="space-y-3 p-5">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="text-xl font-semibold tracking-tight text-foreground">{principle.title}</h3>
-                      <p className="text-sm leading-7 text-muted-foreground">{principle.description}</p>
+                      <h3 className="text-lg font-bold font-heading tracking-tight text-foreground">{principle.title}</h3>
+                      <p className="text-xs leading-relaxed text-muted-foreground">{principle.description}</p>
                     </CardContent>
                   </Card>
                 </Reveal>
@@ -160,26 +169,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-t border-border/40">
         <div className="container-shell">
-          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
-            <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:p-12">
-              <div className="space-y-4">
-                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+          <Card className="overflow-hidden border-border/60 bg-card shadow-md p-8 sm:p-10">
+            <CardContent className="grid gap-6 p-0 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div className="space-y-3">
+                <Badge variant="accent" className="text-xs uppercase font-semibold">
                   Let’s collaborate
                 </Badge>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Ready for a website that feels more polished, clear, and trustworthy?
+                <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
+                  Ready for a website that feels polished, modern, and trustworthy?
                 </h2>
-                <p className="max-w-2xl text-base leading-8 text-white/72">
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
                   We keep the process focused and practical so you can get a better website without unnecessary friction.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg">
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Button asChild size="lg" className="rounded-xl">
                   <Link href="/contact">Start a conversation</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/12">
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
                   <Link href="/services">View services</Link>
                 </Button>
               </div>

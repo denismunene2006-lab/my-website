@@ -2,47 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 132 46% 98%;
-  --foreground: 214 31% 7%;
-  --card: 0 0% 100%;
-  --card-foreground: 214 31% 7%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 214 31% 7%;
-  --primary: 139 76% 38%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 120 24% 93%;
-  --secondary-foreground: 214 31% 12%;
-  --muted: 126 21% 94%;
-  --muted-foreground: 214 12% 35%;
-  --accent: 99 81% 56%;
-  --accent-foreground: 214 31% 10%;
-  --border: 130 16% 86%;
-  --input: 130 16% 84%;
-  --ring: 139 76% 38%;
-  --radius: 1.125rem;
-  --font-body: 'Manrope', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Sora', 'Manrope', ui-sans-serif, system-ui, sans-serif;
-}
+@layer base {
+  :root {
+    /* 2026 Light Mode - Clean, Minimal Tech Aesthetic */
+    --background: 210 40% 98%;      /* #F8FAFC */
+    --foreground: 222 47% 11%;      /* #0F172A */
+    
+    --card: 0 0% 100%;             /* #FFFFFF */
+    --card-foreground: 222 47% 11%; /* #0F172A */
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* D-LABS Emerald Green Accent */
+    --primary: 160 84% 39%;         /* #10B981 / Emerald 500 */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 40% 96.1%;     /* #F1F5F9 */
+    --secondary-foreground: 222 47% 11%;
+    
+    --muted: 210 40% 95%;          /* #E2E8F0 / #F1F5F9 */
+    --muted-foreground: 215.4 16.3% 42%; /* #64748B */
+    
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 214.3 31.8% 90%;      /* #E2E8F0 */
+    --input: 214.3 31.8% 90%;       /* #E2E8F0 */
+    --ring: 160 84% 39%;
+    
+    --radius: 0.875rem;             /* 14px refined radius */
+    
+    --font-body: 'Inter', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Sora', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
 
-.dark {
-  --background: 214 31% 7%;
-  --foreground: 210 40% 98%;
-  --card: 214 25% 10%;
-  --card-foreground: 210 40% 98%;
-  --popover: 214 25% 10%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 99 81% 56%;
-  --primary-foreground: 214 31% 7%;
-  --secondary: 214 18% 18%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 214 18% 16%;
-  --muted-foreground: 215 20% 67%;
-  --accent: 139 76% 38%;
-  --accent-foreground: 210 40% 98%;
-  --border: 214 20% 22%;
-  --input: 214 20% 22%;
-  --ring: 99 81% 56%;
+  .dark {
+    /* 2026 Dark Mode - Premium, Technical Obsidian Aesthetic */
+    --background: 224 50% 6%;       /* #090D16 - Deep obsidian slate */
+    --foreground: 210 40% 98%;      /* #F8FAFC */
+    
+    --card: 223 36% 11%;            /* #101726 - Sleek technical card */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 223 36% 11%;
+    --popover-foreground: 210 40% 98%;
+    
+    /* D-LABS Vibrant Green Accent in Dark Mode */
+    --primary: 160 84% 39%;         /* #10B981 */
+    --primary-foreground: 224 50% 6%;
+    
+    --secondary: 222 30% 16%;       /* #1E2638 */
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20.2% 65.1%; /* #94A3B8 */
+    
+    --accent: 160 84% 39%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 222 25% 18%;          /* #1E293B/80 */
+    --input: 222 25% 18%;
+    --ring: 160 84% 39%;
+  }
 }
 
 * {
@@ -51,7 +79,6 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
 }
 
 html.lenis {
@@ -63,48 +90,20 @@ html.lenis body {
   height: auto;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
 body {
-  @apply min-h-screen text-foreground antialiased;
+  @apply min-h-screen text-foreground antialiased selection:bg-primary/20 selection:text-primary;
   font-family: var(--font-body);
-  background:
-    radial-gradient(circle at 8% 0%, rgba(107, 234, 50, 0.14), transparent 24%),
-    radial-gradient(circle at 92% 2%, rgba(24, 169, 75, 0.14), transparent 26%),
-    linear-gradient(180deg, #f8fff7 0%, #eef9f0 50%, #f8fff7 100%);
+  background-color: hsl(var(--background));
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  letter-spacing: -0.04em;
-}
-
-::selection {
-  background: rgba(107, 234, 50, 0.26);
-  color: rgb(11, 15, 20);
-}
-
-a {
-  @apply transition-colors duration-200;
-}
-
-img {
-  @apply select-none;
+  letter-spacing: -0.03em;
 }
 
 .skip-link {
-  @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-4 focus:py-2 focus:text-background;
+  @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:shadow-lg;
 }
 
 .container-shell {
@@ -115,64 +114,56 @@ img {
   @apply py-16 sm:py-20 lg:py-24;
 }
 
-.section-grid {
-  background-image: linear-gradient(to right, rgba(107, 234, 50, 0.07) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(107, 234, 50, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
+/* Technical grid background overlay */
+.tech-grid-pattern {
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-.premium-hero {
-  background:
-    radial-gradient(circle at 20% -10%, rgba(107, 234, 50, 0.38), transparent 38%),
-    radial-gradient(circle at 86% 12%, rgba(24, 169, 75, 0.35), transparent 36%),
-    linear-gradient(170deg, #0b0f14 0%, #101923 38%, #0d151d 100%);
+.dark .tech-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-.glass-surface {
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(16px);
+/* Glass panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.floating-orb {
-  animation: float-orb 9s ease-in-out infinite;
+.dark .glass-panel {
+  background: rgba(16, 23, 38, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@keyframes float-orb {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -14px, 0);
-  }
+/* Green accent subtle glow */
+.accent-glow {
+  box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
 }
 
-.ticker-row {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+.dark .accent-glow {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.3);
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* Smooth micro-interactions */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
 }
 
-.ticker-paused:hover .ticker-row {
-  animation-play-state: paused;
+.hover-lift:hover {
+  transform: translateY(-2px);
 }
 
 .reveal {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
+  transform: translate3d(0, 16px, 0);
   transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.is-visible {
@@ -184,15 +175,12 @@ img {
   html {
     scroll-behavior: auto;
   }
-
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-
-  .floating-orb,
-  .ticker-row {
-    animation: none;
+  .hover-lift:hover {
+    transform: none;
   }
 }

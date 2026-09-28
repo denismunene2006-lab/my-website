@@ -1,18 +1,18 @@
 /* Modern CSS Variables */
 :root {
-    --primary: #5B21B6;
-    --primary-dark: #4C1D95;
-    --primary-light: #A855F7;
-    --secondary: #0f172a;
-    --accent: #06B6D4;
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: #34d399;
+    --secondary: #090d16;
+    --accent: #10b981;
     --background: #f8fafc;
     --surface: #ffffff;
-    --text-main: #1e293b;
+    --text-main: #0f172a;
     --text-light: #64748b;
     --text-lighter: #94a3b8;
-    --gradient: linear-gradient(135deg, #5B21B6 0%, #A855F7 50%, #06B6D4 100%);
-    --gradient-soft: linear-gradient(135deg, #5B21B6 0%, #7C3AED 100%);
-    --gradient-cyan: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+    --gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    --gradient-soft: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    --gradient-cyan: linear-gradient(135deg, #10b981 0%, #059669 100%);
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
     --shadow-md: 0 8px 16px -2px rgb(0 0 0 / 0.12);
     --shadow-lg: 0 16px 24px -4px rgb(0 0 0 / 0.15);

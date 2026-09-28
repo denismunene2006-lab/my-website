@@ -1,92 +1,92 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowUpRight, Mail, MapPin, PhoneCall } from 'lucide-react';
 
-import { brandAssets, navigation, site } from '@/data/site';
+import { navigation, site } from '@/data/site';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#070a0f] text-white">
-      <div className="container-shell py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="relative block shrink-0">
-                <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-white/20 bg-white/10">
-                  <Image src={brandAssets.logoMark} alt={site.name} className="h-full w-full object-cover" />
-                </span>
-                {/* Always-on green ring around the logo */}
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -inset-0.5 rounded-2xl border-2 border-[#6BEA32]/70 shadow-[0_0_10px_rgba(107,234,50,0.35)]"
-                />
+    <footer className="border-t border-border/60 bg-card/60 text-foreground transition-colors duration-200">
+      <div className="container-shell py-14 sm:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
+          <div className="space-y-5">
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold font-heading tracking-tighter text-foreground">
+                D<span className="text-primary font-black mx-[1px]">-</span>LABS
               </span>
-              <div>
-                <p className="text-xl font-semibold tracking-tight">{site.name}</p>
-                <p className="text-sm text-white/65">{site.tagline}</p>
-              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+                Operational
+              </span>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-white/72">
-              {site.description} Built for businesses in Embu, Nairobi, and across Kenya.
+
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              {site.description} Delivering modern digital experiences for clients in Embu, Nairobi, and across Kenya.
             </p>
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="glass">Fast delivery</Badge>
-              <Badge variant="glass">Responsive design</Badge>
-              <Badge variant="glass">SEO foundations</Badge>
-              <Badge variant="glass">Ongoing support</Badge>
+
+            <div className="flex flex-wrap gap-1.5">
+              <Badge variant="outline" className="text-[11px]">Fast Builds</Badge>
+              <Badge variant="outline" className="text-[11px]">Mobile First</Badge>
+              <Badge variant="outline" className="text-[11px]">SEO Optimized</Badge>
+              <Badge variant="outline" className="text-[11px]">Ongoing Support</Badge>
             </div>
-            <Button asChild className="rounded-full">
+
+            <Button asChild size="sm" className="rounded-lg">
               <Link href="/contact">
-                Let’s talk
-                <ArrowUpRight className="h-4 w-4" />
+                Start a project
+                <ArrowUpRight className="h-3.5 w-3.5 ml-1" />
               </Link>
             </Button>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.24em] text-white/55">Quick links</h2>
-            <nav className="flex flex-col gap-3" aria-label="Footer navigation">
+          <div className="space-y-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h2>
+            <nav className="flex flex-col gap-2.5" aria-label="Footer navigation">
               {navigation.map((item) => (
-                <Link key={item.href} href={item.href} className="text-sm text-white/75 transition hover:text-white">
+                <Link key={item.href} href={item.href} className="text-sm text-foreground/80 transition hover:text-primary">
                   {item.label}
                 </Link>
               ))}
             </nav>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.24em] text-white/55">Services</h2>
-            <div className="flex flex-col gap-3 text-sm text-white/75">
-              <Link href="/services" className="transition hover:text-white">Website Development</Link>
-              <Link href="/services" className="transition hover:text-white">Website Redesign</Link>
-              <Link href="/services" className="transition hover:text-white">Deployment Support</Link>
-              <Link href="/services" className="transition hover:text-white">Developer Training</Link>
+          <div className="space-y-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Services</h2>
+            <div className="flex flex-col gap-2.5 text-sm text-foreground/80">
+              <Link href="/services" className="transition hover:text-primary">Website Development</Link>
+              <Link href="/services" className="transition hover:text-primary">Website Redesign</Link>
+              <Link href="/services" className="transition hover:text-primary">GitHub Deployment</Link>
+              <Link href="/services" className="transition hover:text-primary">Developer Training</Link>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.24em] text-white/55">Contact</h2>
-            <div className="space-y-3 text-sm text-white/75">
-              <a href={`mailto:${site.email}`} className="flex items-center gap-3 transition hover:text-white">
-                <Mail className="h-4 w-4" />
+          <div className="space-y-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</h2>
+            <div className="space-y-2.5 text-sm text-foreground/80">
+              <a href={`mailto:${site.email}`} className="flex items-center gap-2.5 transition hover:text-primary">
+                <Mail className="h-4 w-4 text-primary" />
                 {site.email}
               </a>
-              <a href={`tel:${site.phone}`} className="flex items-center gap-3 transition hover:text-white">
-                <PhoneCall className="h-4 w-4" />
+              <a href={`tel:${site.phone}`} className="flex items-center gap-2.5 transition hover:text-primary">
+                <PhoneCall className="h-4 w-4 text-primary" />
                 {site.phone}
               </a>
-              <span className="flex items-center gap-3">
-                <MapPin className="h-4 w-4" />
+              <span className="flex items-center gap-2.5">
+                <MapPin className="h-4 w-4 text-primary" />
                 {site.location}
               </span>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-sm text-white/55">
+        <div className="mt-12 border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground gap-4">
           <p>© 2026 D-LABS. All rights reserved.</p>
+          <p className="flex items-center gap-2">
+            <span>Built by Denis Munene</span>
+            <span>•</span>
+            <span className="text-primary font-medium">Embu, Kenya</span>
+          </p>
         </div>
       </div>
     </footer>

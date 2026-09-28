@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 
 import { HeroStatsGrid } from '@/components/hero-stats-grid';
 import { Reveal } from '@/components/reveal';
@@ -25,7 +25,7 @@ import {
 } from '@/data/site';
 
 export const metadata = createPageMetadata({
-  title: 'D-LABS | Web Development Company in Embu, Kenya',
+  title: 'D-LABS | Modern Software & Web Development Studio in Embu, Kenya',
   description:
     'D-LABS builds fast, modern, SEO-friendly websites and web apps for businesses in Embu, Nairobi, and across Kenya.',
   path: '/',
@@ -33,52 +33,48 @@ export const metadata = createPageMetadata({
 
 function Hero() {
   return (
-    <section className="premium-hero relative overflow-hidden border-b border-white/10 text-white">
-      <div className="floating-orb absolute -left-10 top-28 h-56 w-56 rounded-full bg-[#6BEA32]/20 blur-3xl" />
-      <div className="floating-orb absolute right-10 top-16 h-48 w-48 rounded-full bg-[#18A94B]/30 blur-3xl" />
-      <div className="absolute inset-0 section-grid opacity-20" />
-
-      <div className="container-shell relative py-20 lg:py-32">
-        <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-          <div className="space-y-7">
+    <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-28 tech-grid-pattern">
+      <div className="container-shell relative z-10">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-6">
             <Reveal>
-              <Badge variant="glass" className="inline-flex border-white/20 bg-white/10 text-white">
-                Digital Solutions & Innovation
+              <Badge variant="accent" className="gap-1.5 py-1 px-3">
+                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                Digital Solutions &amp; Innovation
               </Badge>
             </Reveal>
 
-            <Reveal delay={90}>
-              <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-                Build the Future with D-LABS
+            <Reveal delay={80}>
+              <h1 className="font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.1]">
+                Engineering modern digital solutions with <span className="text-primary font-black">D-LABS</span>
               </h1>
             </Reveal>
 
-            <Reveal delay={160}>
-              <p className="max-w-2xl text-lg leading-8 text-white/82 sm:text-xl">
-                We create modern digital solutions, innovative software, professional websites, mobile applications and
-                technology that empowers businesses and individuals.
+            <Reveal delay={140}>
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                We design and engineer high-performance web applications, modern business platforms, and conversion-focused websites for ambitious clients.
               </p>
             </Reveal>
 
-            <Reveal delay={220}>
-              <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
+            <Reveal delay={200}>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Button asChild size="lg" className="rounded-xl">
                   <Link href="/contact">
-                    Get Started
-                    <ArrowUpRight className="h-4 w-4" />
+                    Start a project
+                    <ArrowUpRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
-                  <Link href="/services">Explore Services</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
+                  <Link href="/services">Explore services</Link>
                 </Button>
               </div>
             </Reveal>
 
-            <Reveal delay={290}>
-              <div className="flex flex-wrap gap-2">
+            <Reveal delay={260}>
+              <div className="flex flex-wrap gap-2 pt-2">
                 {heroHighlights.map((item) => (
-                  <Badge key={item} variant="glass" className="gap-2 border-white/20 bg-white/10 text-white">
-                    <CheckCircle2 className="h-4 w-4 text-[#6BEA32]" />
+                  <Badge key={item} variant="glass" className="gap-1.5 py-1 px-2.5 text-xs text-foreground/90 font-medium">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
                     {item}
                   </Badge>
                 ))}
@@ -86,11 +82,11 @@ function Hero() {
             </Reveal>
           </div>
 
-          <Reveal delay={120}>
-            <div className="glass-surface rounded-[2rem] p-6 shadow-soft">
+          <Reveal delay={100}>
+            <div className="rounded-2xl border border-border/60 bg-card/80 p-6 backdrop-blur-xl shadow-md space-y-5">
               <HeroStatsGrid stats={heroStats} />
-              <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4">
-                <p className="text-sm leading-7 text-white/80">{site.aboutMission}</p>
+              <div className="rounded-xl border border-border/50 bg-muted/40 p-4">
+                <p className="text-xs leading-relaxed text-muted-foreground">{site.aboutMission}</p>
               </div>
             </div>
           </Reveal>
@@ -154,12 +150,12 @@ export default function HomePage() {
               const Icon = result.icon;
               return (
                 <Reveal key={result.title} delay={index * 70}>
-                  <Card className="h-full border-border/70 bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                  <Card className="h-full border-border/60 bg-card p-6 transition-all duration-200 hover:border-primary/40 hover-lift">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="mt-5 text-xl font-semibold tracking-tight text-foreground">{result.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{result.description}</p>
+                    <h3 className="mt-4 text-lg font-bold font-heading tracking-tight text-foreground">{result.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{result.description}</p>
                   </Card>
                 </Reveal>
               );
@@ -168,12 +164,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/35">
+      <section className="page-section bg-muted/20 border-y border-border/40">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
               eyebrow="Services"
-              title="Premium service cards for practical business outcomes."
+              title="Built for practical business outcomes."
               description="Each offering keeps your existing goals intact while elevating quality, performance, and user trust."
             />
           </Reveal>
@@ -189,55 +185,46 @@ export default function HomePage() {
 
       <section className="page-section overflow-hidden">
         <div className="container-shell">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-x-20 lg:gap-y-6">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-x-16">
             <Reveal className="order-1 lg:col-start-1 lg:row-start-1">
-              <Badge
-                variant="outline"
-                className="border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
-              >
+              <Badge variant="accent" className="px-3 py-1 text-xs uppercase font-semibold tracking-wider">
                 Meet the Developer
               </Badge>
             </Reveal>
 
             <Reveal delay={90} className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2">
               <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-                <div
-                  aria-hidden="true"
-                  className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/25 blur-2xl"
-                />
-                <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card p-2.5 shadow-soft">
+                <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card p-2 shadow-sm">
                   <Image
                     src={brandAssets.founderPortrait}
                     alt={`${site.founderName}, founder of D-Labs`}
                     width={1196}
                     height={1600}
                     priority
-                    className="aspect-[3/4] w-full rounded-[1.6rem] object-cover object-top"
+                    className="aspect-[3/4] w-full rounded-xl object-cover object-top"
                   />
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={90} className="order-3 lg:col-start-1 lg:row-start-2">
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <h2 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+              <div className="space-y-5">
+                <div className="space-y-2">
+                  <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                     Hi, I&apos;m Denis Munene
                   </h2>
-                  <p className="text-lg font-medium text-primary">Founder &amp; Developer of D-Labs</p>
+                  <p className="text-base font-semibold text-primary">Founder &amp; Lead Developer of D-LABS</p>
                 </div>
 
-                <p className="max-w-xl text-base leading-8 text-muted-foreground">
-                  I design and build modern digital products from the first line of code to the final
-                  launch. I care about the small details that make software feel fast, reliable, and
-                  genuinely useful — and I treat every project like it&apos;s my own.
+                <p className="max-w-xl text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  I design and build modern digital products from the first line of code to final deployment. I care about the technical details that make software feel fast, reliable, and genuinely useful.
                 </p>
 
-                <ul className="grid gap-3 sm:grid-cols-3">
+                <ul className="grid gap-2.5 sm:grid-cols-3">
                   {developerHighlights.map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-2.5 rounded-2xl border border-border/70 bg-card px-4 py-3 text-sm font-medium text-foreground shadow-soft"
+                      className="flex items-center gap-2 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-xs font-semibold text-foreground shadow-sm"
                     >
                       <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
                       {item}
@@ -245,18 +232,18 @@ export default function HomePage() {
                   ))}
                 </ul>
 
-                <blockquote className="border-l-2 border-primary/40 pl-5">
-                  <p className="text-base italic leading-7 text-muted-foreground">
-                    &ldquo;Code is how I bring ideas to life and create impact.&rdquo;
+                <blockquote className="border-l-2 border-primary/50 pl-4 py-1">
+                  <p className="text-sm italic text-muted-foreground">
+                    &ldquo;Code is how I bring ideas to life and solve real business problems.&rdquo;
                   </p>
-                  <footer className="mt-2 text-sm font-medium text-foreground">— Denis Munene</footer>
+                  <footer className="mt-1 text-xs font-semibold text-foreground">— Denis Munene</footer>
                 </blockquote>
 
-                <div className="pt-1">
-                  <Button asChild size="lg" className="group gap-2">
+                <div className="pt-2">
+                  <Button asChild size="lg" className="rounded-xl">
                     <Link href="/contact">
                       Let&apos;s Connect
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      <ArrowUpRight className="h-4 w-4 ml-1" />
                     </Link>
                   </Button>
                 </div>
@@ -266,16 +253,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/35">
+      <section className="page-section bg-muted/20 border-y border-border/40">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
               eyebrow="Testimonials"
               title="What clients say after launch."
-              description="Auto-sliding testimonial cards showcase outcomes while keeping motion subtle and accessible."
+              description="Real feedback from small businesses, startups, and clients across Kenya."
             />
           </Reveal>
-          <div className="mt-10">
+          <div className="mt-8">
             <Reveal>
               <TestimonialsCarousel testimonials={testimonials} />
             </Reveal>
@@ -285,26 +272,25 @@ export default function HomePage() {
 
       <section className="page-section">
         <div className="container-shell">
-          <Card className="premium-hero overflow-hidden border-transparent text-white shadow-2xl">
-            <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:p-12">
-              <div className="space-y-4">
-                <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
+          <Card className="overflow-hidden border-border/60 bg-gradient-to-r from-card via-muted/30 to-card shadow-lg p-8 sm:p-10">
+            <CardContent className="grid gap-6 p-0 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div className="space-y-3">
+                <Badge variant="accent" className="text-xs uppercase font-semibold">
                   Ready to build?
                 </Badge>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Let&apos;s design and launch a website that feels premium, modern, and conversion-ready.
+                <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
+                  Let&apos;s design and launch a website that feels modern, fast, and credible.
                 </h2>
-                <p className="max-w-2xl text-base leading-8 text-white/78">
-                  Whether you need a fresh launch, a redesign, or product-level improvements, D-LABS can help you move
-                  fast without sacrificing quality.
+                <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                  Whether you need a fresh launch, a redesign, or technical improvements, D-LABS will help you ship with confidence.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <Button asChild size="lg">
-                  <Link href="/contact">Get Started</Link>
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Button asChild size="lg" className="rounded-xl">
+                  <Link href="/contact">Get started</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
-                  <Link href="/pricing">See pricing</Link>
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
+                  <Link href="/pricing">View pricing</Link>
                 </Button>
               </div>
             </CardContent>

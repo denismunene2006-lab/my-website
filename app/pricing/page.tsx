@@ -20,30 +20,29 @@ export const metadata = createPageMetadata({
 export default function PricingPage() {
   return (
     <div>
-      <section className="page-section premium-hero text-white">
-        <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
+        <div className="container-shell relative z-10 grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <Reveal>
             <div className="max-w-2xl space-y-6">
-              <Badge variant="glass" className="border-white/20 bg-white/10 text-white">
-                Pricing
+              <Badge variant="accent" className="px-3 py-1 text-xs uppercase font-semibold">
+                Pricing &amp; Packages
               </Badge>
-              <div className="space-y-4">
-                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                  Transparent website pricing for business growth.
+              <div className="space-y-3">
+                <h1 className="font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-tight">
+                  Transparent website pricing for <span className="text-primary font-black">business growth</span>.
                 </h1>
-                <p className="text-base leading-8 text-white/82 sm:text-lg">
-                  Choose a package that matches your goals and growth stage. We support businesses in Embu and beyond with
-                  scalable website solutions.
+                <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  Choose a package tailored to your goals and stage. Transparent pricing in KES with no hidden fees.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="rounded-xl">
                   <Link href="/contact">
                     Get a quote
-                    <ArrowUpRight className="h-4 w-4" />
+                    <ArrowUpRight className="h-4 w-4 ml-1" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white/20 bg-white/5 text-white hover:bg-white/12">
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
                   <Link href="/projects">See examples</Link>
                 </Button>
               </div>
@@ -51,29 +50,29 @@ export default function PricingPage() {
           </Reveal>
 
           <Reveal delay={90}>
-            <Card className="glass-surface border-white/20 bg-white/10 text-white shadow-soft">
-              <CardContent className="space-y-5 p-6">
+            <Card className="border-border/60 bg-card/80 backdrop-blur-xl shadow-md p-6">
+              <CardContent className="space-y-4 p-0">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-[#6BEA32]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
                     <Star className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/70">What is included</p>
-                    <p className="text-lg font-semibold tracking-tight text-white">Clear pricing, no guesswork</p>
+                    <p className="text-[10px] uppercase font-semibold tracking-wider text-muted-foreground">What to expect</p>
+                    <p className="text-base font-bold font-heading text-foreground">Transparent pricing, zero guesswork</p>
                   </div>
                 </div>
-                <ul className="space-y-3 text-sm leading-7 text-white/80">
-                  <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
-                    Detailed package scopes aligned to your business goals.
+                <ul className="space-y-2.5 text-xs text-muted-foreground">
+                  <li className="flex gap-2.5 items-center">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <span>Detailed package scopes aligned to your business goals.</span>
                   </li>
-                  <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
-                    Mobile-first builds with SEO foundations built in.
+                  <li className="flex gap-2.5 items-center">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <span>Mobile-first builds with SEO foundations built in.</span>
                   </li>
-                  <li className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-[#6BEA32]" />
-                    Optional maintenance and support after launch.
+                  <li className="flex gap-2.5 items-center">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <span>Optional maintenance and priority developer support.</span>
                   </li>
                 </ul>
               </CardContent>
@@ -82,18 +81,18 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-b border-border/40">
         <div className="container-shell">
           <Reveal>
             <SectionHeading
               eyebrow="Packages"
               title="Three package tiers for different stages of growth."
-              description="Each tier keeps the same quality bar while scaling the scope to match the kind of site you need."
+              description="Each tier keeps the same quality bar while scaling the scope to match your requirements."
             />
           </Reveal>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {pricingPlans.map((plan, index) => (
-              <Reveal key={plan.name} delay={index * 70}>
+              <Reveal key={plan.name} delay={index * 60}>
                 <PricingCard plan={plan} highlighted={index === 1} />
               </Reveal>
             ))}
@@ -106,31 +105,31 @@ export default function PricingPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Comparison"
-              title="Compare the packages side by side."
-              description="Use the table below to compare the feature coverage and decide which level is the best fit."
+              title="Compare packages side by side."
+              description="Review features across packages to decide which plan matches your project needs."
             />
           </Reveal>
           <Reveal delay={90}>
-            <Card className="mt-10 overflow-hidden border-border/70 bg-card shadow-sm">
+            <Card className="mt-10 overflow-hidden border-border/60 bg-card shadow-sm">
               <div className="overflow-x-auto">
                 <table className="min-w-full border-collapse text-left">
-                  <thead className="bg-muted/60">
+                  <thead className="bg-muted/40 border-b border-border/50">
                     <tr>
-                      <th className="px-6 py-4 text-sm font-semibold text-foreground">Feature</th>
-                      <th className="px-6 py-4 text-sm font-semibold text-foreground">Starter</th>
-                      <th className="px-6 py-4 text-sm font-semibold text-primary">Growth</th>
-                      <th className="px-6 py-4 text-sm font-semibold text-foreground">Premium</th>
+                      <th className="px-5 py-3.5 text-xs font-bold font-heading text-foreground">Feature</th>
+                      <th className="px-5 py-3.5 text-xs font-bold font-heading text-foreground">Starter</th>
+                      <th className="px-5 py-3.5 text-xs font-bold font-heading text-primary">Growth</th>
+                      <th className="px-5 py-3.5 text-xs font-bold font-heading text-foreground">Premium</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {pricingComparison.map((row, index) => (
-                      <tr key={row.feature} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/20'}>
-                        <th scope="row" className="px-6 py-4 text-sm font-medium text-foreground">
+                  <tbody className="divide-y divide-border/40">
+                    {pricingComparison.map((row) => (
+                      <tr key={row.feature} className="hover:bg-muted/20 transition-colors">
+                        <th scope="row" className="px-5 py-3.5 text-xs font-medium text-foreground">
                           {row.feature}
                         </th>
-                        <td className="px-6 py-4 text-sm text-muted-foreground">{row.starter}</td>
-                        <td className="px-6 py-4 text-sm font-medium text-foreground">{row.growth}</td>
-                        <td className="px-6 py-4 text-sm text-muted-foreground">{row.premium}</td>
+                        <td className="px-5 py-3.5 text-xs text-muted-foreground">{row.starter}</td>
+                        <td className="px-5 py-3.5 text-xs font-semibold text-primary">{row.growth}</td>
+                        <td className="px-5 py-3.5 text-xs text-muted-foreground">{row.premium}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -141,26 +140,26 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="page-section bg-muted/30">
+      <section className="page-section bg-muted/20 border-t border-border/40">
         <div className="container-shell">
-          <Card className="overflow-hidden border-border/70 bg-slate-950 text-white shadow-2xl">
-            <CardContent className="grid gap-8 p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:p-12">
-              <div className="space-y-4">
-                <Badge variant="glass" className="border-white/15 bg-white/10 text-white">
-                  Need a custom scope?
+          <Card className="overflow-hidden border-border/60 bg-card shadow-md p-8 sm:p-10">
+            <CardContent className="grid gap-6 p-0 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div className="space-y-3">
+                <Badge variant="accent" className="text-xs uppercase font-semibold">
+                  Custom scope?
                 </Badge>
-                <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-                  If your project is more complex, we can shape a custom plan around it.
+                <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
+                  Need a custom solution tailored to your exact workflow?
                 </h2>
-                <p className="max-w-2xl text-base leading-8 text-white/72">
-                  The goal is to give you a build that feels right for your business without adding features you do not need.
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  We shape custom engineering plans based on your specific requirements.
                 </p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-                <Button asChild size="lg" className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <Button asChild size="lg" className="rounded-xl">
                   <Link href="/contact">Discuss your project</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full border-white/15 bg-white/5 text-white hover:bg-white/10">
+                <Button asChild variant="outline" size="lg" className="rounded-xl">
                   <Link href="/services">Review services</Link>
                 </Button>
               </div>

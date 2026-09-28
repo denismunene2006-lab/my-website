@@ -26,7 +26,6 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
     setActiveIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
 
-  // Autoplay functionality: advances every 9 seconds
   useEffect(() => {
     if (isPaused) {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -42,7 +41,6 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
     };
   }, [isPaused, handleNext]);
 
-  // Dynamically measure the tallest card and set the viewport height to match
   useEffect(() => {
     const measureHeights = () => {
       let tallest = 0;
@@ -57,10 +55,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
       }
     };
 
-    // Measure after initial render
     const rafId = requestAnimationFrame(measureHeights);
-
-    // Re-measure on window resize
     window.addEventListener('resize', measureHeights);
 
     return () => {
@@ -73,13 +68,12 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
 
   return (
     <div
-      className="relative mx-auto w-full max-w-3xl px-4 py-6"
+      className="relative mx-auto w-full max-w-3xl px-4 py-4"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
     >
-      {/* Sliding viewport with dynamic height matching the tallest card */}
       <div
         ref={viewportRef}
         className="relative overflow-hidden w-full transition-[height] duration-300 ease-in-out"
@@ -99,16 +93,16 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
                   : 'opacity-0 scale-95 pointer-events-none ' + (index < activeIndex ? '-translate-x-full' : 'translate-x-full')
               }`}
             >
-              <Card className="relative flex h-full flex-col justify-between overflow-hidden border border-[#6BEA32]/30 bg-[#162231] p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)] md:p-10">
-                <Quote className="pointer-events-none absolute right-6 top-6 h-20 w-20 text-[#6BEA32]/15" />
+              <Card className="relative flex h-full flex-col justify-between overflow-hidden border border-border/60 bg-card p-6 sm:p-8 shadow-sm">
+                <Quote className="pointer-events-none absolute right-6 top-6 h-16 w-16 text-primary/10" />
                 <div className="relative z-10">
-                  <p className="text-lg font-medium leading-relaxed text-white md:text-xl">
+                  <p className="text-base sm:text-lg font-medium leading-relaxed text-foreground/90">
                     "{item.quote}"
                   </p>
                 </div>
                 <div className="relative z-10 mt-6 flex items-center gap-3">
-                  <div className="h-1 w-8 rounded bg-[#6BEA32]" />
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#6BEA32]">
+                  <div className="h-1 w-6 rounded bg-primary" />
+                  <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                     {item.meta}
                   </p>
                 </div>
@@ -118,40 +112,36 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
         })}
       </div>
 
-      {/* Navigation Controls */}
-      <div className="mt-8 flex items-center justify-between gap-4">
-        {/* Previous Button */}
+      <div className="mt-6 flex items-center justify-between gap-4">
         <button
           onClick={handlePrev}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6BEA32]/35 bg-[#162231] text-white transition hover:border-[#6BEA32]/60 hover:bg-[#1e2d3d] focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground transition hover:border-primary/40 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Previous testimonial"
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-4 w-4" />
         </button>
 
-        {/* Pagination Dots */}
-        <div className="flex gap-2.5">
+        <div className="flex gap-2">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 index === activeIndex
-                  ? 'w-7 bg-[#6BEA32]'
-                  : 'w-2.5 bg-white/20 hover:bg-white/40'
+                  ? 'w-6 bg-primary'
+                  : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
 
-        {/* Next Button */}
         <button
           onClick={handleNext}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#6BEA32]/35 bg-[#162231] text-white transition hover:border-[#6BEA32]/60 hover:bg-[#1e2d3d] focus:outline-none focus:ring-2 focus:ring-[#6BEA32]"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-background text-foreground transition hover:border-primary/40 hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Next testimonial"
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-4 w-4" />
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,26 +20,26 @@ export function ServiceCard({ service }: ServiceCardProps) {
       rel={isExternal ? 'noreferrer' : undefined}
       className="group block h-full focus:outline-none"
     >
-      <Card className="h-full relative border-border/70 bg-card/90 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-glow focus-within:ring-2 focus-within:ring-primary flex flex-col justify-between">
-        <CardContent className="space-y-5 pt-6 flex flex-col h-full justify-between">
-          <div className="space-y-5">
+      <Card className="h-full border border-border/60 bg-card/90 transition-all duration-200 hover:border-primary/40 hover:shadow-md hover-lift flex flex-col justify-between">
+        <CardContent className="space-y-4 p-6 flex flex-col h-full justify-between">
+          <div className="space-y-4">
             <div className="flex items-center justify-between gap-3">
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                 <Icon className="h-5 w-5" />
               </div>
-              <Badge variant="outline" className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                D-LABS
+              <Badge variant="accent" className="text-[10px] uppercase tracking-wider">
+                Service
               </Badge>
             </div>
-            <div className="space-y-3">
-              <h3 className="text-2xl font-semibold tracking-tight text-foreground">{service.title}</h3>
-              <p className="text-sm leading-7 text-muted-foreground">{service.description}</p>
-              <p className="text-sm leading-7 text-foreground/90">{service.details}</p>
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold font-heading tracking-tight text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+              <p className="text-xs leading-relaxed text-foreground/80 pt-1 border-t border-border/40">{service.details}</p>
             </div>
           </div>
-          <div className="pt-4 flex items-center text-sm font-semibold text-primary">
-            <span>Learn more</span>
-            <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+          <div className="pt-2 flex items-center text-xs font-semibold text-primary gap-1">
+            <span>{service.cta}</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
           </div>
         </CardContent>
       </Card>

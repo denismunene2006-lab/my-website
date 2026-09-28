@@ -62,7 +62,7 @@
         return [
             '<header>',
             '    <div class="logo">',
-            '        <img src="images/name-200.jpeg" srcset="images/name-200.jpeg 200w, images/name-400.jpeg 400w" sizes="(max-width: 520px) 136px, (max-width: 768px) 162px, 196px" alt="D-LABS" width="400" height="218" decoding="async">',
+            '        <a href="' + (isHomePage ? '#home-page' : 'index.html') + '" class="brand-wordmark" style="font-family: var(--font-heading, sans-serif); font-size: 1.35rem; font-weight: 800; letter-spacing: -0.04em; color: #10b981; text-decoration: none;">D<span style="color: #10b981;">-</span>LABS</a>',
             '    </div>',
             '    <nav class="main-nav" aria-label="Primary navigation">',
             '        <ul>',

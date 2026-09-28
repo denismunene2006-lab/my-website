@@ -89,6 +89,8 @@ export const viewport: Viewport = {
   themeColor: '#0B0F14',
 };
 
+import { ThemeProvider } from '@/components/theme-provider';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -124,23 +126,45 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-background text-foreground">
-        <SmoothScrollProvider>
-          <ScrollProgress />
-          <a href="#main-content" className="skip-link">
-            Skip to content
-          </a>
-          <JsonLd data={organizationJsonLd} />
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-            <WhatsAppButton />
-          </div>
-        </SmoothScrollProvider>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('d-labs-theme') || 'dark';
+                  var resolved = theme;
+                  if (theme === 'system') {
+                    resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
+                  document.documentElement.classList.remove('light', 'dark');
+                  document.documentElement.classList.add(resolved);
+                  document.documentElement.style.colorScheme = resolved;
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
+        <ThemeProvider defaultTheme="dark">
+          <SmoothScrollProvider>
+            <ScrollProgress />
+            <a href="#main-content" className="skip-link">
+              Skip to content
+            </a>
+            <JsonLd data={organizationJsonLd} />
+            <div className="flex min-h-screen flex-col">
+              <SiteHeader />
+              <main id="main-content" className="flex-1">
+                {children}
+              </main>
+              <SiteFooter />
+              <WhatsAppButton />
+            </div>
+          </SmoothScrollProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

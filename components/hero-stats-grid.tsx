@@ -33,7 +33,7 @@ function AnimatedStatValue({ value, animate }: { value: string; animate: boolean
     setDisplay(0);
     setShowSuffix(false);
 
-    const duration = 1750;
+    const duration = 1500;
     const start = performance.now();
     let frameId = 0;
 
@@ -83,7 +83,7 @@ export function HeroStatsGrid({ stats }: HeroStatsGridProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.2 }
     );
 
     observer.observe(node);
@@ -92,16 +92,13 @@ export function HeroStatsGrid({ stats }: HeroStatsGridProps) {
   }, []);
 
   return (
-    <div ref={gridRef} className="grid gap-4 sm:grid-cols-2">
-      {stats.map((stat, index) => (
-        <div key={stat.label} className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
-          <p
-            className="text-4xl font-bold text-[#6BEA32] [animation:fadeUp_600ms_cubic-bezier(0.22,1,0.36,1)_both]"
-            style={{ animationDelay: `${index * 120}ms` }}
-          >
+    <div ref={gridRef} className="grid gap-3.5 sm:grid-cols-2">
+      {stats.map((stat) => (
+        <div key={stat.label} className="rounded-xl border border-border/60 bg-card/80 p-4 backdrop-blur-md transition-all hover:border-primary/40 shadow-sm">
+          <p className="text-3xl font-bold font-heading text-primary">
             <AnimatedStatValue value={stat.value} animate={hasAnimated} />
           </p>
-          <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/70">{stat.label}</p>
+          <p className="mt-1 text-xs font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</p>
         </div>
       ))}
     </div>
