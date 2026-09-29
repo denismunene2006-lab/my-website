@@ -25,7 +25,7 @@ import bookshopPreview from '../images/bookshop-website/bookshop-website-preview
 import ecommercePreview from '../images/ecommerce-website/ecommerce-website-preview.jpg';
 import educationPreview from '../images/d-labs-education/d-labs-education.webp';
 import founderPortrait from '../images/profile-new.jpeg';
-import logoMark from '../images/logo1.jpg';
+import logoMark from '../images/new logo.jpeg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dlabskenya.com';
