@@ -4,6 +4,7 @@ import { ArrowUpRight, Mail, MapPin, PhoneCall } from 'lucide-react';
 import { navigation, site } from '@/data/site';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { BrandWordmark } from '@/components/brand-wordmark';
 
 export function SiteFooter() {
   return (
@@ -12,9 +13,7 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
           <div className="space-y-5">
             <div className="flex items-center gap-2">
-              <span className="text-xl font-bold font-heading tracking-tighter text-foreground">
-                D<span className="text-primary font-black mx-[1px]">-</span>LABS
-              </span>
+              <BrandWordmark />
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
                 Operational

@@ -17,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { BrandWordmark } from '@/components/brand-wordmark';
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -53,9 +54,7 @@ export function SiteHeader() {
       <div className="container-shell flex h-16 items-center justify-between gap-4">
         {/* D-LABS Text Wordmark */}
         <Link href="/" className="group flex items-center gap-2 tracking-tight">
-          <span className="flex items-center text-xl font-bold font-heading tracking-tighter text-foreground">
-            D<span className="text-primary font-black mx-[1px]">-</span>LABS
-          </span>
+          <BrandWordmark />
           <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
             Studio
@@ -116,9 +115,7 @@ export function SiteHeader() {
             <DialogContent className="max-w-xs rounded-xl border border-border/80 bg-background/95 backdrop-blur-2xl text-foreground p-6 shadow-2xl">
               <DialogHeader className="space-y-1 text-left pb-4 border-b border-border/50">
                 <DialogTitle className="flex items-center justify-between text-lg font-bold font-heading">
-                  <span className="flex items-center">
-                    D<span className="text-primary font-black mx-[1px]">-</span>LABS
-                  </span>
+                  <BrandWordmark variant="drawer" />
                 </DialogTitle>
                 <DialogDescription className="text-xs text-muted-foreground">
                   {site.tagline}

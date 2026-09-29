@@ -204,3 +204,80 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.7);
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   D-LABS navbar wordmark (desktop navbar + slide-in mobile menu)
+   Pure CSS + inline SVG: the name stays real HTML text, the curved green
+   underline is an SVG stroke sized in em so it scales with the type.
+   ────────────────────────────────────────────────────────────────────────── */
+.dlabs-wordmark {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  padding-bottom: 0.46em; /* reserves the underline space so nothing overlaps */
+  font-size: clamp(1.0625rem, 3.1vw, 1.25rem);
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* Same lockup, scaled up a touch for the mobile navigation drawer */
+.dlabs-wordmark--drawer {
+  font-size: clamp(1.1875rem, 5vw, 1.375rem);
+}
+
+.dlabs-wordmark__text {
+  display: block;
+  font-family: 'Sora', 'Space Grotesk', 'Poppins', var(--font-heading);
+  font-size: 1em;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Green "D-" */
+.dlabs-wordmark__accent {
+  color: hsl(var(--primary));
+  font-weight: 900;
+}
+
+/* White "LABS" on the dark premium navbar; ink stays legible in light mode */
+.dlabs-wordmark__main {
+  color: hsl(var(--foreground));
+}
+
+.dark .dlabs-wordmark__main {
+  color: #ffffff;
+}
+
+/* Smooth flowing underline: centered, proportional, tapered to fine points */
+.dlabs-wordmark__swoosh {
+  position: absolute;
+  left: -0.08em;
+  bottom: 0;
+  width: calc(100% + 0.16em);
+  height: 0.34em;
+  overflow: visible;
+  color: hsl(var(--primary));
+  transition: filter 200ms ease;
+}
+
+.dlabs-wordmark__swoosh path {
+  fill: currentColor;
+}
+
+.dark .dlabs-wordmark__swoosh {
+  filter: drop-shadow(0 0 5px hsl(var(--primary) / 0.3));
+}
+
+.group:hover .dlabs-wordmark__swoosh {
+  filter: drop-shadow(0 0 7px hsl(var(--primary) / 0.55));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlabs-wordmark__swoosh {
+    transition: none;
+  }
+}
