@@ -153,10 +153,10 @@ export function ProductPage({ product }: ProductPageProps) {
             />
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-10 space-y-6">
             {product.features.map((feature, index) => (
               <Reveal key={feature.id} delay={index * 60}>
-                <ProductFeature feature={feature} className="h-full" />
+                <ProductFeature feature={feature} index={index} />
               </Reveal>
             ))}
           </div>
