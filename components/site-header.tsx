@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Menu, ArrowUpRight, Package, Sparkles } from 'lucide-react';
 
 import { navigation, site } from '@/data/site';
 import { cn } from '@/lib/utils';
@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { BrandWordmark } from '@/components/brand-wordmark';
+import { NavDropdown } from '@/components/nav-dropdown';
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -63,23 +64,33 @@ export function SiteHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
-          {items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'rounded-lg px-3.5 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-150 hover:text-foreground hover:bg-accent/10',
-                item.active && 'bg-primary/10 font-semibold text-primary hover:bg-primary/15 hover:text-primary'
-              )}
-              aria-current={item.active ? 'page' : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {items.map((item) =>
+            item.children ? (
+              <NavDropdown
+                key={item.href}
+                label={item.label}
+                children={item.children}
+                active={item.active}
+                pathname={pathname}
+              />
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'rounded-lg px-2.5 py-1.5 text-sm font-medium text-muted-foreground transition-all duration-150 hover:text-foreground hover:bg-accent/10 xl:px-3.5',
+                  item.active && 'bg-primary/10 font-semibold text-primary hover:bg-primary/15 hover:text-primary'
+                )}
+                aria-current={item.active ? 'page' : undefined}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Desktop Action Buttons + Theme Toggle */}
-        <div className="hidden lg:flex items-center gap-2.5">
+        <div className="hidden lg:flex items-center gap-2 xl:gap-2.5">
           <ThemeToggle />
           
           <Button asChild variant="ghost" size="sm" className="rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground">
@@ -123,19 +134,51 @@ export function SiteHeader() {
               </DialogHeader>
 
               <div className="mt-4 flex flex-col gap-1">
-                {items.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={cn(
-                      'flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition hover:bg-accent/10 hover:text-foreground',
-                      item.active && 'bg-primary/10 text-primary font-semibold'
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {items.map((item) =>
+                  item.children ? (
+                    <div key={item.href} className="space-y-1">
+                      <p
+                        className={cn(
+                          'px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground',
+                          item.active && 'text-primary'
+                        )}
+                      >
+                        {item.label}
+                      </p>
+                      {item.children.map((child) => {
+                        const childActive =
+                          pathname === child.href || pathname.startsWith(`${child.href}/`);
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            aria-current={childActive ? 'page' : undefined}
+                            className={cn(
+                              'flex items-center gap-2.5 rounded-lg py-2.5 pl-6 pr-3 text-sm font-medium text-foreground/80 transition hover:bg-accent/10 hover:text-foreground',
+                              childActive && 'bg-primary/10 text-primary font-semibold'
+                            )}
+                          >
+                            <Package className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                            {child.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        'flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/80 transition hover:bg-accent/10 hover:text-foreground',
+                        item.active && 'bg-primary/10 text-primary font-semibold'
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
               </div>
 
               <div className="mt-6 pt-4 border-t border-border/50 space-y-2">

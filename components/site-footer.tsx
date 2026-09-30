@@ -42,11 +42,32 @@ export function SiteFooter() {
           <div className="space-y-3">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h2>
             <nav className="flex flex-col gap-2.5" aria-label="Footer navigation">
-              {navigation.map((item) => (
-                <Link key={item.href} href={item.href} className="text-sm text-foreground/80 transition hover:text-primary">
-                  {item.label}
-                </Link>
-              ))}
+              {navigation.map((item) =>
+                item.children ? (
+                  <div key={item.href} className="space-y-2.5">
+                    <p className="text-sm font-medium text-foreground/90">{item.label}</p>
+                    <div className="flex flex-col gap-2.5 pl-3">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="text-sm text-muted-foreground transition hover:text-primary"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-foreground/80 transition hover:text-primary"
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </nav>
           </div>
 

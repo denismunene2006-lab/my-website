@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 
 import bookshopPreview from '../images/bookshop-website/bookshop-website-preview.jpg';
+import { getProductHref, products } from './products';
 import ecommercePreview from '../images/ecommerce-website/ecommerce-website-preview.jpg';
 import educationPreview from '../images/d-labs-education/d-labs-education.webp';
 import founderPortrait from '../images/profile-new.jpeg';
@@ -60,15 +61,39 @@ export const developerHighlights = [
   'Lifelong Learner',
 ] as const;
 
-export const navigation = [
+export type NavigationChild = {
+  label: string;
+  href: string;
+  description: string;
+};
+
+export type NavigationItem = {
+  label: string;
+  href: string;
+  /** Present on dropdown items. The parent itself is a group, not a link. */
+  children?: NavigationChild[];
+};
+
+export const navigation: NavigationItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Projects', href: '/projects' },
+  {
+    label: 'From D-Labs',
+    href: '/from-d-labs',
+    children: products.map((product) => ({
+      label: product.name,
+      href: getProductHref(product),
+      description: product.summary,
+    })),
+  },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
-] as const;
+];
+
+export const fromDLabsBasePath = '/from-d-labs';
 
 export const heroHighlights = [
   'Fast, clean builds',
