@@ -142,22 +142,19 @@ export function ProductPage({ product }: ProductPageProps) {
           </div>
         </section>
       ))}
-      {/* What you get */}
+      {/* What you get — static, no scroll-triggered reveals: the screenshot rows
+          are very tall, and animating them on scroll made the page feel heavy. */}
       <section className="page-section bg-muted/20 border-y border-border/40">
         <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Features"
-              title="What you get"
-              description="Three core parts: sending the request, confirming the payment, and proving it afterwards."
-            />
-          </Reveal>
+          <SectionHeading
+            eyebrow="Features"
+            title="What you get"
+            description="Three core parts: sending the request, confirming the payment, and proving it afterwards."
+          />
 
           <div className="mt-10 space-y-6">
-            {product.features.map((feature, index) => (
-              <Reveal key={feature.id} delay={index * 60}>
-                <ProductFeature feature={feature} index={index} />
-              </Reveal>
+            {product.features.map((feature) => (
+              <ProductFeature key={feature.id} feature={feature} />
             ))}
           </div>
         </div>

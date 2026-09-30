@@ -6,44 +6,30 @@ import { cn } from '@/lib/utils';
 
 type ProductFeatureProps = {
   feature: Product['features'][number];
-  /** Position in the list — even rows put the screenshot on the right, odd on the left. */
-  index?: number;
   className?: string;
 };
 
 /**
  * A product screenshot shown at a readable size beside its copy.
  *
- * The screenshot is never cropped or stretched: `object-contain` renders it
- * inside the frame at its true aspect ratio, and the frame itself takes ~57% of
- * the row on desktop (full width on mobile) so the UI inside stays legible.
+ * Every feature uses the same arrangement: copy on the left, screenshot on the
+ * right, with the copy top-aligned to the start of the column on large screens.
+ * The screenshot is never cropped or stretched: `object-contain` renders it at
+ * its true aspect ratio, and the frame takes ~57% of the row on desktop.
  */
-export function ProductFeature({ feature, index = 0, className }: ProductFeatureProps) {
+export function ProductFeature({ feature, className }: ProductFeatureProps) {
   const Icon = feature.icon;
-  const isReversed = index % 2 === 1;
 
   return (
     <article
       className={cn(
-        'group overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md hover-lift',
+        'group overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm transition-colors duration-200 hover:border-primary/40 hover:shadow-md',
         className
       )}
     >
-      <div
-        className={cn(
-          'grid lg:items-center',
-          // The screenshot always sits in the wide column; `order` only decides
-          // which side of the row it appears on.
-          isReversed ? 'lg:grid-cols-[1.28fr_0.72fr]' : 'lg:grid-cols-[0.72fr_1.28fr]'
-        )}
-      >
-        {/* Copy */}
-        <div
-          className={cn(
-            'flex flex-col justify-center gap-4 p-6 sm:p-8 lg:p-10',
-            isReversed && 'lg:order-2'
-          )}
-        >
+      <div className="grid lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+        {/* Copy — always left, top-aligned on large screens */}
+        <div className="flex flex-col justify-start gap-4 p-6 sm:p-8 lg:p-10">
           <div className="flex items-center gap-3">
             <Badge variant="accent" className="font-mono text-[11px]">
               {feature.number}
@@ -62,14 +48,8 @@ export function ProductFeature({ feature, index = 0, className }: ProductFeature
           </p>
         </div>
 
-        {/* Screenshot */}
-        <div
-          className={cn(
-            'relative border-border/50 bg-gradient-to-br from-primary/[0.07] via-muted/30 to-muted/40 p-4 sm:p-6 lg:p-8',
-            'border-t lg:border-t-0',
-            isReversed ? 'lg:order-1 lg:border-r' : 'lg:border-l'
-          )}
-        >
+        {/* Screenshot — always right */}
+        <div className="relative border-t border-border/50 bg-gradient-to-br from-primary/[0.07] via-muted/30 to-muted/40 p-4 sm:p-6 lg:border-l lg:border-t-0 lg:p-8">
           <div
             className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             aria-hidden="true"
