@@ -8,12 +8,13 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 
 ### Highlights
 - Responsive navigation with a mobile drawer menu
+- "From D-Labs" product section: a dropdown nav item for in-house products (currently Lipa)
 - Branded splash screen shown on first visit per session
 - Modern hero, services, projects, blog, pricing, and contact pages
-- SEO-friendly metadata, Open Graph tags, robots, and sitemap routes
+- SEO-friendly metadata, Open Graph tags, JSON-LD structured data, robots, and sitemap routes
 - `next/image`-based image optimization
 - Reusable UI components and shared content data
-- Static generation for core pages and blog articles
+- Static generation for core pages, blog articles, and products
 - Legacy static HTML pages retained alongside the Next.js app for GitHub Pages hosting
 - WhatsApp integration and contact forms
 - Localized pricing in Kenyan Shillings (KES)
@@ -39,6 +40,12 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - `/blog` - Blog index
 - `/contact` - Contact page
 
+### Products (From D-Labs)
+
+Products D-LABS builds and owns in-house, kept separate from client projects.
+
+- `/from-d-labs/lipa` - Lipa (M-Pesa STK Push, payment tracking, and receipts)
+
 ### Blog articles
 
 - `/blog/modern-web-development`
@@ -48,6 +55,13 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - `/blog/online-growth-strategy`
 - `/blog/content-marketing-tech-companies`
 - `/blog/20-unshakable-rules-modern-web-development`
+
+### Adding a new product
+
+1. Add an entry to the `products` array in `data/products.ts`.
+2. The navigation dropdown, sitemap entry, and static params are all generated from that
+   array, so no other wiring is needed — `/from-d-labs/<slug>` is served by the existing
+   dynamic route at `app/from-d-labs/[slug]/page.tsx`.
 
 ### Legacy static pages (GitHub Pages mirror)
 
@@ -98,14 +112,54 @@ scripts/     Build and optimization helpers
 
 ## SEO and Performance
 
-- Proper page titles and descriptions
-- Canonical URLs
-- Open Graph and Twitter metadata
-- Static generation for all pages and blog articles
-- Image optimization through `next/image`
-- Lightweight reusable components
-- Dynamic sitemap generated at `https://dlabskenya.com/sitemap.xml`
-- Static `sitemap.xml` and `robots.txt` for the legacy static mirror (GitHub Pages)
+### Technical SEO
+- Unique, keyword-targeted `<title>` and meta description on every route, built through
+  `createPageMetadata()` in `lib/metadata.ts`
+- Self-referencing canonical URLs on every page, resolved against `siteUrl`
+- Open Graph and Twitter card metadata with a generated 1200×630 preview image
+- Semantic heading hierarchy (one `<h1>` per page) and descriptive image `alt` text
+- `next/image` for automatic sizing, lazy loading, and AVIF/WebP delivery
+- Full static generation for all pages, blog articles, and products — crawlable HTML with
+  no client-side rendering dependency
+
+### Structured data (JSON-LD)
+Rendered through the `JsonLd` component, which injects `application/ld+json` script tags.
+
+| Schema.org type | Where |
+| --- | --- |
+| `Organization`, `WebSite` | `app/layout.tsx` (site-wide) |
+| `Service`, `FAQPage` | `/services`, `/pricing` |
+| `BlogPosting` | `/blog/[slug]` |
+| `SoftwareApplication`, `BreadcrumbList`, `WebPage` | `/from-d-labs/[slug]` |
+
+Entity references are cross-linked with `@id` values (for example the organization
+`${siteUrl}/#organization`) so the graph stays connected rather than emitting isolated nodes.
+
+### Crawler files
+- `app/sitemap.ts` generates `/sitemap.xml` dynamically from the same data modules the pages
+  use, so new products and articles appear automatically. Priorities rank the commercial
+  pages (services, pricing, contact) above the blog. `lastModified` is a fixed content date,
+  not the current time, because a sitemap that reports every URL as freshly modified on every
+  request is discounted by crawlers.
+- `app/robots.ts` generates `/robots.txt` with an explicit sitemap reference and a `Host`
+  directive.
+- Static `sitemap.xml` and `robots.txt` at the repository root mirror the same data for the
+  legacy GitHub Pages build. **Keep both in sync** when adding routes.
+
+### Performance notes
+Scroll smoothness is currently limited by three site-wide components, all of which run on
+every page:
+
+- `components/smooth-scroll-provider.tsx` — Lenis with a 1.2s duration; a long duration makes
+  the page feel like it lags behind the input.
+- `components/neural-background.tsx` — a full-viewport canvas redrawn every frame with
+  O(n²) line drawing, competing with scroll rendering.
+- `components/scroll-progress.tsx` — calls `setState` on every scroll event, forcing a React
+  re-render per scroll tick.
+
+Throttling the progress bar, pausing the canvas while scrolling, and shortening the Lenis
+duration would measurably improve frame times. The Lipa feature section already avoids
+scroll-triggered transforms and reveals for this reason.
 
 ## Deployment
 

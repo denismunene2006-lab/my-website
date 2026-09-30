@@ -21,7 +21,12 @@ export function createPageMetadata({
   const imageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).toString();
 
   return {
-    title,
+    // `absolute` bypasses the root layout's `%s | D-LABS` title template.
+    // Every page supplies a complete, already-branded title, so letting the
+    // template run too produced a duplicated "| D-LABS | D-LABS" suffix on
+    // every page except the home page. This also keeps <title> consistent
+    // with the Open Graph title, which already used the raw string.
+    title: { absolute: title },
     description,
     alternates: {
       canonical: path,
