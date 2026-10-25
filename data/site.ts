@@ -49,6 +49,21 @@ export const site = {
     'We create websites and web applications that are simple to navigate, easy to maintain, and designed to help businesses present themselves with confidence.',
 } as const;
 
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/denis-munene-5677b03ab/';
+export const WHATSAPP_NUMBER = '254731061467';
+export const WHATSAPP_MESSAGE =
+  "Hi Denis! 👋 I came across your D-Labs portfolio and would like to connect. I'd love to discuss an idea or opportunity with you.";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+export const founderContact = {
+  name: site.founderName,
+  role: site.founderRole,
+  linkedinUrl: LINKEDIN_URL,
+  whatsappNumber: WHATSAPP_NUMBER,
+  whatsappMessage: WHATSAPP_MESSAGE,
+  whatsappUrl: WHATSAPP_URL,
+} as const;
+
 export const brandAssets = {
   logoMark,
   founderPortrait,

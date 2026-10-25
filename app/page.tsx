@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 
 import { HeroStatsGrid } from '@/components/hero-stats-grid';
+import { PersonalConnectionCard } from '@/components/personal-connection-card';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { ServiceCard } from '@/components/service-card';
@@ -193,16 +194,40 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={90} className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2">
-              <div className="relative mx-auto w-full max-w-sm lg:max-w-md">
-                <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card p-2 shadow-sm">
-                  <Image
-                    src={brandAssets.founderPortrait}
-                    alt={`${site.founderName}, founder of D-Labs`}
-                    width={1196}
-                    height={1600}
-                    priority
-                    className="aspect-[3/4] w-full rounded-xl object-cover object-top"
-                  />
+              <div className="group relative mx-auto w-full max-w-sm lg:max-w-md">
+                {/* Ambient emerald aura glow */}
+                <div
+                  className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-tr from-primary/30 via-primary/15 to-transparent opacity-60 blur-2xl transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100 group-hover:blur-3xl dark:from-primary/25 dark:via-primary/10"
+                  aria-hidden="true"
+                />
+
+                {/* Framed card with lift & glow on hover */}
+                <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/90 p-2 shadow-sm backdrop-blur-sm transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-primary/50 group-hover:shadow-glow">
+                  <div className="relative overflow-hidden rounded-xl">
+                    <Image
+                      src={brandAssets.founderPortrait}
+                      alt={`${site.founderName}, founder of D-Labs`}
+                      width={1196}
+                      height={1600}
+                      priority
+                      className="aspect-[3/4] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+
+                    {/* Subtle bottom vignette for badge contrast */}
+                    <div
+                      className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+                      aria-hidden="true"
+                    />
+
+                    {/* Live status badge */}
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full border border-white/20 bg-background/85 px-3 py-1 text-xs font-semibold text-foreground shadow-sm backdrop-blur-md transition-transform duration-300 group-hover:translate-x-0.5 dark:border-white/10 dark:bg-card/90">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                      </span>
+                      <span>Open to projects</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -240,12 +265,7 @@ export default function HomePage() {
                 </blockquote>
 
                 <div className="pt-2">
-                  <Button asChild size="lg" className="rounded-xl">
-                    <Link href="/contact">
-                      Let&apos;s Connect
-                      <ArrowUpRight className="h-4 w-4 ml-1" />
-                    </Link>
-                  </Button>
+                  <PersonalConnectionCard />
                 </div>
               </div>
             </Reveal>
