@@ -203,13 +203,6 @@ export default function HomePage() {
 
                 {/* Framed card with lift & glow on hover */}
                 <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/90 p-2 shadow-sm backdrop-blur-sm transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-primary/50 group-hover:shadow-glow">
-                  {/* Growing light arc sweeping around portrait edges */}
-                  <div className="portrait-light-sweep" aria-hidden="true">
-                    <svg viewBox="0 0 200 200" preserveAspectRatio="none">
-                      <circle cx="100" cy="100" r="96" />
-                    </svg>
-                  </div>
-
                   <div className="relative overflow-hidden rounded-xl">
                     <Image
                       src={brandAssets.founderPortrait}
