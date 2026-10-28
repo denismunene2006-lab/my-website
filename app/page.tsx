@@ -201,6 +201,9 @@ export default function HomePage() {
                   aria-hidden="true"
                 />
 
+                {/* Rotating conic gradient border ring */}
+                <div className="portrait-ring" aria-hidden="true" />
+
                 {/* Framed card with lift & glow on hover */}
                 <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/90 p-2 shadow-sm backdrop-blur-sm transition-all duration-500 ease-out group-hover:-translate-y-1.5 group-hover:border-primary/50 group-hover:shadow-glow">
                   <div className="relative overflow-hidden rounded-xl">

@@ -186,6 +186,55 @@ h1, h2, h3, h4, h5, h6 {
   ring-offset-color: hsl(var(--background));
 }
 
+/* Rotating conic gradient border for developer portrait */
+@keyframes conic-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes conic-rotate-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.portrait-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--primary)/0.6), hsl(var(--primary)/0.15), transparent 40%, transparent 60%, hsl(var(--primary)/0.15), hsl(var(--primary)/0.6), hsl(var(--primary)));
+  opacity: 0.35;
+  filter: blur(1.5px);
+  animation: conic-rotate 8s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-ring {
+    animation: none;
+    opacity: 0.15;
+  }
+}
+
+.group:hover .portrait-ring {
+  animation-duration: 3s;
+  opacity: 0.65;
+  filter: blur(0.5px);
+}
+
+.portrait-ring::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: hsl(var(--card));
+  z-index: 1;
+}
+
+.dark .portrait-ring::after {
+  background: hsl(var(--card));
+}
+
 .reveal {
   opacity: 0;
   transform: translate3d(0, 8px, 0);
