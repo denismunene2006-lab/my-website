@@ -186,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
   ring-offset-color: hsl(var(--background));
 }
 
-/* Growing light arc sweeping around portrait */
+/* Growing light arc sweeping around portrait edges */
 @keyframes light-sweep {
   0% {
     stroke-dashoffset: 628;
@@ -219,13 +219,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .portrait-light-sweep {
   position: absolute;
-  inset: -4px;
+  inset: 2px; /* Sit on top of the 2px padding (p-2) of the card wrapper */
   border-radius: inherit;
-  width: calc(100% + 8px);
-  height: calc(100% + 8px);
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
   animation: light-sweep 4s ease-in-out infinite;
   pointer-events: none;
-  z-index: -1;
+  z-index: 10; /* Above card border, below image content */
 }
 
 .portrait-light-sweep svg {
