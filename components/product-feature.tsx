@@ -23,7 +23,7 @@ export function ProductFeature({ feature, className }: ProductFeatureProps) {
   return (
     <article
       className={cn(
-        'group overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm transition-colors duration-200 hover:border-primary/40 hover:shadow-md',
+        'group interactive-card overflow-hidden rounded-xl border border-border/60 bg-card shadow-sm transition-colors duration-200 hover:border-primary/40 hover:shadow-md',
         className
       )}
     >

@@ -108,7 +108,7 @@ export function ProductPage({ product }: ProductPageProps) {
               const ChallengeIcon = challenge.icon;
               return (
                 <Reveal key={challenge.title} delay={index * 60}>
-                  <Card className="h-full border-border/60 bg-card shadow-sm hover:border-primary/40 hover-lift">
+                  <Card className="h-full interactive-card border-border/60 bg-card shadow-sm hover:border-primary/40">
                     <CardContent className="space-y-3 p-6">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
                         <ChallengeIcon className="h-5 w-5" />
@@ -178,7 +178,7 @@ export function ProductPage({ product }: ProductPageProps) {
           <ol className="mt-10 space-y-4">
             {product.process.map((step, index) => (
               <Reveal key={step.number} delay={index * 50}>
-                <li className="group flex gap-5 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md hover-lift sm:p-6">
+                <li className="group interactive-card flex gap-5 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md sm:p-6">
                   <span className="font-heading text-2xl font-extrabold leading-none text-primary/40 transition-colors duration-200 group-hover:text-primary/70 sm:text-3xl">
                     {step.number}
                   </span>

@@ -29,7 +29,7 @@ export function MoreFeaturesSection({ product }: MoreFeaturesSectionProps) {
             const Icon = feature.icon;
             return (
               <Reveal key={feature.id} delay={index * 60}>
-                <Card className="h-full border-border/60 bg-card shadow-sm hover:border-primary/40 hover:shadow-md hover-lift">
+                <Card className="h-full interactive-card border-border/60 bg-card shadow-sm hover:border-primary/40 hover:shadow-md">
                   <CardContent className="space-y-4 p-6">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
                       <Icon className="h-5.5 w-5.5" aria-hidden="true" />
