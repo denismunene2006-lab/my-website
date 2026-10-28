@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/section-heading';
 import { ProductContactActions } from '@/components/product-contact-actions';
 import { ProductFeature } from '@/components/product-feature';
 import { ProductShare } from '@/components/product-share';
+import { MoreFeaturesSection } from '@/components/more-features-section';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getProductHref, type Product } from '@/data/products';
@@ -159,6 +160,9 @@ export function ProductPage({ product }: ProductPageProps) {
           </div>
         </div>
       </section>
+
+      {/* More features — icon cards without screenshots */}
+      <MoreFeaturesSection product={product} />
 
       {/* How we do it */}
       <section className="page-section">
