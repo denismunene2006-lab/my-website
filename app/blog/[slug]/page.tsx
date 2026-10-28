@@ -41,6 +41,11 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
     path: `/blog/${article.slug}`,
     type: 'article',
     image: article.image.src,
+    publishedTime: article.date,
+    modifiedTime: article.updatedAt,
+    author: site.founderName,
+    section: article.category,
+    tags: [article.category, 'D-LABS', 'Web Development'],
   });
 }
 

@@ -7,7 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd } from '@/components/json-ld';
 import { founderStory, site } from '@/data/site';
+import { siteUrl } from '@/data/site';
 
 export const metadata = createPageMetadata({
   title: 'About D-LABS | Web Development Company in Embu, Kenya',
@@ -59,8 +61,31 @@ const aboutTimeline = [
 ];
 
 export default function AboutPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${siteUrl}/about#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${siteUrl}/about` },
+    ],
+  };
+
+  const webpageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${siteUrl}/about#webpage`,
+    url: `${siteUrl}/about`,
+    name: 'About D-LABS | Web Development Company in Embu, Kenya',
+    description: 'Learn about D-LABS, a modern web development company focused on secure, fast, and SEO-optimized digital products.',
+    isPartOf: { '@id': `${siteUrl}/#website` },
+    breadcrumb: { '@id': `${siteUrl}/about#breadcrumb` },
+    inLanguage: 'en-KE',
+  };
+
   return (
     <div>
+      <JsonLd data={[breadcrumbJsonLd, webpageJsonLd]} />
       <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
         <div className="container-shell relative z-10">
           <div className="max-w-3xl space-y-6">

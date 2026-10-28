@@ -7,6 +7,7 @@ Production-ready website for D-LABS built with Next.js App Router, React, TypeSc
 This repository contains the D-LABS marketing site. It keeps the original brand, services, and content, but presents them with a faster, more modern startup-style experience.
 
 ### Highlights
+
 - Responsive navigation with a mobile drawer menu
 - "From D-Labs" product section: a dropdown nav item for in-house products (currently Lipa)
 - Branded splash screen shown on first visit per session
@@ -113,6 +114,7 @@ scripts/     Build and optimization helpers
 ## SEO and Performance
 
 ### Technical SEO
+
 - Unique, keyword-targeted `<title>` and meta description on every route, built through
   `createPageMetadata()` in `lib/metadata.ts`
 - Self-referencing canonical URLs on every page, resolved against `siteUrl`
@@ -121,16 +123,20 @@ scripts/     Build and optimization helpers
 - `next/image` for automatic sizing, lazy loading, and AVIF/WebP delivery
 - Full static generation for all pages, blog articles, and products — crawlable HTML with
   no client-side rendering dependency
+- Article pages include `publishedTime`, `modifiedTime`, `author`, `section`, and `tags` in Open Graph
 
 ### Structured data (JSON-LD)
 Rendered through the `JsonLd` component, which injects `application/ld+json` script tags.
 
 | Schema.org type | Where |
 | --- | --- |
-| `Organization`, `WebSite` | `app/layout.tsx` (site-wide) |
-| `Service`, `FAQPage` | `/services`, `/pricing` |
+| `Organization`, `LocalBusiness`, `WebSite` | `app/layout.tsx` (site-wide) |
+| `Service`, `FAQPage`, `BreadcrumbList`, `WebPage` | `/services` |
+| `PriceSpecification`, `BreadcrumbList`, `WebPage` | `/pricing` |
+| `WebPage`, `BreadcrumbList` | `/projects`, `/about`, `/contact` |
 | `BlogPosting` | `/blog/[slug]` |
 | `SoftwareApplication`, `BreadcrumbList`, `WebPage` | `/from-d-labs/[slug]` |
+| `Review` | `/` (home page testimonials) |
 
 Entity references are cross-linked with `@id` values (for example the organization
 `${siteUrl}/#organization`) so the graph stays connected rather than emitting isolated nodes.
@@ -138,7 +144,7 @@ Entity references are cross-linked with `@id` values (for example the organizati
 ### Crawler files
 - `app/sitemap.ts` generates `/sitemap.xml` dynamically from the same data modules the pages
   use, so new products and articles appear automatically. Priorities rank the commercial
-  pages (services, pricing, contact) above the blog. `lastModified` is a fixed content date,
+  pages (services, pricing, contact) above the blog. `lastModified` uses actual content dates,
   not the current time, because a sitemap that reports every URL as freshly modified on every
   request is discounted by crawlers.
 - `app/robots.ts` generates `/robots.txt` with an explicit sitemap reference and a `Host`

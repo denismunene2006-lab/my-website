@@ -132,9 +132,35 @@ export default function HomePage() {
     },
   };
 
+  const reviewJsonLd = testimonials.map((testimonial, index) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    '@id': `${siteUrl}/#review-${index + 1}`,
+    author: {
+      '@type': 'Person',
+      name: testimonial.meta.split(',')[0].trim(),
+    },
+    datePublished: '2026-01-01',
+    reviewBody: testimonial.quote,
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '5',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    itemReviewed: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: site.name,
+    },
+    publisher: {
+      '@id': `${siteUrl}/#organization`,
+    },
+  }));
+
   return (
     <div>
-      <JsonLd data={servicesJsonLd} />
+      <JsonLd data={[servicesJsonLd, ...reviewJsonLd]} />
       <Hero />
 
       <section className="page-section">

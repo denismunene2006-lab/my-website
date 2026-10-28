@@ -6,11 +6,10 @@ import { siteUrl } from '@/data/site';
 
 /**
  * Priorities are tuned so the money pages (services, pricing, contact) sit
- * above the blog. `lastModified` is a fixed content date rather than "now" —
+ * above the blog. `lastModified` uses actual content dates rather than "now" —
  * a sitemap that reports every URL as freshly modified on every request is
  * ignored by crawlers.
  */
-const CONTENT_LAST_MODIFIED = new Date('2026-09-30');
 
 type RouteEntry = {
   path: string;
@@ -32,13 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((route) => ({
       url: new URL(route.path, siteUrl).toString(),
-      lastModified: CONTENT_LAST_MODIFIED,
+      lastModified: new Date('2026-09-30'),
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
     ...products.map((product) => ({
       url: new URL(getProductHref(product), siteUrl).toString(),
-      lastModified: CONTENT_LAST_MODIFIED,
+      lastModified: new Date('2026-09-30'),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),

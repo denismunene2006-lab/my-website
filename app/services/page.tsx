@@ -11,6 +11,7 @@ import { createPageMetadata } from '@/lib/metadata';
 import { JsonLd } from '@/components/json-ld';
 import { faqItems, processSteps, services } from '@/data/site';
 import { ServiceCard } from '@/components/service-card';
+import { site, siteUrl } from '@/data/site';
 
 export const metadata = createPageMetadata({
   title: 'Website Development Services in Embu, Kenya | D-LABS',
@@ -37,9 +38,31 @@ export default function ServicesPage() {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    '@id': `${siteUrl}/services#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+    ],
+  };
+
+  const webpageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${siteUrl}/services#webpage`,
+    url: `${siteUrl}/services`,
+    name: 'Website Development Services in Embu, Kenya | D-LABS',
+    description: 'Explore D-LABS services in Embu: website development, redesign, deployment, and beginner web development training.',
+    isPartOf: { '@id': `${siteUrl}/#website` },
+    breadcrumb: { '@id': `${siteUrl}/services#breadcrumb` },
+    inLanguage: 'en-KE',
+  };
+
   return (
     <div>
-      <JsonLd data={faqJsonLd} />
+      <JsonLd data={[faqJsonLd, breadcrumbJsonLd, webpageJsonLd]} />
 
       <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
         <div className="container-shell relative z-10">
