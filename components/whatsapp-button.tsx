@@ -92,7 +92,7 @@ export function WhatsAppButton() {
           <div className="min-w-0 flex-1 space-y-1">
             <div className="flex items-center justify-between gap-2">
               <div>
-                <p className="text-sm font-semibold text-white">D-LABS Support</p>
+                <p className="text-sm font-semibold text-white"><span className="whitespace-nowrap">D-LABS</span> Support</p>
                 <p className="text-xs text-[#25D366]">● Typically replies within minutes</p>
               </div>
               <button

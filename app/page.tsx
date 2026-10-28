@@ -41,13 +41,13 @@ function Hero() {
             <Reveal>
               <Badge variant="accent" className="gap-1.5 py-1 px-3">
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
-                Digital Solutions &amp; Innovation
+                Digital Solutions & Innovation
               </Badge>
             </Reveal>
 
             <Reveal delay={80}>
               <h1 className="font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl leading-[1.1]">
-                Engineering modern digital solutions with <span className="text-primary font-black">D-LABS</span>
+                Engineering modern digital solutions with <span className="text-primary font-black whitespace-nowrap">D-LABS</span>
               </h1>
             </Reveal>
 
@@ -236,9 +236,9 @@ export default function HomePage() {
               <div className="space-y-5">
                 <div className="space-y-2">
                   <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                    Hi, I&apos;m Denis Munene
+                    Hi, I'm Denis Munene
                   </h2>
-                  <p className="text-base font-semibold text-primary">Founder &amp; Lead Developer of D-LABS</p>
+                  <p className="text-base font-semibold text-primary">Founder & Lead Developer of <span className="whitespace-nowrap">D-LABS</span></p>
                 </div>
 
                 <p className="max-w-xl text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -259,7 +259,7 @@ export default function HomePage() {
 
                 <blockquote className="border-l-2 border-primary/50 pl-4 py-1">
                   <p className="text-sm italic text-muted-foreground">
-                    &ldquo;Code is how I bring ideas to life and solve real business problems.&rdquo;
+                    "Code is how I bring ideas to life and solve real business problems."
                   </p>
                   <footer className="mt-1 text-xs font-semibold text-foreground">— Denis Munene</footer>
                 </blockquote>
@@ -299,7 +299,7 @@ export default function HomePage() {
                   Ready to build?
                 </Badge>
                 <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
-                  Let&apos;s design and launch a website that feels modern, fast, and credible.
+                  Let's design and launch a website that feels modern, fast, and credible.
                 </h2>
                 <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
                   Whether you need a fresh launch, a redesign, or technical improvements, D-LABS will help you ship with confidence.

@@ -101,7 +101,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground gap-4">
-          <p>© 2026 D-LABS. All rights reserved.</p>
+          <p>© 2026 <span className="whitespace-nowrap">D-LABS</span>. All rights reserved.</p>
           <p className="flex items-center gap-2">
             <span>Built by Denis Munene</span>
             <span>•</span>

@@ -62,7 +62,7 @@ export function ProductPage({ product }: ProductPageProps) {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase font-semibold tracking-wider text-muted-foreground">
-                      Built in-house by D-LABS
+                      Built in-house by <span className="whitespace-nowrap">D-LABS</span>
                     </p>
                     <p className="text-base font-bold font-heading text-foreground">{product.name}</p>
                   </div>
