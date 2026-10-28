@@ -186,53 +186,68 @@ h1, h2, h3, h4, h5, h6 {
   ring-offset-color: hsl(var(--background));
 }
 
-/* Rotating conic gradient border for developer portrait */
-@keyframes conic-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Growing light arc sweeping around portrait */
+@keyframes light-sweep {
+  0% {
+    stroke-dashoffset: 628;
+    stroke-dasharray: 0 628;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 314 628;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -314;
+    stroke-dasharray: 0 628;
+    opacity: 0;
+  }
 }
 
-@keyframes conic-rotate-reverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+@media (prefers-reduced-motion: reduce) {
+  .portrait-light-sweep {
+    display: none;
+  }
 }
 
-.portrait-ring {
+.portrait-light-sweep {
   position: absolute;
-  inset: -3px;
+  inset: -4px;
   border-radius: inherit;
-  background: conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--primary)/0.6), hsl(var(--primary)/0.15), transparent 40%, transparent 60%, hsl(var(--primary)/0.15), hsl(var(--primary)/0.6), hsl(var(--primary)));
-  opacity: 0.35;
-  filter: blur(1.5px);
-  animation: conic-rotate 8s linear infinite;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  animation: light-sweep 4s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .portrait-ring {
-    animation: none;
-    opacity: 0.15;
-  }
+.portrait-light-sweep svg {
+  width: 100%;
+  height: 100%;
 }
 
-.group:hover .portrait-ring {
-  animation-duration: 3s;
-  opacity: 0.65;
-  filter: blur(0.5px);
+.portrait-light-sweep circle {
+  fill: none;
+  stroke: hsl(var(--primary));
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px hsl(var(--primary)));
 }
 
-.portrait-ring::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: inherit;
-  background: hsl(var(--card));
-  z-index: 1;
+.group:hover .portrait-light-sweep {
+  animation-duration: 2s;
 }
 
-.dark .portrait-ring::after {
-  background: hsl(var(--card));
+.group:hover .portrait-light-sweep circle {
+  stroke-width: 4;
+  filter: drop-shadow(0 0 10px hsl(var(--primary)));
 }
 
 .reveal {
