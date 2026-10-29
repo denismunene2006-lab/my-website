@@ -397,7 +397,7 @@ export const projects = [
     outcome:
       'A responsive website with structured navigation and a user-friendly shopping experience.',
     image: bookshopPreview,
-    href: 'https://denismunene2006-lab.github.io/mary-bookshop/',
+    href: 'https://bookshop-delta-hazel.vercel.app/',
     cta: 'Open live site',
     tags: ['Catalog', 'Browse', 'Responsive', 'Trust'],
   },
