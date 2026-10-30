@@ -37,7 +37,7 @@ export const articles: Article[] = [
     description:
       'Speed, security, and user-focused design principles that help websites perform and convert.',
     date: 'April 18, 2026',
-    updatedAt: 'May 13, 2026',
+    updatedAt: '30 October 2026',
     readTime: '6 min read',
     category: 'Web Development',
     image: articleModernWebDevelopmentImage,
@@ -145,7 +145,7 @@ export const articles: Article[] = [
     description:
       'Discover five common website mistakes that hurt trust and conversions, plus practical fixes.',
     date: 'April 18, 2026',
-    updatedAt: 'May 13, 2026',
+    updatedAt: '30 October 2026',
     readTime: '5 min read',
     category: 'Business Websites',
     image: articleBusinessMistakesImage,
@@ -160,23 +160,23 @@ export const articles: Article[] = [
         columns: 2,
         items: [
           {
-            title: '1. Hiding the buy button',
+            title: 'Hiding the buy button',
             text: 'If people have to hunt for your contact info or products, they will give up. Keep your buttons bright and easy to find.',
           },
           {
-            title: '2. Too much tech talk',
+            title: 'Too much tech talk',
             text: 'Your customers do not care about backend code; they care about how you solve their problems. Speak their language.',
           },
           {
-            title: '3. Slow loading speeds',
+            title: 'Slow loading speeds',
             text: 'A slow site feels broken to a customer. Speeding it up is often the fastest way to build trust.',
           },
           {
-            title: '4. Ignoring mobile users',
+            title: 'Ignoring mobile users',
             text: 'Most people browse on phones. If your site looks messy on mobile, you are losing a huge part of your audience.',
           },
           {
-            title: '5. No clear next step',
+            title: 'No clear next step',
             text: 'Every page should tell the visitor what to do next. Should they call you? WhatsApp you? Buy now?',
           },
         ],
@@ -340,7 +340,7 @@ export const articles: Article[] = [
     description:
       'A practical guide to building modern websites that are fast, secure, accessible, and easy to maintain.',
     date: 'May 19, 2026',
-    updatedAt: 'May 19, 2026',
+    updatedAt: '30 October 2026',
     readTime: '12 min read',
     category: 'Web Development',
     image: article20RulesImage,
@@ -360,102 +360,102 @@ export const articles: Article[] = [
         columns: 3,
         items: [
           {
-            title: '1. Mobile-first is the only way',
+            title: 'Mobile-first is the only way',
             text:
               'Most users are on phones. If your layout breaks on mobile, your website is already failing.',
           },
           {
-            title: '2. Speed over fancy design',
+            title: 'Speed over fancy design',
             text:
               'A beautiful but slow website loses users. Optimize images, fonts, API calls, and JavaScript bundles.',
           },
           {
-            title: '3. Never trust user input',
+            title: 'Never trust user input',
             text:
               'Validate and sanitize input on both frontend and backend, hash passwords, and protect your APIs.',
           },
           {
-            title: '4. Good UI does not equal good UX',
+            title: 'Good UI does not equal good UX',
             text:
               'A site can look amazing and still be frustrating to use. UX means clear navigation, obvious buttons, and simple forms.',
           },
           {
-            title: '5. Accessibility matters',
+            title: 'Accessibility matters',
             text:
               'Use semantic HTML, descriptive alt text, and high contrast so the site works for everyone.',
           },
           {
-            title: '6. Write clean, maintainable code',
+            title: 'Write clean, maintainable code',
             text:
               'Use clear variable names, reusable components, proper folder structures, and comments only when they add value.',
           },
           {
-            title: '7. Guard your secrets',
+            title: 'Guard your secrets',
             text:
               'Never hardcode API keys, database URLs, or secret tokens into your main files. Keep them in environment variables.',
           },
           {
-            title: '8. Structure your site for SEO',
+            title: 'Structure your site for SEO',
             text:
               'Use proper titles, descriptions, clean URLs, and structured semantic headings so search engines can understand your site.',
           },
           {
-            title: '9. Code for failure, not just success',
+            title: 'Code for failure, not just success',
             text:
               'Handle network failures, empty states, bad passwords, and API downtime gracefully so users never see a frozen screen.',
           },
           {
-            title: '10. Think about scalability early',
+            title: 'Think about scalability early',
             text:
               'Before you write a feature, ask whether the code will scale, stay understandable, and remain maintainable over time.',
           },
           {
-            title: '11. Version control is mandatory',
+            title: 'Version control is mandatory',
             text:
               'Use Git properly, write meaningful commit messages, branch your work, and push frequently.',
           },
           {
-            title: '12. Test everything',
+            title: 'Test everything',
             text:
               'Test different devices, edge cases, and bad network conditions instead of hoping the feature will work.',
           },
           {
-            title: '13. Set up logging and monitoring',
+            title: 'Set up logging and monitoring',
             text:
               'Know when something breaks in production before the client calls you. Monitoring is part of shipping responsibly.',
           },
           {
-            title: '14. Stop overengineering',
+            title: 'Stop overengineering',
             text:
               'You do not need a complicated architecture or twenty libraries for a simple project. Simple systems win.',
           },
           {
-            title: '15. User data is a serious responsibility',
+            title: 'User data is a serious responsibility',
             text:
               'Store only what is necessary and protect the information users trust you with.',
           },
           {
-            title: '16. Master the art of deployment',
+            title: 'Master the art of deployment',
             text:
               'Understand environment variables, hosting platforms, custom domains, and HTTPS so you can bring code to the world confidently.',
           },
           {
-            title: '17. Documentation saves lives',
+            title: 'Documentation saves lives',
             text:
               'Write clear setup instructions and project notes so your future self and teammates can move faster.',
           },
           {
-            title: '18. Consistency beats motivation',
+            title: 'Consistency beats motivation',
             text:
               'Build consistently, finish projects, and focus on fundamentals instead of chasing every new trend.',
           },
           {
-            title: '19. Learn fundamentals before tools',
+            title: 'Learn fundamentals before tools',
             text:
               'Master HTML, CSS, JavaScript, APIs, and authentication first. If the fundamentals are strong, any framework becomes easier.',
           },
           {
-            title: '20. Build real projects',
+            title: 'Build real projects',
             text:
               'Force yourself to build authentication systems, dashboards, payments, and APIs. That is where real learning starts.',
           },
