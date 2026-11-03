@@ -30,6 +30,11 @@ import logoMark from '../images/new logo.jpeg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dlabskenya.com';
+export const productionSiteUrl = 'https://dlabskenya.com';
+
+export function getArticleUrl(slug: string) {
+  return `${productionSiteUrl}/blog/${encodeURIComponent(slug)}`;
+}
 
 export const site = {
   name: 'D-LABS',

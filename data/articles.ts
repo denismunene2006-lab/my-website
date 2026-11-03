@@ -470,6 +470,14 @@ export const articles: Article[] = [
   },
 ];
 
+const duplicateSlugs = articles
+  .map((article) => article.slug)
+  .filter((slug, index, slugs) => slugs.indexOf(slug) !== index);
+
+if (duplicateSlugs.length > 0) {
+  throw new Error(`Duplicate article slug(s): ${[...new Set(duplicateSlugs)].join(', ')}`);
+}
+
 export function getArticleBySlug(slug: string) {
   return articles.find((article) => article.slug === slug);
 }

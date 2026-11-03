@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, CalendarDays, Clock3, Tag } from 'lucide-react';
 
 import { ArticleContent } from '@/components/article-content';
+import { ArticleShare } from '@/components/article-share';
 import { JsonLd } from '@/components/json-ld';
 import { Reveal } from '@/components/reveal';
 import { Badge } from '@/components/ui/badge';
@@ -12,7 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
 import { articles, getArticleBySlug } from '@/data/articles';
-import { site, siteUrl } from '@/data/site';
+import { getArticleUrl, site, siteUrl } from '@/data/site';
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -57,6 +58,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     notFound();
   }
 
+  const articleUrl = getArticleUrl(article.slug);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -111,6 +113,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   {article.category}
                 </span>
               </div>
+              <ArticleShare title={article.title} url={articleUrl} compact />
             </div>
 
             <Card className="overflow-hidden border-border/60 bg-card shadow-sm">
@@ -132,6 +135,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   <ArticleContent blocks={article.blocks} />
                 </CardContent>
               </Card>
+              <ArticleShare title={article.title} url={articleUrl} />
             </article>
 
             <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
