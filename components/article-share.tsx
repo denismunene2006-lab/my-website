@@ -92,10 +92,10 @@ export function ArticleShare({ title, url, compact = false, className }: Article
       )}
     >
       <div className={cn('flex gap-3', compact ? 'flex-col items-stretch sm:flex-row sm:items-center sm:justify-between' : 'flex-col sm:flex-row sm:items-center sm:justify-between')}>
-        <div className="flex items-center gap-2">
-          <Share2 className="h-4 w-4 text-primary" aria-hidden="true" />
+        <div className="flex items-start gap-2">
+          <Share2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
           <div>
-            <h2 className={cn('font-heading font-bold text-foreground', compact ? 'text-sm' : 'text-base')}>Share this article</h2>
+            <h2 className={cn('font-heading font-bold leading-tight text-foreground', compact ? 'text-sm' : 'text-base')}>Share this article</h2>
             {!compact ? <p className="mt-1 text-xs text-muted-foreground">Send it to someone who might find it useful.</p> : null}
           </div>
         </div>
