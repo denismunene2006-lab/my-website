@@ -100,7 +100,7 @@ export function ArticleShare({ title, url, compact = false, className }: Article
           </div>
         </div>
 
-        <div className={cn('flex flex-wrap gap-2', compact ? 'grid grid-cols-2 sm:flex sm:justify-end' : 'sm:justify-end')}>
+        <div className={cn('min-w-0 flex flex-wrap gap-2', compact ? 'grid grid-cols-2 sm:flex sm:justify-end' : 'sm:justify-end')}>
           <a
             href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
             target="_blank"

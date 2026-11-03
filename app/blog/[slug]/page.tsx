@@ -77,7 +77,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
   };
 
   return (
-    <div className="page-section">
+    <div className="page-section overflow-x-hidden">
       <div className="container-shell">
         <Reveal>
           <Link
@@ -90,8 +90,8 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         </Reveal>
 
         <Reveal delay={80}>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-4">
+          <div className="mt-6 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+            <div className="min-w-0 space-y-4">
               <Badge variant="accent" className="w-fit text-[10px] uppercase font-semibold">
                 {article.category}
               </Badge>
@@ -116,7 +116,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
               <ArticleShare title={article.title} url={articleUrl} compact />
             </div>
 
-            <Card className="overflow-hidden border-border/60 bg-card shadow-sm">
+            <Card className="min-w-0 overflow-hidden border-border/60 bg-card shadow-sm">
               <Image
                 src={article.image}
                 alt={article.title}
@@ -128,10 +128,10 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
-            <article className="space-y-8">
+          <div className="mt-10 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
+            <article className="min-w-0 space-y-8">
               <Card className="border-border/60 bg-card shadow-sm">
-                <CardContent className="p-6 sm:p-8">
+                <CardContent className="min-w-0 p-6 sm:p-8">
                   <ArticleContent blocks={article.blocks} />
                 </CardContent>
               </Card>

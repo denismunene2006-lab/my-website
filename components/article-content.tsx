@@ -15,7 +15,7 @@ type ArticleContentProps = {
 
 export function ArticleContent({ blocks }: ArticleContentProps) {
   return (
-    <div className="space-y-8">
+    <div className="min-w-0 space-y-8 break-words">
       {blocks.map((block, index) => {
         if (block.type === 'paragraph') {
           return (
