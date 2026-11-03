@@ -195,15 +195,15 @@ export const articles: Article[] = [
     description:
       'A practical introduction to local SEO for small businesses that want to be discovered online.',
     date: 'April 18, 2026',
-    updatedAt: 'May 13, 2026',
-    readTime: '7 min read',
+    updatedAt: '3 November 2026',
+    readTime: '10 min read',
     category: 'SEO',
     image: articleSeoBasicsImage,
     blocks: [
       {
         type: 'paragraph',
         text:
-          'SEO sounds complicated, but it is actually quite simple. It is the art of making sure that when someone searches for a service you offer, your name comes up first.',
+          'SEO sounds complicated, but the foundation is simple: make it easy for search engines to understand your business and easy for the right customers to trust it. The goal is not to attract everyone. It is to appear when someone is actively looking for the product or service you provide.',
       },
       { type: 'heading', level: 2, text: 'How to start winning at SEO' },
       {
@@ -213,23 +213,108 @@ export const articles: Article[] = [
           {
             title: 'Be specific',
             text:
-              'Instead of competing for broad global keywords, focus on local relevance and position your business as a trusted partner in your area.',
+              'Instead of competing for broad global keywords, focus on specific phrases that match your service, location, and customer intent. “Web developer in Embu” is more useful than trying to rank for “web design.”',
           },
           {
             title: 'Answer questions',
             text:
-              'Write short articles that answer the exact questions your customers ask every day. Google loves helpful content.',
+              'Write useful pages and articles that answer the questions your customers ask before they buy. Clear, original answers build relevance and give people a reason to stay on your site.',
           },
           {
-            title: 'Google My Business',
+            title: 'Google Business Profile',
             text:
-              'Make sure your business is on the map. This helps local customers find your location or service area instantly.',
+              'Claim and complete your Google Business Profile. Accurate services, opening hours, photos, reviews, and contact details help local customers find and choose you.',
+          },
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'Before changing your website, set up Google Search Console. It is a free Google tool that shows how your site appears in search, which queries bring impressions and clicks, and whether Google has found technical problems.',
+      },
+      { type: 'heading', level: 2, text: 'Use Google Search Console as your SEO dashboard' },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Verify your website',
+            text:
+              'Add your domain or URL-prefix property and complete verification. A domain property gives you the broadest view across protocols and subdomains.',
+          },
+          {
+            title: 'Submit your sitemap',
+            text:
+              'Submit your sitemap.xml so Google can discover important pages faster. Check the Pages report for pages that are indexed, excluded, or blocked.',
+          },
+          {
+            title: 'Study search performance',
+            text:
+              'Review clicks, impressions, click-through rate, and average position. Filter by query and page to find opportunities where a small improvement could bring more visitors.',
+          },
+          {
+            title: 'Fix experience problems',
+            text:
+              'Use the indexing, HTTPS, mobile usability, and Core Web Vitals reports to find issues that can prevent pages from performing well for real users.',
           },
         ],
       },
       {
         type: 'callout',
-        text: 'Good SEO means you stop chasing customers and start letting them find you.',
+        title: 'A practical Search Console routine',
+        text:
+          'Check your Performance report once a month, inspect important new pages, review indexing errors, and compare results with the previous period. SEO becomes easier when you measure what is happening instead of guessing.',
+      },
+      { type: 'heading', level: 2, text: 'The essential parts of small-business SEO' },
+      {
+        type: 'list',
+        items: [
+          'Create one useful, descriptive title and meta description for every important page.',
+          'Use a clear URL, one meaningful H1 heading, and descriptive subheadings that match the page topic.',
+          'Make every service page specific: explain who it helps, what it includes, where you serve, and what the next step is.',
+          'Keep your business name, phone number, address, service area, and opening hours consistent across your website and directory listings.',
+          'Ask satisfied customers for honest Google reviews and respond professionally to useful feedback.',
+          'Compress images, use descriptive alt text, and keep pages fast and comfortable to use on mobile networks.',
+          'Link related pages together so visitors and search engines can discover your services, articles, and contact page.',
+          'Update outdated information and improve pages that already receive impressions but few clicks.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'Do not treat SEO as a one-time trick. Search rankings change because competitors publish better information, customer needs change, and Google improves how it evaluates useful content. A steady process of publishing, measuring, and improving is more reliable than chasing shortcuts.',
+      },
+      { type: 'heading', level: 2, text: 'Avoid shortcuts that damage trust' },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Keyword stuffing',
+            text:
+              'Repeating a phrase unnaturally makes content harder to read. Use the language your customers use and cover the topic thoroughly instead.',
+          },
+          {
+            title: 'Copied content',
+            text:
+              'Duplicating another site rarely creates lasting value. Add your own experience, examples, process, and local knowledge.',
+          },
+          {
+            title: 'Buying reviews or links',
+            text:
+              'Artificial reviews and manipulative backlinks can put your reputation and visibility at risk. Earn trust through useful work and genuine relationships.',
+          },
+          {
+            title: 'Ignoring conversions',
+            text:
+              'Traffic is not the final goal. Make it obvious how visitors can call, WhatsApp, request a quote, visit your location, or take the next useful step.',
+          },
+        ],
+      },
+      {
+        type: 'callout',
+        text:
+          'Good SEO means you stop chasing every possible visitor and start becoming easier to find for the customers who already need your help. Start with one clear service page, a complete Google Business Profile, and regular Search Console checks.',
       },
     ],
   },
