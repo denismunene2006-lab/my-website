@@ -37,8 +37,8 @@ export const articles: Article[] = [
     description:
       'Speed, security, and user-focused design principles that help websites perform and convert.',
     date: 'April 18, 2026',
-    updatedAt: '30 October 2026',
-    readTime: '6 min read',
+    updatedAt: '3 November 2026',
+    readTime: '9 min read',
     category: 'Web Development',
     image: articleModernWebDevelopmentImage,
     blocks: [
@@ -69,9 +69,51 @@ export const articles: Article[] = [
         ],
       },
       {
+        type: 'paragraph',
+        text:
+          'A modern website is a connected system, not just a collection of attractive screens. The design, content, code, hosting, analytics, and support process all affect whether a visitor becomes a customer.',
+      },
+      { type: 'heading', level: 2, text: 'What makes a website modern?' },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Clear information architecture',
+            text:
+              'Organize pages around the questions customers have. A simple navigation structure helps visitors find services, proof, pricing, and contact options without hunting.',
+          },
+          {
+            title: 'Accessible by default',
+            text:
+              'Use readable contrast, keyboard-friendly controls, descriptive labels, and meaningful headings so more people can use the site confidently.',
+          },
+          {
+            title: 'Measurable outcomes',
+            text:
+              'Track useful actions such as form submissions, calls, bookings, and WhatsApp conversations. A modern site should help you learn what is working.',
+          },
+          {
+            title: 'Easy to maintain',
+            text:
+              'Reusable components, organized content, and documented deployment steps reduce the cost of improving the website later.',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        items: [
+          'Use responsive layouts that work comfortably on small phones, tablets, and large screens.',
+          'Serve optimized images and load only the scripts and fonts the page actually needs.',
+          'Use HTTPS, secure headers, validated forms, and protected environment variables.',
+          'Write page titles, descriptions, clean URLs, and semantic headings for search engines.',
+          'Test real user journeys: finding a service, understanding the offer, and contacting the business.',
+        ],
+      },
+      {
         type: 'callout',
         text:
-          'Do not settle for an old-fashioned site. Let us build something fast, secure, and ready for the future.',
+          'Do not settle for an old-fashioned site. Let us build something fast, secure, accessible, measurable, and ready for the future.',
       },
     ],
   },
@@ -82,8 +124,8 @@ export const articles: Article[] = [
     description:
       'Discover how page speed affects user experience, SEO, and conversions.',
     date: 'April 29, 2026',
-    updatedAt: 'May 13, 2026',
-    readTime: '8 min read',
+    updatedAt: '3 November 2026',
+    readTime: '11 min read',
     category: 'Performance',
     image: articlePerformanceImage,
     blocks: [
@@ -129,7 +171,42 @@ export const articles: Article[] = [
           'Image compression keeps visuals sharp without bloating the page.',
           'Clean code removes unnecessary bloat that slows browsers down.',
           'Modern hosting helps serve your site quickly and reliably.',
+          'Lazy-load below-the-fold media and reserve image dimensions to reduce layout shifts.',
+          'Cache reusable assets and reduce unnecessary third-party scripts and tracking tools.',
+          'Test important pages with Lighthouse and PageSpeed Insights on mobile settings.',
         ],
+      },
+      { type: 'heading', level: 2, text: 'A practical performance improvement process' },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Measure first',
+            text:
+              'Record the current load experience on your homepage, service pages, and conversion pages. Look at real-user data when available instead of optimizing one device in isolation.',
+          },
+          {
+            title: 'Fix the biggest weight',
+            text:
+              'Large images, video backgrounds, web fonts, analytics scripts, and unneeded JavaScript often create the biggest gains when removed or optimized.',
+          },
+          {
+            title: 'Protect the user journey',
+            text:
+              'A fast homepage is not enough if the quote form, booking page, or checkout is slow. Test the complete path from landing page to action.',
+          },
+          {
+            title: 'Keep monitoring',
+            text:
+              'Performance can regress when new campaigns, plugins, images, or integrations are added. Check important pages after every significant release.',
+          },
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'Performance is not about chasing a perfect score at the expense of useful features. It is about removing friction so visitors can understand your offer, trust the business, and complete the next step quickly.',
       },
       {
         type: 'quote',
@@ -145,8 +222,8 @@ export const articles: Article[] = [
     description:
       'Discover five common website mistakes that hurt trust and conversions, plus practical fixes.',
     date: 'April 18, 2026',
-    updatedAt: '30 October 2026',
-    readTime: '5 min read',
+    updatedAt: '3 November 2026',
+    readTime: '9 min read',
     category: 'Business Websites',
     image: articleBusinessMistakesImage,
     blocks: [
@@ -178,6 +255,48 @@ export const articles: Article[] = [
           {
             title: 'No clear next step',
             text: 'Every page should tell the visitor what to do next. Should they call you? WhatsApp you? Buy now?',
+          },
+        ],
+      },
+      { type: 'heading', level: 2, text: 'How to fix each mistake' },
+      {
+        type: 'list',
+        items: [
+          'Put one primary call to action in the header and repeat it naturally after important sections.',
+          'Replace technical descriptions with benefits, examples, outcomes, and language your customers understand.',
+          'Compress images, remove unnecessary scripts, and test the site on a real mobile connection.',
+          'Check every page at a small phone width, including menus, forms, cards, buttons, and tables.',
+          'Give visitors a clear next step: call, WhatsApp, request a quote, book a consultation, or visit the shop.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'These mistakes are connected. A confusing message makes a slow page feel less trustworthy, while a hidden contact option wastes the attention that good SEO and advertising worked to earn. Review the full customer journey instead of fixing isolated elements.',
+      },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Build trust with proof',
+            text:
+              'Show real work, customer results, testimonials, guarantees, locations, and clear contact details. Proof answers the question, “Why should I choose you?”',
+          },
+          {
+            title: 'Keep information current',
+            text:
+              'Outdated prices, broken links, old opening hours, and unavailable services create doubt. Schedule a simple monthly content check.',
+          },
+          {
+            title: 'Make forms helpful',
+            text:
+              'Ask only for information you need, explain what happens next, and provide a clear success message after submission.',
+          },
+          {
+            title: 'Review real behavior',
+            text:
+              'Use analytics, search data, customer questions, and support messages to find where people hesitate or leave.',
           },
         ],
       },
@@ -325,8 +444,8 @@ export const articles: Article[] = [
     description:
       'A practical framework for turning your website into a growth channel for leads and sales.',
     date: 'April 18, 2026',
-    updatedAt: 'May 13, 2026',
-    readTime: '6 min read',
+    updatedAt: '3 November 2026',
+    readTime: '10 min read',
     category: 'Online Growth',
     image: articleOnlineGrowthImage,
     blocks: [
@@ -361,6 +480,49 @@ export const articles: Article[] = [
           },
         ],
       },
+      { type: 'heading', level: 2, text: 'Build a repeatable growth system' },
+      {
+        type: 'list',
+        items: [
+          'Choose one audience and one clear business goal before choosing channels or campaigns.',
+          'Create a useful landing page that explains the problem, solution, proof, and next step.',
+          'Capture questions from sales conversations and turn the best answers into content.',
+          'Use email, WhatsApp, or another permission-based follow-up channel to continue helpful conversations.',
+          'Review traffic, qualified enquiries, conversion rate, and cost per lead instead of celebrating visits alone.',
+          'Improve the pages and campaigns that already show promise before constantly starting new ones.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'Growth becomes sustainable when each activity supports the next one. Search and social content attract attention, the website explains the offer, proof reduces uncertainty, and a simple follow-up process helps interested people make a decision.',
+      },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Own your audience',
+            text:
+              'Social platforms can change their reach or rules. Use them to attract attention, but guide interested people toward your website, email list, or direct contact channel.',
+          },
+          {
+            title: 'Make trust visible',
+            text:
+              'Case studies, reviews, transparent pricing guidance, clear policies, and a real business identity make visitors more comfortable taking action.',
+          },
+          {
+            title: 'Test one change at a time',
+            text:
+              'Improve a headline, offer, form, or call to action and compare results. Small, measured improvements compound over time.',
+          },
+          {
+            title: 'Follow up with value',
+            text:
+              'A person who is not ready today may still become a customer. Share useful reminders and answers without turning every message into pressure.',
+          },
+        ],
+      },
       {
         type: 'quote',
         text:
@@ -375,8 +537,8 @@ export const articles: Article[] = [
     description:
       'Use strategic content marketing to attract qualified leads and build authority for tech companies.',
     date: 'April 29, 2026',
-    updatedAt: 'May 13, 2026',
-    readTime: '8 min read',
+    updatedAt: '3 November 2026',
+    readTime: '11 min read',
     category: 'Content Marketing',
     image: articleContentMarketingImage,
     blocks: [
@@ -408,6 +570,49 @@ export const articles: Article[] = [
             title: 'Education as a service',
             text:
               'Create checklists, how-to guides, and practical lists that help your clients grow their own businesses.',
+          },
+        ],
+      },
+      { type: 'heading', level: 2, text: 'A practical content marketing workflow' },
+      {
+        type: 'list',
+        items: [
+          'Interview customers and sales teams to find recurring questions, objections, and desired outcomes.',
+          'Choose a clear format: guide, comparison, case study, checklist, demo, newsletter, or short video.',
+          'Give each piece one audience, one problem, and one useful next step.',
+          'Support claims with examples, screenshots, data, or lessons from real projects.',
+          'Optimize the title, headings, links, and description so people can discover the content.',
+          'Repurpose a strong article into social posts, an email, a checklist, or a sales conversation.',
+        ],
+      },
+      {
+        type: 'paragraph',
+        text:
+          'The best technology content is specific enough to be useful and simple enough to be understood. You do not need to reveal confidential implementation details; explain the decisions, trade-offs, and outcomes that help a potential customer make a better choice.',
+      },
+      {
+        type: 'cards',
+        columns: 2,
+        items: [
+          {
+            title: 'Create a point of view',
+            text:
+              'Explain what you recommend, what you avoid, and why. A clear perspective helps the right clients recognize that your approach fits their needs.',
+          },
+          {
+            title: 'Show the work',
+            text:
+              'Behind-the-scenes notes, demos, diagrams, and before-and-after examples make technical expertise concrete and credible.',
+          },
+          {
+            title: 'Distribute consistently',
+            text:
+              'A useful article that no one sees cannot create demand. Share it through search, newsletters, communities, social channels, and relevant sales conversations.',
+          },
+          {
+            title: 'Measure business value',
+            text:
+              'Track qualified enquiries, assisted conversions, returning visitors, and sales conversations influenced by content, not only page views.',
           },
         ],
       },
