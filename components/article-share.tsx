@@ -86,12 +86,12 @@ export function ArticleShare({ title, url, compact = false, className }: Article
     <section
       aria-label="Share article"
       className={cn(
-        'rounded-xl border border-border/60 bg-card shadow-sm',
+        'min-w-0 rounded-xl border border-border/60 bg-card shadow-sm',
         compact ? 'p-3' : 'p-5 sm:p-6',
         className
       )}
     >
-      <div className={cn('flex gap-3', compact ? 'items-center justify-between' : 'flex-col sm:flex-row sm:items-center sm:justify-between')}>
+      <div className={cn('flex gap-3', compact ? 'flex-col items-stretch sm:flex-row sm:items-center sm:justify-between' : 'flex-col sm:flex-row sm:items-center sm:justify-between')}>
         <div className="flex items-center gap-2">
           <Share2 className="h-4 w-4 text-primary" aria-hidden="true" />
           <div>
@@ -100,12 +100,12 @@ export function ArticleShare({ title, url, compact = false, className }: Article
           </div>
         </div>
 
-        <div className={cn('flex flex-wrap gap-2', compact ? 'justify-end' : 'sm:justify-end')}>
+        <div className={cn('flex flex-wrap gap-2', compact ? 'grid grid-cols-2 sm:flex sm:justify-end' : 'sm:justify-end')}>
           <a
             href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(linkClass, 'border-green-500/30 text-green-600 dark:text-green-400')}
+            className={cn(linkClass, compact && 'w-full sm:w-auto', 'border-green-500/30 text-green-600 dark:text-green-400')}
             aria-label="Share on WhatsApp"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -115,7 +115,7 @@ export function ArticleShare({ title, url, compact = false, className }: Article
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(linkClass, 'border-blue-500/30 text-blue-600 dark:text-blue-400')}
+            className={cn(linkClass, compact && 'w-full sm:w-auto', 'border-blue-500/30 text-blue-600 dark:text-blue-400')}
             aria-label="Share on Facebook"
           >
             <Facebook className="h-4 w-4" aria-hidden="true" />
@@ -125,14 +125,14 @@ export function ArticleShare({ title, url, compact = false, className }: Article
             href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(linkClass, 'border-sky-500/30 text-sky-600 dark:text-sky-400')}
+            className={cn(linkClass, compact && 'w-full sm:w-auto', 'border-sky-500/30 text-sky-600 dark:text-sky-400')}
             aria-label="Share on LinkedIn"
           >
             <Linkedin className="h-4 w-4" aria-hidden="true" />
             <span className={compact ? 'sr-only sm:not-sr-only' : undefined}>LinkedIn</span>
           </a>
           {nativeShareSupported ? (
-            <button type="button" onClick={handleNativeShare} className={cn(linkClass, 'border-primary/30 text-primary')} aria-label="Share using your device">
+            <button type="button" onClick={handleNativeShare} className={cn(linkClass, compact && 'w-full sm:w-auto', 'border-primary/30 text-primary')} aria-label="Share using your device">
               <Share2 className="h-4 w-4" aria-hidden="true" />
               <span className={compact ? 'sr-only sm:not-sr-only' : undefined}>Share</span>
             </button>
@@ -140,7 +140,7 @@ export function ArticleShare({ title, url, compact = false, className }: Article
           <button
             type="button"
             onClick={handleCopy}
-            className={cn(linkClass, copied ? 'border-primary bg-primary text-primary-foreground' : 'border-border/70 text-foreground')}
+            className={cn(linkClass, compact && 'w-full sm:w-auto', copied ? 'border-primary bg-primary text-primary-foreground' : 'border-border/70 text-foreground')}
             aria-label={copied ? 'Link copied' : 'Copy article link'}
           >
             {copied ? <Check className="h-4 w-4" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
