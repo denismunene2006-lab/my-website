@@ -7,6 +7,7 @@ import articleModernWebDevelopmentImage from '../images/article-modern-web-devel
 import articleOnlineGrowthImage from '../images/article-online-growth-strategy/photo2.webp';
 import articleSeoBasicsImage from '../images/article-seo-basics-for-small-business/photo4.webp';
 import articlePerformanceImage from '../images/article-website-performance-page-speed/d2.webp';
+import mpesaDarajaArticleImage from '../images/article-mpesa-daraja-api-nodejs-express-mongodb/M-Pesa Daraja API Integration Guide.png';
 
 export type ArticleBlock =
   | { type: 'paragraph'; text: string }
@@ -14,7 +15,11 @@ export type ArticleBlock =
   | { type: 'list'; items: string[] }
   | { type: 'quote'; text: string }
   | { type: 'callout'; title?: string; text: string }
-  | { type: 'cards'; columns?: 2 | 3; items: { title: string; text: string }[] };
+  | { type: 'cards'; columns?: 2 | 3; items: { title: string; text: string }[] }
+  | { type: 'code'; filename: string; code: string; language?: string }
+  | { type: 'table'; headers: string[]; rows: string[][] }
+  | { type: 'link'; label: string; href: string; description?: string }
+  | { type: 'steps'; items: { title: string; text: string }[] };
 
 export type Article = {
   slug: string;
@@ -759,6 +764,138 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const mpesaDarajaArticle: Article = {
+  slug: 'mpesa-daraja-api-nodejs-express-mongodb',
+  title: 'M-Pesa Daraja API Integration with Node.js, Express and MongoDB: A Complete Step-by-Step Guide',
+  subtitle: 'A practical beginner-friendly path from Daraja concepts to a reliable payment integration',
+  description:
+    'Learn how the Safaricom M-Pesa Daraja API works and how a Node.js, Express, and MongoDB application will integrate with it.',
+  date: '3 November 2026',
+  updatedAt: '3 November 2026',
+  readTime: '25 min read',
+  category: 'Backend Development',
+  image: mpesaDarajaArticleImage,
+  blocks: [
+    {
+      type: 'paragraph',
+      text:
+        'M-Pesa is one of the most widely used payment systems in Kenya. For a web application, the Daraja API provides the interface that lets your backend request payments, receive payment notifications, and keep your own transaction records in sync with Safaricom.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'In this tutorial, we will build the integration from the ground up with Node.js and Express for the API server and MongoDB for transaction storage. The goal is not only to trigger a payment prompt, but to design the complete flow around authentication, callbacks, verification, reconciliation, and security.',
+    },
+    {
+      type: 'callout',
+      title: 'Important payment rule',
+      text:
+        'A successful STK Push initiation response only means that Safaricom accepted your request for processing. It is not proof that the customer entered a PIN or that money was received. Your application must process the callback and, where necessary, verify and reconcile the transaction before treating it as paid.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'What is the M-Pesa Daraja API?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Daraja is Safaricom’s developer platform for integrating M-Pesa services into applications. Your server communicates with Daraja over HTTPS using JSON requests and responses. Depending on the product you use, the API can support customer-initiated payments, business-to-customer payments, business-to-business payments, transaction queries, and payment notifications.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'This guide focuses on the common web checkout flow: a customer enters a phone number, your Express server requests an STK Push, the customer responds on their phone, and Safaricom calls your callback endpoint with the result. Later chapters will add C2B, persistence, verification, and reconciliation.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'The payment flow we will build',
+    },
+    {
+      type: 'steps',
+      items: [
+        {
+          title: 'Customer starts checkout',
+          text:
+            'The customer submits an order and a valid Kenyan M-Pesa phone number to your application.',
+        },
+        {
+          title: 'Express requests an access token',
+          text:
+            'Your backend authenticates with Daraja using the Consumer Key and Consumer Secret stored in environment variables.',
+        },
+        {
+          title: 'Express requests an STK Push',
+          text:
+            'Your backend creates the required password and timestamp, then sends the payment request to Daraja. The customer sees the payment prompt on their phone.',
+        },
+        {
+          title: 'Safaricom sends the callback',
+          text:
+            'Daraja calls the configured callback URL with the result. Your server must validate the payload, record the outcome, and avoid assuming success before checking the result code.',
+        },
+        {
+          title: 'The application reconciles the transaction',
+          text:
+            'Your system uses its stored identifiers and, when needed, a transaction-status query to resolve delayed, duplicated, or uncertain payment states.',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Sandbox and production are different environments',
+    },
+    {
+      type: 'table',
+      headers: ['Environment', 'Purpose', 'Credentials and money'],
+      rows: [
+        [
+          'Sandbox',
+          'Build and test request formats, callbacks, and error handling.',
+          'Uses sandbox app credentials and test configuration. Do not treat sandbox responses as live customer payments.',
+        ],
+        [
+          'Production',
+          'Process real customer payments after the business and integration are approved for live use.',
+          'Uses production credentials and live account configuration. Protect credentials and monitor every transaction.',
+        ],
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The endpoints, credentials, account identifiers, callback configuration, and test behavior must be checked against the current Daraja documentation for the product you are integrating. Never copy sandbox credentials into production or commit either environment’s secrets to source control.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'What we will build in the remaining chapters',
+    },
+    {
+      type: 'list',
+      items: [
+        'A small Express API with clear environment configuration and error handling.',
+        'OAuth token generation using the Daraja Consumer Key and Consumer Secret.',
+        'STK Push password and timestamp generation without exposing secrets.',
+        'Callback endpoints that distinguish accepted requests from completed payments.',
+        'MongoDB transaction records that support retries, status checks, and reconciliation.',
+        'Security controls for validation, HTTPS callbacks, idempotency, logging, and secret management.',
+      ],
+    },
+    {
+      type: 'link',
+      label: 'Open the official Safaricom Daraja developer portal',
+      href: 'https://developer.safaricom.co.ke/',
+      description:
+        'Use the official portal to create applications, review current API documentation, obtain environment-specific credentials, and confirm the requirements for the product you plan to use.',
+    },
+  ],
+};
+
+articles.push(mpesaDarajaArticle);
 
 const duplicateSlugs = articles
   .map((article) => article.slug)

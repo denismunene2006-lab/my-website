@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { ArticleBlock } from '@/data/articles';
+import { ArticleCodeBlock } from '@/components/article-code-block';
 
 function slugify(text: string) {
   return text
@@ -85,6 +86,73 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
                 </Card>
               ))}
             </div>
+          );
+        }
+
+        if (block.type === 'code') {
+          return <ArticleCodeBlock key={index} filename={block.filename} code={block.code} language={block.language} />;
+        }
+
+        if (block.type === 'table') {
+          return (
+            <div key={index} className="max-w-full overflow-x-auto rounded-2xl border border-border/70 shadow-sm">
+              <table className="min-w-full border-collapse text-left text-sm">
+                <thead className="bg-muted/50 text-xs uppercase tracking-wide text-foreground">
+                  <tr>
+                    {block.headers.map((header) => (
+                      <th key={header} scope="col" className="whitespace-nowrap border-b border-border/70 px-4 py-3 font-semibold">
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60">
+                  {block.rows.map((row, rowIndex) => (
+                    <tr key={rowIndex} className="bg-card">
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex} className="min-w-32 px-4 py-3 align-top leading-6 text-muted-foreground">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+
+        if (block.type === 'link') {
+          return (
+            <Card key={index} className="border-primary/15 bg-primary/[0.04] p-5 shadow-sm">
+              <a
+                href={block.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary underline-offset-4 hover:underline"
+              >
+                {block.label}
+              </a>
+              {block.description ? <p className="mt-2 text-sm leading-7 text-muted-foreground">{block.description}</p> : null}
+            </Card>
+          );
+        }
+
+        if (block.type === 'steps') {
+          return (
+            <ol key={index} className="space-y-4">
+              {block.items.map((item, itemIndex) => (
+                <li key={item.title} className="flex gap-4 rounded-2xl border border-border/70 bg-card p-5 shadow-sm">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                    {itemIndex + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold tracking-tight text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           );
         }
 
