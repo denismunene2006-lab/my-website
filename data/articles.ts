@@ -892,6 +892,332 @@ export const mpesaDarajaArticle: Article = {
       description:
         'Use the official portal to create applications, review current API documentation, obtain environment-specific credentials, and confirm the requirements for the product you plan to use.',
     },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 2: Going live on Safaricom Daraja',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Integrating M-Pesa payments into a web or mobile app is an important milestone for a Kenyan business. Moving from sandbox testing to real payments requires the correct business payment service, live credentials, and a production-ready backend. We will prepare those foundations before implementing STK Push, C2B, or callbacks in later chapters.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 1: Getting your Daraja credentials',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 1: Create a Daraja developer account',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Open the official Safaricom Daraja Developer Portal and choose the registration option. Provide the information requested by the portal, verify your account if prompted, and sign in. The portal is where you create applications, view their credentials, and access the current API documentation.',
+    },
+    {
+      type: 'link',
+      label: 'Safaricom Daraja Developer Portal',
+      href: 'https://developer.safaricom.co.ke/',
+      description:
+        'Use this official portal for registration, sign-in, application creation, sandbox credentials, and current Daraja documentation.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 2: Create a sandbox application',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'After signing in, create a new application from the developer dashboard. Select the M-Pesa products your application needs, such as M-Pesa Express (STK Push) and C2B where they are available. STK Push requests a customer payment prompt; C2B handles payments made to a business shortcode and sends payment notifications to your validation and confirmation endpoints.',
+    },
+    {
+      type: 'callout',
+      title: 'Follow the current dashboard',
+      text:
+        'The products and options shown in the portal can change. Follow the current dashboard labels and API documentation rather than assuming that every product is enabled for every application.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 3: Retrieve your API credentials',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Open the credentials or application details for the sandbox app. Store the values in a password manager or a local environment file excluded from Git. Never paste real values into source code, screenshots, tutorials, or support requests.',
+    },
+    {
+      type: 'table',
+      headers: ['Value', 'What it does'],
+      rows: [
+        ['Consumer Key', 'Identifies your application when the backend requests an OAuth access token.'],
+        ['Consumer Secret', 'Authenticates your application together with the Consumer Key. Keep it private and server-side.'],
+        ['Sandbox shortcode', 'The test business shortcode used by the sandbox payment product and examples.'],
+        ['Sandbox passkey', 'A sandbox secret combined with the shortcode and timestamp to create the STK Push password.'],
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The Access Token is generated later through OAuth using the Consumer Key and Consumer Secret. It is temporary, so your application should request it when needed rather than storing it permanently.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 4: Understand sandbox versus production',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Sandbox is for testing request formats, authentication, callback handling, and error paths. Production is for real payments and requires the appropriate business M-Pesa service, live credentials, correct account configuration, and Safaricom go-live approval. Keep the two environments separate and never reuse sandbox secrets in production.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A developer does not need to personally own a live Paybill or Buy Goods Till Number to learn the integration in the sandbox. Paybill and Buy Goods Till are business payment services with different operating contexts; use the service that matches the business arrangement and Daraja product being implemented.',
+    },
+    {
+      type: 'link',
+      label: 'Safaricom M-Pesa Business Payment Solutions',
+      href: 'https://www.safaricom.co.ke/business/sme/m-pesa-payment-solutions',
+      description:
+        'Review Safaricom’s official business payment information when deciding whether a Paybill or Buy Goods Till service fits your business.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 2: Setting up our Node.js project',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'We will use Node.js for the runtime, Express for HTTP routes, MongoDB for transaction data, Mongoose for the MongoDB object model, Axios for Daraja HTTP requests, and dotenv for loading local environment variables.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 5: Create the project',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Create a new folder, open a terminal in it, and initialize a Node.js project.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `mkdir mpesa-daraja-api
+cd mpesa-daraja-api
+npm init -y`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 6: Install dependencies',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `npm install express mongoose axios dotenv
+npm install --save-dev nodemon`,
+    },
+    {
+      type: 'table',
+      headers: ['Dependency', 'Purpose'],
+      rows: [
+        ['express', 'Creates the HTTP server and API routes.'],
+        ['mongoose', 'Connects to MongoDB and defines document models.'],
+        ['axios', 'Sends HTTP requests to Daraja endpoints.'],
+        ['dotenv', 'Loads local variables from .env.'],
+        ['nodemon', 'Restarts the development server when files change.'],
+      ],
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 7: Create the project structure',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Create these folders now. We will fill them progressively as the tutorial adds OAuth, payment requests, callbacks, transaction models, and reconciliation.',
+    },
+    {
+      type: 'code',
+      filename: 'Project structure',
+      language: 'text',
+      code: `mpesa-daraja-api/
+├── src/
+│   ├── config/database.js
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   └── server.js
+├── .env
+├── .env.example
+├── .gitignore
+├── package-lock.json
+└── package.json`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 8: Configure environment variables',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Create the example file below and copy it to .env for local development. Replace placeholders only in your private .env. DARAJA_ENV will later select sandbox or production configuration.',
+    },
+    {
+      type: 'code',
+      filename: '.env.example',
+      language: 'dotenv',
+      code: `PORT=3000
+MONGODB_URI=mongodb://127.0.0.1:27017/mpesa_daraja
+DARAJA_CONSUMER_KEY=replace_with_your_consumer_key
+DARAJA_CONSUMER_SECRET=replace_with_your_consumer_secret
+DARAJA_SHORTCODE=replace_with_your_shortcode
+DARAJA_PASSKEY=replace_with_your_passkey
+DARAJA_CALLBACK_URL=https://your-domain.example/api/mpesa/callback
+DARAJA_ENV=sandbox`,
+    },
+    {
+      type: 'code',
+      filename: '.gitignore',
+      language: 'gitignore',
+      code: `.env
+node_modules/
+logs/
+npm-debug.log*`,
+    },
+    {
+      type: 'callout',
+      title: 'Keep credentials server-side',
+      text:
+        'Consumer secrets, passkeys, database connection strings, and access tokens must never be exposed to a browser or committed to Git. Rotate a credential immediately if it is accidentally published.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 3: Connect to MongoDB',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 9: Configure the database',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Use a local MongoDB server for development or create a MongoDB Atlas deployment. Put the connection string in MONGODB_URI. This helper fails clearly when the variable is missing and rethrows connection errors instead of allowing the server to start in an unknown state.',
+    },
+    {
+      type: 'code',
+      filename: 'src/config/database.js',
+      language: 'javascript',
+      code: `const mongoose = require('mongoose');
+
+async function connectToDatabase() {
+  const { MONGODB_URI } = process.env;
+
+  if (!MONGODB_URI) {
+    throw new Error('MONGODB_URI is not configured');
+  }
+
+  try {
+    await mongoose.connect(MONGODB_URI);
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error('MongoDB connection failed:', error.message);
+    throw error;
+  }
+}
+
+module.exports = { connectToDatabase };`,
+    },
+    {
+      type: 'link',
+      label: 'MongoDB documentation',
+      href: 'https://www.mongodb.com/docs/',
+      description:
+        'Use the official documentation for installation, connection strings, authentication, and deployment guidance.',
+    },
+    {
+      type: 'link',
+      label: 'MongoDB Atlas',
+      href: 'https://www.mongodb.com/products/platform/atlas',
+      description:
+        'Atlas provides a managed MongoDB deployment. Follow its current setup and network-access instructions.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 10: Verify the connection',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Add a minimal Express server that loads dotenv, connects to MongoDB before accepting requests, and reports startup errors. This verifies the database before we add payment routes.',
+    },
+    {
+      type: 'code',
+      filename: 'src/server.js',
+      language: 'javascript',
+      code: `require('dotenv').config();
+
+const express = require('express');
+const { connectToDatabase } = require('./config/database');
+
+const app = express();
+const port = Number(process.env.PORT || 3000);
+
+app.use(express.json());
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
+async function startServer() {
+  try {
+    await connectToDatabase();
+    app.listen(port, () => {
+      console.log(\`API listening on port \${port}\`);
+    });
+  } catch (error) {
+    console.error('Application startup failed:', error.message);
+    process.exitCode = 1;
+  }
+}
+
+startServer();`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Run node src/server.js. A successful startup prints MongoDB connected and API listening on port 3000, or the port configured in .env. In another terminal, request the health endpoint. The expected response is { "status": "ok" }. If startup fails, check MONGODB_URI, the local MongoDB service, or Atlas network access rules.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `node src/server.js
+curl http://localhost:3000/health`,
+    },
+    {
+      type: 'callout',
+      title: 'What comes next',
+      text:
+        'The project now has server-side configuration, a database connection, and a health endpoint. The next chapter will add OAuth authentication. STK Push, C2B, callback processing, and reconciliation remain separate later parts.',
+    },
   ],
 };
 
