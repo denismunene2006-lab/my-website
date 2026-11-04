@@ -1088,6 +1088,12 @@ DARAJA_CONSUMER_SECRET=replace_with_your_consumer_secret
 DARAJA_SHORTCODE=replace_with_your_shortcode
 DARAJA_PASSKEY=replace_with_your_passkey
 DARAJA_CALLBACK_URL=https://your-domain.example/api/mpesa/callback
+DARAJA_VALIDATION_URL=https://your-domain.example/api/c2b/validation
+DARAJA_CONFIRMATION_URL=https://your-domain.example/api/c2b/confirmation
+DARAJA_INITIATOR_NAME=replace_with_transaction_status_initiator
+DARAJA_SECURITY_CREDENTIAL=replace_with_transaction_status_security_credential
+DARAJA_RESULT_URL=https://your-domain.example/api/mpesa/status/result
+DARAJA_TIMEOUT_URL=https://your-domain.example/api/mpesa/status/timeout
 DARAJA_ENV=sandbox`,
     },
     {
@@ -1154,7 +1160,7 @@ module.exports = { connectToDatabase };`,
     {
       type: 'link',
       label: 'MongoDB Atlas',
-      href: 'https://www.mongodb.com/products/platform/atlas',
+      href: 'https://www.mongodb.com/products/platform',
       description:
         'Atlas provides a managed MongoDB deployment. Follow its current setup and network-access instructions.',
     },
@@ -1619,6 +1625,634 @@ startServer();`,
       type: 'paragraph',
       text:
         'This request has not been tested against an external Daraja sandbox from this article build. Before using it with real customers, configure valid sandbox credentials, use the current official Daraja documentation, expose a reachable HTTPS callback URL, and test the complete callback flow in the sandbox.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 6: Configure the callback URL',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'An STK Push is asynchronous. Daraja accepts the initiation request first, then sends the customer result to the callback URL in DARAJA_CALLBACK_URL. This endpoint must belong to your server, accept JSON, and be reachable from outside your development machine. Localhost is not reachable by Safaricom; use a controlled HTTPS development tunnel for local testing and a real HTTPS domain in production.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 7: Receive STK Push callbacks',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 18: Add a callback route',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Add a separate callback route to the same Express router used by the initiation endpoint. The handler responds quickly with HTTP 200 after checking that the expected STK callback object exists. It logs only the identifiers and result fields for now; the next chapter will persist the transaction instead of relying on logs.',
+    },
+    {
+      type: 'code',
+      filename: 'src/routes/mpesa.js',
+      language: 'javascript',
+      code: `const express = require('express');
+const { initiateStkPush } = require('../services/stk-push');
+
+const router = express.Router();
+
+router.post('/stk-push', async (req, res) => {
+  try {
+    const result = await initiateStkPush(req.body);
+
+    res.status(202).json({
+      message: 'STK Push request accepted',
+      data: result,
+    });
+  } catch (error) {
+    console.error('STK Push initiation error:', error.message);
+    res.status(400).json({ message: error.message });
+  }
+});
+
+router.post('/callback', (req, res) => {
+  const callback = req.body?.Body?.stkCallback;
+
+  if (!callback) {
+    console.error('Invalid STK callback payload');
+    return res.status(400).json({ message: 'Invalid STK callback payload' });
+  }
+
+  const isSuccessful = Number(callback.ResultCode) === 0;
+
+  console.log('STK callback received', {
+    checkoutRequestId: callback.CheckoutRequestID,
+    merchantRequestId: callback.MerchantRequestID,
+    resultCode: callback.ResultCode,
+    resultDescription: callback.ResultDesc,
+    successful: isSuccessful,
+  });
+
+  return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+});
+
+module.exports = router;`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 19: Understand successful and failed callbacks',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Read the callback from Body.stkCallback. A ResultCode of 0 indicates a successful customer transaction. A non-zero ResultCode indicates a failure, cancellation, timeout, or another unsuccessful result. Do not treat the presence of CallbackMetadata alone as proof of payment; check the result code and later persist the identifiers and receipt details.',
+    },
+    {
+      type: 'code',
+      filename: 'Successful STK callback shape',
+      language: 'json',
+      code: `{
+  "Body": {
+    "stkCallback": {
+      "MerchantRequestID": "merchant-request-id",
+      "CheckoutRequestID": "checkout-request-id",
+      "ResultCode": 0,
+      "ResultDesc": "The service request is processed successfully.",
+      "CallbackMetadata": {
+        "Item": [
+          { "Name": "Amount", "Value": 1 },
+          { "Name": "MpesaReceiptNumber", "Value": "receipt-number" },
+          { "Name": "TransactionDate", "Value": 20261104094500 },
+          { "Name": "PhoneNumber", "Value": 254712345678 }
+        ]
+      }
+    }
+  }
+}`,
+    },
+    {
+      type: 'code',
+      filename: 'Failed STK callback shape',
+      language: 'json',
+      code: `{
+  "Body": {
+    "stkCallback": {
+      "MerchantRequestID": "merchant-request-id",
+      "CheckoutRequestID": "checkout-request-id",
+      "ResultCode": 1032,
+      "ResultDesc": "Request cancelled by user"
+    }
+  }
+}`,
+    },
+    {
+      type: 'callout',
+      title: 'Acknowledge, then process safely',
+      text:
+        'The callback endpoint should respond quickly so Daraja does not wait for database work or slow downstream services. First validate the shape and acknowledge the request; then persist and process it with idempotency in the transaction layer. Never charge or fulfil an order merely because the initiation endpoint returned ResponseCode 0.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 20: Test the callback locally',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Before connecting a real sandbox callback, post a representative payload to your local route. This tests your JSON parser and result-code handling without claiming that Safaricom sent the request.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `curl -X POST http://localhost:3000/api/mpesa/callback ^
+  -H "Content-Type: application/json" ^
+  -d "{\"Body\":{\"stkCallback\":{\"MerchantRequestID\":\"local-test\",\"CheckoutRequestID\":\"local-checkout\",\"ResultCode\":0,\"ResultDesc\":\"Local test\"}}}"`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 7: Handle callbacks without false payment success',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The callback is the first place where the application can evaluate the customer’s final STK result. Keep the two stages separate: initiation tells you that Daraja accepted a request, while the callback tells you what happened to that request. A later verification step is still useful for uncertain or delayed transactions.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 8: Extract callback metadata safely',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 21: Add a metadata helper',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Successful callbacks contain an Item array whose fields can vary by product and response. Use a name-based lookup instead of assuming that every item is present or always at the same index.',
+    },
+    {
+      type: 'code',
+      filename: 'src/utils/callback-metadata.js',
+      language: 'javascript',
+      code: `function getCallbackMetadata(items = []) {
+  return items.reduce((metadata, item) => {
+    if (item?.Name) {
+      metadata[item.Name] = item.Value;
+    }
+
+    return metadata;
+  }, {});
+}
+
+function parseStkCallback(payload) {
+  const callback = payload?.Body?.stkCallback;
+
+  if (!callback?.CheckoutRequestID || callback.ResultCode === undefined) {
+    throw new Error('Incomplete STK callback payload');
+  }
+
+  const metadata = getCallbackMetadata(callback.CallbackMetadata?.Item);
+
+  return {
+    merchantRequestId: callback.MerchantRequestID,
+    checkoutRequestId: callback.CheckoutRequestID,
+    resultCode: Number(callback.ResultCode),
+    resultDescription: callback.ResultDesc || '',
+    successful: Number(callback.ResultCode) === 0,
+    amount: metadata.Amount,
+    receiptNumber: metadata.MpesaReceiptNumber,
+    transactionDate: metadata.TransactionDate,
+    phoneNumber: metadata.PhoneNumber,
+  };
+}
+
+module.exports = { getCallbackMetadata, parseStkCallback };`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Use receiptNumber, amount, phoneNumber, and transactionDate only after the result code confirms success. For failed callbacks, retain the result code and description so the customer-support and reconciliation workflows can explain what happened.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 8: Implement C2B validation and confirmation URLs',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'C2B is a different flow from STK Push. A customer pays a business shortcode, and Safaricom sends your system a validation request where external validation is enabled, followed by a confirmation notification after processing. C2B requires a suitable business shortcode and the current Daraja product configuration; it is not a replacement for STK Push checkout.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 9: Register the C2B URLs',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 22: Create validation and confirmation handlers',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The validation endpoint must respond quickly with the response format required by the current Daraja C2B documentation. The example below accepts the request after basic shape checks. In a real system, validation should also check the account reference and business rules before accepting a payment.',
+    },
+    {
+      type: 'code',
+      filename: 'src/routes/c2b.js',
+      language: 'javascript',
+      code: `const express = require('express');
+
+const router = express.Router();
+
+router.post('/validation', (req, res) => {
+  const { TransAmount, BillRefNumber } = req.body;
+
+  if (!TransAmount || !BillRefNumber) {
+    return res.status(400).json({
+      ResultCode: 'C2B00011',
+      ResultDesc: 'Invalid payment details',
+    });
+  }
+
+  console.log('C2B validation request received', {
+    amount: TransAmount,
+    accountReference: BillRefNumber,
+  });
+
+  return res.status(200).json({
+    ResultCode: 0,
+    ResultDesc: 'Accepted',
+  });
+});
+
+router.post('/confirmation', (req, res) => {
+  console.log('C2B confirmation received', {
+    transactionId: req.body?.TransID,
+    amount: req.body?.TransAmount,
+    shortcode: req.body?.BusinessShortCode,
+    accountReference: req.body?.BillRefNumber,
+    phoneNumber: req.body?.MSISDN,
+  });
+
+  return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+});
+
+module.exports = router;`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Mount the C2B router alongside the existing M-Pesa router. Keep validation and confirmation as separate URLs so Safaricom can call the correct stage of the payment flow.',
+    },
+    {
+      type: 'code',
+      filename: 'src/server.js',
+      language: 'javascript',
+      code: `const c2bRouter = require('./routes/c2b');
+
+app.use('/api/c2b', c2bRouter);`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 23: Register the URLs with Daraja',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Register the public validation and confirmation URLs using the C2B register URL endpoint. The request uses the same server-side OAuth helper from Chapter 3. Use the sandbox host and sandbox shortcode while testing; switch to production only with the approved live configuration.',
+    },
+    {
+      type: 'code',
+      filename: 'src/services/c2b.js',
+      language: 'javascript',
+      code: `const axios = require('axios');
+const { getDarajaBaseUrl } = require('../config/daraja');
+const { getAccessToken } = require('./daraja-auth');
+
+async function registerC2bUrls() {
+  const shortcode = process.env.DARAJA_SHORTCODE;
+  const validationUrl = process.env.DARAJA_VALIDATION_URL;
+  const confirmationUrl = process.env.DARAJA_CONFIRMATION_URL;
+
+  if (!shortcode || !validationUrl || !confirmationUrl) {
+    throw new Error('C2B shortcode and callback URLs are required');
+  }
+
+  const accessToken = await getAccessToken();
+
+  try {
+    const response = await axios.post(
+      \`\${getDarajaBaseUrl()}/mpesa/c2b/v2/registerurl\`,
+      {
+        ShortCode: shortcode,
+        ResponseType: 'Completed',
+        ConfirmationURL: confirmationUrl,
+        ValidationURL: validationUrl,
+      },
+      {
+        headers: {
+          Authorization: \`Bearer \${accessToken}\`,
+          'Content-Type': 'application/json',
+        },
+        timeout: 15000,
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    const message = error.response?.data?.errorMessage || error.message;
+    throw new Error(\`C2B URL registration failed: \${message}\`);
+  }
+}
+
+module.exports = { registerC2bUrls };`,
+    },
+    {
+      type: 'code',
+      filename: '.env.example',
+      language: 'dotenv',
+      code: `DARAJA_VALIDATION_URL=https://your-domain.example/api/c2b/validation
+DARAJA_CONFIRMATION_URL=https://your-domain.example/api/c2b/confirmation`,
+    },
+    {
+      type: 'callout',
+      title: 'C2B operational notes',
+      text:
+        'Validation is a product and account configuration concern; confirm from the current Daraja documentation whether external validation is enabled for your setup. Confirmation processing should be fast and idempotent. Do not treat a received notification as permission to insert duplicate transactions, and do not claim C2B registration succeeded until you have tested it in your configured environment.',
+    },
+    {
+      type: 'link',
+      label: 'Official M-Pesa Express API documentation',
+      href: 'https://developer.safaricom.co.ke/apis',
+      description:
+        'Check the current STK Push callback fields, endpoint behavior, and environment-specific requirements.',
+    },
+    {
+      type: 'link',
+      label: 'Official Daraja C2B API documentation',
+      href: 'https://developer.safaricom.co.ke/apis',
+      description:
+        'Check the current C2B validation, confirmation, URL registration, and response requirements before production use.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 9: Save transactions in MongoDB',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The callback is the source of the payment result, but it is not a database. Store every initiation and callback with a stable provider identifier so you can display status, prevent duplicate fulfilment, and investigate disputes.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 10: Create a transaction model',
+    },
+    {
+      type: 'code',
+      filename: 'src/models/transaction.js',
+      language: 'javascript',
+      code: `const mongoose = require('mongoose');
+
+const transactionSchema = new mongoose.Schema(
+  {
+    checkoutRequestId: { type: String, unique: true, sparse: true },
+    merchantRequestId: String,
+    amount: { type: Number, required: true },
+    phoneNumber: { type: String, required: true },
+    accountReference: { type: String, required: true },
+    status: {
+      type: String,
+      enum: ['pending', 'paid', 'failed', 'unknown'],
+      default: 'pending',
+    },
+    resultCode: Number,
+    resultDescription: String,
+    receiptNumber: String,
+    transactionDate: String,
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model('Transaction', transactionSchema);`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 24: Save callback results idempotently',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Use CheckoutRequestID as the idempotency key for STK Push. A repeated callback should update the existing transaction, not create a second payment. The update below is intentionally separate from the callback response so the route can acknowledge quickly after validation.',
+    },
+    {
+      type: 'code',
+      filename: 'src/services/transaction-service.js',
+      language: 'javascript',
+      code: `const Transaction = require('../models/transaction');
+const { parseStkCallback } = require('../utils/callback-metadata');
+
+async function saveStkCallback(payload) {
+  const payment = parseStkCallback(payload);
+
+  return Transaction.findOneAndUpdate(
+    { checkoutRequestId: payment.checkoutRequestId },
+    {
+      $set: {
+        merchantRequestId: payment.merchantRequestId,
+        resultCode: payment.resultCode,
+        resultDescription: payment.resultDescription,
+        status: payment.successful ? 'paid' : 'failed',
+        amount: payment.amount,
+        receiptNumber: payment.receiptNumber,
+        transactionDate: payment.transactionDate,
+        phoneNumber: payment.phoneNumber,
+      },
+    },
+    { new: true, upsert: false, runValidators: true }
+  );
+}
+
+module.exports = { saveStkCallback };`,
+    },
+    {
+      type: 'callout',
+      title: 'Fulfil only once',
+      text:
+        'Use the paid transition as the trigger for fulfilment, and make fulfilment idempotent too. A payment callback can be retried, delayed, or received more than once.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 10: Verify status and reconcile payments',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Callbacks are normally sufficient for the first result, but networks fail and customers may close a prompt before your server receives the notification. Keep pending or unknown transactions and reconcile them with the current Daraja transaction-status API and your own records.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 11: Query an uncertain transaction',
+    },
+    {
+      type: 'code',
+      filename: 'src/services/transaction-status.js',
+      language: 'javascript',
+      code: `const axios = require('axios');
+const { getDarajaBaseUrl } = require('../config/daraja');
+const { getAccessToken } = require('./daraja-auth');
+
+async function queryTransactionStatus({ transactionId, shortcode, identifierType = 1 }) {
+  const accessToken = await getAccessToken();
+  const response = await axios.post(
+    \`\${getDarajaBaseUrl()}/mpesa/transactionstatus/v1/query\`,
+    {
+      Initiator: process.env.DARAJA_INITIATOR_NAME,
+      SecurityCredential: process.env.DARAJA_SECURITY_CREDENTIAL,
+      CommandID: 'TransactionStatusQuery',
+      TransactionID: transactionId,
+      PartyA: shortcode,
+      IdentifierType: identifierType,
+      ResultURL: process.env.DARAJA_RESULT_URL,
+      QueueTimeOutURL: process.env.DARAJA_TIMEOUT_URL,
+      Remarks: 'Payment reconciliation',
+      Occasion: 'Payment status check',
+    },
+    {
+      headers: { Authorization: \`Bearer \${accessToken}\` },
+      timeout: 15000,
+    }
+  );
+
+  return response.data;
+}
+
+module.exports = { queryTransactionStatus };`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The transaction-status product has additional production credentials and security fields. Confirm the current official requirements before enabling it; never invent SecurityCredential values. Reconciliation should compare the provider result with your order, amount, shortcode, and stored identifiers before marking an order paid.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Step 25: Use a reconciliation policy',
+    },
+    {
+      type: 'steps',
+      items: [
+        {
+          title: 'Keep pending transactions',
+          text: 'Do not delete an unanswered payment. Record when it was initiated and retry status checks with a bounded schedule.',
+        },
+        {
+          title: 'Match identifiers and amount',
+          text: 'Compare the checkout or receipt identifier, expected amount, shortcode, and customer reference before fulfilment.',
+        },
+        {
+          title: 'Resolve uncertainty explicitly',
+          text: 'Use pending, paid, failed, and unknown states instead of treating a timeout as a successful payment.',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 11: Secure the integration',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Payment endpoints are high-value targets. Validate all client input, keep Daraja secrets server-side, use HTTPS for public callbacks, redact tokens and passkeys from logs, and restrict administrative routes. Never trust a client-submitted paid flag or amount.',
+    },
+    {
+      type: 'table',
+      headers: ['Risk', 'Protection'],
+      rows: [
+        ['Credential leakage', 'Use .env or a secret manager, never source control or frontend code.'],
+        ['Fake payment callbacks', 'Use HTTPS, validate payloads, match identifiers, and reconcile uncertain records.'],
+        ['Duplicate fulfilment', 'Use unique provider IDs and idempotent updates.'],
+        ['Amount tampering', 'Load the amount from the server-side order, not directly from the browser.'],
+        ['Sensitive logs', 'Redact access tokens, passkeys, full payloads, and customer data.'],
+      ],
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 12: Troubleshoot common problems',
+    },
+    {
+      type: 'table',
+      headers: ['Symptom', 'First checks'],
+      rows: [
+        ['401 or invalid token', 'Confirm environment, Consumer Key, Consumer Secret, Basic Auth, and server time.'],
+        ['Invalid password', 'Recheck shortcode, passkey, timestamp format, and Base64 concatenation order.'],
+        ['Callback never arrives', 'Confirm the URL is public, reachable, correctly configured, and accepts POST JSON.'],
+        ['Customer receives no prompt', 'Check phone format, amount, shortcode, sandbox configuration, and Daraja response details.'],
+        ['Duplicate payment records', 'Use CheckoutRequestID or TransID as a unique key and make updates idempotent.'],
+        ['MongoDB connection fails', 'Check MONGODB_URI, the local service, Atlas network access, and database credentials.'],
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Log correlation IDs and response codes, not secrets. When an error remains unclear, compare your request with the current official Daraja example for the exact product and environment instead of copying a sample credential or endpoint from an old tutorial.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Chapter 13: Test in sandbox and prepare for production',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Part 12: Use a controlled release checklist',
+    },
+    {
+      type: 'steps',
+      items: [
+        {
+          title: 'Test sandbox success and failure',
+          text: 'Test accepted initiation, customer cancellation, timeout, invalid input, callback retries, and database failures.',
+        },
+        {
+          title: 'Verify observability',
+          text: 'Confirm that every transaction has a correlation ID, status, timestamps, provider identifiers, and redacted logs.',
+        },
+        {
+          title: 'Separate production configuration',
+          text: 'Use production credentials, shortcode, passkey, callback URLs, and approved Daraja products only after go-live approval.',
+        },
+        {
+          title: 'Run a small live test',
+          text: 'After approval, use a controlled amount and verify the callback, receipt, database record, and reconciliation result before wider release.',
+        },
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Final reminder',
+      text:
+        'Sandbox testing is not production approval, and an STK Push initiation response is not a payment receipt. Move to production only with the correct Safaricom business service, live credentials, approved callback configuration, monitoring, and a tested reconciliation process.',
+    },
+    {
+      type: 'link',
+      label: 'MongoDB documentation',
+      href: 'https://www.mongodb.com/docs/',
+      description:
+        'Use the official MongoDB documentation for indexes, transactions, connection security, and deployment operations.',
     },
   ],
 };

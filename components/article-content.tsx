@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { ArticleBlock } from '@/data/articles';
@@ -129,9 +130,10 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
                 href={block.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-primary underline-offset-4 hover:underline"
+                className="inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
               >
                 {block.label}
+                <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </a>
               {block.description ? <p className="mt-2 text-sm leading-7 text-muted-foreground">{block.description}</p> : null}
             </Card>
