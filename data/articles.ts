@@ -1330,7 +1330,7 @@ module.exports = { getAccessToken };`,
     {
       type: 'code',
       filename: 'Terminal',
-      language: 'bash',
+      language: 'powershell',
       code: `node -e "require('dotenv').config(); require('./src/services/daraja-auth').getAccessToken().then(token => console.log(token ? 'OAuth token received' : 'No token')).catch(error => { console.error(error.message); process.exitCode = 1; })"`,
     },
     {
@@ -1364,13 +1364,20 @@ module.exports = { getAccessToken };`,
       filename: 'src/utils/stk-password.js',
       language: 'javascript',
       code: `function getDarajaTimestamp(date = new Date()) {
+  // Daraja expects timestamps in East Africa Time (Africa/Nairobi, UTC+3).
+  // Using the server's local clock can produce an invalid password when the
+  // server is not in the Nairobi timezone.
+  const nairobiDate = new Date(
+    date.toLocaleString('en-US', { timeZone: 'Africa/Nairobi' })
+  );
+
   const parts = [
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
+    nairobiDate.getFullYear(),
+    nairobiDate.getMonth() + 1,
+    nairobiDate.getDate(),
+    nairobiDate.getHours(),
+    nairobiDate.getMinutes(),
+    nairobiDate.getSeconds(),
   ];
 
   return parts
@@ -1396,7 +1403,7 @@ module.exports = { getDarajaTimestamp, createStkPassword };`,
     {
       type: 'code',
       filename: 'Terminal',
-      language: 'bash',
+      language: 'powershell',
       code: `node -e "const u = require('./src/utils/stk-password'); const t = u.getDarajaTimestamp(); console.log({ timestamp: t, password: u.createStkPassword('174379', 'SANDBOX_PASSKEY', t) })"`,
     },
     {
@@ -1537,6 +1544,16 @@ const { initiateStkPush } = require('../services/stk-push');
 
 const router = express.Router();
 
+function isClientError(error) {
+  const clientMessages = [
+    'is required',
+    'must be a',
+    'valid Kenyan',
+    'Shortcode, passkey, and callback URL are required',
+  ];
+  return clientMessages.some((message) => error.message.includes(message));
+}
+
 router.post('/stk-push', async (req, res) => {
   try {
     const result = await initiateStkPush(req.body);
@@ -1547,7 +1564,15 @@ router.post('/stk-push', async (req, res) => {
     });
   } catch (error) {
     console.error('STK Push initiation error:', error.message);
-    res.status(400).json({ message: error.message });
+
+    if (isClientError(error)) {
+      return res.status(400).json({ message: error.message });
+    }
+
+    // Provider or upstream failure (Daraja auth, network, timeout, etc.)
+    return res.status(502).json({
+      message: 'Payment provider error. Please try again later.',
+    });
   }
 });
 
@@ -1593,10 +1618,8 @@ startServer();`,
     {
       type: 'code',
       filename: 'Terminal',
-      language: 'bash',
-      code: `curl -X POST http://localhost:3000/api/mpesa/stk-push ^
-  -H "Content-Type: application/json" ^
-  -d "{\"amount\":1,\"phoneNumber\":\"0712345678\",\"accountReference\":\"Order101\",\"description\":\"Test payment\"}"`,
+      language: 'powershell',
+      code: `curl -X POST http://localhost:3000/api/mpesa/stk-push -H "Content-Type: application/json" -d '{"amount":1,"phoneNumber":"0712345678","accountReference":"Order101","description":"Test payment"}'`,
     },
     {
       type: 'paragraph',
@@ -1649,7 +1672,7 @@ startServer();`,
     {
       type: 'paragraph',
       text:
-        'Add a separate callback route to the same Express router used by the initiation endpoint. The handler responds quickly with HTTP 200 after checking that the expected STK callback object exists. The callback is persisted asynchronously and idempotently; the next chapter defines the transaction service used below.',
+        'Add a separate callback route to the same Express router used by the initiation endpoint. The handler responds quickly with HTTP 200 after checking that the expected STK callback object exists. The callback is persisted idempotently; the transaction service used below is defined in Chapter 9.',
     },
     {
       type: 'code',
@@ -1657,25 +1680,33 @@ startServer();`,
       language: 'javascript',
       code: `const express = require('express');
 const { initiateStkPush } = require('../services/stk-push');
-      const { createPendingTransaction, saveStkCallback } = require('../services/transaction-service');
+const { createPendingTransaction, saveStkCallback } = require('../services/transaction-service');
 
 const router = express.Router();
+
+function isClientError(error) {
+  const clientMessages = [
+    'is required',
+    'must be a',
+    'valid Kenyan',
+    'Shortcode, passkey, and callback URL are required',
+  ];
+  return clientMessages.some((message) => error.message.includes(message));
+}
 
 router.post('/stk-push', async (req, res) => {
   try {
     const result = await initiateStkPush(req.body);
 
-    try {
-      await createPendingTransaction({
-        checkoutRequestId: result.CheckoutRequestID,
-        merchantRequestId: result.MerchantRequestID,
-        amount: Number(req.body.amount),
-        phoneNumber: req.body.phoneNumber,
-        accountReference: req.body.accountReference,
-      });
-    } catch (error) {
-      console.error('Pending transaction persistence error:', error.message);
-    }
+    // Create the pending transaction record before responding so the
+    // callback (which may arrive immediately) finds a document to update.
+    await createPendingTransaction({
+      checkoutRequestId: result.CheckoutRequestID,
+      merchantRequestId: result.MerchantRequestID,
+      amount: Number(req.body.amount),
+      phoneNumber: req.body.phoneNumber,
+      accountReference: req.body.accountReference,
+    });
 
     res.status(202).json({
       message: 'STK Push request accepted',
@@ -1683,11 +1714,19 @@ router.post('/stk-push', async (req, res) => {
     });
   } catch (error) {
     console.error('STK Push initiation error:', error.message);
-    res.status(400).json({ message: error.message });
+
+    if (isClientError(error)) {
+      return res.status(400).json({ message: error.message });
+    }
+
+    // Provider or upstream failure (Daraja auth, network, timeout, etc.)
+    return res.status(502).json({
+      message: 'Payment provider error. Please try again later.',
+    });
   }
 });
 
-router.post('/callback', (req, res) => {
+router.post('/callback', async (req, res) => {
   const callback = req.body?.Body?.stkCallback;
 
   if (!callback) {
@@ -1695,11 +1734,16 @@ router.post('/callback', (req, res) => {
     return res.status(400).json({ message: 'Invalid STK callback payload' });
   }
 
-  void saveStkCallback(req.body).catch((error) => {
+  try {
+    // Durably persist before acknowledging. upsert: true acts as a safety
+    // net if the callback arrives before the pending transaction record.
+    await saveStkCallback(req.body);
+    return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  } catch (error) {
     console.error('STK callback persistence error:', error.message);
-  });
-
-  return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+    // Acknowledge to stop Daraja retries, but log the failure for inspection.
+    return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  }
 });
 
 module.exports = router;`,
@@ -1771,10 +1815,8 @@ module.exports = router;`,
     {
       type: 'code',
       filename: 'Terminal',
-      language: 'bash',
-      code: `curl -X POST http://localhost:3000/api/mpesa/callback ^
-  -H "Content-Type: application/json" ^
-  -d "{\"Body\":{\"stkCallback\":{\"MerchantRequestID\":\"local-test\",\"CheckoutRequestID\":\"local-checkout\",\"ResultCode\":0,\"ResultDesc\":\"Local test\"}}}"`,
+      language: 'powershell',
+      code: `curl -X POST http://localhost:3000/api/mpesa/callback -H "Content-Type: application/json" -d '{"Body":{"stkCallback":{"MerchantRequestID":"local-test","CheckoutRequestID":"local-checkout","ResultCode":0,"ResultDesc":"Local test"}}}'`,
     },
     {
       type: 'heading',
@@ -1874,6 +1916,7 @@ module.exports = { getCallbackMetadata, parseStkCallback };`,
       filename: 'src/routes/c2b.js',
       language: 'javascript',
       code: `const express = require('express');
+const Transaction = require('../models/transaction');
 
 const router = express.Router();
 
@@ -1898,16 +1941,45 @@ router.post('/validation', (req, res) => {
   });
 });
 
-router.post('/confirmation', (req, res) => {
-  console.log('C2B confirmation received', {
-    transactionId: req.body?.TransID,
-    amount: req.body?.TransAmount,
-    shortcode: req.body?.BusinessShortCode,
-    accountReference: req.body?.BillRefNumber,
-    phoneNumber: req.body?.MSISDN,
-  });
+router.post('/confirmation', async (req, res) => {
+  const { TransID, TransAmount, BusinessShortCode, BillRefNumber, MSISDN } = req.body;
 
-  return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  if (!TransID) {
+    console.error('C2B confirmation missing TransID');
+    return res.status(400).json({ ResultCode: 1, ResultDesc: 'Missing transaction ID' });
+  }
+
+  try {
+    await Transaction.findOneAndUpdate(
+      { providerReference: TransID },
+      {
+        $set: {
+          providerReference: TransID,
+          amount: Number(TransAmount || 0),
+          phoneNumber: MSISDN || '',
+          accountReference: BillRefNumber || '',
+          merchantRequestId: BusinessShortCode || '',
+          status: 'paid',
+          resultCode: 0,
+          resultDescription: 'C2B confirmation received',
+        },
+      },
+      { new: true, upsert: true, runValidators: true }
+    );
+
+    console.log('C2B confirmation received', {
+      transactionId: TransID,
+      amount: TransAmount,
+      shortcode: BusinessShortCode,
+      accountReference: BillRefNumber,
+      phoneNumber: MSISDN,
+    });
+
+    return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  } catch (error) {
+    console.error('C2B confirmation persistence error:', error.message);
+    return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
+  }
 });
 
 module.exports = router;`,
@@ -2032,6 +2104,7 @@ DARAJA_CONFIRMATION_URL=https://your-domain.example/api/c2b/confirmation`,
 const transactionSchema = new mongoose.Schema(
   {
     checkoutRequestId: { type: String, unique: true, sparse: true },
+    providerReference: { type: String, unique: true, sparse: true },
     merchantRequestId: String,
     amount: { type: Number, required: true },
     phoneNumber: { type: String, required: true },
@@ -2059,7 +2132,7 @@ module.exports = mongoose.model('Transaction', transactionSchema);`,
     {
       type: 'paragraph',
       text:
-        'Create a pending record when the STK initiation is accepted, then use CheckoutRequestID as the idempotency key for callbacks. A repeated callback should update the existing transaction, not create a second payment. The update below is intentionally separate from the callback response so the route can acknowledge quickly after validation.',
+        'Create a pending record before responding to the STK initiation request, then use CheckoutRequestID as the idempotency key for callbacks. A repeated callback should update the existing transaction, not create a second payment. upsert: true is a safety net in case the callback arrives before the pending record exists. The callback handler awaits persistence before acknowledging so the result is durable.',
     },
     {
       type: 'code',
@@ -2096,7 +2169,7 @@ async function saveStkCallback(payload) {
         phoneNumber: payment.phoneNumber,
       },
     },
-    { new: true, upsert: false, runValidators: true }
+    { new: true, upsert: true, runValidators: true }
   );
 }
 
@@ -2161,7 +2234,7 @@ module.exports = { queryTransactionStatus };`,
     {
       type: 'paragraph',
       text:
-        'The transaction-status product has additional production credentials and security fields. Confirm the current official requirements before enabling it; never invent SecurityCredential values. Reconciliation should compare the provider result with your order, amount, shortcode, and stored identifiers before marking an order paid.',
+        'The transaction-status product requires additional production credentials: DARAJA_INITIATOR_NAME (the initiator name registered with Daraja), DARAJA_SECURITY_CREDENTIAL (the encrypted security credential obtained from the Daraja developer portal), DARAJA_RESULT_URL (the endpoint where Daraja posts the query result), and DARAJA_TIMEOUT_URL (the endpoint for timed-out queries). Confirm the current official requirements before enabling it; never invent SecurityCredential values. Reconciliation should compare the provider result with your order, amount, shortcode, and stored identifiers before marking an order paid. Do not treat a successful query response alone as proof of payment; check the transaction result code.',
     },
     {
       type: 'heading',
@@ -2231,6 +2304,70 @@ module.exports = { queryTransactionStatus };`,
     {
       type: 'heading',
       level: 2,
+      text: 'What You Need to Go Live: Production Requirements',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A sandbox developer account gives you test credentials for learning, but it does not automatically provide access to process real customer payments. Moving to production requires production credentials issued through the Daraja Go Live process, plus an eligible Safaricom business payment service. The cards below list each production requirement, what it is, where to obtain it, and what it is used for. Sandbox credentials must never be reused in production.',
+    },
+    {
+      type: 'cards',
+      columns: 3,
+      items: [
+        {
+          title: 'Consumer Key',
+          text:
+            'What it is: Your production OAuth client identifier, issued by Daraja for your live application. Where to obtain it: The production Daraja application dashboard after your app is approved for live access. What it is used for: Identifies your application when your backend requests a production OAuth access token for Daraja API calls.',
+        },
+        {
+          title: 'Consumer Secret',
+          text:
+            'What it is: Your production OAuth client secret, paired with the Consumer Key. Where to obtain it: The production Daraja application dashboard (typically shown only once when the credential is created). What it is used for: Authenticates your application together with the Consumer Key. Keep it server-side only and never expose it to the frontend.',
+        },
+        {
+          title: 'Business Shortcode',
+          text:
+            'What it is: The eligible Paybill or Buy Goods Till number linked to your business. Where to obtain it: Safaricom business registration or your M-Pesa business service provisioning. What it is used for: Identifies the business receiving the payment in STK Push and C2B requests sent to Daraja.',
+        },
+        {
+          title: 'Lipa Na M-Pesa Online Passkey',
+          text:
+            'What it is: The STK Push encryption passkey provided by Safaricom for live transactions. Where to obtain it: The Daraja production application or Safaricom business support for your approved M-Pesa Express product. What it is used for: Combined with the shortcode and timestamp to generate the Base64 STK Push password that authorizes each payment request.',
+        },
+        {
+          title: 'Production API Access',
+          text:
+            'What it is: Live access to Daraja production endpoints, obtained through the Daraja Go Live application and review process. Where to obtain it: The official Safaricom Daraja developer portal, by submitting a Go Live request for your approved business service. What it is used for: Allows your integration to process real customer payments instead of sandbox test transactions.',
+        },
+        {
+          title: 'Public HTTPS Callback URL',
+          text:
+            'What it is: A publicly reachable HTTPS endpoint hosted on your own server or hosting platform. Where to obtain it: You create and host it yourself; it is not issued by Safaricom. What it is used for: Receives STK Push and C2B payment result callbacks from Safaricom so your application can record the final transaction outcome.',
+        },
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Security warning',
+      text:
+        'Never expose the Consumer Secret, passkey, or access tokens in frontend code, browser logs, or support requests. Never commit .env files or credentials to GitHub. Store secrets in environment variables or a secret manager on your server, and rotate any credential that is accidentally published.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The Go Live process is how you move from sandbox testing to real payments. In the official Daraja developer portal you create applications, view sandbox credentials, and access current API documentation. Production access is separate: you must submit a Go Live application for your approved Safaricom business service (such as Lipa Na M-Pesa Online / M-Pesa Express), and Safaricom reviews it before issuing live credentials. A developer app alone does not provide live payment access.',
+    },
+    {
+      type: 'link',
+      label: 'Open the official Safaricom Daraja developer portal',
+      href: 'https://developer.safaricom.co.ke/',
+      description:
+        'Use the official portal to create applications, review current API documentation, obtain sandbox credentials, and submit a Go Live request for production access.',
+    },
+    {
+      type: 'heading',
+      level: 2,
       text: 'Chapter 13: Test in sandbox and prepare for production',
     },
     {
@@ -2275,7 +2412,7 @@ module.exports = { queryTransactionStatus };`,
   ],
 };
 
-articles.push(mpesaDarajaArticle);
+articles.unshift(mpesaDarajaArticle);
 
 const duplicateSlugs = articles
   .map((article) => article.slug)
