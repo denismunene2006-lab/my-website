@@ -1649,7 +1649,7 @@ startServer();`,
     {
       type: 'paragraph',
       text:
-        'Add a separate callback route to the same Express router used by the initiation endpoint. The handler responds quickly with HTTP 200 after checking that the expected STK callback object exists. It logs only the identifiers and result fields for now; the next chapter will persist the transaction instead of relying on logs.',
+        'Add a separate callback route to the same Express router used by the initiation endpoint. The handler responds quickly with HTTP 200 after checking that the expected STK callback object exists. The callback is persisted asynchronously and idempotently; the next chapter defines the transaction service used below.',
     },
     {
       type: 'code',
@@ -1657,12 +1657,25 @@ startServer();`,
       language: 'javascript',
       code: `const express = require('express');
 const { initiateStkPush } = require('../services/stk-push');
+      const { createPendingTransaction, saveStkCallback } = require('../services/transaction-service');
 
 const router = express.Router();
 
 router.post('/stk-push', async (req, res) => {
   try {
     const result = await initiateStkPush(req.body);
+
+    try {
+      await createPendingTransaction({
+        checkoutRequestId: result.CheckoutRequestID,
+        merchantRequestId: result.MerchantRequestID,
+        amount: Number(req.body.amount),
+        phoneNumber: req.body.phoneNumber,
+        accountReference: req.body.accountReference,
+      });
+    } catch (error) {
+      console.error('Pending transaction persistence error:', error.message);
+    }
 
     res.status(202).json({
       message: 'STK Push request accepted',
@@ -1682,14 +1695,8 @@ router.post('/callback', (req, res) => {
     return res.status(400).json({ message: 'Invalid STK callback payload' });
   }
 
-  const isSuccessful = Number(callback.ResultCode) === 0;
-
-  console.log('STK callback received', {
-    checkoutRequestId: callback.CheckoutRequestID,
-    merchantRequestId: callback.MerchantRequestID,
-    resultCode: callback.ResultCode,
-    resultDescription: callback.ResultDesc,
-    successful: isSuccessful,
+  void saveStkCallback(req.body).catch((error) => {
+    console.error('STK callback persistence error:', error.message);
   });
 
   return res.status(200).json({ ResultCode: 0, ResultDesc: 'Accepted' });
@@ -2052,7 +2059,7 @@ module.exports = mongoose.model('Transaction', transactionSchema);`,
     {
       type: 'paragraph',
       text:
-        'Use CheckoutRequestID as the idempotency key for STK Push. A repeated callback should update the existing transaction, not create a second payment. The update below is intentionally separate from the callback response so the route can acknowledge quickly after validation.',
+        'Create a pending record when the STK initiation is accepted, then use CheckoutRequestID as the idempotency key for callbacks. A repeated callback should update the existing transaction, not create a second payment. The update below is intentionally separate from the callback response so the route can acknowledge quickly after validation.',
     },
     {
       type: 'code',
@@ -2060,6 +2067,17 @@ module.exports = mongoose.model('Transaction', transactionSchema);`,
       language: 'javascript',
       code: `const Transaction = require('../models/transaction');
 const { parseStkCallback } = require('../utils/callback-metadata');
+
+async function createPendingTransaction({ checkoutRequestId, merchantRequestId, amount, phoneNumber, accountReference }) {
+  return Transaction.create({
+    checkoutRequestId,
+    merchantRequestId,
+    amount,
+    phoneNumber,
+    accountReference,
+    status: 'pending',
+  });
+}
 
 async function saveStkCallback(payload) {
   const payment = parseStkCallback(payload);
@@ -2082,7 +2100,7 @@ async function saveStkCallback(payload) {
   );
 }
 
-module.exports = { saveStkCallback };`,
+module.exports = { createPendingTransaction, saveStkCallback };`,
     },
     {
       type: 'callout',
