@@ -10,8 +10,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-card/60 text-foreground transition-colors duration-200">
       <div className="container-shell py-12 sm:py-14 lg:py-16">
-        <div className="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr] lg:gap-8 lg:items-start">
-          <div className="space-y-5 lg:pr-4">
+        <div className="grid gap-8 lg:gap-10">
+          <div className="space-y-5 lg:col-span-1 lg:pr-4">
             <div className="flex items-center gap-2">
               <BrandWordmark />
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium text-primary">
@@ -39,72 +39,74 @@ export function SiteFooter() {
             </Button>
           </div>
 
-          <div className="space-y-3 lg:col-span-1">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h2>
-            <nav className="flex flex-col gap-2.5" aria-label="Footer navigation">
-              {navigation.map((item) =>
-                item.children ? (
-                  <div key={item.href} className="space-y-2.5">
-                    <p className="text-sm font-medium text-foreground/90">{item.label}</p>
-                    <div className="flex flex-col gap-2.5 pl-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="text-sm text-muted-foreground transition hover:text-primary"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+          <div className="grid gap-6 grid-cols-2 lg:grid-cols-3 lg:col-span-3">
+            <div className="space-y-3 lg:col-span-1">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h2>
+              <nav className="flex flex-col gap-2.5" aria-label="Footer navigation">
+                {navigation.map((item) =>
+                  item.children ? (
+                    <div key={item.href} className="space-y-2.5">
+                      <p className="text-sm font-medium text-foreground/90">{item.label}</p>
+                      <div className="flex flex-col gap-2.5 pl-3">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className="text-sm text-muted-foreground transition hover:text-primary"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm text-foreground/80 transition hover:text-primary"
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </nav>
-          </div>
-
-          <div className="space-y-3 lg:col-span-1">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Services</h2>
-            <div className="flex flex-col gap-2.5 text-sm text-foreground/80">
-              <Link href="/services" className="transition hover:text-primary">Website Development</Link>
-              <Link href="/services" className="transition hover:text-primary">Website Redesign</Link>
-              <Link href="/services" className="transition hover:text-primary">GitHub Deployment</Link>
-              <Link href="/services" className="transition hover:text-primary">Developer Training</Link>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="text-sm text-foreground/80 transition hover:text-primary"
+                    >
+                      {item.label}
+                    </Link>
+                  )
+                )}
+              </nav>
             </div>
-          </div>
 
-          <div className="space-y-3 lg:col-span-1">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</h2>
-            <div className="space-y-2.5 text-sm text-foreground/80">
-              <a href={`mailto:${site.email}`} className="flex items-center gap-2.5 transition hover:text-primary">
-                <Mail className="h-4 w-4 text-primary" />
-                {site.email}
-              </a>
-              <a href={`tel:${site.phone}`} className="flex items-center gap-2.5 transition hover:text-primary">
-                <PhoneCall className="h-4 w-4 text-primary" />
-                {site.phone}
-              </a>
-              <a
-                href={`https://wa.me/${site.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2.5 transition hover:text-primary"
-              >
-                <MessageSquareMore className="h-4 w-4 text-primary" />
-                Chat on WhatsApp
-              </a>
-              <span className="flex items-center gap-2.5">
-                <MapPin className="h-4 w-4 text-primary" />
-                {site.location}
-              </span>
+            <div className="space-y-3 lg:col-span-1">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Services</h2>
+              <div className="flex flex-col gap-2.5 text-sm text-foreground/80">
+                <Link href="/services" className="transition hover:text-primary">Website Development</Link>
+                <Link href="/services" className="transition hover:text-primary">Website Redesign</Link>
+                <Link href="/services" className="transition hover:text-primary">GitHub Deployment</Link>
+                <Link href="/services" className="transition hover:text-primary">Developer Training</Link>
+              </div>
+            </div>
+
+            <div className="space-y-3 lg:col-span-1 lg:col-start-4">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</h2>
+              <div className="space-y-2.5 text-sm text-foreground/80">
+                <a href={`mailto:${site.email}`} className="flex items-center gap-2.5 transition hover:text-primary">
+                  <Mail className="h-4 w-4 text-primary" />
+                  {site.email}
+                </a>
+                <a href={`tel:${site.phone}`} className="flex items-center gap-2.5 transition hover:text-primary">
+                  <PhoneCall className="h-4 w-4 text-primary" />
+                  {site.phone}
+                </a>
+                <a
+                  href={`https://wa.me/${site.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 transition hover:text-primary"
+                >
+                  <MessageSquareMore className="h-4 w-4 text-primary" />
+                  Chat on WhatsApp
+                </a>
+                <span className="flex items-center gap-2.5">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  {site.location}
+                </span>
+              </div>
             </div>
           </div>
         </div>
