@@ -2849,6 +2849,7 @@ export const articleMpesaTillPaybill: Article = {
   ],
 };
 
+articles.unshift(articleMpesaTillPaybill);
 articles.unshift(mpesaDarajaArticle);
 
 const duplicateSlugs = articles
