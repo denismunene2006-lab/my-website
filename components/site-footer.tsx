@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Mail, MapPin, PhoneCall } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, PhoneCall, MessageSquareMore } from 'lucide-react';
 
 import { navigation, site } from '@/data/site';
 import { Button } from '@/components/ui/button';
@@ -9,9 +9,9 @@ import { BrandWordmark } from '@/components/brand-wordmark';
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-card/60 text-foreground transition-colors duration-200">
-      <div className="container-shell py-14 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr]">
-          <div className="space-y-5">
+      <div className="container-shell py-12 sm:py-14 lg:py-16">
+        <div className="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-[1.2fr_0.7fr_0.7fr_0.8fr] lg:gap-8 lg:items-start">
+          <div className="space-y-5 lg:pr-4">
             <div className="flex items-center gap-2">
               <BrandWordmark />
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[10px] font-medium text-primary">
@@ -31,7 +31,7 @@ export function SiteFooter() {
               <Badge variant="outline" className="text-[11px]">Ongoing Support</Badge>
             </div>
 
-            <Button asChild size="sm" className="rounded-lg">
+            <Button asChild size="sm" className="rounded-lg w-fit sm:w-auto">
               <Link href="/contact">
                 Start a project
                 <ArrowUpRight className="h-3.5 w-3.5 ml-1" />
@@ -39,7 +39,7 @@ export function SiteFooter() {
             </Button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 lg:col-span-1">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h2>
             <nav className="flex flex-col gap-2.5" aria-label="Footer navigation">
               {navigation.map((item) =>
@@ -71,7 +71,7 @@ export function SiteFooter() {
             </nav>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 lg:col-span-1">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Services</h2>
             <div className="flex flex-col gap-2.5 text-sm text-foreground/80">
               <Link href="/services" className="transition hover:text-primary">Website Development</Link>
@@ -81,7 +81,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 lg:col-span-1">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Contact</h2>
             <div className="space-y-2.5 text-sm text-foreground/80">
               <a href={`mailto:${site.email}`} className="flex items-center gap-2.5 transition hover:text-primary">
@@ -92,6 +92,15 @@ export function SiteFooter() {
                 <PhoneCall className="h-4 w-4 text-primary" />
                 {site.phone}
               </a>
+              <a
+                href={`https://wa.me/${site.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 transition hover:text-primary"
+              >
+                <MessageSquareMore className="h-4 w-4 text-primary" />
+                Chat on WhatsApp
+              </a>
               <span className="flex items-center gap-2.5">
                 <MapPin className="h-4 w-4 text-primary" />
                 {site.location}
@@ -100,7 +109,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground gap-4">
+        <div className="mt-10 border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-muted-foreground gap-4">
           <p>© 2026 <span className="whitespace-nowrap">D-LABS</span>. All rights reserved.</p>
           <p className="flex items-center gap-2">
             <span>Built by Denis Munene</span>
