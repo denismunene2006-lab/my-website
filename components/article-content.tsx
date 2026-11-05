@@ -1,8 +1,50 @@
 import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { ArticleBlock } from '@/data/articles';
 import { ArticleCodeBlock } from '@/components/article-code-block';
+
+const URL_PATTERN = /(https?:\/\/[^\s]+)/g;
+
+function renderTextWithLinks(text: string) {
+  const parts = text.split(URL_PATTERN);
+
+  return parts.map((part, partIndex) => {
+    if (!part) return null;
+
+    if (/^https?:\/\//.test(part)) {
+      const cleanUrl = part.replace(/[.,;:!?)]+$/, '');
+      const trailing = part.slice(cleanUrl.length);
+      const isInternal = cleanUrl.startsWith('https://dlabskenya.com');
+
+      return (
+        <span key={partIndex}>
+          {isInternal ? (
+            <Link
+              href={cleanUrl.replace('https://dlabskenya.com', '') || '/'}
+              className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+            >
+              {cleanUrl}
+            </Link>
+          ) : (
+            <a
+              href={cleanUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+            >
+              {cleanUrl}
+            </a>
+          )}
+          {trailing}
+        </span>
+      );
+    }
+
+    return <span key={partIndex}>{part}</span>;
+  });
+}
 
 function slugify(text: string) {
   return text
@@ -22,7 +64,7 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
         if (block.type === 'paragraph') {
           return (
             <p key={index} className="text-base leading-8 text-muted-foreground sm:text-lg">
-              {block.text}
+              {renderTextWithLinks(block.text)}
             </p>
           );
         }
@@ -128,8 +170,9 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
             <Card key={index} className="border-primary/15 bg-primary/[0.04] p-5 shadow-sm">
               <a
                 href={block.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(block.href.startsWith('/') || block.href.startsWith('https://dlabskenya.com')
+                  ? {}
+                  : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
               >
                 {block.label}
@@ -150,7 +193,7 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
                   </span>
                   <div>
                     <h3 className="font-semibold tracking-tight text-foreground">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{renderTextWithLinks(item.text)}</p>
                   </div>
                 </li>
               ))}
