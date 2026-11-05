@@ -12,6 +12,8 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - "From D-Labs" product section: a dropdown nav item for in-house products (currently Lipa)
 - Branded splash screen shown on first visit per session
 - Modern hero, services, projects, blog, pricing, and contact pages
+- "Latest Insights" section on the home page that automatically shows the 3 newest blog
+  articles, reusing `BlogCard` and the shared article data
 - SEO-friendly metadata, Open Graph tags, JSON-LD structured data, robots, and sitemap routes
 - `next/image`-based image optimization
 - Reusable UI components and shared content data
@@ -56,6 +58,8 @@ Products D-LABS builds and owns in-house, kept separate from client projects.
 - `/blog/online-growth-strategy`
 - `/blog/content-marketing-tech-companies`
 - `/blog/20-unshakable-rules-modern-web-development`
+- `/blog/mpesa-daraja-api-nodejs-express-mongodb`
+- `/blog/apply-mpesa-till-paybill-online-kenya`
 
 ### Adding a new product
 
@@ -73,7 +77,7 @@ Products D-LABS builds and owns in-house, kept separate from client projects.
 - `projects.html`
 - `blog.html`
 - `contact.html`
-- `article-*.html` (all 7 blog articles)
+- `article-*.html` (all 9 blog articles)
 
 ## Getting Started
 
@@ -146,7 +150,8 @@ Entity references are cross-linked with `@id` values (for example the organizati
   use, so new products and articles appear automatically. Priorities rank the commercial
   pages (services, pricing, contact) above the blog. `lastModified` uses actual content dates,
   not the current time, because a sitemap that reports every URL as freshly modified on every
-  request is discounted by crawlers.
+  request is discounted by crawlers. `/` and `/blog` take their `lastModified` from the newest
+  article's `updatedAt`, so they refresh automatically on publish.
 - `app/robots.ts` generates `/robots.txt` with an explicit sitemap reference and a `Host`
   directive.
 - Static `sitemap.xml` and `robots.txt` at the repository root mirror the same data for the
