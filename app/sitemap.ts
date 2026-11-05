@@ -27,14 +27,33 @@ const staticRoutes: RouteEntry[] = [
   { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
 ];
 
+/**
+ * Articles carry their own `updatedAt` strings (e.g. "3 November 2026").
+ * Resolve them defensively so an invalid date never leaks "Invalid Date" into the XML.
+ */
+function articleModifiedDate(article: (typeof articles)[number]): Date {
+  const parsed = new Date(article.updatedAt);
+  return Number.isNaN(parsed.getTime()) ? new Date('2026-01-01') : parsed;
+}
+
+const latestArticleDate = articles.reduce<Date>((latest, article) => {
+  const modified = articleModifiedDate(article);
+  return modified > latest ? modified : latest;
+}, new Date('2026-01-01'));
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    ...staticRoutes.map((route) => ({
-      url: new URL(route.path, siteUrl).toString(),
-      lastModified: new Date('2026-09-30'),
-      changeFrequency: route.changeFrequency,
-      priority: route.priority,
-    })),
+    // Home and /blog change whenever a new article is published.
+    { url: new URL('/', siteUrl).toString(), lastModified: latestArticleDate, changeFrequency: 'weekly', priority: 1.0 },
+    { url: new URL('/blog', siteUrl).toString(), lastModified: latestArticleDate, changeFrequency: 'weekly', priority: 0.8 },
+    ...staticRoutes
+      .filter((route) => route.path !== '/' && route.path !== '/blog')
+      .map((route) => ({
+        url: new URL(route.path, siteUrl).toString(),
+        lastModified: new Date('2026-09-30'),
+        changeFrequency: route.changeFrequency,
+        priority: route.priority,
+      })),
     ...products.map((product) => ({
       url: new URL(getProductHref(product), siteUrl).toString(),
       lastModified: new Date('2026-09-30'),
@@ -43,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...articles.map((article) => ({
       url: new URL(`/blog/${article.slug}`, siteUrl).toString(),
-      lastModified: new Date(article.updatedAt),
+      lastModified: articleModifiedDate(article),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dlabskenya.com/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://dlabskenya.com/blog</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -49,44 +49,56 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dlabskenya.com/blog/apply-mpesa-till-paybill-online-kenya</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dlabskenya.com/blog/mpesa-daraja-api-nodejs-express-mongodb</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dlabskenya.com/blog/20-unshakable-rules-modern-web-development</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/modern-web-development</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/website-performance-page-speed</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/business-website-mistakes</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/seo-basics-for-small-business</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/online-growth-strategy</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dlabskenya.com/blog/content-marketing-tech-companies</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
