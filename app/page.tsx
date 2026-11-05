@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
 
 import { HeroStatsGrid } from '@/components/hero-stats-grid';
+import { LatestInsights } from '@/components/latest-insights';
 import { PersonalConnectionCard } from '@/components/personal-connection-card';
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
@@ -315,6 +316,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <LatestInsights />
 
       <section className="page-section">
         <div className="container-shell">
