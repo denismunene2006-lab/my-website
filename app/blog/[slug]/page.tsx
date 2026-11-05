@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: BlogArticlePageProps): Promis
     modifiedTime: article.updatedAt,
     author: site.founderName,
     section: article.category,
-    tags: [article.category, 'D-LABS', 'Web Development'],
+    tags: article.tags ?? [article.category, 'D-LABS', 'Web Development'],
   });
 }
 
@@ -135,6 +135,23 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   <ArticleContent blocks={article.blocks} />
                 </CardContent>
               </Card>
+              {article.tags && article.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 border-t border-border/60 pt-5">
+                  {article.tags.map((tag) => (
+                    <Button
+                      key={tag}
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-primary/5"
+                    >
+                      <Link href={`/blog?category=${encodeURIComponent(tag)}`}>
+                        #{tag}
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
+              )}
               <ArticleShare title={article.title} url={articleUrl} />
             </article>
 

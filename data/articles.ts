@@ -8,6 +8,7 @@ import articleOnlineGrowthImage from '../images/article-online-growth-strategy/p
 import articleSeoBasicsImage from '../images/article-seo-basics-for-small-business/photo4.webp';
 import articlePerformanceImage from '../images/article-website-performance-page-speed/d2.webp';
 import mpesaDarajaArticleImage from '../images/article-mpesa-daraja-api-nodejs-express-mongodb/M-Pesa Daraja API Integration Guide.png';
+import articleMpesaTillPaybillImage from '../images/article-apply-mpesa-till-paybill-online-kenya/hero.webp';
 
 export type ArticleBlock =
   | { type: 'paragraph'; text: string }
@@ -32,6 +33,7 @@ export type Article = {
   category: string;
   image: StaticImageData;
   blocks: ArticleBlock[];
+  tags?: string[];
 };
 
 export const articles: Article[] = [
@@ -2408,6 +2410,441 @@ module.exports = { queryTransactionStatus };`,
       href: 'https://www.mongodb.com/docs/',
       description:
         'Use the official MongoDB documentation for indexes, transactions, connection security, and deployment operations.',
+    },
+  ],
+};
+
+export const articleMpesaTillPaybill: Article = {
+  slug: 'apply-mpesa-till-paybill-online-kenya',
+  title: 'How to Apply for an M-PESA Till or Paybill Number Online in Kenya (2026)',
+  subtitle: 'A complete step-by-step guide to getting your M-PESA Business Till or Paybill through the Safaricom Business Hub',
+  description:
+    'Learn how to apply for an M-PESA Till or Paybill number online in Kenya. Covers requirements, the difference between a Till and Paybill, the M-PESA Business Hub application process, settlement options and FAQs in this complete 2026 guide.',
+  date: '5 November 2026',
+  updatedAt: '5 November 2026',
+  readTime: '8 min read',
+  category: 'Business & Payments',
+  image: articleMpesaTillPaybillImage,
+  tags: ['M-Pesa', 'M-PESA Till', 'Paybill', 'Safaricom Business Hub', 'Kenya', 'Business Payments', 'Lipa na M-PESA', 'Buy Goods'],
+  blocks: [
+    {
+      type: 'paragraph',
+      text:
+        'Accepting M-PESA payments can make it easier for customers to pay for goods and services without carrying cash. Whether you operate a retail shop, restaurant, salon, school, or service business, having a dedicated M-PESA payment option can improve how payments are received and managed.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Safaricom provides an online application process through its M-PESA Business Hub, where eligible individuals and businesses can apply for a Till (Buy Goods) or Paybill number. This guide walks you through the differences between the two products, the requirements for each business category, the step-by-step application process, and what happens after approval.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'For businesses looking to take payments further or build custom payment integrations, D-LABS also provides technical resources such as our guide on M-Pesa Daraja API integration with Node.js, Express and MongoDB.',
+    },
+    {
+      type: 'link',
+      label: 'Read the M-Pesa Daraja API guide',
+      href: '/blog/mpesa-daraja-api-nodejs-express-mongodb',
+      description: 'A complete step-by-step guide to integrating Safaricom M-PESA payments in your Node.js application',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Understanding the Difference Between a Till and Paybill',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Choosing the right product depends on how your customers pay you and whether you need to identify individual payments. Here is a clear comparison.',
+    },
+    {
+      type: 'cards',
+      columns: 2,
+      items: [
+        {
+          title: 'M-PESA Buy Goods / Business Till',
+          text:
+            'Suitable for businesses receiving payments directly from customers for goods or services at a point of sale. Customers pay by entering only the Till number—no account number is needed. Common examples: retail shops, supermarkets, restaurants, hotels, salons, barbershops, hardware stores, and small service providers.',
+        },
+        {
+          title: 'M-PESA Paybill',
+          text:
+            'Suitable for businesses and organizations that need to identify individual payments using customer account numbers. Customers enter the Business Number and, where required, their account number. Common examples: schools collecting fees, landlords collecting rent, utility companies, subscription businesses, and organizations receiving regular identified payments.',
+        },
+      ],
+    },
+    {
+      type: 'table',
+      headers: ['Feature', 'Business Till (Buy Goods)', 'Paybill'],
+      rows: [
+        ['Customer enters', 'Till number only', 'Business Number + Account Number (if required)'],
+        ['Best for', 'Point-of-sale, walk-in payments', 'Identified recurring or individual payments'],
+        ['Typical users', 'Retail, hospitality, salons, services', 'Schools, landlords, utilities, subscriptions'],
+        ['Payment identification', 'By Till number and transaction time', 'By account number per payer'],
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Which one should you choose?',
+      text:
+        'Choose a Till if your customers mainly pay at your business location or point of sale. Choose a Paybill if you need to match each payment to a specific customer account (e.g., student ID, tenant unit, invoice number).',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'What You Need Before Applying',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Requirements depend on your business registration category and the product you select. Organize your documents into the three categories below. Note: these are general preparation guides, not a complete checklist for every applicant. Safaricom may request additional documents depending on the business category, product, and settlement arrangement. Always follow the requirements displayed during your application.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'A. Individual Applicants',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Individual applicants may be asked to provide the following, depending on product eligibility:',
+    },
+    {
+      type: 'list',
+      items: [
+        'National ID or passport',
+        'Personal KRA PIN certificate (where required)',
+        'Nominated Safaricom mobile number',
+        'Additional supporting information where applicable',
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Important Note for Individual (Personal) Till Applicants',
+      text:
+        'Safaricom\'s published requirements specifically list the Individual category for the Buy Goods (Till) product. Individual applicants should confirm which products are available to them through the official application portal. A Personal/Individual Till application should not automatically be treated as equivalent to a registered business application. The displayed Till or business name may depend on the application category and Safaricom\'s verification requirements. Individuals who want to use a registered business or trading name should check whether applying under the Sole Proprietorship category is more appropriate. Custom business-name requirements must be confirmed with Safaricom before applying. Do not assume every individual automatically qualifies for Paybill or every type of Till.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'B. Sole Proprietorship',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A registered sole proprietor may need:',
+    },
+    {
+      type: 'list',
+      items: [
+        'Business registration certificate or relevant business permit (depending on the application)',
+        'Owner\'s National ID or passport',
+        'Contact person\'s identification documents (where applicable)',
+        'Personal KRA PIN certificate (where required)',
+        'Bank details if applying for bank settlement',
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Practical Note',
+      text:
+        'Ensure the business name and owner details match the submitted documents exactly. Requirements may vary depending on the selected product and settlement arrangement.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'C. Limited Liability Company',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Companies may need:',
+    },
+    {
+      type: 'list',
+      items: [
+        'Certificate of Incorporation',
+        'Company KRA PIN certificate',
+        'Directors\' and shareholders\' identification documents',
+        'Directors\' KRA PIN certificates (where applicable)',
+        'Current CR12 or other accepted company ownership records',
+        'M-PESA authorization documents',
+        'Relevant bank details where required',
+      ],
+    },
+    {
+      type: 'callout',
+      title: 'Practical Note',
+      text:
+        'The person submitting the application should have the necessary authority to represent the company. Safaricom may request additional authorization or ownership documents.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'How to Apply for an M-PESA Till or Paybill Online',
+    },
+    {
+      type: 'steps',
+      items: [
+        {
+          title: 'Step 1: Open the M-PESA Business Hub',
+          text:
+            'Go to the official portal: https://hub.m-pesaforbusiness.co.ke/ This is Safaricom\'s platform for accessing business payment services and submitting new applications.',
+        },
+        {
+          title: 'Step 2: Create an Account or Log In',
+          text:
+            'New users: select the account creation option, enter your first name, last name, email address, and phone number, then follow the registration instructions to complete setup and log in. Existing users can log in with their credentials.',
+        },
+        {
+          title: 'Step 3: Start a New Application',
+          text:
+            'Navigate to the application section and select the option to apply for a Till or Paybill.',
+        },
+        {
+          title: 'Step 4: Select Your Business Category',
+          text:
+            'Choose the category that matches your actual business structure (Individual, Sole Proprietorship, Limited Liability Company, etc.). This determines the documents and information you will be asked to provide.',
+        },
+        {
+          title: 'Step 5: Select Your Preferred Payment Product',
+          text:
+            'Where eligible, you may see options for M-PESA Buy Goods / Business Till, M-PESA Paybill, or Short-Term Paybill. Review the product descriptions and eligibility before selecting.',
+        },
+        {
+          title: 'Step 6: Enter Your Business Details',
+          text:
+            'The form may request your registered business name, business location, owner or authorized contact details, nominated Safaricom phone number, and settlement information (where required).',
+        },
+        {
+          title: 'Step 7: Upload Your Supporting Documents',
+          text:
+            'Upload each requested document. Tips: use clear, readable documents; avoid blurry or incomplete photographs; upload the correct document in each section; ensure names and identification details are consistent across all documents.',
+        },
+        {
+          title: 'Step 8: Review and Submit Your Application',
+          text:
+            'Before submitting, verify: business details, selected product, nominated phone number, supporting documents, and accuracy of all information.',
+        },
+        {
+          title: 'Step 9: Track Your Application',
+          text:
+            'Navigate to "My Applications" in the Business Hub to monitor progress. Statuses you may see: Pending (awaiting processing or review), Rejected (check the reason provided), Approved (passed the relevant approval stage), Complete (process finished; service details or next steps should be available). Processing times vary—do not rely on a fixed approval period. Follow the instructions displayed in your account.',
+        },
+      ],
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Important Things to Know After Approval',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'For a Business Till',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Safaricom provides activation instructions through supported channels. The official activation route may include *234*2# (verify current instructions before proceeding). The M-PESA Business App may also be relevant. Follow the instructions associated with your approved application.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'For Paybill',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The assigned Business Number and account access arrangements are important for managing payments. Follow the settlement and account-management instructions provided by Safaricom.',
+    },
+    {
+      type: 'callout',
+      title: 'Security Reminder',
+      text:
+        'Keep operator details and PINs secure. Never share PINs or confidential account credentials with unauthorized people.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Common Mistakes to Avoid When Applying',
+    },
+    {
+      type: 'list',
+      items: [
+        'Selecting the wrong business category — choose the category that matches your legal structure.',
+        'Entering details that do not match official documents — ensure consistency across ID, registration certificates, and KRA PIN.',
+        'Uploading unclear or incomplete documents — use sharp, well-lit photos or scans; include all pages.',
+        'Providing an incorrect nominated phone number — double-check the Safaricom number that will receive activation and transaction notifications.',
+        'Leaving required fields incomplete — review every section before submitting.',
+        'Applying for a product that does not match your business use — Till for point-of-sale, Paybill for identified payments.',
+      ],
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Where Can You Apply?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Use Safaricom\'s official platform and follow the latest requirements displayed there.',
+    },
+    {
+      type: 'link',
+      label: 'M-PESA Business Hub',
+      href: 'https://hub.m-pesaforbusiness.co.ke/',
+      description: 'Main portal for business payment services and applications',
+    },
+    {
+      type: 'link',
+      label: 'Direct Self-Onboarding Page',
+      href: 'https://hub.m-pesaforbusiness.co.ke/merchant-onboarding/self-onboarding',
+      description: 'Direct link to start a new Till or Paybill application',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Frequently Asked Questions',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Can I apply for an M-PESA Till online?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Yes. Eligible individuals and businesses can apply through the M-PESA Business Hub at https://hub.m-pesaforbusiness.co.ke/',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Can an individual apply for a Till without registering a business?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Safaricom\'s published requirements list an Individual category for the Buy Goods (Till) product. Confirm current eligibility and available products through the official application portal.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Can an individual apply for a Paybill?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Paybill eligibility for individuals should be confirmed directly through the Business Hub or Safaricom\'s current documentation, as product availability varies by category.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'What is the difference between a Till and Paybill?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A Till (Buy Goods) is for point-of-sale payments where customers enter only the Till number. A Paybill is for identified payments where customers enter a Business Number and, where required, an account number (e.g., student ID, tenant unit, invoice number).',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'How long does it take to get a Till or Paybill?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Processing times vary. Safaricom does not publish a fixed approval period. Track your application status in the Business Hub and follow any instructions provided.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Can I use my personal phone number?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'You must nominate a Safaricom mobile number for the application. This number will receive activation instructions and transaction notifications. Confirm whether it can be a personal number or must be dedicated to the business during the application.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'What documents does a sole proprietor need?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Typically: business registration certificate or permit, owner\'s ID/passport, contact person\'s ID (if different), personal KRA PIN (where required), and bank details for settlement. Check the portal for the exact list at the time of application.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'How can I check my application status?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Log in to the M-PESA Business Hub and go to "My Applications" to see the current status and any next steps.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'What should I do if my application is rejected?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Check the rejection reason provided in the portal. Correct any issues (e.g., mismatched details, unclear documents) and resubmit, or contact Safaricom support for clarification.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Is applying for an M-PESA Till or Paybill free?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Application fee structures can change. Confirm current fees, if any, through the official M-PESA Business Hub or Safaricom\'s published documentation before applying.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Conclusion',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Having a dedicated M-PESA payment solution can make collecting payments easier and more organized. Understanding the available options, choosing the correct product for your business model, and preparing the necessary documents before applying will help the process go smoothly. The initial application can be started online through the M-PESA Business Hub without beginning at a physical Safaricom shop.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'For more practical guidance on helping your business get found online, check out our SEO basics guide for small business owners.',
+    },
+    {
+      type: 'link',
+      label: 'Read the SEO Basics for Small Business guide',
+      href: '/blog/seo-basics-for-small-business',
+      description: 'Practical local SEO actions to help your business get found by the right customers',
+    },
+    {
+      type: 'quote',
+      text:
+        'At D-Labs, we believe that understanding the right digital tools can help businesses operate more efficiently and grow.',
+    },
+    {
+      type: 'callout',
+      title: 'Need help with digital solutions for your business?',
+      text:
+        'Explore the services available at D-Labs.',
+    },
+    {
+      type: 'link',
+      label: 'Visit D-Labs',
+      href: 'https://dlabskenya.com/',
+      description: 'Web development, digital strategy, and business solutions for Kenyan businesses',
     },
   ],
 };
