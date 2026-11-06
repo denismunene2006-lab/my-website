@@ -389,7 +389,7 @@ export const projects = [
     outcome:
       'A modern e-commerce demo with clean navigation and conversion-focused UI components.',
     image: ecommercePreview,
-    href: 'https://denismunene2006-lab.github.io/e-commerce-website/',
+    href: 'https://e-commerce-website-flax-eta.vercel.app/',
     cta: 'Open live site',
     tags: ['Commerce', 'Navigation', 'Conversion', 'Responsive'],
   },
