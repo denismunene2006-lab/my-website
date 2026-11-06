@@ -20,7 +20,8 @@ export type ArticleBlock =
   | { type: 'code'; filename: string; code: string; language?: string }
   | { type: 'table'; headers: string[]; rows: string[][] }
   | { type: 'link'; label: string; href: string; description?: string }
-  | { type: 'steps'; items: { title: string; text: string }[] };
+  | { type: 'steps'; items: { title: string; text: string }[] }
+  | { type: 'lipa-promo'; heading: string; description: string; features: string[]; ctaLabel?: string };
 
 export type Article = {
   slug: string;
@@ -2411,6 +2412,17 @@ module.exports = { queryTransactionStatus };`,
       description:
         'Use the official MongoDB documentation for indexes, transactions, connection security, and deployment operations.',
     },
+    {
+      type: 'lipa-promo',
+      heading: 'Running a business? We\'ve got your payments covered.',
+      description:
+        'If you would rather not build and maintain your own payment system, Lipa is a ready-made D-LABS solution for accepting M-Pesa payments — collect payments with STK Push, track every transaction in real time, and generate receipts for successful payments. The integration work in this guide, already done for you.',
+      features: [
+        'M-Pesa collection with STK Push',
+        'Real-time transaction tracking',
+        'Digital receipts for successful payments',
+      ],
+    },
   ],
 };
 
@@ -2845,6 +2857,21 @@ export const articleMpesaTillPaybill: Article = {
       label: 'Visit D-Labs',
       href: 'https://dlabskenya.com/',
       description: 'Web development, digital strategy, and business solutions for Kenyan businesses',
+    },
+    {
+      type: 'lipa-promo',
+      heading: 'Got your M-PESA Till or Paybill? Make it work smarter with Lipa.',
+      description:
+        'Once your Till or Paybill is approved, Lipa helps you get the most out of it. Send M-Pesa STK Push requests to customers, track payments in real time as they come in, generate receipts for successful payments, share payment links for remote payments, and keep your customers\' details organized in one place.',
+      features: [
+        'M-Pesa STK Push requests',
+        'Real-time payment tracking',
+        'Digital receipts for successful payments',
+        'Payment links for remote payments',
+        'Customer management',
+        'Payment analytics',
+      ],
+      ctaLabel: 'Discover Lipa',
     },
   ],
 };

@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { ArticleBlock } from '@/data/articles';
 import { ArticleCodeBlock } from '@/components/article-code-block';
+import { LipaPromoCard } from '@/components/lipa-promo-card';
 
 const URL_PATTERN = /(https?:\/\/[^\s]+)/g;
 
@@ -180,6 +181,19 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
               </a>
               {block.description ? <p className="mt-2 text-sm leading-7 text-muted-foreground">{block.description}</p> : null}
             </Card>
+          );
+        }
+
+        if (block.type === 'lipa-promo') {
+          return (
+            <div key={index}>
+              <LipaPromoCard
+                heading={block.heading}
+                description={block.description}
+                features={block.features}
+                ctaLabel={block.ctaLabel}
+              />
+            </div>
           );
         }
 
