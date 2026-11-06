@@ -49,6 +49,7 @@ export const articles: Article[] = [
     readTime: '9 min read',
     category: 'Web Development',
     image: articleModernWebDevelopmentImage,
+    tags: ['Web Development', 'Modern Websites', 'Website Design', 'Website Security', 'User Experience', 'Kenya Web Developer'],
     blocks: [
       {
         type: 'paragraph',
@@ -123,6 +124,12 @@ export const articles: Article[] = [
         text:
           'Do not settle for an old-fashioned site. Let us build something fast, secure, accessible, measurable, and ready for the future.',
       },
+      {
+        type: 'link',
+        label: 'Read the 20 Unshakable Rules of Modern Web Development',
+        href: '/blog/20-unshakable-rules-modern-web-development',
+        description: 'The deeper mindset behind building websites that survive the real world',
+      },
     ],
   },
   {
@@ -136,6 +143,7 @@ export const articles: Article[] = [
     readTime: '11 min read',
     category: 'Performance',
     image: articlePerformanceImage,
+    tags: ['Page Speed', 'Website Performance', 'Core Web Vitals', 'SEO', 'Conversions', 'Website Optimization'],
     blocks: [
       {
         type: 'paragraph',
@@ -234,6 +242,7 @@ export const articles: Article[] = [
     readTime: '9 min read',
     category: 'Business Websites',
     image: articleBusinessMistakesImage,
+    tags: ['Business Website', 'Website Mistakes', 'Website Design', 'Small Business', 'Conversions', 'Kenya'],
     blocks: [
       {
         type: 'paragraph',
@@ -313,6 +322,18 @@ export const articles: Article[] = [
         text:
           'We specialize in cleaning up these mistakes to turn a quiet website into a busy marketplace.',
       },
+      {
+        type: 'link',
+        label: 'Read the SEO Basics for Small Business guide',
+        href: '/blog/seo-basics-for-small-business',
+        description: 'Once the fundamentals are fixed, local SEO helps the right customers actually find you',
+      },
+      {
+        type: 'link',
+        label: 'Read the Website Performance & Page Speed guide',
+        href: '/blog/website-performance-page-speed',
+        description: 'A deeper look at why slow sites lose customers and how to fix them',
+      },
     ],
   },
   {
@@ -326,6 +347,7 @@ export const articles: Article[] = [
     readTime: '10 min read',
     category: 'SEO',
     image: articleSeoBasicsImage,
+    tags: ['SEO', 'Local SEO', 'Small Business', 'Google Business Profile', 'Search Rankings', 'Kenya'],
     blocks: [
       {
         type: 'paragraph',
@@ -456,6 +478,7 @@ export const articles: Article[] = [
     readTime: '10 min read',
     category: 'Online Growth',
     image: articleOnlineGrowthImage,
+    tags: ['Online Growth', 'Lead Generation', 'Digital Marketing', 'Website Strategy', 'Conversions', 'Kenya'],
     blocks: [
       {
         type: 'paragraph',
@@ -536,6 +559,18 @@ export const articles: Article[] = [
         text:
           'We do not just write code; we build channels for leads and sales. If your website is not growing your business, it is time for a new strategy.',
       },
+      {
+        type: 'link',
+        label: 'Read the SEO Basics for Small Business guide',
+        href: '/blog/seo-basics-for-small-business',
+        description: 'Attract is step one of the growth system, this is how to get it right',
+      },
+      {
+        type: 'link',
+        label: 'Read the Content Marketing for Tech Companies guide',
+        href: '/blog/content-marketing-tech-companies',
+        description: 'How sharing knowledge turns your blog into a lead-generation channel',
+      },
     ],
   },
   {
@@ -549,6 +584,7 @@ export const articles: Article[] = [
     readTime: '11 min read',
     category: 'Content Marketing',
     image: articleContentMarketingImage,
+    tags: ['Content Marketing', 'B2B Marketing', 'Lead Generation', 'Tech Companies', 'Thought Leadership', 'Blog Strategy'],
     blocks: [
       {
         type: 'paragraph',
@@ -629,6 +665,12 @@ export const articles: Article[] = [
         text:
           "We believe the best marketing does not feel like marketing. It feels like a conversation.",
       },
+      {
+        type: 'link',
+        label: 'Read the SEO Basics for Small Business guide',
+        href: '/blog/seo-basics-for-small-business',
+        description: 'Content that teaches is one half of the equation, discoverability is the other',
+      },
     ],
   },
   {
@@ -642,6 +684,7 @@ export const articles: Article[] = [
     readTime: '12 min read',
     category: 'Web Development',
     image: article20RulesImage,
+    tags: ['Web Development', 'Best Practices', 'Website Maintenance', 'Code Quality', 'Developer Mindset', 'Software Craftsmanship'],
     blocks: [
       {
         type: 'paragraph',
@@ -764,6 +807,12 @@ export const articles: Article[] = [
         text:
           'Every time you sit down to code, ask yourself: will this still work perfectly when real users start hitting the server?',
       },
+      {
+        type: 'link',
+        label: 'Read Modern Web Development in 2026',
+        href: '/blog/modern-web-development',
+        description: 'What makes a website genuinely modern, and why it matters for your business',
+      },
     ],
   },
 ];
@@ -779,6 +828,7 @@ export const mpesaDarajaArticle: Article = {
   readTime: '25 min read',
   category: 'Backend Development',
   image: mpesaDarajaArticleImage,
+  tags: ['M-Pesa', 'Daraja API', 'Node.js', 'Express', 'MongoDB', 'STK Push', 'Payment Integration', 'Kenya'],
   blocks: [
     {
       type: 'paragraph',

@@ -12,12 +12,57 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { createPageMetadata } from '@/lib/metadata';
-import { articles, getArticleBySlug } from '@/data/articles';
+import { articles, getArticleBySlug, type Article } from '@/data/articles';
 import { getArticleUrl, site, siteUrl } from '@/data/site';
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+/**
+ * Builds FAQPage structured data from an article's "Frequently Asked Questions"
+ * section (level-3 headings each followed by a paragraph). Returns null when
+ * the article has no FAQ section.
+ */
+function buildFaqJsonLd(article: Article) {
+  const blocks = article.blocks;
+  const faqs: { question: string; answer: string }[] = [];
+
+  for (let i = 0; i < blocks.length; i += 1) {
+    const block = blocks[i];
+    const isFaqSection =
+      block.type === 'heading' &&
+      (block.level ?? 2) === 2 &&
+      /frequently asked questions/i.test(block.text);
+
+    if (!isFaqSection) continue;
+
+    for (let j = i + 1; j < blocks.length; j += 1) {
+      const heading = blocks[j];
+      // Stop when the FAQ section ends (next level-2 heading).
+      if (heading.type === 'heading' && (heading.level ?? 2) === 2) break;
+      if (heading.type !== 'heading') continue;
+
+      const answer = blocks[j + 1];
+      if (answer?.type === 'paragraph') {
+        faqs.push({ question: heading.text, answer: answer.text });
+      }
+    }
+    break;
+  }
+
+  if (faqs.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+}
 
 export async function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -75,6 +120,22 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     },
     mainEntityOfPage: `${siteUrl}/blog/${article.slug}`,
   };
+
+  const faqJsonLd = buildFaqJsonLd(article);
+  const jsonLdArray = faqJsonLd ? [jsonLd, faqJsonLd] : [jsonLd];
+
+  const articleTags = article.tags ?? [article.category, 'D-LABS', 'Web Development'];
+  const relatedArticles = articles
+    .filter((candidate) => candidate.slug !== article.slug)
+    .map((candidate) => {
+      const candidateTags = candidate.tags ?? [candidate.category];
+      const shared = candidateTags.filter((tag) => articleTags.includes(tag)).length;
+      return { candidate, score: shared + (candidate.category === article.category ? 1 : 0) };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ candidate }) => candidate);
 
   return (
     <div className="page-section overflow-x-hidden">
@@ -152,6 +213,34 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
                   ))}
                 </div>
               )}
+              {relatedArticles.length > 0 && (
+                <div className="space-y-4 border-t border-border/60 pt-5">
+                  <h2 className="font-heading text-lg font-bold tracking-tight">Related articles</h2>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {relatedArticles.map((related) => (
+                      <Link
+                        key={related.slug}
+                        href={`/blog/${related.slug}`}
+                        className="group flex h-full flex-col rounded-2xl border border-border/60 bg-card p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-soft"
+                      >
+                        <Badge variant="accent" className="w-fit text-[10px] uppercase font-semibold">
+                          {related.category}
+                        </Badge>
+                        <h3 className="mt-3 text-sm font-semibold leading-6 tracking-tight text-foreground group-hover:text-primary transition-colors">
+                          {related.title}
+                        </h3>
+                        <p className="mt-2 line-clamp-2 text-xs leading-5 text-muted-foreground">
+                          {related.subtitle}
+                        </p>
+                        <span className="mt-auto pt-3 text-xs font-medium text-primary inline-flex items-center gap-1">
+                          Read article
+                          <ArrowUpRight className="h-3.5 w-3.5" />
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
               <ArticleShare title={article.title} url={articleUrl} />
             </article>
 
@@ -196,7 +285,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
         </Reveal>
       </div>
 
-      <JsonLd data={jsonLd} />
+      <JsonLd data={jsonLdArray} />
     </div>
   );
 }

@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /_next/
-Disallow: /api/
-
-Host: https://dlabskenya.com
-
-Sitemap: https://dlabskenya.com/sitemap.xml
