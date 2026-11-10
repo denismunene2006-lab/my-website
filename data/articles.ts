@@ -3265,12 +3265,29 @@ git config --global user.email "your@email.com"`,
     {
       type: 'paragraph',
       text:
-        'Now for the command guide. The commands are grouped into seven sections by what they do. For each command you get: what it does, when to use it, and a practical example. Do not try to memorise everything at once — run each example yourself as you read, and the commands will stick naturally.',
+        'Now for the command guide. The commands are grouped into seven numbered sections by what they do. For each command you get: what it does, when to use it, and a practical example. Do not try to memorise everything at once — run each example yourself as you read, and the commands will stick naturally.',
+    },
+    {
+      type: 'list',
+      items: [
+        'Section 1 — Repository and setup commands',
+        'Section 2 — Basic workflow commands',
+        'Section 3 — Branching commands',
+        'Section 4 — Undo and restore commands',
+        'Section 5 — Stash commands',
+        'Section 6 — Remote repository and GitHub commands',
+        'Section 7 — Useful inspection and debugging commands',
+      ],
     },
     {
       type: 'heading',
       level: 2,
-      text: 'Repository and setup commands',
+      text: 'Section 1: Repository and setup commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Everything you need to start a project with Git: putting a folder under version control, downloading an existing project, telling Git who you are, and checking the state of your repository at any time.',
     },
     {
       type: 'heading',
@@ -3356,7 +3373,12 @@ git config --list`,
     {
       type: 'heading',
       level: 2,
-      text: 'Basic workflow commands',
+      text: 'Section 2: Basic workflow commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The daily heartbeat of Git: saving your work with commits and keeping your local copy in sync with GitHub.',
     },
     {
       type: 'paragraph',
@@ -3495,7 +3517,7 @@ git diff main origin/main`,
     {
       type: 'heading',
       level: 2,
-      text: 'Branching commands',
+      text: 'Section 3: Branching commands',
     },
     {
       type: 'paragraph',
@@ -3621,7 +3643,7 @@ git merge contact-form`,
     {
       type: 'heading',
       level: 2,
-      text: 'Undo and restore commands',
+      text: 'Section 4: Undo and restore commands',
     },
     {
       type: 'paragraph',
@@ -3745,7 +3767,7 @@ git reset HEAD~1`,
     {
       type: 'heading',
       level: 2,
-      text: 'Stash commands',
+      text: 'Section 5: Stash commands',
     },
     {
       type: 'paragraph',
@@ -3851,7 +3873,7 @@ git reset HEAD~1`,
     {
       type: 'heading',
       level: 2,
-      text: 'Remote repository and GitHub commands',
+      text: 'Section 6: Remote repository and GitHub commands',
     },
     {
       type: 'paragraph',
@@ -3957,7 +3979,7 @@ git reset HEAD~1`,
     {
       type: 'heading',
       level: 2,
-      text: 'Useful inspection and debugging commands',
+      text: 'Section 7: Useful inspection and debugging commands',
     },
     {
       type: 'paragraph',
