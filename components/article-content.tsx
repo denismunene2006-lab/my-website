@@ -18,6 +18,22 @@ function renderTextWithLinks(text: string) {
       const cleanUrl = part.replace(/[.,;:!?)]+$/, '');
       const trailing = part.slice(cleanUrl.length);
       const isInternal = cleanUrl.startsWith('https://dlabskenya.com');
+      const isPdf = cleanUrl.toLowerCase().endsWith('.pdf');
+
+      if (isPdf) {
+        return (
+          <a
+            key={partIndex}
+            href={isInternal ? cleanUrl.replace('https://dlabskenya.com', '') : cleanUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+          >
+            {cleanUrl}
+            {trailing}
+          </a>
+        );
+      }
 
       return (
         <span key={partIndex}>
@@ -110,7 +126,7 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
           return (
             <Card key={index} className="border-primary/15 bg-primary/[0.04] p-6 shadow-sm">
               {block.title ? <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">{block.title}</p> : null}
-              <p className={cn('mt-2 text-base leading-8 text-foreground')}>{block.text}</p>
+              <p className={cn('mt-2 text-base leading-8 text-foreground')}>{renderTextWithLinks(block.text)}</p>
             </Card>
           );
         }
@@ -171,9 +187,11 @@ export function ArticleContent({ blocks }: ArticleContentProps) {
             <Card key={index} className="border-primary/15 bg-primary/[0.04] p-5 shadow-sm">
               <a
                 href={block.href}
-                {...(block.href.startsWith('/') || block.href.startsWith('https://dlabskenya.com')
-                  ? {}
-                  : { target: '_blank', rel: 'noopener noreferrer' })}
+                {...(block.href.toLowerCase().endsWith('.pdf')
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : block.href.startsWith('/') || block.href.startsWith('https://dlabskenya.com')
+                    ? {}
+                    : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
               >
                 {block.label}
