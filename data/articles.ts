@@ -9,6 +9,7 @@ import articleSeoBasicsImage from '../images/article-seo-basics-for-small-busine
 import articlePerformanceImage from '../images/article-website-performance-page-speed/d2.webp';
 import mpesaDarajaArticleImage from '../images/article-mpesa-daraja-api-nodejs-express-mongodb/M-Pesa Daraja API Integration Guide.png';
 import articleMpesaTillPaybillImage from '../images/article-apply-mpesa-till-paybill-online-kenya/hero.webp';
+import gitGithubArticleImage from '../images/article-beginner-guide-git-github-commands/hero.png';
 
 export type ArticleBlock =
   | { type: 'paragraph'; text: string }
@@ -2926,6 +2927,1370 @@ export const articleMpesaTillPaybill: Article = {
   ],
 };
 
+export const gitGithubBeginnerArticle: Article = {
+  slug: 'beginner-guide-git-github-commands',
+  title: 'A Beginner\'s Guide to Git & GitHub: Essential Commands Explained',
+  subtitle: 'What Git and GitHub actually are, how they work together, and every essential command explained with practical examples',
+  description:
+    'A beginner-friendly Git and GitHub tutorial covering what version control is, how to install Git, and the essential Git commands with practical examples — from git init to branching, stashing, undoing changes and pushing to GitHub.',
+  date: '10 November 2026',
+  updatedAt: '10 November 2026',
+  readTime: '30 min read',
+  category: 'Version Control',
+  image: gitGithubArticleImage,
+  tags: ['Git', 'GitHub', 'Version Control', 'Git Commands', 'Beginners', 'Developer Tools'],
+  blocks: [
+    {
+      type: 'paragraph',
+      text:
+        'If you are starting your journey as a developer, you will quickly hear two words everywhere: Git and GitHub. Every job listing mentions them, every team uses them, and every serious project depends on them — but very few tutorials slow down long enough to explain what they actually are before throwing commands at you.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'This guide does it in the right order. First you will understand what version control is, what Git is, what GitHub is, and why they matter. Only then will we walk through installation and the essential Git and GitHub commands, each explained in simple English with a practical example you can run yourself.',
+    },
+    {
+      type: 'callout',
+      title: 'Free cheat sheet',
+      text:
+        'We have packed every command from this guide into a free downloadable PDF cheat sheet. Download it, keep it on your desk, and use it while you practise: https://dlabskenya.com/downloads/git-github-commands-cheat-sheet.pdf',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Why developers need version control',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Imagine you are writing an essay. You create "essay.doc", then "essay-final.doc", then "essay-final-v2.doc", then "essay-FINAL-really-this-time.doc". Sound familiar? Now imagine that instead of an essay, it is a project with hundreds of files of code, and several people are editing them at the same time.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Renaming files clearly does not scale. What developers need is a reliable way to track every change made to their code: who changed what, when, why, and the ability to go back to any previous point at any time. That is exactly the problem version control solves.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A version control system records snapshots of your project as you work. Instead of copying folders manually, you tell the system when to save a snapshot, attach a message explaining what changed, and later you can compare versions, undo mistakes, or experiment safely without touching the working copy that already works.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'In this guide you will learn: what Git is, what GitHub is and how they differ, how to install and configure Git, and the essential Git commands for beginners — creating repositories, saving work, branching, undoing mistakes, temporarily parking changes, connecting to GitHub, and inspecting your project history. All of it illustrated with commands and examples you can type along with.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'What is Git?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git is a free and open-source version control system. It was created in 2005 by Linus Torvalds, the creator of Linux, and it is now the standard tool developers use to manage the history of their projects.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'It is called a version control system because its job is precisely that: controlling versions. Git watches the files in your project folder and records a snapshot — called a commit — every time you tell it to save your progress. Each commit remembers exactly what the project looked like at that moment, what changed compared to the previous commit, who made the change, and when.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git runs locally on your computer. Everything happens inside a hidden folder called `.git` in your project directory, so you can use Git fully offline: committing, viewing history, and branching all work without an internet connection.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Commits: saving versions of your work',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A commit is like a save point in a video game. You do some work, save it with a short message describing what you did, and keep going. Made a mistake twenty minutes later? Restore the last save point. This is why experienced developers commit often: small commits with clear messages create a detailed, recoverable history of the project.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Branches: working independently',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git also lets you create branches. A branch is a separate line of development. Your main branch stays stable and working, while you create a new branch to develop a feature, fix a bug, or experiment. If the experiment succeeds, you merge it back into main. If it fails, you simply delete the branch — main was never affected.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'A simple practical example',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Say you are building a personal website. You write the homepage and commit it. Next week you add an "About" page and commit again. Then you decide to try a dark theme, so you create a branch called `dark-theme` and play freely — the main branch still has the working light version. The dark theme turns out ugly, so you delete the branch, and your project is exactly as it was before. No copies, no guessing, no lost work. Later you realize you need yesterday\'s version of the homepage because you accidentally deleted a section — one command brings it back.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'What is GitHub?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'GitHub is a website that hosts your Git repositories online. While Git is the tool installed on your computer, GitHub is the cloud service where your projects live so you can back them up, share them, and collaborate with other people.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'You create a repository (a home for your project) on GitHub, then connect it to the Git repository on your computer. From that moment you can push your commits up to GitHub and pull updates down from it. GitHub stores the full history of your project too, so even if your laptop dies, your code and its history are safe.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Collaboration: pull requests and issues',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'GitHub is more than storage — it is a collaboration platform. Teams work together through shared repositories:',
+    },
+    {
+      type: 'list',
+      items: [
+        'Pull requests: when you finish work on a branch, you open a pull request asking your teammates to review your changes before they are merged into the main branch. Teammates comment, suggest improvements, and approve the merge.',
+        'Issues: a built-in tracker for bugs, ideas, and tasks. A team can discuss what needs fixing, assign someone to it, and link the fix to the issue it closes.',
+        'Reviews and discussions: every proposed change can be inspected line by line, which catches mistakes before they reach the main branch.',
+      ],
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'GitHub as your public portfolio',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Public GitHub repositories are visible to the world, which makes GitHub the developer\'s portfolio. Employers and clients can see your actual code, how consistently you work, and how you collaborate. Many developers get hired because of a well-maintained GitHub profile long before anyone asks for a CV.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'A practical example',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Suppose you and a friend are building a school website. You create a GitHub repository and invite your friend as a collaborator. Both of you clone (download) the project. You build the navigation while your friend builds the contact form — each on a separate branch. When the contact form is ready, your friend opens a pull request; you review the code, leave one comment, approve it, and merge it. Meanwhile GitHub\'s Issues tab tracks the "fix logo alignment" bug nobody has gotten to yet. Nobody ever overwrites anyone\'s work.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Git vs GitHub — what is the difference?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'This confuses almost every beginner, so let us settle it clearly: Git and GitHub are two different things that work together. Git is the tool; GitHub is the place where projects using that tool are stored and shared.',
+    },
+    {
+      type: 'table',
+      headers: ['Git', 'GitHub'],
+      rows: [
+        ['Version control tool', 'Online code hosting and collaboration platform'],
+        ['Runs locally on your computer', 'Accessed online'],
+        ['Tracks changes and project history', 'Hosts and shares Git repositories'],
+        ['Works without an internet connection for most local operations', 'Requires internet access for online collaboration'],
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A helpful analogy: Git is like Microsoft Word installed on your laptop, while GitHub is like Google Drive — the cloud service where your documents are backed up and shared with others. You can write documents in Word without Drive, and Drive without Word would have nothing to store. Similarly, you can use Git without GitHub, but GitHub cannot hold your history without Git. Alternatives to GitHub exist (such as GitLab and Bitbucket), but Git itself is universal.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Why are Git and GitHub important?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git and GitHub are not optional extras in software development — they are the foundation everything else stands on. Here is why they matter in real, everyday work:',
+    },
+    {
+      type: 'cards',
+      columns: 2,
+      items: [
+        {
+          title: 'Tracking code changes',
+          text: 'Every commit records what changed, who changed it, and why. When something breaks, the history tells you exactly which change caused it.',
+        },
+        {
+          title: 'Recovering previous versions',
+          text: 'Deleted a file by accident? Broke something that worked yesterday? Any previous state of the project can be restored from the commit history.',
+        },
+        {
+          title: 'Collaborating with other developers',
+          text: 'Multiple people can work on the same project simultaneously without overwriting each other. Changes are merged in a controlled, reviewable way.',
+        },
+        {
+          title: 'Managing features with branches',
+          text: 'New features and bug fixes are developed on separate branches, keeping the main branch stable and releasable at all times.',
+        },
+        {
+          title: 'Backing up and sharing projects',
+          text: 'GitHub keeps an off-site copy of your code and its full history. Share a repository and anyone can download, run, and contribute to your project.',
+        },
+        {
+          title: 'Contributing to open source',
+          text: 'Almost every major open-source project lives on GitHub. Cloning a project, fixing a bug, and opening a pull request is the standard way to contribute.',
+        },
+        {
+          title: 'Building a professional portfolio',
+          text: 'A GitHub profile with real projects proves your skills to employers far better than a list of technologies on a CV.',
+        },
+        {
+          title: 'Supporting team workflows',
+          text: 'Software companies organise their entire development process — reviews, releases, task tracking — around Git branching and pull requests.',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'In short: Git protects your work, GitHub shares it, and together they make both solo projects and team development manageable.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'How Git and GitHub work together',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The relationship is simple: Git manages your project history locally, and GitHub stores that history online and makes it shareable. You work locally with Git commands, and periodically synchronize with GitHub.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Here is the typical workflow you will follow in every project:',
+    },
+    {
+      type: 'steps',
+      items: [
+        { title: 'Create a project on your computer', text: 'Make a folder for your project and add your files.' },
+        { title: 'Initialise Git in the project', text: 'Run `git init` to turn the folder into a Git repository that can track changes.' },
+        { title: 'Make changes to your files', text: 'Write code as usual. Git sees the changes but records nothing until you tell it to.' },
+        { title: 'Stage and commit your changes', text: 'Use `git add` to stage the files you want to save, then `git commit` to record the snapshot with a message.' },
+        { title: 'Create a repository on GitHub', text: 'On github.com, create an empty repository with the same name as your project.' },
+        { title: 'Connect your local repository to GitHub', text: 'Run `git remote add origin` with your repository URL so Git knows where the online copy lives.' },
+        { title: 'Push your code to GitHub', text: 'Run `git push` to upload your commits. From now on, GitHub mirrors your local history.' },
+        { title: 'Pull updates when necessary', text: 'Run `git pull` to download any changes made online (for example by teammates) before you continue working.' },
+      ],
+    },
+    {
+      type: 'paragraph',
+      text:
+        'This cycle — edit, stage, commit, push — becomes muscle memory within your first week. Every command involved is explained in detail in the sections below, and the whole loop is summarised in a complete worked example later in this guide.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Before you start — installing Git',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Download Git for your operating system from the official website: https://git-scm.com/downloads. Installers are available for Windows, macOS, and Linux, and the defaults are fine for beginners — you can change settings later.',
+    },
+    {
+      type: 'list',
+      items: [
+        'Windows: download the installer from the link above and follow the setup wizard. Accepting the recommended defaults is fine.',
+        'macOS: install via the official installer, or with Homebrew using `brew install git`.',
+        'Linux (Debian/Ubuntu): install from your package manager using `sudo apt install git`.',
+      ],
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Verify the installation',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Open a terminal (or Command Prompt on Windows) and check that Git is installed:',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git --version`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'You should see something like `git version 2.47.0`. If the command is not recognised, close and reopen your terminal after installing, or reinstall Git.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Configure your name and email',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Before making any commits, tell Git who you are. Every commit records the author\'s name and email, so this one-time setup is required. Replace YOUR NAME and YOUR EMAIL below with your own details — ideally the email you use on GitHub:',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git config --global user.name "YOUR NAME"
+git config --global user.email "your@email.com"`,
+    },
+    {
+      type: 'callout',
+      title: 'Placeholders, not literals',
+      text:
+        '"YOUR NAME" and "your@email.com" are placeholders. Replace them with your real name and email. The --global flag means this configuration applies to every repository on your computer, and you only need to do it once.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Essential Git and GitHub commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Now for the command guide. The commands are grouped into seven sections by what they do. For each command you get: what it does, when to use it, and a practical example. Do not try to memorise everything at once — run each example yourself as you read, and the commands will stick naturally.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Repository and setup commands',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git init',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Turns the current folder into a Git repository. Git creates a hidden `.git` folder inside it and starts tracking your project from that point. Run it once, at the start of a new project.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `mkdir my-project
+cd my-project
+git init`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git responds with "Initialized empty Git repository in .../my-project/.git/". The folder now has version control, but nothing is recorded yet — commits come next.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git clone',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Downloads an existing repository (usually from GitHub) into a new folder on your computer, including its full history. Use it when you want to work on a project that already exists online.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git clone https://github.com/username/project-name.git
+cd project-name`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The URL comes from the green "Code" button on any GitHub repository page. You get a ready-to-work copy with every commit already included.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git config',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Sets Git configuration options. The most important ones are your name and email, which are attached to every commit you make. With --global, the settings apply to all your repositories.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git config --global user.name "Jane Developer"
+git config --global user.email "jane@example.com"
+
+# See your current settings
+git config --list`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git status',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows the current state of your repository: which files have changed, which are staged for the next commit, and which branch you are on. This is the command you will run most often — check it before and after every Git operation so you always know what is happening.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git status`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Basic workflow commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'These commands form the daily heartbeat of Git: save your work with commits, and synchronise with the remote repository using push, pull, and fetch.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git add',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Stages a specific file, marking it for inclusion in the next commit. Staging lets you commit only some of your changes while leaving others for later.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git add index.html`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git add .',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Stages every new and modified file in the current folder and its subfolders. It is the quick way to stage everything, but check `git status` first so you do not accidentally stage files you did not intend to commit.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git add .`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git commit',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Records the staged changes as a permanent snapshot in your project history. Running `git commit` without flags opens an editor where you write the commit message.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git commit`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git commit -m',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Commits with the message supplied directly on the command line — the form you will use most often. Write short, present-tense messages that describe what the commit does, for example "Add contact form validation".',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git commit -m "Add contact form validation"`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git commit -am',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Combines two steps: the -a flag automatically stages all tracked files that were modified, and -m adds the message. Handy when you have only edited existing files. Note the difference: `git add` is still required for brand-new files, because -a only affects files Git is already tracking.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git commit -am "Fix navigation overlap on mobile"`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git push',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Uploads your local commits to the remote repository (typically GitHub). Until you push, your commits exist only on your machine.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git push`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git pull',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Downloads commits from the remote repository and immediately merges them into your current branch. Run it at the start of a work session to bring your local copy up to date with your teammates\' changes.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git pull`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git fetch',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Downloads new commits and branches from the remote repository but does not merge them into your branch. This is the safe, look-before-you-leap version of `git pull`: fetch first, inspect what arrived with `git log` or `git diff`, and merge only when you are ready.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git fetch
+git diff main origin/main`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Branching commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Branching is where Git becomes truly powerful. A branch is an independent line of work: you develop a feature or fix a bug on a branch without touching the main branch, and only merge it back when it is finished and tested. Teams rely on this so the main branch always stays stable.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git branch',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Lists all branches in your repository and highlights the one you are currently on.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git branch`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git branch <branch-name>',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Creates a new branch with the name you give it. The branch starts from your current position, but you stay on your current branch — creating does not switch to the new one.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git branch dark-mode`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git switch',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Switches to an existing branch. Your working files change to match that branch\'s latest commit. Introduced as the modern, clearer alternative to `git checkout` for switching branches.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git switch dark-mode`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git switch -c <branch-name>',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Creates a new branch and switches to it in one command. The -c stands for "create". This is the modern way to start new work.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git switch -c contact-form`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git checkout',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The older, multipurpose command. `git checkout <branch-name>` switches branches (like `git switch`), and `git checkout -b <branch-name>` creates and switches in one step (like `git switch -c`). Prefer the `switch` commands in new work, but recognize checkout because countless tutorials and older repositories use it.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git checkout dark-mode
+
+# Older equivalent of: git switch -c contact-form
+git checkout -b contact-form`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git merge',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Brings the commits from another branch into your current branch. To merge your finished feature into main: switch to main first, then merge the feature branch. If both branches changed the same lines, Git reports a conflict and asks you to resolve it manually.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git switch main
+git merge contact-form`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git branch -d',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Deletes a branch that has been merged. It is a safe delete: Git refuses if the branch contains unmerged work. Use -D instead to force-delete anyway.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git branch -d contact-form`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Undo and restore commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Everyone makes mistakes; these commands fix them. They range from completely safe to genuinely destructive, so read the warning before each one.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git restore',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Discards uncommitted changes to a file in your working directory, restoring it to the last committed version.',
+    },
+    {
+      type: 'callout',
+      title: 'Warning: unsaved edits are lost',
+      text:
+        '`git restore <file>` permanently discards the uncommitted changes to that file. There is no undo, because those changes were never committed. Copy anything you might still want into another file first.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git restore index.html`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git restore --staged',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Unstages a file: it removes the file from the next commit but keeps your edits in the working directory. This is the safe way to undo `git add` — no work is lost.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git restore --staged index.html`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git reset',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Moves your branch back to a specified commit. What happens to your files depends on the mode: with --soft, commits disappear but your changes stay staged; with --mixed (the default), changes stay unstaged; with --hard, changes are deleted entirely.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `# Keep the changes, just undo the last commit
+git reset HEAD~1`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git reset --soft',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The gentlest reset: undoes commits but leaves every change staged, ready for you to recommit differently. Ideal when you committed too early or with a poor message.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git reset --soft HEAD~1`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git reset --hard',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Moves the branch back to a commit and erases all changes after it — both commits and file contents.',
+    },
+    {
+      type: 'callout',
+      title: 'Danger: this deletes work permanently',
+      text:
+        '`git reset --hard` permanently destroys uncommitted changes and discards the commits after the target. Double-check `git status` and `git log` before running it, and never use it on commits you have already pushed and shared with a team.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git reset --hard HEAD~1`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git revert',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Undoes a commit by creating a new commit that reverses it. Nothing is erased — the bad commit stays in history, followed by the commit that cancels it out. This is the safe way to undo work that has already been pushed and shared.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git revert HEAD`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Rule of thumb: reset for private, unpushed mistakes; revert for anything already public. Reset rewrites history, revert adds to it.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Stash commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Sometimes you are halfway through a change when something urgent comes up — a bug on main, a teammate\'s question, a meeting. You do not want to commit half-finished work, and you do not want to lose it either. Stashing temporarily shelves your changes so you can return to a clean working directory, then bring them back later.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Saves your uncommitted changes onto a stack of stashes and resets your working directory to the last commit. Your work is safely stored, and your project looks clean.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash list',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows all stashes you have saved. Each entry has an identifier like `stash@{0}` for the most recent one.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash list`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash pop',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Restores the most recent stash into your working directory and removes it from the stash list. This is the usual "I am back, give me my changes" command.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash pop`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash apply',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Like pop, but keeps the stash in the list after applying it. Useful when you want to apply the same changes in more than one place, or you are not yet sure you are done with them.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash apply`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash drop',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Deletes a stash permanently. Without an argument it drops the most recent one.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash drop stash@{0}`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git stash -u',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Stashes your changes including untracked files — new files you created but never committed. Plain `git stash` ignores untracked files, which surprises many beginners; -u includes them.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git stash -u`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Remote repository and GitHub commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'A remote is a Git repository hosted elsewhere — on GitHub, in most cases. These commands manage the connection between the repository on your computer and the one online. You can list remotes, add one, fix its URL, and push or pull specific branches.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git remote -v',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Lists the remotes configured for your repository and their URLs. The -v stands for "verbose". A freshly initialised repository has none until you connect one.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git remote -v`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git remote add origin',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Connects your local repository to a remote one. "origin" is the conventional name for the main remote — the GitHub repository you created. You run this once per repository, right after creating the repository on GitHub.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git remote add origin https://github.com/username/my-project.git`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git remote set-url origin',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Changes the URL of an existing remote. Use it if the repository moved, was renamed, or you switched between HTTPS and SSH.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git remote set-url origin https://github.com/username/new-name.git`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git push -u origin main',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Pushes your main branch to GitHub for the first time. The -u flag (short for --set-upstream) links your local main to origin/main, so every later push and pull can simply be `git push` and `git pull` with no extra arguments.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git push -u origin main`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git push origin <branch-name>',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Uploads a specific branch to GitHub. You use this for feature branches so teammates (and pull requests) can see your work before it is merged into main.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git push origin contact-form`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git pull origin main',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Downloads and merges updates from the main branch on GitHub into your current branch. Being explicit about the remote and branch avoids surprises when you have several remotes or branches.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git pull origin main`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Useful inspection and debugging commands',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'These commands answer the questions every developer eventually asks: what has been changed, who changed it, when, and why. Learning them pays off the first time you debug a mystery.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git log',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows the commit history of the current branch: identifier, author, date, and message for every commit, newest first. Press q to exit the log view.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git log`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git log --oneline',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows the same history in a compact one-line-per-commit format: short identifier plus message. Perfect for getting a quick overview.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git log --oneline`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git diff',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows exactly what has changed but is not yet committed — line by line, additions and removals. Review your diff before every commit; it is the cheapest code review there is.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git diff`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git show',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Displays the details of one specific commit: its message and the full diff of what it changed.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git show abc1234`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git blame',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Shows, line by line, who last modified each line of a file and in which commit. Less about blame, more about finding the commit where a change was introduced.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git blame index.html`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git bisect',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Finds the commit that introduced a bug using binary search: you mark the current commit as bad and an older one as good, and Git walks the history in halves until the culprit is isolated. Powerful on large histories.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git bisect start
+git bisect bad
+git bisect good abc1234`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git clean -nd',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Previews which untracked files and directories would be deleted by a clean — without deleting anything. Always run this dry-run version first.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `git clean -nd`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'git clean -fd',
+    },
+    {
+      type: 'callout',
+      title: 'Warning: permanent deletion',
+      text:
+        '`git clean -fd` permanently deletes untracked files and directories — files Git has never committed, including possibly your configuration files, notes, or downloads. They are not recoverable through Git. Always preview with `git clean -nd` first and read the list carefully before proceeding.',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `# Preview first (deletes nothing)
+git clean -nd
+
+# Delete the listed untracked files and directories
+git clean -fd`,
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Complete beginner workflows',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Now let us put the commands together into the three workflows you will repeat constantly.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Workflow 1: Create a repository and publish it to GitHub',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'From an empty folder to your first pushed commit:',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `# 1. Create the project folder and initialise Git
+mkdir my-project
+cd my-project
+git init
+
+# 2. Add your files and make the first commit
+git add .
+git commit -m "Initial commit"
+
+# 3. Create the repository on github.com first, then connect it
+git remote add origin https://github.com/username/my-project.git
+
+# 4. Push the first version of your project
+git push -u origin main`,
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Refresh the GitHub page in your browser and your project is online, history and all. Every subsequent commit needs only `git add .`, `git commit -m "..."`, and `git push`.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Workflow 2: Feature branch and merge',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The safest way to add anything new to a project:',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `# 1. Start from an up-to-date main branch
+git switch main
+git pull
+
+# 2. Create and switch to a feature branch
+git switch -c add-pricing-section
+
+# 3. Do the work, save it on the branch
+git add .
+git commit -m "Add pricing section"
+
+# 4. Share the branch on GitHub (open a pull request there)
+git push -u origin add-pricing-section
+
+# 5. When reviewed and approved, merge into main
+git switch main
+git pull
+git merge add-pricing-section
+
+# 6. Clean up the finished branch
+git branch -d add-pricing-section
+git push origin add-pricing-section --delete`,
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Workflow 3: Recover a broken day',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'You made changes that turned out badly. What you do depends on how far the damage goes:',
+    },
+    {
+      type: 'code',
+      filename: 'Terminal',
+      language: 'bash',
+      code: `# One file got worse — discard just that file's uncommitted edits
+git restore styles.css
+
+# Staged a file you did not mean to — unstage it, keep the edits
+git restore --staged styles.css
+
+# Committed too early — undo the commit, keep everything staged
+git reset --soft HEAD~1
+
+# Something already pushed broke production — reverse it safely
+git revert HEAD
+git push`,
+    },
+    {
+      type: 'callout',
+      title: 'Practise in a scratch project',
+      text:
+        'Do not practise undo commands on a project you care about. Create a throwaway folder, commit a few files, and try each workflow above until the responses feel familiar. The cheat sheet PDF lists all of these commands side by side.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Frequently asked questions',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Do I need GitHub to use Git?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'No. Git works entirely on its own — commits, branches, and history all work locally. GitHub adds online backup, sharing, and collaboration on top of Git.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'Is Git the same as GitHub?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'No. Git is a version control tool that runs on your computer; GitHub is an online platform that hosts Git repositories and adds collaboration features like pull requests and issues.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'How often should I commit?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Commit whenever you reach a small, working state — a fixed bug, a completed function, an updated page. Small, frequent commits with clear messages make history easy to navigate and mistakes easy to undo.',
+    },
+    {
+      type: 'heading',
+      level: 3,
+      text: 'What is the difference between git fetch and git pull?',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Both download updates from the remote repository, but `git fetch` only downloads while `git pull` downloads and merges immediately. Use fetch when you want to inspect first, pull when you just want to catch up.',
+    },
+    {
+      type: 'heading',
+      level: 2,
+      text: 'Conclusion',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'Git and GitHub are essential skills for every developer: Git gives you a complete, recoverable history of your work and the freedom to experiment safely, while GitHub turns that history into a shared, backed-up, collaborative home for your projects. Almost everything else in modern software development — teamwork, code review, deployment, open source — is built on top of them.',
+    },
+    {
+      type: 'paragraph',
+      text:
+        'The commands in this guide are all you need for day-to-day work: `git init`, `git add`, `git commit`, `git push`, `git pull`, and a handful of branching and undo tools. Do not memorise them from a list — pick a real project of your own and practise each workflow until it feels automatic. Your future self, and every team you work with, will thank you.',
+    },
+    {
+      type: 'link',
+      label: 'Download the Git & GitHub commands cheat sheet (PDF)',
+      href: 'https://dlabskenya.com/downloads/git-github-commands-cheat-sheet.pdf',
+      description:
+        'A one-page summary of every command covered in this guide, grouped by category, ready to print or keep on your second screen.',
+    },
+    {
+      type: 'link',
+      label: 'Read next: M-Pesa Daraja API Integration with Node.js, Express and MongoDB',
+      href: 'https://dlabskenya.com/blog/mpesa-daraja-api-nodejs-express-mongodb',
+      description:
+        'Put your new skills to work: clone a project, branch it, and follow D-LABS\' complete step-by-step guide to integrating M-Pesa payments in a Node.js application.',
+    },
+  ],
+};
+
+articles.unshift(gitGithubBeginnerArticle);
 articles.unshift(articleMpesaTillPaybill);
 articles.unshift(mpesaDarajaArticle);
 
