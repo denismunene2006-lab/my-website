@@ -26,6 +26,7 @@ import { getProductHref, products } from './products';
 import ecommercePreview from '../images/ecommerce-website/ecommerce-website-preview.jpg';
 import educationPreview from '../images/d-labs-education/d-labs-education.webp';
 import founderPortrait from '../images/profile-new.jpeg';
+import lipaBizPreview from '../images/lipa-biz/lipa-biz-preview.jpg';
 import logoMark from '../images/new logo.jpeg';
 import studentHustleHubPreview from '../images/student-hustle-hub/student-hustle-hub-preview.webp';
 
@@ -354,6 +355,19 @@ export const faqItems = [
 ] as const;
 
 export const projects = [
+  {
+    title: 'Lipa Biz',
+    slug: 'lipa-biz',
+    description:
+      'A centralized M-Pesa payment management platform for businesses to send STK Push requests, track payments, generate receipts, and manage multiple entities from one dashboard.',
+    goal: 'Give businesses a centralized platform to manage M-Pesa payments, receipts, customers and debts.',
+    outcome:
+      'A multi-business payment management platform with STK Push, payment links, real-time tracking, receipts, and analytics — all in one place.',
+    image: lipaBizPreview,
+    href: 'https://lipa-biz.dlabskenya.com/',
+    cta: 'Open live site',
+    tags: ['M-Pesa', 'Payment Management', 'Multi-Business', 'SaaS'],
+  },
   {
     title: 'D-LABS Education',
     slug: 'd-labs-education',
