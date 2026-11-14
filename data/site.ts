@@ -125,7 +125,7 @@ export const heroHighlights = [
 
 export const heroStats = [
   { label: 'Years of experience', value: '3+' },
-  { label: 'Featured projects', value: '4' },
+  { label: 'Featured projects', value: '5' },
   { label: 'Blog articles', value: '10' },
   { label: 'Happy clients', value: '20+' },
 ] as const;
