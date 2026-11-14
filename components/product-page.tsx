@@ -1,13 +1,11 @@
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
-import { ProductContactActions } from '@/components/product-contact-actions';
-import { ProductFeature } from '@/components/product-feature';
-import { ProductShare } from '@/components/product-share';
-import { MoreFeaturesSection } from '@/components/more-features-section';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { getProductHref, type Product } from '@/data/products';
+import { type Product } from '@/data/products';
 import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
 
 type ProductPageProps = {
   product: Product;
@@ -17,11 +15,12 @@ type ProductPageProps = {
  * Shared layout for every "From D-Labs" product page, so each new product
  * automatically matches the D-LABS design language.
  *
- * A product page deliberately contains no links to other pages of the site —
- * the only actions are WhatsApp and Email, both with pre-written messages.
+ * This page introduces Lipa Biz, explains the problems it solves, and
+ * directs visitors to the official Lipa Biz landing page.
  */
 export function ProductPage({ product }: ProductPageProps) {
   const Icon = product.icon;
+  const LIPI_BIZ_URL = 'https://lipa-biz.dlabskenya.com/';
 
   return (
     <div>
@@ -45,11 +44,15 @@ export function ProductPage({ product }: ProductPageProps) {
                 </p>
               </div>
 
-              <ProductContactActions
-                whatsappMessage={product.contact.whatsappMessage}
-                emailSubject={product.contact.emailSubject}
-                emailBody={product.contact.emailBody}
-              />
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-1.5">
+                  {product.tags.map((tag) => (
+                    <Badge key={tag} variant="outline" className="text-[11px]">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
 
@@ -72,22 +75,8 @@ export function ProductPage({ product }: ProductPageProps) {
                 <p className="text-xs leading-relaxed text-muted-foreground">
                   {product.summary}
                 </p>
-
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {product.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-[11px]">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
               </CardContent>
             </Card>
-
-            <ProductShare
-              name={product.name}
-              path={getProductHref(product)}
-              className="w-full justify-between"
-            />
             </div>
           </Reveal>
         </div>
@@ -103,7 +92,7 @@ export function ProductPage({ product }: ProductPageProps) {
             />
           </Reveal>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {product.challenges.map((challenge, index) => {
               const ChallengeIcon = challenge.icon;
               return (
@@ -126,7 +115,7 @@ export function ProductPage({ product }: ProductPageProps) {
         </div>
       </section>
 
-      {/* Introductory narrative — extend `product.sections` as the product grows */}
+      {/* Introducing Lipa Biz */}
       {product.sections.map((section, index) => (
         <section
           key={section.id}
@@ -143,80 +132,33 @@ export function ProductPage({ product }: ProductPageProps) {
           </div>
         </section>
       ))}
-      {/* What you get — static, no scroll-triggered reveals: the screenshot rows
-          are very tall, and animating them on scroll made the page feel heavy. */}
-      <section className="page-section bg-muted/20 border-y border-border/40">
-        <div className="container-shell">
-          <SectionHeading
-            eyebrow="Features"
-            title="What you get"
-            description="Three core parts: sending the request, confirming the payment, and proving it afterwards."
-          />
 
-          <div className="mt-10 space-y-6">
-            {product.features.map((feature) => (
-              <ProductFeature key={feature.id} feature={feature} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* More features — icon cards without screenshots */}
-      <MoreFeaturesSection product={product} />
-
-      {/* How we do it */}
-      <section className="page-section">
-        <div className="container-shell">
-          <Reveal>
-            <SectionHeading
-              eyebrow="The process"
-              title="How we do it"
-              description="We handle the setup with you, so the payment flow is ready to use for your business."
-            />
-          </Reveal>
-
-          <ol className="mt-10 space-y-4">
-            {product.process.map((step, index) => (
-              <Reveal key={step.number} delay={index * 50}>
-                <li className="group interactive-card flex gap-5 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md sm:p-6">
-                  <span className="font-heading text-2xl font-extrabold leading-none text-primary/40 transition-colors duration-200 group-hover:text-primary/70 sm:text-3xl">
-                    {step.number}
-                  </span>
-                  <div className="space-y-1.5">
-                    <h3 className="text-base font-bold font-heading tracking-tight text-foreground sm:text-lg">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{step.text}</p>
-                  </div>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Final CTA */}
+      {/* CTA: Explore Lipa Biz */}
       <section className="page-section bg-muted/20 border-t border-border/40">
         <div className="container-shell">
           <Card className="overflow-hidden border-border/60 bg-card shadow-md p-8 sm:p-10">
             <CardContent className="grid gap-6 p-0 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div className="space-y-3">
-                <Badge variant="accent" className="text-xs uppercase font-semibold">
-                  Get started
+              <div className="space-y-3 text-center lg:text-left">
+                <Badge variant="accent" className="text-xs uppercase font-semibold inline-block">
+                  Explore Lipa Biz
                 </Badge>
                 <h2 className="text-2xl font-bold font-heading tracking-tight text-foreground sm:text-3xl">
-                  Ready to simplify your M-Pesa payments?
+                  Ready to manage your M-Pesa payments from one platform?
                 </h2>
-                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-                  Get in touch with D-Labs and let&apos;s get Lipa ready for your business.
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground mx-auto lg:mx-0">
+                  Discover how Lipa Biz helps businesses track payments, generate receipts, and manage multiple entities — all in one place.
                 </p>
               </div>
-              <ProductContactActions
-                whatsappMessage={product.contact.whatsappMessage}
-                emailSubject={product.contact.emailSubject}
-                emailBody={product.contact.emailBody}
-                align="end"
-              />
+              <div className="flex justify-center lg:justify-end">
+                <Button
+                  size="lg"
+                  className="gap-2"
+                  onClick={() => window.open(LIPI_BIZ_URL, '_blank', 'noopener,noreferrer')}
+                >
+                  Explore Lipa Biz
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>

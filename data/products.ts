@@ -1,18 +1,13 @@
 import {
-  BarChart2,
   ClipboardCheck,
-  Link2,
+  CreditCard,
   MessageSquareWarning,
   Receipt,
-  Send,
   Users,
   Wallet,
   type LucideIcon,
 } from 'lucide-react';
 
-import lipaPushImage from '../images/lipa push.jpeg';
-import paymentsImage from '../images/payments.jpeg';
-import receiptPreviewImage from '../images/receipt preview.jpeg';
 import type { StaticImageData } from 'next/image';
 
 /**
@@ -64,116 +59,58 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: 'lipa',
-    name: 'Lipa',
-    tagline: 'M-Pesa payments your business can actually confirm.',
+    name: 'Lipa Biz',
+    tagline: 'Business payment management for M-Pesa.',
     description:
-      'Lipa is a D-LABS product that lets businesses send M-Pesa STK Push requests, track payments in real time, and generate receipts for successful transactions.',
-    summary: 'Send M-Pesa STK Push requests, track payments in real time, and generate receipts.',
+      'Lipa Biz is a D-LABS product that helps businesses manage and monitor their M-Pesa payment activities from one platform. Built for multi-business support — no separate deployments needed.',
+    summary: 'Manage and monitor M-Pesa payments across multiple businesses from one platform.',
     icon: Wallet,
-    tags: ['M-Pesa', 'STK Push', 'Real-time tracking', 'Receipts', 'Built in-house'],
+    tags: ['M-Pesa', 'Payment Management', 'Multi-Business', 'Built in-house'],
     challenges: [
       {
-        title: 'Edited payment messages',
-        text: 'Have your customers ever claimed they paid, only for you to discover the M-Pesa message was edited?',
+        title: 'Fake or edited payment confirmations',
+        text: 'Customers sometimes present edited M-Pesa messages as proof of payment, leaving businesses with no reliable way to verify.',
         icon: MessageSquareWarning,
       },
       {
-        title: 'Manual payment checks',
-        text: "Or maybe you're tired of manually checking M-Pesa messages to confirm whether a payment actually went through.",
+        title: 'Manual payment checking',
+        text: 'Staff spend valuable time manually checking M-Pesa messages one by one to confirm whether payments actually went through.',
         icon: ClipboardCheck,
+      },
+      {
+        title: 'Difficulty tracking payment statuses',
+        text: 'Without a centralized dashboard, it\'s hard to know at a glance which payments are paid, pending, failed, or cancelled.',
+        icon: CreditCard,
+      },
+      {
+        title: 'Repeatedly entering customer details',
+        text: 'Every transaction requires re-entering customer names and phone numbers, slowing down the payment process.',
+        icon: Users,
+      },
+      {
+        title: 'Poor transaction records and receipts',
+        text: 'Businesses struggle to maintain professional transaction records and generate proper receipts for customers.',
+        icon: Receipt,
       },
     ],
     sections: [
       {
-        id: 'meet-lipa',
-        eyebrow: 'Introducing Lipa',
-        title: 'Meet Lipa.',
+        id: 'introducing-lipa-biz',
+        eyebrow: 'Introducing Lipa Biz',
+        title: 'One platform for all your M-Pesa payment activities.',
         paragraphs: [
-          'Lipa gives your business a simple way to send M-Pesa STK Push requests, track payments in real time, and generate receipts for successful transactions — all from one place.',
+          'Lipa Biz gives your business a centralized platform to send M-Pesa STK Push requests, track payments in real time, and generate professional receipts — all from one place.',
+          'Unlike the original Lipa which required separate deployments for each business, Lipa Biz supports multiple businesses on a single platform, making it ideal for agencies, franchises, and companies managing payments across different entities.',
         ],
       },
     ],
-    features: [
-      {
-        id: 'lipa-push',
-        number: '01',
-        title: 'M-Pesa STK Push',
-        text: 'Send an M-Pesa STK Push directly to your customer\'s phone. The customer enters their M-Pesa PIN and completes the payment without you having to manually confirm messages. Click any transaction on the dashboard to view its full details — payment status, M-Pesa receipt number, and payment message. Successful transactions can also be used to generate digital receipts.',
-        icon: Send,
-        image: lipaPushImage,
-        imageAlt: 'Lipa Push STK Push request screen on a phone',
-      },
-      {
-        id: 'real-time-tracking',
-        number: '02',
-        title: 'Real-time payment tracking',
-        text: 'Track payments as they happen from one dashboard. Quickly see whether a transaction is Paid, Pending, Failed, or Cancelled.',
-        icon: Wallet,
-        image: paymentsImage,
-        imageAlt: 'Lipa dashboard showing real-time payment tracking',
-      },
-      {
-        id: 'digital-receipts',
-        number: '03',
-        title: 'Digital receipts',
-        text: 'Generate professional digital receipts for successful payments. Receipts can be downloaded as PDF, printed, or shared with the customer.',
-        icon: Receipt,
-        image: receiptPreviewImage,
-        imageAlt: 'Preview of a digital receipt generated by Lipa',
-      },
-    ],
-    moreFeatures: [
-      {
-        id: 'payment-links',
-        title: 'Payment Links',
-        text: 'Create and share payment links with customers so they can pay remotely using M-Pesa, without visiting the business counter.',
-        icon: Link2,
-      },
-      {
-        id: 'payment-analytics',
-        title: 'Payment Analytics',
-        text: 'Display charts and summary statistics for successful and failed transactions, including the success rate.',
-        icon: BarChart2,
-      },
-      {
-        id: 'customer-management',
-        title: 'Customer Management',
-        text: 'Businesses can save customer names and phone numbers. When initiating an STK Push, they can select a saved customer and automatically fill in their name and phone number.',
-        icon: Users,
-      },
-    ],
-    process: [
-      {
-        number: '01',
-        title: 'We help set up your payment account',
-        text: 'We help you create and configure the required PayHero payment setup for your business.',
-      },
-      {
-        number: '02',
-        title: 'Payments go directly to your configured channel',
-        text: 'Customer payments are processed through your configured M-Pesa payment channel.',
-      },
-      {
-        number: '03',
-        title: 'Lipa handles the payment flow',
-        text: 'Lipa securely handles the payment request, tracks the transaction status, and validates the payment information.',
-      },
-      {
-        number: '04',
-        title: 'We configure Lipa for your business',
-        text: 'We set up Lipa with your business details and make sure the payment flow is ready to use.',
-      },
-      {
-        number: '05',
-        title: 'We help you get started',
-        text: 'We guide you through the setup and help verify that your payment flow is working correctly.',
-      },
-    ],
+    features: [],
+    moreFeatures: [],
+    process: [],
     contact: {
-      whatsappMessage:
-        "Hi D-Labs 👋, I’m interested in Lipa and I’d like to learn more about getting it for my business.",
-      emailSubject: 'Interested in Lipa',
-      emailBody: "Hi D-Labs,\n\nI’m interested in Lipa and I’d like to learn more about getting it for my business.\n\nThank you.",
+      whatsappMessage: '',
+      emailSubject: '',
+      emailBody: '',
     },
   },
 ];
