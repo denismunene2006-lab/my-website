@@ -9,7 +9,23 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         // Build artefacts and source maps are never worth crawling.
-        disallow: ['/_next/', '/api/'],
+        disallow: ['/_next/', '/api/', '/admin/', '/private/', '/*.json$'],
+      },
+      {
+        userAgent: 'GPTBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'ChatGPT-User',
+        disallow: '/',
+      },
+      {
+        userAgent: 'CCBot',
+        disallow: '/',
+      },
+      {
+        userAgent: 'anthropic-ai',
+        disallow: '/',
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,

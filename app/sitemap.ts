@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { articles } from '@/data/articles';
 import { products, getProductHref } from '@/data/products';
+import { projects } from '@/data/site';
 import { siteUrl } from '@/data/site';
 
 /**
@@ -25,6 +26,7 @@ const staticRoutes: RouteEntry[] = [
   { path: '/about', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/projects', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
+  { path: '/from-d-labs', changeFrequency: 'monthly', priority: 0.8 },
 ];
 
 /**
@@ -36,13 +38,33 @@ function articleModifiedDate(article: (typeof articles)[number]): Date {
   return Number.isNaN(parsed.getTime()) ? new Date('2026-01-01') : parsed;
 }
 
+function productModifiedDate(product: (typeof products)[number]): Date {
+  // Use a recent date for products since they don't have updatedAt
+  return new Date('2026-11-14');
+}
+
+function projectModifiedDate(project: (typeof projects)[number]): Date {
+  // Use a recent date for projects
+  return new Date('2026-11-14');
+}
+
 const latestArticleDate = articles.reduce<Date>((latest, article) => {
   const modified = articleModifiedDate(article);
   return modified > latest ? modified : latest;
 }, new Date('2026-01-01'));
 
+const latestProductDate = products.reduce<Date>((latest, product) => {
+  const modified = productModifiedDate(product);
+  return modified > latest ? modified : latest;
+}, new Date('2026-01-01'));
+
+const latestProjectDate = projects.reduce<Date>((latest, project) => {
+  const modified = projectModifiedDate(project);
+  return modified > latest ? modified : latest;
+}, new Date('2026-01-01'));
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const allUrls: MetadataRoute.Sitemap = [
     // Home and /blog change whenever a new article is published.
     { url: new URL('/', siteUrl).toString(), lastModified: latestArticleDate, changeFrequency: 'weekly', priority: 1.0 },
     { url: new URL('/blog', siteUrl).toString(), lastModified: latestArticleDate, changeFrequency: 'weekly', priority: 0.8 },
@@ -56,7 +78,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ...products.map((product) => ({
       url: new URL(getProductHref(product), siteUrl).toString(),
-      lastModified: new Date('2026-09-30'),
+      lastModified: productModifiedDate(product),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+    ...projects.map((project) => ({
+      url: new URL(`/projects#${project.slug}`, siteUrl).toString(),
+      lastModified: projectModifiedDate(project),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
@@ -67,4 +95,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     })),
   ];
+
+  // Sort by priority descending, then by lastModified descending
+  return allUrls.sort((a, b) => {
+    const aPriority = a.priority ?? 0;
+    const bPriority = b.priority ?? 0;
+    if (bPriority !== aPriority) return bPriority - aPriority;
+    const aDate = a.lastModified ? new Date(a.lastModified).getTime() : 0;
+    const bDate = b.lastModified ? new Date(b.lastModified).getTime() : 0;
+    return bDate - aDate;
+  });
 }

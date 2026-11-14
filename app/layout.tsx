@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Inter, Sora } from 'next/font/google';
 import './globals.css';
 
 import { JsonLd } from '@/components/json-ld';
@@ -11,6 +12,21 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { WhatsAppButton } from '@/components/whatsapp-button';
 import { site, siteUrl } from '@/data/site';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+});
+
+const sora = Sora({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sora',
+  preload: true,
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -188,7 +204,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
+      <body className={`${inter.variable} ${sora.variable} bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary`}>
         <ThemeProvider defaultTheme="dark">
           <NeuralBackground />
           <SmoothScrollProvider>

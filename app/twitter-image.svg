@@ -1,0 +1,42 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B0F14;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#141A24;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  
+  <!-- Subtle pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g opacity="0.03">
+    <rect x="0" y="0" width="1200" height="600" fill="url(#grid)" />
+  </g>
+
+  <!-- Accent bar -->
+  <rect x="100" y="170" width="8" height="100" fill="url(#accent)" rx="4"/>
+  
+  <!-- Text content -->
+  <text x="140" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="white" letter-spacing="-1.5">
+    D-LABS
+  </text>
+  <text x="140" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="500" fill="#10B981" letter-spacing="0.5">
+    Digital Solutions & Innovation
+  </text>
+  <text x="140" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#94A3B8" max-width="900">
+    We build fast, premium, SEO-ready websites and web apps for businesses that want to feel modern and trustworthy.
+  </text>
+  
+  <!-- Bottom info -->
+  <text x="140" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#64748B">
+    dlabskenya.com  •  Embu, Kenya
+  </text>
+</svg>

@@ -112,17 +112,28 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
     image: new URL(article.image.src, siteUrl).toString(),
     datePublished: article.date,
     dateModified: article.updatedAt,
-    author: { '@type': 'Person', name: site.founderName },
+    author: { '@type': 'Person', name: site.founderName, url: `${siteUrl}/about` },
     publisher: {
       '@type': 'Organization',
       name: site.name,
       url: siteUrl,
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/opengraph-image` },
     },
-    mainEntityOfPage: `${siteUrl}/blog/${article.slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${siteUrl}/blog/${article.slug}` },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${siteUrl}/blog` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: articleUrl },
+    ],
   };
 
   const faqJsonLd = buildFaqJsonLd(article);
-  const jsonLdArray = faqJsonLd ? [jsonLd, faqJsonLd] : [jsonLd];
+  const jsonLdArray = faqJsonLd ? [jsonLd, breadcrumbJsonLd, faqJsonLd] : [jsonLd, breadcrumbJsonLd];
 
   const articleTags = article.tags ?? [article.category, 'D-LABS', 'Web Development'];
   const relatedArticles = articles

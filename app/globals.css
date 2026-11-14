@@ -36,8 +36,8 @@
     
     --radius: 0.875rem;             /* 14px refined radius */
     
-    --font-body: 'Inter', 'Manrope', ui-sans-serif, system-ui, sans-serif;
-    --font-heading: 'Sora', 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-body: var(--font-inter), 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   }
 
   .dark {

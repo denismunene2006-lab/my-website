@@ -74,7 +74,7 @@ export function createPageMetadata({
     title: { absolute: title },
     description,
     alternates: {
-      canonical: path,
+      canonical,
     },
     openGraph,
     twitter: {
