@@ -1,7 +1,6 @@
 import { Reveal } from '@/components/reveal';
 import { SectionHeading } from '@/components/section-heading';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { type Product } from '@/data/products';
 import { cn } from '@/lib/utils';
@@ -150,14 +149,15 @@ export function ProductPage({ product }: ProductPageProps) {
                 </p>
               </div>
               <div className="flex justify-center lg:justify-end">
-                <Button
-                  size="lg"
-                  className="gap-2"
-                  onClick={() => window.open(LIPI_BIZ_URL, '_blank', 'noopener,noreferrer')}
+                <a
+                  href={LIPI_BIZ_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   Explore Lipa Biz
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Button>
+                </a>
               </div>
             </CardContent>
           </Card>
