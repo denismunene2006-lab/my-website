@@ -108,8 +108,8 @@ export default function ProjectsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Featured project"
-              title="D-LABS Education"
-              description="A structured platform built with interactive roadmaps, curated lessons, and guided paths for beginner web developers."
+              title={featured.title}
+              description={featured.description}
             />
           </Reveal>
           <div className="mt-10">
