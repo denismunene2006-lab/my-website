@@ -9,7 +9,8 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 ### Highlights
 
 - Responsive navigation with a mobile drawer menu
-- "From D-Labs" product section: a dropdown nav item for in-house products (currently Lipa)
+- "From D-Labs" product section: a dropdown nav item for in-house products (currently Lipa Biz)
+- Portfolio with 5 featured projects (D-LABS Education, Student Hustle Hub, E-Commerce, Bookshop, Lipa Biz)
 - Branded splash screen shown on first visit per session
 - Modern hero, services, projects, blog, pricing, and contact pages
 - "Latest Insights" section on the home page that automatically shows the 3 newest blog
@@ -47,7 +48,7 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 
 Products D-LABS builds and owns in-house, kept separate from client projects.
 
-- `/from-d-labs/lipa` - Lipa (M-Pesa STK Push, payment tracking, and receipts)
+- `/from-d-labs/lipa` - Lipa Biz (Business payment management for M-Pesa — centralized platform for STK Push, payment links, real-time tracking, receipts, analytics; multi-business support)
 
 ### Blog articles
 
@@ -121,13 +122,14 @@ scripts/     Build and optimization helpers
 
 - Unique, keyword-targeted `<title>` and meta description on every route, built through
   `createPageMetadata()` in `lib/metadata.ts`
-- Self-referencing canonical URLs on every page, resolved against `siteUrl`
-- Open Graph and Twitter card metadata with a generated 1200×630 preview image
+- Self-referencing canonical URLs on every page (absolute URLs), resolved against `siteUrl`
+- Open Graph and Twitter card metadata with a generated 1200×630 preview image (`/opengraph-image.svg`, `/twitter-image.svg`)
 - Semantic heading hierarchy (one `<h1>` per page) and descriptive image `alt` text
 - `next/image` for automatic sizing, lazy loading, and AVIF/WebP delivery
 - Full static generation for all pages, blog articles, and products — crawlable HTML with
   no client-side rendering dependency
 - Article pages include `publishedTime`, `modifiedTime`, `author`, `section`, and `tags` in Open Graph
+- Font optimization with `next/font/google` (Inter for body, Sora for headings) using `display: swap` and preload for zero CLS
 
 ### Structured data (JSON-LD)
 Rendered through the `JsonLd` component, which injects `application/ld+json` script tags.
@@ -138,7 +140,7 @@ Rendered through the `JsonLd` component, which injects `application/ld+json` scr
 | `Service`, `FAQPage`, `BreadcrumbList`, `WebPage` | `/services` |
 | `PriceSpecification`, `BreadcrumbList`, `WebPage` | `/pricing` |
 | `WebPage`, `BreadcrumbList` | `/projects`, `/about`, `/contact` |
-| `BlogPosting` | `/blog/[slug]` |
+| `BlogPosting`, `BreadcrumbList` | `/blog`, `/blog/[slug]` |
 | `SoftwareApplication`, `BreadcrumbList`, `WebPage` | `/from-d-labs/[slug]` |
 | `Review` | `/` (home page testimonials) |
 
@@ -148,12 +150,13 @@ Entity references are cross-linked with `@id` values (for example the organizati
 ### Crawler files
 - `app/sitemap.ts` generates `/sitemap.xml` dynamically from the same data modules the pages
   use, so new products and articles appear automatically. Priorities rank the commercial
-  pages (services, pricing, contact) above the blog. `lastModified` uses actual content dates,
+  pages (services, pricing, contact) above the blog. `lastModified` uses actual content dates
+  from each article's `updatedAt`, each product's release date, and each project's update date,
   not the current time, because a sitemap that reports every URL as freshly modified on every
   request is discounted by crawlers. `/` and `/blog` take their `lastModified` from the newest
   article's `updatedAt`, so they refresh automatically on publish.
 - `app/robots.ts` generates `/robots.txt` with an explicit sitemap reference and a `Host`
-  directive.
+  directive. AI bots (GPTBot, ChatGPT-User, CCBot, anthropic-ai) are disallowed from crawling.
 - Static `sitemap.xml` and `robots.txt` at the repository root mirror the same data for the
   legacy GitHub Pages build. **Keep both in sync** when adding routes.
 
