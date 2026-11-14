@@ -99,8 +99,7 @@ export const products: Product[] = [
         eyebrow: 'Introducing Lipa Biz',
         title: 'One platform for all your M-Pesa payment activities.',
         paragraphs: [
-          'Lipa Biz gives your business a centralized platform to send M-Pesa STK Push requests, track payments in real time, and generate professional receipts — all from one place.',
-          'Unlike the original Lipa which required separate deployments for each business, Lipa Biz supports multiple businesses on a single platform, making it ideal for agencies, franchises, and companies managing payments across different entities.',
+          'Lipa Biz brings all your business payment operations together in one platform. Send M-Pesa STK Push requests, create and share payment links, manage customer records, track transactions in real time, and generate professional digital receipts. With payment analytics that help you monitor successful and failed transactions, you can understand your payment performance at a glance. Whether you manage one business or multiple businesses, Lipa Biz gives you a centralized way to manage your M-Pesa payments with ease.',
         ],
       },
     ],
