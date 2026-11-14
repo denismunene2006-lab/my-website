@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
-const LIPA_URL = "https://www.dlabskenya.com/from-d-labs/lipa";
+const LIPI_BIZ_URL = "https://lipa-biz.dlabskenya.com/";
 
 type LipaPromoCardProps = {
     heading: string;
@@ -14,7 +13,7 @@ export function LipaPromoCard({
     heading,
     description,
     features,
-    ctaLabel = "Explore Lipa",
+    ctaLabel = "Explore Lipa Biz",
 }: LipaPromoCardProps) {
     return (
         <section
@@ -57,8 +56,10 @@ export function LipaPromoCard({
                 </ul>
 
                 <div className="mt-6 border-t border-primary/15 pt-5">
-                    <Link
-                        href={LIPA_URL}
+                    <a
+                        href={LIPI_BIZ_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 hover:shadow-md"
                     >
                         {ctaLabel}
@@ -66,7 +67,7 @@ export function LipaPromoCard({
                             className="h-4 w-4 shrink-0"
                             aria-hidden="true"
                         />
-                    </Link>
+                    </a>
                     <p className="mt-3 text-xs text-muted-foreground/80">
                         A D-LABS product · M-Pesa payments made simple
                     </p>
