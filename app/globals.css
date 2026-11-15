@@ -114,6 +114,15 @@ h1, h2, h3, h4, h5, h6 {
   @apply py-16 sm:py-20 lg:py-24;
 }
 
+/* Hero section at the top of each page.
+   Uses tighter top padding than .page-section because the sticky nav
+   already occupies 64 px of vertical space — there is no need to push
+   the hero content down with a full py-16 / py-24 offset.
+   Bottom padding matches the visual weight of the hero illustration/card. */
+.page-hero {
+  @apply pt-10 pb-16 sm:pt-12 lg:pt-14 lg:pb-24;
+}
+
 /* Technical dot matrix & glowing cybernetic background */
 .tech-grid-pattern {
   background-image:

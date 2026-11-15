@@ -24,7 +24,7 @@ export function ProductPage({ product }: ProductPageProps) {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-24 tech-grid-pattern">
+      <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background page-hero tech-grid-pattern">
         <div className="container-shell relative z-10 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
           <Reveal>
             <div className="max-w-2xl space-y-6">

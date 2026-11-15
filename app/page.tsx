@@ -35,7 +35,7 @@ export const metadata = createPageMetadata({
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background py-16 lg:py-28 tech-grid-pattern">
+    <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-muted/30 to-background page-hero tech-grid-pattern">
       <div className="container-shell relative z-10">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
