@@ -31,6 +31,7 @@ This repository contains the D-LABS marketing site. It keeps the original brand,
 - Tailwind CSS
 - Radix UI primitives
 - Lucide icons
+- Lenis (smooth scrolling)
 
 ## Routes
 
@@ -161,19 +162,14 @@ Entity references are cross-linked with `@id` values (for example the organizati
   legacy GitHub Pages build. **Keep both in sync** when adding routes.
 
 ### Performance notes
-Scroll smoothness is currently limited by three site-wide components, all of which run on
-every page:
 
-- `components/smooth-scroll-provider.tsx` — Lenis with a 1.2s duration; a long duration makes
-  the page feel like it lags behind the input.
-- `components/neural-background.tsx` — a full-viewport canvas redrawn every frame with
-  O(n²) line drawing, competing with scroll rendering.
-- `components/scroll-progress.tsx` — calls `setState` on every scroll event, forcing a React
-  re-render per scroll tick.
+Scroll smoothness is optimized via Lenis virtual scroll:
 
-Throttling the progress bar, pausing the canvas while scrolling, and shortening the Lenis
-duration would measurably improve frame times. The Lipa feature section already avoids
-scroll-triggered transforms and reveals for this reason.
+- `components/smooth-scroll-provider.tsx` — Lenis with **0.85s duration** (reduced from 1.1s) for snappier, more responsive feel; exposes Lenis instance via React Context for other components.
+- `components/scroll-progress.tsx` — reads from **Lenis virtual scroll** (`lenis.scroll` / `lenis.limit`) via `lenis.on('scroll')` event instead of native `window.scrollY`; no CSS transition fighting Lenis animation.
+- `components/neural-background.tsx` — full-viewport canvas; consider pausing animation during scroll via `lenis.isScrolling` for further gains.
+
+The Lipa feature section already avoids scroll-triggered transforms and reveals for performance.
 
 ## Deployment
 

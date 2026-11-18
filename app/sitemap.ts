@@ -38,28 +38,23 @@ function articleModifiedDate(article: (typeof articles)[number]): Date {
   return Number.isNaN(parsed.getTime()) ? new Date('2026-01-01') : parsed;
 }
 
-function productModifiedDate(product: (typeof products)[number]): Date {
-  // Use a recent date for products since they don't have updatedAt
-  return new Date('2026-11-14');
+/**
+ * Products and projects don't have individual updatedAt fields.
+ * Use a recent, reasonable fallback date that reflects when the data was last touched.
+ * This avoids reporting "now" on every request (which crawlers discount).
+ */
+const FALLBACK_CONTENT_DATE = new Date('2026-11-14');
+
+function productModifiedDate(): Date {
+  return FALLBACK_CONTENT_DATE;
 }
 
-function projectModifiedDate(project: (typeof projects)[number]): Date {
-  // Use a recent date for projects
-  return new Date('2026-11-14');
+function projectModifiedDate(): Date {
+  return FALLBACK_CONTENT_DATE;
 }
 
 const latestArticleDate = articles.reduce<Date>((latest, article) => {
   const modified = articleModifiedDate(article);
-  return modified > latest ? modified : latest;
-}, new Date('2026-01-01'));
-
-const latestProductDate = products.reduce<Date>((latest, product) => {
-  const modified = productModifiedDate(product);
-  return modified > latest ? modified : latest;
-}, new Date('2026-01-01'));
-
-const latestProjectDate = projects.reduce<Date>((latest, project) => {
-  const modified = projectModifiedDate(project);
   return modified > latest ? modified : latest;
 }, new Date('2026-01-01'));
 
@@ -72,19 +67,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       .filter((route) => route.path !== '/' && route.path !== '/blog')
       .map((route) => ({
         url: new URL(route.path, siteUrl).toString(),
-        lastModified: new Date('2026-09-30'),
+        lastModified: FALLBACK_CONTENT_DATE,
         changeFrequency: route.changeFrequency,
         priority: route.priority,
       })),
     ...products.map((product) => ({
       url: new URL(getProductHref(product), siteUrl).toString(),
-      lastModified: productModifiedDate(product),
+      lastModified: productModifiedDate(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
     ...projects.map((project) => ({
       url: new URL(`/projects#${project.slug}`, siteUrl).toString(),
-      lastModified: projectModifiedDate(project),
+      lastModified: projectModifiedDate(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
