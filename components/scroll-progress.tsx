@@ -1,29 +1,33 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLenis } from './smooth-scroll-provider';
 
 export function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { lenis } = useLenis();
 
   useEffect(() => {
+    if (!lenis) return;
+
     const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const totalHeight = lenis.limit;
       if (totalHeight > 0) {
-        setScrollProgress(window.scrollY / totalHeight);
+        setScrollProgress(lenis.scroll / totalHeight);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    lenis.on('scroll', handleScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      lenis.off('scroll', handleScroll);
     };
-  }, []);
+  }, [lenis]);
 
   return (
     <div
-      className="fixed inset-x-0 top-0 h-[3px] pointer-events-none z-[9999] origin-left bg-gradient-to-r from-primary to-accent transition-transform duration-75 ease-out"
+      className="fixed inset-x-0 top-0 h-[3px] pointer-events-none z-[9999] origin-left bg-gradient-to-r from-primary to-accent"
       style={{ transform: `scaleX(${scrollProgress})` }}
       aria-hidden="true"
     />
